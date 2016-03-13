@@ -1,0 +1,11 @@
+bg-piece8.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bg-piece8
+  rotate: false
+  xy: 2, 2
+  size: 344, 155
+  orig: 344, 155
+  offset: 0, 0
+  index: 1

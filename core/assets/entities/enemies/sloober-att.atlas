@@ -1,0 +1,11 @@
+sloober-att.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sloober-att
+  rotate: false
+  xy: 2, 2
+  size: 579, 582
+  orig: 579, 582
+  offset: 0, 0
+  index: 1

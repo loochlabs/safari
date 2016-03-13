@@ -1,0 +1,88 @@
+man-warp.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+man-warp
+  rotate: false
+  xy: 2, 2
+  size: 222, 326
+  orig: 222, 326
+  offset: 0, 0
+  index: 1
+man-warp
+  rotate: false
+  xy: 226, 2
+  size: 222, 326
+  orig: 222, 326
+  offset: 0, 0
+  index: 10
+man-warp
+  rotate: false
+  xy: 2, 330
+  size: 222, 326
+  orig: 222, 326
+  offset: 0, 0
+  index: 11
+man-warp
+  rotate: false
+  xy: 226, 330
+  size: 222, 326
+  orig: 222, 326
+  offset: 0, 0
+  index: 12
+man-warp
+  rotate: false
+  xy: 2, 658
+  size: 222, 326
+  orig: 222, 326
+  offset: 0, 0
+  index: 2
+man-warp
+  rotate: false
+  xy: 226, 658
+  size: 222, 326
+  orig: 222, 326
+  offset: 0, 0
+  index: 3
+man-warp
+  rotate: false
+  xy: 2, 986
+  size: 222, 326
+  orig: 222, 326
+  offset: 0, 0
+  index: 4
+man-warp
+  rotate: false
+  xy: 226, 986
+  size: 222, 326
+  orig: 222, 326
+  offset: 0, 0
+  index: 5
+man-warp
+  rotate: false
+  xy: 2, 1314
+  size: 222, 326
+  orig: 222, 326
+  offset: 0, 0
+  index: 6
+man-warp
+  rotate: false
+  xy: 2, 1642
+  size: 222, 326
+  orig: 222, 326
+  offset: 0, 0
+  index: 7
+man-warp
+  rotate: false
+  xy: 226, 1314
+  size: 222, 326
+  orig: 222, 326
+  offset: 0, 0
+  index: 8
+man-warp
+  rotate: false
+  xy: 226, 1642
+  size: 222, 326
+  orig: 222, 326
+  offset: 0, 0
+  index: 9

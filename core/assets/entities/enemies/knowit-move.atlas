@@ -1,0 +1,284 @@
+knowit-move.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+knowit-move
+  rotate: false
+  xy: 2, 2
+  size: 216, 172
+  orig: 216, 172
+  offset: 0, 0
+  index: 1
+knowit-move
+  rotate: false
+  xy: 2, 176
+  size: 216, 172
+  orig: 216, 172
+  offset: 0, 0
+  index: 10
+knowit-move
+  rotate: false
+  xy: 2, 350
+  size: 216, 172
+  orig: 216, 172
+  offset: 0, 0
+  index: 11
+knowit-move
+  rotate: false
+  xy: 2, 524
+  size: 216, 172
+  orig: 216, 172
+  offset: 0, 0
+  index: 12
+knowit-move
+  rotate: false
+  xy: 2, 698
+  size: 216, 172
+  orig: 216, 172
+  offset: 0, 0
+  index: 13
+knowit-move
+  rotate: false
+  xy: 220, 2
+  size: 216, 172
+  orig: 216, 172
+  offset: 0, 0
+  index: 14
+knowit-move
+  rotate: false
+  xy: 220, 176
+  size: 216, 172
+  orig: 216, 172
+  offset: 0, 0
+  index: 15
+knowit-move
+  rotate: false
+  xy: 220, 350
+  size: 216, 172
+  orig: 216, 172
+  offset: 0, 0
+  index: 16
+knowit-move
+  rotate: false
+  xy: 220, 524
+  size: 216, 172
+  orig: 216, 172
+  offset: 0, 0
+  index: 17
+knowit-move
+  rotate: false
+  xy: 220, 698
+  size: 216, 172
+  orig: 216, 172
+  offset: 0, 0
+  index: 18
+knowit-move
+  rotate: false
+  xy: 438, 2
+  size: 216, 172
+  orig: 216, 172
+  offset: 0, 0
+  index: 19
+knowit-move
+  rotate: false
+  xy: 438, 176
+  size: 216, 172
+  orig: 216, 172
+  offset: 0, 0
+  index: 2
+knowit-move
+  rotate: false
+  xy: 438, 350
+  size: 216, 172
+  orig: 216, 172
+  offset: 0, 0
+  index: 20
+knowit-move
+  rotate: false
+  xy: 438, 524
+  size: 216, 172
+  orig: 216, 172
+  offset: 0, 0
+  index: 21
+knowit-move
+  rotate: false
+  xy: 438, 698
+  size: 216, 172
+  orig: 216, 172
+  offset: 0, 0
+  index: 22
+knowit-move
+  rotate: false
+  xy: 656, 2
+  size: 216, 172
+  orig: 216, 172
+  offset: 0, 0
+  index: 23
+knowit-move
+  rotate: false
+  xy: 656, 176
+  size: 216, 172
+  orig: 216, 172
+  offset: 0, 0
+  index: 24
+knowit-move
+  rotate: false
+  xy: 656, 350
+  size: 216, 172
+  orig: 216, 172
+  offset: 0, 0
+  index: 25
+knowit-move
+  rotate: false
+  xy: 656, 524
+  size: 216, 172
+  orig: 216, 172
+  offset: 0, 0
+  index: 26
+knowit-move
+  rotate: false
+  xy: 656, 698
+  size: 216, 172
+  orig: 216, 172
+  offset: 0, 0
+  index: 27
+knowit-move
+  rotate: false
+  xy: 874, 2
+  size: 216, 172
+  orig: 216, 172
+  offset: 0, 0
+  index: 28
+knowit-move
+  rotate: false
+  xy: 1092, 2
+  size: 216, 172
+  orig: 216, 172
+  offset: 0, 0
+  index: 29
+knowit-move
+  rotate: false
+  xy: 1310, 2
+  size: 216, 172
+  orig: 216, 172
+  offset: 0, 0
+  index: 3
+knowit-move
+  rotate: false
+  xy: 1528, 2
+  size: 216, 172
+  orig: 216, 172
+  offset: 0, 0
+  index: 30
+knowit-move
+  rotate: false
+  xy: 874, 176
+  size: 216, 172
+  orig: 216, 172
+  offset: 0, 0
+  index: 31
+knowit-move
+  rotate: false
+  xy: 874, 350
+  size: 216, 172
+  orig: 216, 172
+  offset: 0, 0
+  index: 32
+knowit-move
+  rotate: false
+  xy: 874, 524
+  size: 216, 172
+  orig: 216, 172
+  offset: 0, 0
+  index: 33
+knowit-move
+  rotate: false
+  xy: 874, 698
+  size: 216, 172
+  orig: 216, 172
+  offset: 0, 0
+  index: 34
+knowit-move
+  rotate: false
+  xy: 1092, 176
+  size: 216, 172
+  orig: 216, 172
+  offset: 0, 0
+  index: 35
+knowit-move
+  rotate: false
+  xy: 1310, 176
+  size: 216, 172
+  orig: 216, 172
+  offset: 0, 0
+  index: 36
+knowit-move
+  rotate: false
+  xy: 1528, 176
+  size: 216, 172
+  orig: 216, 172
+  offset: 0, 0
+  index: 37
+knowit-move
+  rotate: false
+  xy: 1092, 350
+  size: 216, 172
+  orig: 216, 172
+  offset: 0, 0
+  index: 38
+knowit-move
+  rotate: false
+  xy: 1092, 524
+  size: 216, 172
+  orig: 216, 172
+  offset: 0, 0
+  index: 39
+knowit-move
+  rotate: false
+  xy: 1092, 698
+  size: 216, 172
+  orig: 216, 172
+  offset: 0, 0
+  index: 4
+knowit-move
+  rotate: false
+  xy: 1310, 350
+  size: 216, 172
+  orig: 216, 172
+  offset: 0, 0
+  index: 40
+knowit-move
+  rotate: false
+  xy: 1528, 350
+  size: 216, 172
+  orig: 216, 172
+  offset: 0, 0
+  index: 5
+knowit-move
+  rotate: false
+  xy: 1310, 524
+  size: 216, 172
+  orig: 216, 172
+  offset: 0, 0
+  index: 6
+knowit-move
+  rotate: false
+  xy: 1528, 524
+  size: 216, 172
+  orig: 216, 172
+  offset: 0, 0
+  index: 7
+knowit-move
+  rotate: false
+  xy: 1310, 698
+  size: 216, 172
+  orig: 216, 172
+  offset: 0, 0
+  index: 8
+knowit-move
+  rotate: false
+  xy: 1528, 698
+  size: 216, 172
+  orig: 216, 172
+  offset: 0, 0
+  index: 9

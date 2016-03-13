@@ -1,0 +1,256 @@
+poe-dive.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+poe-dive
+  rotate: false
+  xy: 2, 2
+  size: 235, 228
+  orig: 235, 228
+  offset: 0, 0
+  index: 1
+poe-dive
+  rotate: false
+  xy: 239, 2
+  size: 235, 228
+  orig: 235, 228
+  offset: 0, 0
+  index: 10
+poe-dive
+  rotate: false
+  xy: 476, 2
+  size: 235, 228
+  orig: 235, 228
+  offset: 0, 0
+  index: 11
+poe-dive
+  rotate: false
+  xy: 713, 2
+  size: 235, 228
+  orig: 235, 228
+  offset: 0, 0
+  index: 12
+poe-dive
+  rotate: false
+  xy: 950, 2
+  size: 235, 228
+  orig: 235, 228
+  offset: 0, 0
+  index: 13
+poe-dive
+  rotate: false
+  xy: 2, 232
+  size: 235, 228
+  orig: 235, 228
+  offset: 0, 0
+  index: 14
+poe-dive
+  rotate: false
+  xy: 239, 232
+  size: 235, 228
+  orig: 235, 228
+  offset: 0, 0
+  index: 15
+poe-dive
+  rotate: false
+  xy: 476, 232
+  size: 235, 228
+  orig: 235, 228
+  offset: 0, 0
+  index: 16
+poe-dive
+  rotate: false
+  xy: 713, 232
+  size: 235, 228
+  orig: 235, 228
+  offset: 0, 0
+  index: 17
+poe-dive
+  rotate: false
+  xy: 950, 232
+  size: 235, 228
+  orig: 235, 228
+  offset: 0, 0
+  index: 18
+poe-dive
+  rotate: false
+  xy: 2, 462
+  size: 235, 228
+  orig: 235, 228
+  offset: 0, 0
+  index: 19
+poe-dive
+  rotate: false
+  xy: 2, 692
+  size: 235, 228
+  orig: 235, 228
+  offset: 0, 0
+  index: 2
+poe-dive
+  rotate: false
+  xy: 2, 922
+  size: 235, 228
+  orig: 235, 228
+  offset: 0, 0
+  index: 20
+poe-dive
+  rotate: false
+  xy: 2, 1152
+  size: 235, 228
+  orig: 235, 228
+  offset: 0, 0
+  index: 21
+poe-dive
+  rotate: false
+  xy: 2, 1382
+  size: 235, 228
+  orig: 235, 228
+  offset: 0, 0
+  index: 22
+poe-dive
+  rotate: false
+  xy: 239, 462
+  size: 235, 228
+  orig: 235, 228
+  offset: 0, 0
+  index: 23
+poe-dive
+  rotate: false
+  xy: 476, 462
+  size: 235, 228
+  orig: 235, 228
+  offset: 0, 0
+  index: 24
+poe-dive
+  rotate: false
+  xy: 713, 462
+  size: 235, 228
+  orig: 235, 228
+  offset: 0, 0
+  index: 25
+poe-dive
+  rotate: false
+  xy: 950, 462
+  size: 235, 228
+  orig: 235, 228
+  offset: 0, 0
+  index: 26
+poe-dive
+  rotate: false
+  xy: 239, 692
+  size: 235, 228
+  orig: 235, 228
+  offset: 0, 0
+  index: 27
+poe-dive
+  rotate: false
+  xy: 239, 922
+  size: 235, 228
+  orig: 235, 228
+  offset: 0, 0
+  index: 28
+poe-dive
+  rotate: false
+  xy: 239, 1152
+  size: 235, 228
+  orig: 235, 228
+  offset: 0, 0
+  index: 29
+poe-dive
+  rotate: false
+  xy: 239, 1382
+  size: 235, 228
+  orig: 235, 228
+  offset: 0, 0
+  index: 3
+poe-dive
+  rotate: false
+  xy: 476, 692
+  size: 235, 228
+  orig: 235, 228
+  offset: 0, 0
+  index: 30
+poe-dive
+  rotate: false
+  xy: 713, 692
+  size: 235, 228
+  orig: 235, 228
+  offset: 0, 0
+  index: 31
+poe-dive
+  rotate: false
+  xy: 950, 692
+  size: 235, 228
+  orig: 235, 228
+  offset: 0, 0
+  index: 32
+poe-dive
+  rotate: false
+  xy: 476, 922
+  size: 235, 228
+  orig: 235, 228
+  offset: 0, 0
+  index: 33
+poe-dive
+  rotate: false
+  xy: 476, 1152
+  size: 235, 228
+  orig: 235, 228
+  offset: 0, 0
+  index: 34
+poe-dive
+  rotate: false
+  xy: 476, 922
+  size: 235, 228
+  orig: 235, 228
+  offset: 0, 0
+  index: 35
+poe-dive
+  rotate: false
+  xy: 476, 1382
+  size: 235, 228
+  orig: 235, 228
+  offset: 0, 0
+  index: 36
+poe-dive
+  rotate: false
+  xy: 713, 922
+  size: 235, 228
+  orig: 235, 228
+  offset: 0, 0
+  index: 4
+poe-dive
+  rotate: false
+  xy: 950, 922
+  size: 235, 228
+  orig: 235, 228
+  offset: 0, 0
+  index: 5
+poe-dive
+  rotate: false
+  xy: 713, 1152
+  size: 235, 228
+  orig: 235, 228
+  offset: 0, 0
+  index: 6
+poe-dive
+  rotate: false
+  xy: 950, 1152
+  size: 235, 228
+  orig: 235, 228
+  offset: 0, 0
+  index: 7
+poe-dive
+  rotate: false
+  xy: 713, 1382
+  size: 235, 228
+  orig: 235, 228
+  offset: 0, 0
+  index: 8
+poe-dive
+  rotate: false
+  xy: 950, 1382
+  size: 235, 228
+  orig: 235, 228
+  offset: 0, 0
+  index: 9

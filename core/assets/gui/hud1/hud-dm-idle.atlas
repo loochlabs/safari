@@ -1,0 +1,144 @@
+hud-dm-idle.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hud-dm-idle
+  rotate: false
+  xy: 2, 2
+  size: 125, 54
+  orig: 125, 54
+  offset: 0, 0
+  index: 1
+hud-dm-idle
+  rotate: false
+  xy: 2, 58
+  size: 125, 54
+  orig: 125, 54
+  offset: 0, 0
+  index: 10
+hud-dm-idle
+  rotate: false
+  xy: 129, 2
+  size: 125, 54
+  orig: 125, 54
+  offset: 0, 0
+  index: 11
+hud-dm-idle
+  rotate: false
+  xy: 129, 58
+  size: 125, 54
+  orig: 125, 54
+  offset: 0, 0
+  index: 12
+hud-dm-idle
+  rotate: false
+  xy: 256, 2
+  size: 125, 54
+  orig: 125, 54
+  offset: 0, 0
+  index: 13
+hud-dm-idle
+  rotate: false
+  xy: 256, 58
+  size: 125, 54
+  orig: 125, 54
+  offset: 0, 0
+  index: 14
+hud-dm-idle
+  rotate: false
+  xy: 383, 2
+  size: 125, 54
+  orig: 125, 54
+  offset: 0, 0
+  index: 15
+hud-dm-idle
+  rotate: false
+  xy: 383, 58
+  size: 125, 54
+  orig: 125, 54
+  offset: 0, 0
+  index: 16
+hud-dm-idle
+  rotate: false
+  xy: 510, 2
+  size: 125, 54
+  orig: 125, 54
+  offset: 0, 0
+  index: 17
+hud-dm-idle
+  rotate: false
+  xy: 510, 58
+  size: 125, 54
+  orig: 125, 54
+  offset: 0, 0
+  index: 18
+hud-dm-idle
+  rotate: false
+  xy: 637, 2
+  size: 125, 54
+  orig: 125, 54
+  offset: 0, 0
+  index: 19
+hud-dm-idle
+  rotate: false
+  xy: 637, 58
+  size: 125, 54
+  orig: 125, 54
+  offset: 0, 0
+  index: 2
+hud-dm-idle
+  rotate: false
+  xy: 2, 2
+  size: 125, 54
+  orig: 125, 54
+  offset: 0, 0
+  index: 20
+hud-dm-idle
+  rotate: false
+  xy: 764, 2
+  size: 125, 54
+  orig: 125, 54
+  offset: 0, 0
+  index: 3
+hud-dm-idle
+  rotate: false
+  xy: 764, 58
+  size: 125, 54
+  orig: 125, 54
+  offset: 0, 0
+  index: 4
+hud-dm-idle
+  rotate: false
+  xy: 891, 2
+  size: 125, 54
+  orig: 125, 54
+  offset: 0, 0
+  index: 5
+hud-dm-idle
+  rotate: false
+  xy: 891, 58
+  size: 125, 54
+  orig: 125, 54
+  offset: 0, 0
+  index: 6
+hud-dm-idle
+  rotate: false
+  xy: 1018, 2
+  size: 125, 54
+  orig: 125, 54
+  offset: 0, 0
+  index: 7
+hud-dm-idle
+  rotate: false
+  xy: 1145, 2
+  size: 125, 54
+  orig: 125, 54
+  offset: 0, 0
+  index: 8
+hud-dm-idle
+  rotate: false
+  xy: 1018, 58
+  size: 125, 54
+  orig: 125, 54
+  offset: 0, 0
+  index: 9

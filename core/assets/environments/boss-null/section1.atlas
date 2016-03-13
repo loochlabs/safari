@@ -1,0 +1,11 @@
+section1.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+section1
+  rotate: false
+  xy: 2, 2
+  size: 970, 1432
+  orig: 970, 1432
+  offset: 0, 0
+  index: 1

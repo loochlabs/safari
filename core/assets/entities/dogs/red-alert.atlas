@@ -1,0 +1,11 @@
+red-alert.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+red-alert
+  rotate: false
+  xy: 2, 2
+  size: 283, 272
+  orig: 283, 272
+  offset: 0, 0
+  index: 1

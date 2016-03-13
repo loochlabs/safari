@@ -1,0 +1,11 @@
+goober-dmg.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+goober-dmg
+  rotate: false
+  xy: 2, 2
+  size: 227, 231
+  orig: 227, 231
+  offset: 0, 0
+  index: 1

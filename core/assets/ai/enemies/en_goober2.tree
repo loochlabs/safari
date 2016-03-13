@@ -1,0 +1,20 @@
+#
+# En_Goober2 BT
+#   
+
+#Alias Definitions
+import inRangeOfPlayer:"com.mygdx.ai.enemies.Task_InRangeOfPlayer"
+import seekPlayer:"com.mygdx.ai.enemies.Task_SeekPlayer"
+import attackPlayer:"com.mygdx.ai.enemies.Task_AttackPlayer"
+import seekWander:"com.mygdx.ai.enemies.Task_SeekWander"
+import wander:"com.mygdx.ai.enemies.Task_Wander"
+
+root
+    selector
+        sequence
+            inRangeOfPlayer
+            seekPlayer
+            attackPlayer
+        sequence
+            seekWander
+            wander

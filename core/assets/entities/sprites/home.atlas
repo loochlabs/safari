@@ -1,0 +1,11 @@
+home.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+home
+  rotate: false
+  xy: 2, 2
+  size: 287, 233
+  orig: 287, 233
+  offset: 0, 0
+  index: 1

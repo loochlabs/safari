@@ -1,0 +1,844 @@
+endSpectralSprite.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+endSpectralSprite
+  rotate: false
+  xy: 2, 2
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 0
+endSpectralSprite
+  rotate: false
+  xy: 2, 724
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 1
+endSpectralSprite
+  rotate: false
+  xy: 2, 1446
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 2
+endSpectralSprite
+  rotate: false
+  xy: 2, 2168
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 3
+endSpectralSprite
+  rotate: false
+  xy: 2, 2890
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 4
+endSpectralSprite
+  rotate: false
+  xy: 2, 3612
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 5
+endSpectralSprite
+  rotate: false
+  xy: 2, 4334
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 6
+endSpectralSprite
+  rotate: false
+  xy: 2, 5056
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 7
+endSpectralSprite
+  rotate: false
+  xy: 2, 5778
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 8
+endSpectralSprite
+  rotate: false
+  xy: 2, 6500
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 9
+endSpectralSprite
+  rotate: false
+  xy: 1284, 2
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 10
+endSpectralSprite
+  rotate: false
+  xy: 2566, 2
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 11
+endSpectralSprite
+  rotate: false
+  xy: 3848, 2
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 12
+endSpectralSprite
+  rotate: false
+  xy: 5130, 2
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 13
+endSpectralSprite
+  rotate: false
+  xy: 6412, 2
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 14
+endSpectralSprite
+  rotate: false
+  xy: 7694, 2
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 15
+endSpectralSprite
+  rotate: false
+  xy: 1284, 724
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 16
+endSpectralSprite
+  rotate: false
+  xy: 1284, 1446
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 17
+endSpectralSprite
+  rotate: false
+  xy: 1284, 2168
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 18
+endSpectralSprite
+  rotate: false
+  xy: 1284, 2890
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 19
+endSpectralSprite
+  rotate: false
+  xy: 1284, 3612
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 20
+endSpectralSprite
+  rotate: false
+  xy: 1284, 4334
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 21
+endSpectralSprite
+  rotate: false
+  xy: 1284, 5056
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 22
+endSpectralSprite
+  rotate: false
+  xy: 1284, 5778
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 23
+endSpectralSprite
+  rotate: false
+  xy: 1284, 6500
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 24
+endSpectralSprite
+  rotate: false
+  xy: 2566, 724
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 25
+endSpectralSprite
+  rotate: false
+  xy: 3848, 724
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 26
+endSpectralSprite
+  rotate: false
+  xy: 5130, 724
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 27
+endSpectralSprite
+  rotate: false
+  xy: 6412, 724
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 28
+endSpectralSprite
+  rotate: false
+  xy: 7694, 724
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 29
+endSpectralSprite
+  rotate: false
+  xy: 2566, 1446
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 30
+endSpectralSprite
+  rotate: false
+  xy: 3848, 1446
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 31
+endSpectralSprite
+  rotate: false
+  xy: 5130, 1446
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 32
+endSpectralSprite
+  rotate: false
+  xy: 6412, 1446
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 33
+endSpectralSprite
+  rotate: false
+  xy: 7694, 1446
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 34
+endSpectralSprite
+  rotate: false
+  xy: 2566, 2168
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 35
+endSpectralSprite
+  rotate: false
+  xy: 2566, 2890
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 36
+endSpectralSprite
+  rotate: false
+  xy: 2566, 3612
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 37
+endSpectralSprite
+  rotate: false
+  xy: 2566, 4334
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 38
+endSpectralSprite
+  rotate: false
+  xy: 2566, 5056
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 39
+endSpectralSprite
+  rotate: false
+  xy: 2566, 5778
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 40
+endSpectralSprite
+  rotate: false
+  xy: 2566, 6500
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 41
+endSpectralSprite
+  rotate: false
+  xy: 3848, 2168
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 42
+endSpectralSprite
+  rotate: false
+  xy: 5130, 2168
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 43
+endSpectralSprite
+  rotate: false
+  xy: 6412, 2168
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 44
+endSpectralSprite
+  rotate: false
+  xy: 7694, 2168
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 45
+endSpectralSprite
+  rotate: false
+  xy: 3848, 2890
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 46
+endSpectralSprite
+  rotate: false
+  xy: 5130, 2890
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 47
+endSpectralSprite
+  rotate: false
+  xy: 6412, 2890
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 48
+endSpectralSprite
+  rotate: false
+  xy: 7694, 2890
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 49
+endSpectralSprite
+  rotate: false
+  xy: 3848, 3612
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 50
+endSpectralSprite
+  rotate: false
+  xy: 3848, 4334
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 51
+endSpectralSprite
+  rotate: false
+  xy: 3848, 5056
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 52
+endSpectralSprite
+  rotate: false
+  xy: 3848, 5778
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 53
+endSpectralSprite
+  rotate: false
+  xy: 3848, 5778
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 54
+endSpectralSprite
+  rotate: false
+  xy: 3848, 5778
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 55
+endSpectralSprite
+  rotate: false
+  xy: 3848, 6500
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 56
+endSpectralSprite
+  rotate: false
+  xy: 3848, 6500
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 57
+endSpectralSprite
+  rotate: false
+  xy: 3848, 6500
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 58
+endSpectralSprite
+  rotate: false
+  xy: 5130, 3612
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 59
+endSpectralSprite
+  rotate: false
+  xy: 5130, 3612
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 60
+endSpectralSprite
+  rotate: false
+  xy: 5130, 3612
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 61
+endSpectralSprite
+  rotate: false
+  xy: 6412, 3612
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 62
+endSpectralSprite
+  rotate: false
+  xy: 6412, 3612
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 63
+endSpectralSprite
+  rotate: false
+  xy: 6412, 3612
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 64
+endSpectralSprite
+  rotate: false
+  xy: 7694, 3612
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 65
+endSpectralSprite
+  rotate: false
+  xy: 7694, 3612
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 66
+endSpectralSprite
+  rotate: false
+  xy: 7694, 3612
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 67
+endSpectralSprite
+  rotate: false
+  xy: 5130, 4334
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 68
+endSpectralSprite
+  rotate: false
+  xy: 5130, 4334
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 69
+endSpectralSprite
+  rotate: false
+  xy: 5130, 4334
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 70
+endSpectralSprite
+  rotate: false
+  xy: 6412, 4334
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 71
+endSpectralSprite
+  rotate: false
+  xy: 6412, 4334
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 72
+endSpectralSprite
+  rotate: false
+  xy: 6412, 4334
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 73
+endSpectralSprite
+  rotate: false
+  xy: 6412, 4334
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 74
+endSpectralSprite
+  rotate: false
+  xy: 7694, 4334
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 75
+endSpectralSprite
+  rotate: false
+  xy: 7694, 4334
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 76
+endSpectralSprite
+  rotate: false
+  xy: 7694, 4334
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 77
+endSpectralSprite
+  rotate: false
+  xy: 7694, 4334
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 78
+endSpectralSprite
+  rotate: false
+  xy: 7694, 4334
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 79
+endSpectralSprite
+  rotate: false
+  xy: 5130, 5056
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 80
+endSpectralSprite
+  rotate: false
+  xy: 5130, 5056
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 81
+endSpectralSprite
+  rotate: false
+  xy: 5130, 5056
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 82
+endSpectralSprite
+  rotate: false
+  xy: 5130, 5056
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 83
+endSpectralSprite
+  rotate: false
+  xy: 5130, 5056
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 84
+endSpectralSprite
+  rotate: false
+  xy: 5130, 5778
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 85
+endSpectralSprite
+  rotate: false
+  xy: 5130, 5778
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 86
+endSpectralSprite
+  rotate: false
+  xy: 5130, 5778
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 87
+endSpectralSprite
+  rotate: false
+  xy: 5130, 5778
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 88
+endSpectralSprite
+  rotate: false
+  xy: 5130, 5778
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 89
+endSpectralSprite
+  rotate: false
+  xy: 5130, 5778
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 90
+endSpectralSprite
+  rotate: false
+  xy: 5130, 6500
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 91
+endSpectralSprite
+  rotate: false
+  xy: 5130, 6500
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 92
+endSpectralSprite
+  rotate: false
+  xy: 5130, 6500
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 93
+endSpectralSprite
+  rotate: false
+  xy: 5130, 6500
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 94
+endSpectralSprite
+  rotate: false
+  xy: 5130, 6500
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 95
+endSpectralSprite
+  rotate: false
+  xy: 5130, 6500
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 96
+endSpectralSprite
+  rotate: false
+  xy: 5130, 6500
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 97
+endSpectralSprite
+  rotate: false
+  xy: 6412, 5056
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 98
+endSpectralSprite
+  rotate: false
+  xy: 6412, 5056
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 99
+endSpectralSprite
+  rotate: false
+  xy: 6412, 5056
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 100
+endSpectralSprite
+  rotate: false
+  xy: 6412, 5056
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 101
+endSpectralSprite
+  rotate: false
+  xy: 6412, 5056
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 102
+endSpectralSprite
+  rotate: false
+  xy: 6412, 5056
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 103
+endSpectralSprite
+  rotate: false
+  xy: 6412, 5056
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 104
+endSpectralSprite
+  rotate: false
+  xy: 7694, 5056
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 105
+endSpectralSprite
+  rotate: false
+  xy: 7694, 5056
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 106
+endSpectralSprite
+  rotate: false
+  xy: 7694, 5056
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 107
+endSpectralSprite
+  rotate: false
+  xy: 7694, 5056
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 108
+endSpectralSprite
+  rotate: false
+  xy: 7694, 5056
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 109
+endSpectralSprite
+  rotate: false
+  xy: 7694, 5056
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 110
+endSpectralSprite
+  rotate: false
+  xy: 7694, 5056
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 111
+endSpectralSprite
+  rotate: false
+  xy: 6412, 5778
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 112
+endSpectralSprite
+  rotate: false
+  xy: 6412, 5778
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 113
+endSpectralSprite
+  rotate: false
+  xy: 6412, 5778
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 114
+endSpectralSprite
+  rotate: false
+  xy: 6412, 5778
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 115
+endSpectralSprite
+  rotate: false
+  xy: 6412, 5778
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 116
+endSpectralSprite
+  rotate: false
+  xy: 6412, 5778
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 117
+endSpectralSprite
+  rotate: false
+  xy: 6412, 5778
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 118
+endSpectralSprite
+  rotate: false
+  xy: 7694, 5778
+  size: 1280, 720
+  orig: 1280, 720
+  offset: 0, 0
+  index: 119

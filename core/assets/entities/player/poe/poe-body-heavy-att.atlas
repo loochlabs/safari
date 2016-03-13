@@ -1,0 +1,151 @@
+poe-body-heavy-att.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+poe-body-heavy-att
+  rotate: false
+  xy: 2, 2
+  size: 253, 260
+  orig: 253, 260
+  offset: 0, 0
+  index: 1
+poe-body-heavy-att
+  rotate: false
+  xy: 2, 264
+  size: 253, 260
+  orig: 253, 260
+  offset: 0, 0
+  index: 10
+poe-body-heavy-att
+  rotate: false
+  xy: 2, 264
+  size: 253, 260
+  orig: 253, 260
+  offset: 0, 0
+  index: 11
+poe-body-heavy-att
+  rotate: false
+  xy: 2, 264
+  size: 253, 260
+  orig: 253, 260
+  offset: 0, 0
+  index: 12
+poe-body-heavy-att
+  rotate: false
+  xy: 2, 264
+  size: 253, 260
+  orig: 253, 260
+  offset: 0, 0
+  index: 13
+poe-body-heavy-att
+  rotate: false
+  xy: 2, 526
+  size: 253, 260
+  orig: 253, 260
+  offset: 0, 0
+  index: 14
+poe-body-heavy-att
+  rotate: false
+  xy: 2, 526
+  size: 253, 260
+  orig: 253, 260
+  offset: 0, 0
+  index: 15
+poe-body-heavy-att
+  rotate: false
+  xy: 2, 526
+  size: 253, 260
+  orig: 253, 260
+  offset: 0, 0
+  index: 16
+poe-body-heavy-att
+  rotate: false
+  xy: 2, 526
+  size: 253, 260
+  orig: 253, 260
+  offset: 0, 0
+  index: 17
+poe-body-heavy-att
+  rotate: false
+  xy: 2, 526
+  size: 253, 260
+  orig: 253, 260
+  offset: 0, 0
+  index: 18
+poe-body-heavy-att
+  rotate: false
+  xy: 257, 2
+  size: 253, 260
+  orig: 253, 260
+  offset: 0, 0
+  index: 19
+poe-body-heavy-att
+  rotate: false
+  xy: 2, 2
+  size: 253, 260
+  orig: 253, 260
+  offset: 0, 0
+  index: 2
+poe-body-heavy-att
+  rotate: false
+  xy: 512, 2
+  size: 253, 260
+  orig: 253, 260
+  offset: 0, 0
+  index: 20
+poe-body-heavy-att
+  rotate: false
+  xy: 257, 264
+  size: 253, 260
+  orig: 253, 260
+  offset: 0, 0
+  index: 21
+poe-body-heavy-att
+  rotate: false
+  xy: 257, 526
+  size: 253, 260
+  orig: 253, 260
+  offset: 0, 0
+  index: 3
+poe-body-heavy-att
+  rotate: false
+  xy: 257, 526
+  size: 253, 260
+  orig: 253, 260
+  offset: 0, 0
+  index: 4
+poe-body-heavy-att
+  rotate: false
+  xy: 512, 264
+  size: 253, 260
+  orig: 253, 260
+  offset: 0, 0
+  index: 5
+poe-body-heavy-att
+  rotate: false
+  xy: 512, 264
+  size: 253, 260
+  orig: 253, 260
+  offset: 0, 0
+  index: 6
+poe-body-heavy-att
+  rotate: false
+  xy: 512, 526
+  size: 253, 260
+  orig: 253, 260
+  offset: 0, 0
+  index: 7
+poe-body-heavy-att
+  rotate: false
+  xy: 512, 526
+  size: 253, 260
+  orig: 253, 260
+  offset: 0, 0
+  index: 8
+poe-body-heavy-att
+  rotate: false
+  xy: 512, 526
+  size: 253, 260
+  orig: 253, 260
+  offset: 0, 0
+  index: 9

@@ -1,0 +1,12 @@
+impact2.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+impact2
+  rotate: false
+  xy: 2, 2
+  size: 315, 208
+  orig: 315, 208
+  offset: 0, 0
+  index: 1
+

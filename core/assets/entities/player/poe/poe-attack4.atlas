@@ -1,0 +1,11 @@
+poe-attack4.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+poe-attack4
+  rotate: false
+  xy: 2, 2
+  size: 228, 219
+  orig: 228, 219
+  offset: 0, 0
+  index: 1

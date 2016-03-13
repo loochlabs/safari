@@ -1,0 +1,228 @@
+petal-walk-front.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+petal-walk-front
+  rotate: false
+  xy: 105, 2
+  size: 99, 188
+  orig: 104, 188
+  offset: 0, 0
+  index: 1
+petal-walk-front
+  rotate: false
+  xy: 103, 192
+  size: 99, 178
+  orig: 104, 188
+  offset: 0, 0
+  index: 10
+petal-walk-front
+  rotate: false
+  xy: 103, 192
+  size: 99, 178
+  orig: 104, 188
+  offset: 0, 0
+  index: 11
+petal-walk-front
+  rotate: false
+  xy: 103, 192
+  size: 99, 178
+  orig: 104, 188
+  offset: 0, 0
+  index: 12
+petal-walk-front
+  rotate: false
+  xy: 2, 2
+  size: 101, 183
+  orig: 104, 188
+  offset: 0, 0
+  index: 13
+petal-walk-front
+  rotate: false
+  xy: 2, 2
+  size: 101, 183
+  orig: 104, 188
+  offset: 0, 0
+  index: 14
+petal-walk-front
+  rotate: false
+  xy: 2, 2
+  size: 101, 183
+  orig: 104, 188
+  offset: 0, 0
+  index: 15
+petal-walk-front
+  rotate: false
+  xy: 2, 2
+  size: 101, 183
+  orig: 104, 188
+  offset: 0, 0
+  index: 16
+petal-walk-front
+  rotate: false
+  xy: 206, 2
+  size: 99, 188
+  orig: 104, 188
+  offset: 0, 0
+  index: 17
+petal-walk-front
+  rotate: false
+  xy: 206, 2
+  size: 99, 188
+  orig: 104, 188
+  offset: 0, 0
+  index: 18
+petal-walk-front
+  rotate: false
+  xy: 206, 2
+  size: 99, 188
+  orig: 104, 188
+  offset: 0, 0
+  index: 19
+petal-walk-front
+  rotate: false
+  xy: 105, 2
+  size: 99, 188
+  orig: 104, 188
+  offset: 0, 0
+  index: 2
+petal-walk-front
+  rotate: false
+  xy: 206, 2
+  size: 99, 188
+  orig: 104, 188
+  offset: 0, 0
+  index: 20
+petal-walk-front
+  rotate: false
+  xy: 2, 187
+  size: 99, 184
+  orig: 104, 188
+  offset: 0, 0
+  index: 21
+petal-walk-front
+  rotate: false
+  xy: 2, 187
+  size: 99, 184
+  orig: 104, 188
+  offset: 0, 0
+  index: 22
+petal-walk-front
+  rotate: false
+  xy: 2, 187
+  size: 99, 184
+  orig: 104, 188
+  offset: 0, 0
+  index: 23
+petal-walk-front
+  rotate: false
+  xy: 2, 187
+  size: 99, 184
+  orig: 104, 188
+  offset: 0, 0
+  index: 24
+petal-walk-front
+  rotate: false
+  xy: 204, 192
+  size: 99, 178
+  orig: 104, 188
+  offset: 0, 0
+  index: 25
+petal-walk-front
+  rotate: false
+  xy: 204, 192
+  size: 99, 178
+  orig: 104, 188
+  offset: 0, 0
+  index: 26
+petal-walk-front
+  rotate: false
+  xy: 204, 192
+  size: 99, 178
+  orig: 104, 188
+  offset: 0, 0
+  index: 27
+petal-walk-front
+  rotate: false
+  xy: 204, 192
+  size: 99, 178
+  orig: 104, 188
+  offset: 0, 0
+  index: 28
+petal-walk-front
+  rotate: false
+  xy: 2, 187
+  size: 99, 184
+  orig: 104, 188
+  offset: 0, 0
+  index: 29
+petal-walk-front
+  rotate: false
+  xy: 105, 2
+  size: 99, 188
+  orig: 104, 188
+  offset: 0, 0
+  index: 3
+petal-walk-front
+  rotate: false
+  xy: 2, 187
+  size: 99, 184
+  orig: 104, 188
+  offset: 0, 0
+  index: 30
+petal-walk-front
+  rotate: false
+  xy: 2, 187
+  size: 99, 184
+  orig: 104, 188
+  offset: 0, 0
+  index: 31
+petal-walk-front
+  rotate: false
+  xy: 2, 187
+  size: 99, 184
+  orig: 104, 188
+  offset: 0, 0
+  index: 32
+petal-walk-front
+  rotate: false
+  xy: 105, 2
+  size: 99, 188
+  orig: 104, 188
+  offset: 0, 0
+  index: 4
+petal-walk-front
+  rotate: false
+  xy: 2, 2
+  size: 101, 183
+  orig: 104, 188
+  offset: 0, 0
+  index: 5
+petal-walk-front
+  rotate: false
+  xy: 2, 2
+  size: 101, 183
+  orig: 104, 188
+  offset: 0, 0
+  index: 6
+petal-walk-front
+  rotate: false
+  xy: 2, 2
+  size: 101, 183
+  orig: 104, 188
+  offset: 0, 0
+  index: 7
+petal-walk-front
+  rotate: false
+  xy: 2, 2
+  size: 101, 183
+  orig: 104, 188
+  offset: 0, 0
+  index: 8
+petal-walk-front
+  rotate: false
+  xy: 103, 192
+  size: 99, 178
+  orig: 104, 188
+  offset: 0, 0
+  index: 9

@@ -1,0 +1,74 @@
+worm-prep.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+worm-prep
+  rotate: false
+  xy: 2, 2
+  size: 40, 67
+  orig: 40, 67
+  offset: 0, 0
+  index: 1
+worm-prep
+  rotate: false
+  xy: 2, 71
+  size: 40, 67
+  orig: 40, 67
+  offset: 0, 0
+  index: 10
+worm-prep
+  rotate: false
+  xy: 2, 140
+  size: 40, 67
+  orig: 40, 67
+  offset: 0, 0
+  index: 2
+worm-prep
+  rotate: false
+  xy: 2, 209
+  size: 40, 67
+  orig: 40, 67
+  offset: 0, 0
+  index: 3
+worm-prep
+  rotate: false
+  xy: 2, 278
+  size: 40, 67
+  orig: 40, 67
+  offset: 0, 0
+  index: 4
+worm-prep
+  rotate: false
+  xy: 2, 347
+  size: 40, 67
+  orig: 40, 67
+  offset: 0, 0
+  index: 5
+worm-prep
+  rotate: false
+  xy: 2, 416
+  size: 40, 67
+  orig: 40, 67
+  offset: 0, 0
+  index: 6
+worm-prep
+  rotate: false
+  xy: 2, 485
+  size: 40, 67
+  orig: 40, 67
+  offset: 0, 0
+  index: 7
+worm-prep
+  rotate: false
+  xy: 2, 554
+  size: 40, 67
+  orig: 40, 67
+  offset: 0, 0
+  index: 8
+worm-prep
+  rotate: false
+  xy: 2, 623
+  size: 40, 67
+  orig: 40, 67
+  offset: 0, 0
+  index: 9

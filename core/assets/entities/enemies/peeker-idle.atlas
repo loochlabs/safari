@@ -1,0 +1,11 @@
+peeker-idle.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+peeker-idle
+  rotate: false
+  xy: 2, 2
+  size: 228, 140
+  orig: 228, 140
+  offset: 0, 0
+  index: 1

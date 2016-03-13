@@ -1,0 +1,11 @@
+tent-right-idle.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+tent-right-idle
+  rotate: false
+  xy: 2, 2
+  size: 280, 297
+  orig: 280, 297
+  offset: 0, 0
+  index: 1

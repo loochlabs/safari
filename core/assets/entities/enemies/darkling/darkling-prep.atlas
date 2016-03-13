@@ -1,0 +1,130 @@
+darkling-prep.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+darkling-prep
+  rotate: false
+  xy: 2, 2
+  size: 297, 215
+  orig: 297, 215
+  offset: 0, 0
+  index: 1
+darkling-prep
+  rotate: false
+  xy: 301, 2
+  size: 297, 215
+  orig: 297, 215
+  offset: 0, 0
+  index: 10
+darkling-prep
+  rotate: false
+  xy: 600, 2
+  size: 297, 215
+  orig: 297, 215
+  offset: 0, 0
+  index: 11
+darkling-prep
+  rotate: false
+  xy: 600, 2
+  size: 297, 215
+  orig: 297, 215
+  offset: 0, 0
+  index: 12
+darkling-prep
+  rotate: false
+  xy: 899, 2
+  size: 297, 215
+  orig: 297, 215
+  offset: 0, 0
+  index: 13
+darkling-prep
+  rotate: false
+  xy: 899, 2
+  size: 297, 215
+  orig: 297, 215
+  offset: 0, 0
+  index: 14
+darkling-prep
+  rotate: false
+  xy: 1198, 2
+  size: 297, 215
+  orig: 297, 215
+  offset: 0, 0
+  index: 15
+darkling-prep
+  rotate: false
+  xy: 1198, 2
+  size: 297, 215
+  orig: 297, 215
+  offset: 0, 0
+  index: 16
+darkling-prep
+  rotate: false
+  xy: 1497, 2
+  size: 297, 215
+  orig: 297, 215
+  offset: 0, 0
+  index: 17
+darkling-prep
+  rotate: false
+  xy: 1497, 2
+  size: 297, 215
+  orig: 297, 215
+  offset: 0, 0
+  index: 18
+darkling-prep
+  rotate: false
+  xy: 2, 2
+  size: 297, 215
+  orig: 297, 215
+  offset: 0, 0
+  index: 2
+darkling-prep
+  rotate: false
+  xy: 1796, 2
+  size: 297, 215
+  orig: 297, 215
+  offset: 0, 0
+  index: 3
+darkling-prep
+  rotate: false
+  xy: 1796, 2
+  size: 297, 215
+  orig: 297, 215
+  offset: 0, 0
+  index: 4
+darkling-prep
+  rotate: false
+  xy: 2095, 2
+  size: 297, 215
+  orig: 297, 215
+  offset: 0, 0
+  index: 5
+darkling-prep
+  rotate: false
+  xy: 2095, 2
+  size: 297, 215
+  orig: 297, 215
+  offset: 0, 0
+  index: 6
+darkling-prep
+  rotate: false
+  xy: 2394, 2
+  size: 297, 215
+  orig: 297, 215
+  offset: 0, 0
+  index: 7
+darkling-prep
+  rotate: false
+  xy: 2394, 2
+  size: 297, 215
+  orig: 297, 215
+  offset: 0, 0
+  index: 8
+darkling-prep
+  rotate: false
+  xy: 301, 2
+  size: 297, 215
+  orig: 297, 215
+  offset: 0, 0
+  index: 9

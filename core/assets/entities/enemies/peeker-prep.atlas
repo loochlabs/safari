@@ -1,0 +1,158 @@
+peeker-prep.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+peeker-prep
+  rotate: false
+  xy: 2, 2
+  size: 372, 147
+  orig: 372, 147
+  offset: 0, 0
+  index: 1
+peeker-prep
+  rotate: false
+  xy: 2, 151
+  size: 372, 147
+  orig: 372, 147
+  offset: 0, 0
+  index: 10
+peeker-prep
+  rotate: false
+  xy: 2, 300
+  size: 372, 147
+  orig: 372, 147
+  offset: 0, 0
+  index: 11
+peeker-prep
+  rotate: false
+  xy: 2, 449
+  size: 372, 147
+  orig: 372, 147
+  offset: 0, 0
+  index: 12
+peeker-prep
+  rotate: false
+  xy: 2, 598
+  size: 372, 147
+  orig: 372, 147
+  offset: 0, 0
+  index: 13
+peeker-prep
+  rotate: false
+  xy: 2, 747
+  size: 372, 147
+  orig: 372, 147
+  offset: 0, 0
+  index: 14
+peeker-prep
+  rotate: false
+  xy: 376, 2
+  size: 372, 147
+  orig: 372, 147
+  offset: 0, 0
+  index: 15
+peeker-prep
+  rotate: false
+  xy: 750, 2
+  size: 372, 147
+  orig: 372, 147
+  offset: 0, 0
+  index: 16
+peeker-prep
+  rotate: false
+  xy: 1124, 2
+  size: 372, 147
+  orig: 372, 147
+  offset: 0, 0
+  index: 17
+peeker-prep
+  rotate: false
+  xy: 376, 151
+  size: 372, 147
+  orig: 372, 147
+  offset: 0, 0
+  index: 18
+peeker-prep
+  rotate: false
+  xy: 750, 151
+  size: 372, 147
+  orig: 372, 147
+  offset: 0, 0
+  index: 19
+peeker-prep
+  rotate: false
+  xy: 1124, 151
+  size: 372, 147
+  orig: 372, 147
+  offset: 0, 0
+  index: 2
+peeker-prep
+  rotate: false
+  xy: 376, 300
+  size: 372, 147
+  orig: 372, 147
+  offset: 0, 0
+  index: 20
+peeker-prep
+  rotate: false
+  xy: 376, 449
+  size: 372, 147
+  orig: 372, 147
+  offset: 0, 0
+  index: 21
+peeker-prep
+  rotate: false
+  xy: 376, 598
+  size: 372, 147
+  orig: 372, 147
+  offset: 0, 0
+  index: 22
+peeker-prep
+  rotate: false
+  xy: 376, 747
+  size: 372, 147
+  orig: 372, 147
+  offset: 0, 0
+  index: 3
+peeker-prep
+  rotate: false
+  xy: 750, 300
+  size: 372, 147
+  orig: 372, 147
+  offset: 0, 0
+  index: 4
+peeker-prep
+  rotate: false
+  xy: 1124, 300
+  size: 372, 147
+  orig: 372, 147
+  offset: 0, 0
+  index: 5
+peeker-prep
+  rotate: false
+  xy: 750, 449
+  size: 372, 147
+  orig: 372, 147
+  offset: 0, 0
+  index: 6
+peeker-prep
+  rotate: false
+  xy: 1124, 449
+  size: 372, 147
+  orig: 372, 147
+  offset: 0, 0
+  index: 7
+peeker-prep
+  rotate: false
+  xy: 750, 598
+  size: 372, 147
+  orig: 372, 147
+  offset: 0, 0
+  index: 8
+peeker-prep
+  rotate: false
+  xy: 1124, 598
+  size: 372, 147
+  orig: 372, 147
+  offset: 0, 0
+  index: 9

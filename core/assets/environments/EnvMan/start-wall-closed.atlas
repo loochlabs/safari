@@ -1,0 +1,12 @@
+start-wall-closed.png
+size: 1251, 302
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+start-wall-closed
+  rotate: false
+  xy: 2, 2
+  size: 1247, 298
+  orig: 1798, 827
+  offset: 383, 293
+  index: 1

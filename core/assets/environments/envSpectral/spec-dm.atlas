@@ -1,0 +1,11 @@
+spec-dm.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+spec-dm
+  rotate: false
+  xy: 2, 2
+  size: 114, 114
+  orig: 114, 114
+  offset: 0, 0
+  index: 1

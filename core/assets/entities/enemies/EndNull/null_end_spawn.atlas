@@ -1,0 +1,158 @@
+null_end_spawn.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+null_end_spawn
+  rotate: false
+  xy: 2, 2
+  size: 145, 520
+  orig: 145, 520
+  offset: 0, 0
+  index: 0
+null_end_spawn
+  rotate: false
+  xy: 2, 524
+  size: 145, 520
+  orig: 145, 520
+  offset: 0, 0
+  index: 1
+null_end_spawn
+  rotate: false
+  xy: 149, 2
+  size: 145, 520
+  orig: 145, 520
+  offset: 0, 0
+  index: 2
+null_end_spawn
+  rotate: false
+  xy: 149, 524
+  size: 145, 520
+  orig: 145, 520
+  offset: 0, 0
+  index: 3
+null_end_spawn
+  rotate: false
+  xy: 296, 2
+  size: 145, 520
+  orig: 145, 520
+  offset: 0, 0
+  index: 4
+null_end_spawn
+  rotate: false
+  xy: 296, 524
+  size: 145, 520
+  orig: 145, 520
+  offset: 0, 0
+  index: 5
+null_end_spawn
+  rotate: false
+  xy: 443, 2
+  size: 145, 520
+  orig: 145, 520
+  offset: 0, 0
+  index: 6
+null_end_spawn
+  rotate: false
+  xy: 443, 524
+  size: 145, 520
+  orig: 145, 520
+  offset: 0, 0
+  index: 7
+null_end_spawn
+  rotate: false
+  xy: 590, 2
+  size: 145, 520
+  orig: 145, 520
+  offset: 0, 0
+  index: 8
+null_end_spawn
+  rotate: false
+  xy: 590, 524
+  size: 145, 520
+  orig: 145, 520
+  offset: 0, 0
+  index: 9
+null_end_spawn
+  rotate: false
+  xy: 737, 2
+  size: 145, 520
+  orig: 145, 520
+  offset: 0, 0
+  index: 10
+null_end_spawn
+  rotate: false
+  xy: 737, 524
+  size: 145, 520
+  orig: 145, 520
+  offset: 0, 0
+  index: 11
+null_end_spawn
+  rotate: false
+  xy: 884, 2
+  size: 145, 520
+  orig: 145, 520
+  offset: 0, 0
+  index: 12
+null_end_spawn
+  rotate: false
+  xy: 884, 524
+  size: 145, 520
+  orig: 145, 520
+  offset: 0, 0
+  index: 13
+null_end_spawn
+  rotate: false
+  xy: 1031, 2
+  size: 145, 520
+  orig: 145, 520
+  offset: 0, 0
+  index: 14
+null_end_spawn
+  rotate: false
+  xy: 1031, 524
+  size: 145, 520
+  orig: 145, 520
+  offset: 0, 0
+  index: 15
+null_end_spawn
+  rotate: false
+  xy: 1178, 2
+  size: 145, 520
+  orig: 145, 520
+  offset: 0, 0
+  index: 16
+null_end_spawn
+  rotate: false
+  xy: 1178, 524
+  size: 145, 520
+  orig: 145, 520
+  offset: 0, 0
+  index: 17
+null_end_spawn
+  rotate: false
+  xy: 1325, 2
+  size: 145, 520
+  orig: 145, 520
+  offset: 0, 0
+  index: 18
+null_end_spawn
+  rotate: false
+  xy: 1325, 524
+  size: 145, 520
+  orig: 145, 520
+  offset: 0, 0
+  index: 19
+null_end_spawn
+  rotate: false
+  xy: 1472, 2
+  size: 145, 520
+  orig: 145, 520
+  offset: 0, 0
+  index: 20
+null_end_spawn
+  rotate: false
+  xy: 1472, 524
+  size: 145, 520
+  orig: 145, 520
+  offset: 0, 0
+  index: 21

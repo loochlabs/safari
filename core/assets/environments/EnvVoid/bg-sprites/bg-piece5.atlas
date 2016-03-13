@@ -1,0 +1,11 @@
+bg-piece5.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bg-piece5
+  rotate: false
+  xy: 2, 2
+  size: 274, 106
+  orig: 274, 106
+  offset: 0, 0
+  index: 1

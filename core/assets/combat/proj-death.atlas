@@ -1,0 +1,89 @@
+proj-death.png
+size: 1246, 935
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+proj-death
+  rotate: false
+  xy: 2, 2
+  size: 309, 309
+  orig: 309, 309
+  offset: 0, 0
+  index: 1
+proj-death
+  rotate: false
+  xy: 2, 313
+  size: 309, 309
+  orig: 309, 309
+  offset: 0, 0
+  index: 10
+proj-death
+  rotate: false
+  xy: 2, 624
+  size: 309, 309
+  orig: 309, 309
+  offset: 0, 0
+  index: 11
+proj-death
+  rotate: false
+  xy: 313, 2
+  size: 309, 309
+  orig: 309, 309
+  offset: 0, 0
+  index: 12
+proj-death
+  rotate: false
+  xy: 313, 313
+  size: 309, 309
+  orig: 309, 309
+  offset: 0, 0
+  index: 2
+proj-death
+  rotate: false
+  xy: 313, 624
+  size: 309, 309
+  orig: 309, 309
+  offset: 0, 0
+  index: 3
+proj-death
+  rotate: false
+  xy: 624, 2
+  size: 309, 309
+  orig: 309, 309
+  offset: 0, 0
+  index: 4
+proj-death
+  rotate: false
+  xy: 935, 2
+  size: 309, 309
+  orig: 309, 309
+  offset: 0, 0
+  index: 5
+proj-death
+  rotate: false
+  xy: 624, 313
+  size: 309, 309
+  orig: 309, 309
+  offset: 0, 0
+  index: 6
+proj-death
+  rotate: false
+  xy: 624, 624
+  size: 309, 309
+  orig: 309, 309
+  offset: 0, 0
+  index: 7
+proj-death
+  rotate: false
+  xy: 935, 313
+  size: 309, 309
+  orig: 309, 309
+  offset: 0, 0
+  index: 8
+proj-death
+  rotate: false
+  xy: 935, 624
+  size: 309, 309
+  orig: 309, 309
+  offset: 0, 0
+  index: 9

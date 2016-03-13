@@ -1,0 +1,11 @@
+attack3.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+attack3
+  rotate: false
+  xy: 2, 2
+  size: 345, 345
+  orig: 345, 345
+  offset: 0, 0
+  index: 1

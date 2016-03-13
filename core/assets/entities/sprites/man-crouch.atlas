@@ -1,0 +1,11 @@
+man-crouch.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+man-crouch
+  rotate: false
+  xy: 2, 2
+  size: 135, 189
+  orig: 135, 189
+  offset: 0, 0
+  index: 1

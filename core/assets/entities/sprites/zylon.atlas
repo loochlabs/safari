@@ -1,0 +1,11 @@
+zylon.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+zylon
+  rotate: false
+  xy: 2, 2
+  size: 197, 148
+  orig: 197, 148
+  offset: 0, 0
+  index: 1

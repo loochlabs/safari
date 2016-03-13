@@ -1,0 +1,284 @@
+poe-front.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+poe-front
+  rotate: false
+  xy: 2, 2
+  size: 148, 219
+  orig: 148, 219
+  offset: 0, 0
+  index: 1
+poe-front
+  rotate: false
+  xy: 152, 2
+  size: 148, 219
+  orig: 148, 219
+  offset: 0, 0
+  index: 10
+poe-front
+  rotate: false
+  xy: 152, 2
+  size: 148, 219
+  orig: 148, 219
+  offset: 0, 0
+  index: 11
+poe-front
+  rotate: false
+  xy: 152, 2
+  size: 148, 219
+  orig: 148, 219
+  offset: 0, 0
+  index: 12
+poe-front
+  rotate: false
+  xy: 302, 2
+  size: 148, 219
+  orig: 148, 219
+  offset: 0, 0
+  index: 13
+poe-front
+  rotate: false
+  xy: 302, 2
+  size: 148, 219
+  orig: 148, 219
+  offset: 0, 0
+  index: 14
+poe-front
+  rotate: false
+  xy: 302, 2
+  size: 148, 219
+  orig: 148, 219
+  offset: 0, 0
+  index: 15
+poe-front
+  rotate: false
+  xy: 302, 2
+  size: 148, 219
+  orig: 148, 219
+  offset: 0, 0
+  index: 16
+poe-front
+  rotate: false
+  xy: 452, 2
+  size: 148, 219
+  orig: 148, 219
+  offset: 0, 0
+  index: 17
+poe-front
+  rotate: false
+  xy: 452, 2
+  size: 148, 219
+  orig: 148, 219
+  offset: 0, 0
+  index: 18
+poe-front
+  rotate: false
+  xy: 452, 2
+  size: 148, 219
+  orig: 148, 219
+  offset: 0, 0
+  index: 19
+poe-front
+  rotate: false
+  xy: 2, 2
+  size: 148, 219
+  orig: 148, 219
+  offset: 0, 0
+  index: 2
+poe-front
+  rotate: false
+  xy: 452, 2
+  size: 148, 219
+  orig: 148, 219
+  offset: 0, 0
+  index: 20
+poe-front
+  rotate: false
+  xy: 602, 2
+  size: 148, 219
+  orig: 148, 219
+  offset: 0, 0
+  index: 21
+poe-front
+  rotate: false
+  xy: 602, 2
+  size: 148, 219
+  orig: 148, 219
+  offset: 0, 0
+  index: 22
+poe-front
+  rotate: false
+  xy: 602, 2
+  size: 148, 219
+  orig: 148, 219
+  offset: 0, 0
+  index: 23
+poe-front
+  rotate: false
+  xy: 602, 2
+  size: 148, 219
+  orig: 148, 219
+  offset: 0, 0
+  index: 24
+poe-front
+  rotate: false
+  xy: 752, 2
+  size: 148, 219
+  orig: 148, 219
+  offset: 0, 0
+  index: 25
+poe-front
+  rotate: false
+  xy: 752, 2
+  size: 148, 219
+  orig: 148, 219
+  offset: 0, 0
+  index: 26
+poe-front
+  rotate: false
+  xy: 752, 2
+  size: 148, 219
+  orig: 148, 219
+  offset: 0, 0
+  index: 27
+poe-front
+  rotate: false
+  xy: 752, 2
+  size: 148, 219
+  orig: 148, 219
+  offset: 0, 0
+  index: 28
+poe-front
+  rotate: false
+  xy: 902, 2
+  size: 148, 219
+  orig: 148, 219
+  offset: 0, 0
+  index: 29
+poe-front
+  rotate: false
+  xy: 2, 2
+  size: 148, 219
+  orig: 148, 219
+  offset: 0, 0
+  index: 3
+poe-front
+  rotate: false
+  xy: 902, 2
+  size: 148, 219
+  orig: 148, 219
+  offset: 0, 0
+  index: 30
+poe-front
+  rotate: false
+  xy: 902, 2
+  size: 148, 219
+  orig: 148, 219
+  offset: 0, 0
+  index: 31
+poe-front
+  rotate: false
+  xy: 902, 2
+  size: 148, 219
+  orig: 148, 219
+  offset: 0, 0
+  index: 32
+poe-front
+  rotate: false
+  xy: 752, 2
+  size: 148, 219
+  orig: 148, 219
+  offset: 0, 0
+  index: 33
+poe-front
+  rotate: false
+  xy: 752, 2
+  size: 148, 219
+  orig: 148, 219
+  offset: 0, 0
+  index: 34
+poe-front
+  rotate: false
+  xy: 752, 2
+  size: 148, 219
+  orig: 148, 219
+  offset: 0, 0
+  index: 35
+poe-front
+  rotate: false
+  xy: 752, 2
+  size: 148, 219
+  orig: 148, 219
+  offset: 0, 0
+  index: 36
+poe-front
+  rotate: false
+  xy: 602, 2
+  size: 148, 219
+  orig: 148, 219
+  offset: 0, 0
+  index: 37
+poe-front
+  rotate: false
+  xy: 602, 2
+  size: 148, 219
+  orig: 148, 219
+  offset: 0, 0
+  index: 38
+poe-front
+  rotate: false
+  xy: 602, 2
+  size: 148, 219
+  orig: 148, 219
+  offset: 0, 0
+  index: 39
+poe-front
+  rotate: false
+  xy: 2, 2
+  size: 148, 219
+  orig: 148, 219
+  offset: 0, 0
+  index: 4
+poe-front
+  rotate: false
+  xy: 602, 2
+  size: 148, 219
+  orig: 148, 219
+  offset: 0, 0
+  index: 40
+poe-front
+  rotate: false
+  xy: 302, 2
+  size: 148, 219
+  orig: 148, 219
+  offset: 0, 0
+  index: 5
+poe-front
+  rotate: false
+  xy: 302, 2
+  size: 148, 219
+  orig: 148, 219
+  offset: 0, 0
+  index: 6
+poe-front
+  rotate: false
+  xy: 302, 2
+  size: 148, 219
+  orig: 148, 219
+  offset: 0, 0
+  index: 7
+poe-front
+  rotate: false
+  xy: 302, 2
+  size: 148, 219
+  orig: 148, 219
+  offset: 0, 0
+  index: 8
+poe-front
+  rotate: false
+  xy: 152, 2
+  size: 148, 219
+  orig: 148, 219
+  offset: 0, 0
+  index: 9

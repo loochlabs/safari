@@ -1,0 +1,74 @@
+perm2.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+perm2
+  rotate: false
+  xy: 2, 2
+  size: 341, 316
+  orig: 341, 316
+  offset: 0, 0
+  index: 1
+perm2
+  rotate: false
+  xy: 2, 320
+  size: 341, 316
+  orig: 341, 316
+  offset: 0, 0
+  index: 10
+perm2
+  rotate: false
+  xy: 345, 2
+  size: 341, 316
+  orig: 341, 316
+  offset: 0, 0
+  index: 2
+perm2
+  rotate: false
+  xy: 345, 320
+  size: 341, 316
+  orig: 341, 316
+  offset: 0, 0
+  index: 3
+perm2
+  rotate: false
+  xy: 688, 2
+  size: 341, 316
+  orig: 341, 316
+  offset: 0, 0
+  index: 4
+perm2
+  rotate: false
+  xy: 688, 320
+  size: 341, 316
+  orig: 341, 316
+  offset: 0, 0
+  index: 5
+perm2
+  rotate: false
+  xy: 1031, 2
+  size: 341, 316
+  orig: 341, 316
+  offset: 0, 0
+  index: 6
+perm2
+  rotate: false
+  xy: 1374, 2
+  size: 341, 316
+  orig: 341, 316
+  offset: 0, 0
+  index: 7
+perm2
+  rotate: false
+  xy: 1031, 320
+  size: 341, 316
+  orig: 341, 316
+  offset: 0, 0
+  index: 8
+perm2
+  rotate: false
+  xy: 1374, 320
+  size: 341, 316
+  orig: 341, 316
+  offset: 0, 0
+  index: 9

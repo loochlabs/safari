@@ -1,0 +1,11 @@
+tent-attack.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+tent-attack
+  rotate: false
+  xy: 2, 2
+  size: 1007, 121
+  orig: 1007, 121
+  offset: 0, 0
+  index: 1

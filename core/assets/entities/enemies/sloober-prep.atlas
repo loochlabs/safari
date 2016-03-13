@@ -1,0 +1,130 @@
+sloober-prep.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sloober-prep
+  rotate: false
+  xy: 2, 2
+  size: 297, 223
+  orig: 297, 223
+  offset: 0, 0
+  index: 1
+sloober-prep
+  rotate: false
+  xy: 2, 227
+  size: 297, 223
+  orig: 297, 223
+  offset: 0, 0
+  index: 10
+sloober-prep
+  rotate: false
+  xy: 301, 2
+  size: 297, 223
+  orig: 297, 223
+  offset: 0, 0
+  index: 11
+sloober-prep
+  rotate: false
+  xy: 301, 2
+  size: 297, 223
+  orig: 297, 223
+  offset: 0, 0
+  index: 12
+sloober-prep
+  rotate: false
+  xy: 301, 227
+  size: 297, 223
+  orig: 297, 223
+  offset: 0, 0
+  index: 13
+sloober-prep
+  rotate: false
+  xy: 301, 227
+  size: 297, 223
+  orig: 297, 223
+  offset: 0, 0
+  index: 14
+sloober-prep
+  rotate: false
+  xy: 600, 2
+  size: 297, 223
+  orig: 297, 223
+  offset: 0, 0
+  index: 15
+sloober-prep
+  rotate: false
+  xy: 600, 2
+  size: 297, 223
+  orig: 297, 223
+  offset: 0, 0
+  index: 16
+sloober-prep
+  rotate: false
+  xy: 600, 227
+  size: 297, 223
+  orig: 297, 223
+  offset: 0, 0
+  index: 17
+sloober-prep
+  rotate: false
+  xy: 600, 227
+  size: 297, 223
+  orig: 297, 223
+  offset: 0, 0
+  index: 18
+sloober-prep
+  rotate: false
+  xy: 2, 2
+  size: 297, 223
+  orig: 297, 223
+  offset: 0, 0
+  index: 2
+sloober-prep
+  rotate: false
+  xy: 899, 2
+  size: 297, 223
+  orig: 297, 223
+  offset: 0, 0
+  index: 3
+sloober-prep
+  rotate: false
+  xy: 899, 2
+  size: 297, 223
+  orig: 297, 223
+  offset: 0, 0
+  index: 4
+sloober-prep
+  rotate: false
+  xy: 1198, 2
+  size: 297, 223
+  orig: 297, 223
+  offset: 0, 0
+  index: 5
+sloober-prep
+  rotate: false
+  xy: 1198, 2
+  size: 297, 223
+  orig: 297, 223
+  offset: 0, 0
+  index: 6
+sloober-prep
+  rotate: false
+  xy: 899, 227
+  size: 297, 223
+  orig: 297, 223
+  offset: 0, 0
+  index: 7
+sloober-prep
+  rotate: false
+  xy: 899, 227
+  size: 297, 223
+  orig: 297, 223
+  offset: 0, 0
+  index: 8
+sloober-prep
+  rotate: false
+  xy: 2, 227
+  size: 297, 223
+  orig: 297, 223
+  offset: 0, 0
+  index: 9

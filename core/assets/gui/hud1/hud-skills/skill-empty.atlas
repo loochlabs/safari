@@ -1,0 +1,11 @@
+skill-empty.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+skill-empty
+  rotate: false
+  xy: 2, 2
+  size: 259, 259
+  orig: 259, 259
+  offset: 0, 0
+  index: 1

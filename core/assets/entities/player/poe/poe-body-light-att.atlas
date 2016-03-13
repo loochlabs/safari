@@ -1,0 +1,74 @@
+poe-body-light-att.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+poe-body-light-att
+  rotate: false
+  xy: 2, 2
+  size: 207, 254
+  orig: 207, 254
+  offset: 0, 0
+  index: 1
+poe-body-light-att
+  rotate: false
+  xy: 2, 258
+  size: 207, 254
+  orig: 207, 254
+  offset: 0, 0
+  index: 10
+poe-body-light-att
+  rotate: false
+  xy: 211, 2
+  size: 207, 254
+  orig: 207, 254
+  offset: 0, 0
+  index: 2
+poe-body-light-att
+  rotate: false
+  xy: 420, 2
+  size: 207, 254
+  orig: 207, 254
+  offset: 0, 0
+  index: 3
+poe-body-light-att
+  rotate: false
+  xy: 420, 2
+  size: 207, 254
+  orig: 207, 254
+  offset: 0, 0
+  index: 4
+poe-body-light-att
+  rotate: false
+  xy: 211, 258
+  size: 207, 254
+  orig: 207, 254
+  offset: 0, 0
+  index: 5
+poe-body-light-att
+  rotate: false
+  xy: 211, 258
+  size: 207, 254
+  orig: 207, 254
+  offset: 0, 0
+  index: 6
+poe-body-light-att
+  rotate: false
+  xy: 420, 258
+  size: 207, 254
+  orig: 207, 254
+  offset: 0, 0
+  index: 7
+poe-body-light-att
+  rotate: false
+  xy: 420, 258
+  size: 207, 254
+  orig: 207, 254
+  offset: 0, 0
+  index: 8
+poe-body-light-att
+  rotate: false
+  xy: 2, 258
+  size: 207, 254
+  orig: 207, 254
+  offset: 0, 0
+  index: 9

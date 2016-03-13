@@ -1,0 +1,11 @@
+darkling-att.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+darkling-att
+  rotate: false
+  xy: 2, 2
+  size: 785, 785
+  orig: 785, 785
+  offset: 0, 0
+  index: 1

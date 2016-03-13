@@ -1,0 +1,123 @@
+goober_prep.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+goober_prep
+  rotate: false
+  xy: 2, 2
+  size: 295, 225
+  orig: 295, 225
+  offset: 0, 0
+  index: 0
+goober_prep
+  rotate: false
+  xy: 2, 229
+  size: 295, 225
+  orig: 295, 225
+  offset: 0, 0
+  index: 1
+goober_prep
+  rotate: false
+  xy: 2, 229
+  size: 295, 225
+  orig: 295, 225
+  offset: 0, 0
+  index: 2
+goober_prep
+  rotate: false
+  xy: 299, 2
+  size: 295, 225
+  orig: 295, 225
+  offset: 0, 0
+  index: 3
+goober_prep
+  rotate: false
+  xy: 299, 2
+  size: 295, 225
+  orig: 295, 225
+  offset: 0, 0
+  index: 4
+goober_prep
+  rotate: false
+  xy: 299, 229
+  size: 295, 225
+  orig: 295, 225
+  offset: 0, 0
+  index: 5
+goober_prep
+  rotate: false
+  xy: 299, 229
+  size: 295, 225
+  orig: 295, 225
+  offset: 0, 0
+  index: 6
+goober_prep
+  rotate: false
+  xy: 596, 2
+  size: 295, 225
+  orig: 295, 225
+  offset: 0, 0
+  index: 7
+goober_prep
+  rotate: false
+  xy: 596, 2
+  size: 295, 225
+  orig: 295, 225
+  offset: 0, 0
+  index: 8
+goober_prep
+  rotate: false
+  xy: 596, 229
+  size: 295, 225
+  orig: 295, 225
+  offset: 0, 0
+  index: 9
+goober_prep
+  rotate: false
+  xy: 596, 229
+  size: 295, 225
+  orig: 295, 225
+  offset: 0, 0
+  index: 10
+goober_prep
+  rotate: false
+  xy: 893, 2
+  size: 295, 225
+  orig: 295, 225
+  offset: 0, 0
+  index: 11
+goober_prep
+  rotate: false
+  xy: 893, 2
+  size: 295, 225
+  orig: 295, 225
+  offset: 0, 0
+  index: 12
+goober_prep
+  rotate: false
+  xy: 1190, 2
+  size: 295, 225
+  orig: 295, 225
+  offset: 0, 0
+  index: 13
+goober_prep
+  rotate: false
+  xy: 1190, 2
+  size: 295, 225
+  orig: 295, 225
+  offset: 0, 0
+  index: 14
+goober_prep
+  rotate: false
+  xy: 893, 229
+  size: 295, 225
+  orig: 295, 225
+  offset: 0, 0
+  index: 15
+goober_prep
+  rotate: false
+  xy: 893, 229
+  size: 295, 225
+  orig: 295, 225
+  offset: 0, 0
+  index: 16

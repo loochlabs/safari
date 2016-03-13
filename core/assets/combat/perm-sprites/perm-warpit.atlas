@@ -1,0 +1,11 @@
+perm-warpit.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+perm-warpit
+  rotate: false
+  xy: 2, 2
+  size: 297, 292
+  orig: 297, 292
+  offset: 0, 0
+  index: 1

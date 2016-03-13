@@ -1,0 +1,68 @@
+murphy-init.png
+size: 2462, 192
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+murphy-init
+  rotate: false
+  xy: 2, 2
+  size: 613, 93
+  orig: 613, 93
+  offset: 0, 0
+  index: 1
+murphy-init
+  rotate: false
+  xy: 2, 97
+  size: 613, 93
+  orig: 613, 93
+  offset: 0, 0
+  index: 2
+murphy-init
+  rotate: false
+  xy: 2, 97
+  size: 613, 93
+  orig: 613, 93
+  offset: 0, 0
+  index: 3
+murphy-init
+  rotate: false
+  xy: 617, 2
+  size: 613, 93
+  orig: 613, 93
+  offset: 0, 0
+  index: 4
+murphy-init
+  rotate: false
+  xy: 617, 2
+  size: 613, 93
+  orig: 613, 93
+  offset: 0, 0
+  index: 5
+murphy-init
+  rotate: false
+  xy: 617, 97
+  size: 613, 93
+  orig: 613, 93
+  offset: 0, 0
+  index: 6
+murphy-init
+  rotate: false
+  xy: 1232, 2
+  size: 613, 93
+  orig: 613, 93
+  offset: 0, 0
+  index: 7
+murphy-init
+  rotate: false
+  xy: 1847, 2
+  size: 613, 93
+  orig: 613, 93
+  offset: 0, 0
+  index: 8
+murphy-init
+  rotate: false
+  xy: 1232, 97
+  size: 613, 93
+  orig: 613, 93
+  offset: 0, 0
+  index: 9

@@ -1,0 +1,11 @@
+poe-recov.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+poe-recov
+  rotate: false
+  xy: 2, 2
+  size: 148, 193
+  orig: 148, 193
+  offset: 0, 0
+  index: 1

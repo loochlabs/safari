@@ -1,0 +1,11 @@
+poe-left-anim.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+poe-left-anim
+  rotate: false
+  xy: 2, 2
+  size: 148, 218
+  orig: 148, 218
+  offset: 0, 0
+  index: 1

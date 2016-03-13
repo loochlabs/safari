@@ -1,0 +1,67 @@
+skill-select1.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+skill-select1
+  rotate: false
+  xy: 2, 2
+  size: 522, 153
+  orig: 522, 153
+  offset: 0, 0
+  index: 1
+skill-select1
+  rotate: false
+  xy: 2, 157
+  size: 522, 153
+  orig: 522, 153
+  offset: 0, 0
+  index: 2
+skill-select1
+  rotate: false
+  xy: 2, 312
+  size: 522, 153
+  orig: 522, 153
+  offset: 0, 0
+  index: 3
+skill-select1
+  rotate: false
+  xy: 526, 2
+  size: 522, 153
+  orig: 522, 153
+  offset: 0, 0
+  index: 4
+skill-select1
+  rotate: false
+  xy: 1050, 2
+  size: 522, 153
+  orig: 522, 153
+  offset: 0, 0
+  index: 5
+skill-select1
+  rotate: false
+  xy: 526, 157
+  size: 522, 153
+  orig: 522, 153
+  offset: 0, 0
+  index: 6
+skill-select1
+  rotate: false
+  xy: 1050, 157
+  size: 522, 153
+  orig: 522, 153
+  offset: 0, 0
+  index: 7
+skill-select1
+  rotate: false
+  xy: 526, 312
+  size: 522, 153
+  orig: 522, 153
+  offset: 0, 0
+  index: 8
+skill-select1
+  rotate: false
+  xy: 1050, 312
+  size: 522, 153
+  orig: 522, 153
+  offset: 0, 0
+  index: 9

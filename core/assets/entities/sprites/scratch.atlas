@@ -1,0 +1,11 @@
+scratch.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+scratch
+  rotate: false
+  xy: 2, 2
+  size: 142, 126
+  orig: 142, 126
+  offset: 0, 0
+  index: 1

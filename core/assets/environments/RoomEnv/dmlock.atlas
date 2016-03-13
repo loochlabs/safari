@@ -1,0 +1,12 @@
+dmlock.png
+size: 193, 139
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dmlock
+  rotate: false
+  xy: 2, 2
+  size: 189, 135
+  orig: 189, 135
+  offset: 0, 0
+  index: 1

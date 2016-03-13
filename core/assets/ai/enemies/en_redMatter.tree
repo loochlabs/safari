@@ -1,0 +1,11 @@
+#
+# RED MATTER BT
+#   
+
+#Alias Definitions
+import patrol:"com.mygdx.ai.enemies.EnPatrolTask"
+
+root
+    sequence
+        patrol
+ 

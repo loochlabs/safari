@@ -1,0 +1,137 @@
+poe-warp.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+poe-warp
+  rotate: false
+  xy: 2, 2
+  size: 148, 226
+  orig: 148, 226
+  offset: 0, 0
+  index: 1
+poe-warp
+  rotate: false
+  xy: 2, 230
+  size: 148, 226
+  orig: 148, 226
+  offset: 0, 0
+  index: 10
+poe-warp
+  rotate: false
+  xy: 152, 2
+  size: 148, 226
+  orig: 148, 226
+  offset: 0, 0
+  index: 11
+poe-warp
+  rotate: false
+  xy: 152, 230
+  size: 148, 226
+  orig: 148, 226
+  offset: 0, 0
+  index: 12
+poe-warp
+  rotate: false
+  xy: 302, 2
+  size: 148, 226
+  orig: 148, 226
+  offset: 0, 0
+  index: 13
+poe-warp
+  rotate: false
+  xy: 302, 230
+  size: 148, 226
+  orig: 148, 226
+  offset: 0, 0
+  index: 14
+poe-warp
+  rotate: false
+  xy: 452, 2
+  size: 148, 226
+  orig: 148, 226
+  offset: 0, 0
+  index: 15
+poe-warp
+  rotate: false
+  xy: 452, 230
+  size: 148, 226
+  orig: 148, 226
+  offset: 0, 0
+  index: 16
+poe-warp
+  rotate: false
+  xy: 602, 2
+  size: 148, 226
+  orig: 148, 226
+  offset: 0, 0
+  index: 17
+poe-warp
+  rotate: false
+  xy: 602, 230
+  size: 148, 226
+  orig: 148, 226
+  offset: 0, 0
+  index: 18
+poe-warp
+  rotate: false
+  xy: 752, 2
+  size: 148, 226
+  orig: 148, 226
+  offset: 0, 0
+  index: 19
+poe-warp
+  rotate: false
+  xy: 752, 230
+  size: 148, 226
+  orig: 148, 226
+  offset: 0, 0
+  index: 2
+poe-warp
+  rotate: false
+  xy: 902, 2
+  size: 148, 226
+  orig: 148, 226
+  offset: 0, 0
+  index: 3
+poe-warp
+  rotate: false
+  xy: 902, 230
+  size: 148, 226
+  orig: 148, 226
+  offset: 0, 0
+  index: 4
+poe-warp
+  rotate: false
+  xy: 1052, 2
+  size: 148, 226
+  orig: 148, 226
+  offset: 0, 0
+  index: 5
+poe-warp
+  rotate: false
+  xy: 1052, 230
+  size: 148, 226
+  orig: 148, 226
+  offset: 0, 0
+  index: 6
+poe-warp
+  rotate: false
+  xy: 1202, 2
+  size: 148, 226
+  orig: 148, 226
+  offset: 0, 0
+  index: 7
+poe-warp
+  rotate: false
+  xy: 1202, 230
+  size: 148, 226
+  orig: 148, 226
+  offset: 0, 0
+  index: 8
+poe-warp
+  rotate: false
+  xy: 1352, 2
+  size: 148, 226
+  orig: 148, 226
+  offset: 0, 0
+  index: 9

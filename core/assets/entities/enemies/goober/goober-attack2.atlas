@@ -1,0 +1,11 @@
+goober-attack2.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+goober-attack2
+  rotate: false
+  xy: 2, 2
+  size: 792, 792
+  orig: 792, 792
+  offset: 0, 0
+  index: 1

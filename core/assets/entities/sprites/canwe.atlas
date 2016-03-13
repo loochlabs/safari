@@ -1,0 +1,11 @@
+canwe.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+canwe
+  rotate: false
+  xy: 2, 2
+  size: 204, 197
+  orig: 204, 197
+  offset: 0, 0
+  index: 1

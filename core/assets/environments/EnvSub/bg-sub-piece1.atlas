@@ -1,0 +1,11 @@
+bg-sub-piece1.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bg-sub-piece1
+  rotate: false
+  xy: 2, 2
+  size: 543, 543
+  orig: 543, 543
+  offset: 0, 0
+  index: 1

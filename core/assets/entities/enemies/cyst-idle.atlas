@@ -1,0 +1,144 @@
+cyst-idle.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cyst-idle
+  rotate: false
+  xy: 2, 2
+  size: 128, 140
+  orig: 128, 140
+  offset: 0, 0
+  index: 1
+cyst-idle
+  rotate: false
+  xy: 2, 144
+  size: 128, 140
+  orig: 128, 140
+  offset: 0, 0
+  index: 10
+cyst-idle
+  rotate: false
+  xy: 2, 286
+  size: 128, 140
+  orig: 128, 140
+  offset: 0, 0
+  index: 11
+cyst-idle
+  rotate: false
+  xy: 132, 2
+  size: 128, 140
+  orig: 128, 140
+  offset: 0, 0
+  index: 12
+cyst-idle
+  rotate: false
+  xy: 132, 144
+  size: 128, 140
+  orig: 128, 140
+  offset: 0, 0
+  index: 13
+cyst-idle
+  rotate: false
+  xy: 132, 286
+  size: 128, 140
+  orig: 128, 140
+  offset: 0, 0
+  index: 14
+cyst-idle
+  rotate: false
+  xy: 262, 2
+  size: 128, 140
+  orig: 128, 140
+  offset: 0, 0
+  index: 15
+cyst-idle
+  rotate: false
+  xy: 262, 144
+  size: 128, 140
+  orig: 128, 140
+  offset: 0, 0
+  index: 16
+cyst-idle
+  rotate: false
+  xy: 262, 286
+  size: 128, 140
+  orig: 128, 140
+  offset: 0, 0
+  index: 17
+cyst-idle
+  rotate: false
+  xy: 392, 2
+  size: 128, 140
+  orig: 128, 140
+  offset: 0, 0
+  index: 18
+cyst-idle
+  rotate: false
+  xy: 392, 144
+  size: 128, 140
+  orig: 128, 140
+  offset: 0, 0
+  index: 19
+cyst-idle
+  rotate: false
+  xy: 392, 286
+  size: 128, 140
+  orig: 128, 140
+  offset: 0, 0
+  index: 2
+cyst-idle
+  rotate: false
+  xy: 522, 2
+  size: 128, 140
+  orig: 128, 140
+  offset: 0, 0
+  index: 20
+cyst-idle
+  rotate: false
+  xy: 652, 2
+  size: 128, 140
+  orig: 128, 140
+  offset: 0, 0
+  index: 3
+cyst-idle
+  rotate: false
+  xy: 782, 2
+  size: 128, 140
+  orig: 128, 140
+  offset: 0, 0
+  index: 4
+cyst-idle
+  rotate: false
+  xy: 522, 144
+  size: 128, 140
+  orig: 128, 140
+  offset: 0, 0
+  index: 5
+cyst-idle
+  rotate: false
+  xy: 522, 286
+  size: 128, 140
+  orig: 128, 140
+  offset: 0, 0
+  index: 6
+cyst-idle
+  rotate: false
+  xy: 652, 144
+  size: 128, 140
+  orig: 128, 140
+  offset: 0, 0
+  index: 7
+cyst-idle
+  rotate: false
+  xy: 652, 286
+  size: 128, 140
+  orig: 128, 140
+  offset: 0, 0
+  index: 8
+cyst-idle
+  rotate: false
+  xy: 782, 144
+  size: 128, 140
+  orig: 128, 140
+  offset: 0, 0
+  index: 9

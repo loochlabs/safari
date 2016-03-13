@@ -1,0 +1,75 @@
+aoe-dmg.png
+size: 1707, 348
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+aoe-dmg
+  rotate: false
+  xy: 2, 2
+  size: 339, 344
+  orig: 339, 344
+  offset: 0, 0
+  index: 1
+aoe-dmg
+  rotate: false
+  xy: 343, 2
+  size: 339, 344
+  orig: 339, 344
+  offset: 0, 0
+  index: 10
+aoe-dmg
+  rotate: false
+  xy: 2, 2
+  size: 339, 344
+  orig: 339, 344
+  offset: 0, 0
+  index: 2
+aoe-dmg
+  rotate: false
+  xy: 684, 2
+  size: 339, 344
+  orig: 339, 344
+  offset: 0, 0
+  index: 3
+aoe-dmg
+  rotate: false
+  xy: 684, 2
+  size: 339, 344
+  orig: 339, 344
+  offset: 0, 0
+  index: 4
+aoe-dmg
+  rotate: false
+  xy: 1025, 2
+  size: 339, 344
+  orig: 339, 344
+  offset: 0, 0
+  index: 5
+aoe-dmg
+  rotate: false
+  xy: 1025, 2
+  size: 339, 344
+  orig: 339, 344
+  offset: 0, 0
+  index: 6
+aoe-dmg
+  rotate: false
+  xy: 1366, 2
+  size: 339, 344
+  orig: 339, 344
+  offset: 0, 0
+  index: 7
+aoe-dmg
+  rotate: false
+  xy: 1366, 2
+  size: 339, 344
+  orig: 339, 344
+  offset: 0, 0
+  index: 8
+aoe-dmg
+  rotate: false
+  xy: 343, 2
+  size: 339, 344
+  orig: 339, 344
+  offset: 0, 0
+  index: 9

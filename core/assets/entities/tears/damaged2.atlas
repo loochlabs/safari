@@ -1,0 +1,11 @@
+damaged2.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+damaged2
+  rotate: false
+  xy: 2, 2
+  size: 121, 83
+  orig: 121, 83
+  offset: 0, 0
+  index: 1

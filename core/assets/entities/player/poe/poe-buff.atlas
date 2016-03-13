@@ -1,0 +1,46 @@
+poe-buff.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+poe-buff
+  rotate: false
+  xy: 2, 2
+  size: 234, 204
+  orig: 234, 204
+  offset: 0, 0
+  index: 1
+poe-buff
+  rotate: false
+  xy: 238, 2
+  size: 234, 204
+  orig: 234, 204
+  offset: 0, 0
+  index: 2
+poe-buff
+  rotate: false
+  xy: 2, 208
+  size: 234, 204
+  orig: 234, 204
+  offset: 0, 0
+  index: 3
+poe-buff
+  rotate: false
+  xy: 2, 414
+  size: 234, 204
+  orig: 234, 204
+  offset: 0, 0
+  index: 4
+poe-buff
+  rotate: false
+  xy: 238, 208
+  size: 234, 204
+  orig: 234, 204
+  offset: 0, 0
+  index: 5
+poe-buff
+  rotate: false
+  xy: 238, 414
+  size: 234, 204
+  orig: 234, 204
+  offset: 0, 0
+  index: 6

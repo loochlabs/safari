@@ -1,0 +1,13 @@
+#En_Murgle behavior tree
+
+#Alias Definitions
+import inIdleRange:"com.mygdx.ai.enemies.EnTask_IdleRange"
+import moveToPlayer:"com.mygdx.ai.enemies.EnMoveToTask"
+import startAttack:"com.mygdx.ai.enemies.StartAttTask"
+
+
+root
+    sequence
+            inIdleRange
+            moveToPlayer
+            startAttack

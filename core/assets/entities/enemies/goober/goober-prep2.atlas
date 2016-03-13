@@ -1,0 +1,88 @@
+goober-prep2.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+goober-prep2
+  rotate: false
+  xy: 2, 2
+  size: 252, 200
+  orig: 252, 200
+  offset: 0, 0
+  index: 1
+goober-prep2
+  rotate: false
+  xy: 256, 2
+  size: 252, 200
+  orig: 252, 200
+  offset: 0, 0
+  index: 10
+goober-prep2
+  rotate: false
+  xy: 256, 2
+  size: 252, 200
+  orig: 252, 200
+  offset: 0, 0
+  index: 11
+goober-prep2
+  rotate: false
+  xy: 256, 2
+  size: 252, 200
+  orig: 252, 200
+  offset: 0, 0
+  index: 12
+goober-prep2
+  rotate: false
+  xy: 2, 2
+  size: 252, 200
+  orig: 252, 200
+  offset: 0, 0
+  index: 2
+goober-prep2
+  rotate: false
+  xy: 2, 2
+  size: 252, 200
+  orig: 252, 200
+  offset: 0, 0
+  index: 3
+goober-prep2
+  rotate: false
+  xy: 510, 2
+  size: 252, 200
+  orig: 252, 200
+  offset: 0, 0
+  index: 4
+goober-prep2
+  rotate: false
+  xy: 510, 2
+  size: 252, 200
+  orig: 252, 200
+  offset: 0, 0
+  index: 5
+goober-prep2
+  rotate: false
+  xy: 510, 2
+  size: 252, 200
+  orig: 252, 200
+  offset: 0, 0
+  index: 6
+goober-prep2
+  rotate: false
+  xy: 764, 2
+  size: 252, 200
+  orig: 252, 200
+  offset: 0, 0
+  index: 7
+goober-prep2
+  rotate: false
+  xy: 764, 2
+  size: 252, 200
+  orig: 252, 200
+  offset: 0, 0
+  index: 8
+goober-prep2
+  rotate: false
+  xy: 764, 2
+  size: 252, 200
+  orig: 252, 200
+  offset: 0, 0
+  index: 9

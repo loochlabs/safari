@@ -1,0 +1,11 @@
+endPad-mist.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+endPad-mist
+  rotate: false
+  xy: 2, 2
+  size: 999, 1000
+  orig: 999, 1000
+  offset: 0, 0
+  index: 1

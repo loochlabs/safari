@@ -1,0 +1,29 @@
+
+#
+# Stella Tree
+#
+
+#Alias definitions
+import moveToPlayer:"com.mygdx.ai.MoveToTask"
+import idle:"com.mygdx.ai.IdleTask"
+import isNearTear:"com.mygdx.ai.NearTearTask"
+import moveToTear:"com.mygdx.ai.MoveToTearTask"
+import returnPlayer:"com.mygdx.ai.DogTasks.Task_MoveToPlayer"
+import inRangeOfPlayer:"com.mygdx.ai.DogTasks.Task_InRangeOfPlayer"
+
+root
+    selector
+        sequence
+            invert
+                inRangeOfPlayer
+            returnPlayer  
+        sequence
+            selector
+                invert
+                    isNearTear
+                sequence
+                    moveToTear   
+            sequence
+                moveToPlayer
+                idle
+        

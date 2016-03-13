@@ -1,0 +1,250 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.mygdx.gui;
+
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
+import com.mygdx.combat.skills.Skill;
+import com.mygdx.entities.esprites.EntitySprite;
+import com.mygdx.game.MainGame;
+import static com.mygdx.game.MainGame.RATIO;
+import com.mygdx.managers.FrameManager;
+import com.mygdx.managers.ResourceManager;
+import com.mygdx.utilities.FrameCounter;
+
+/**
+ *
+ * @author looch
+ */
+public class Overlay {
+    
+    public boolean enable = true;
+    private float width, height;
+    
+    //componenets
+    private final BarHud barHud;
+    private final SkillHud skillHud;
+    
+    private Texture debugGrid;
+    
+    //alerts on bottom of hud
+    private final BitmapFont alertFont;
+    private final Array<String> alertTexts = new Array<String>();
+    private final Array<Long> alertTextTimes = new Array<Long>();
+    private final Array<String> alertTextToRemove = new Array<String>();
+    private final Array<Vector2> alertPoses = new Array<Vector2>();
+    private final Vector2 alertPos;
+    private final long ALERT_TIME = 60;//counted by # of frames, todo: use frameCounter
+    
+    //title alter for environment
+    private String titleText;
+    private final BitmapFont titleFont;
+    private final FrameManager fm = new FrameManager();
+    private final float titleTime = 5f; 
+    private float titleAlpha = 0;
+    private final FrameCounter titleFC = new FrameCounter(titleTime);
+    
+    
+    //transition sprite
+    //Using old endSpectralSprite from player death
+    private final EntitySprite transEndSprite;
+    private final EntitySprite transBeginSprite;
+    private boolean beginEndTransState = true, transitioning = false;
+    
+    public SkillHud getSkillHud() { return skillHud; }
+    
+    public Overlay(float width, float height){
+        
+        this.width = width;
+        this.height = height;
+        
+        barHud = new BarHud(MainGame.WIDTH/2, 100f*RATIO, width * 0.25f, height * 0.04f);
+        skillHud = new SkillHud(MainGame.WIDTH/2, 0 , 388 * RATIO, 83 * RATIO);
+        
+        debugGrid = MainGame.am.get(ResourceManager.OVERLAY_GRID);
+        
+        alertFont = new BitmapFont(Gdx.files.internal("fonts/nav-impact.fnt"));
+        alertFont.setColor(Color.WHITE);
+        alertFont.setScale(0.65f);
+        //alertPos = new Vector2(MainGame.WIDTH * 0.99f, MainGame.HEIGHT * 0.01f + 50f*RATIO);
+        alertPos = new Vector2(MainGame.WIDTH * 0.01f, MainGame.HEIGHT * 0.99f - 50f*RATIO);
+        
+        //title alert fonts
+        titleFont = new BitmapFont(Gdx.files.internal("fonts/nav-impact.fnt"));
+        titleFont.setColor(Color.WHITE);
+        titleFont.setScale(1.7f);
+        
+        
+        //transtion sprite
+        transEndSprite = new EntitySprite("endSpectralSprite", false);
+        transEndSprite.sprite.setBounds(0, 0, MainGame.WIDTH, MainGame.HEIGHT);
+        transEndSprite.reset();
+        
+        
+        transBeginSprite = new EntitySprite("endSpectralSprite", false, true, false, false, 0,0, true);
+        transBeginSprite.sprite.setBounds(0, 0, MainGame.WIDTH, MainGame.HEIGHT);
+        transBeginSprite.reset();
+        
+    }
+    
+    
+    public void update(){
+        barHud.update();
+        skillHud.update();
+        
+        fm.update();
+    }
+    
+    public void render(SpriteBatch sb){
+        if(enable){
+            barHud.render(sb);
+            skillHud.render(sb);
+            //buffUi.render(sb);
+            
+            
+            for (int i = 0; i < alertTexts.size; i++) {
+                alertFont.draw(sb, alertTexts.get(i), alertPoses.get(i).x, alertPoses.get(i).y + alertFont.getCapHeight());
+                alertTextTimes.set(i, alertTextTimes.get(i) - 1);
+
+                if (alertTextTimes.get(i) <= 0) {
+                    alertTextToRemove.add(alertTexts.get(i));
+                }
+            }
+
+            clearAlerts();
+
+            if (MainGame.debugmode) {
+                sb.draw(debugGrid, 0, 0, MainGame.WIDTH, MainGame.HEIGHT);
+            }
+            
+            renderTitleAlert(sb);
+            
+            renderTransion(sb);
+        }
+    }
+        
+    public void addAlertText(String string){
+        alertTexts.add(string);
+        alertTextTimes.add(ALERT_TIME);
+        
+        //alert pos
+        for(Vector2 pos: alertPoses){
+            pos.add(0, -alertFont.getCapHeight());
+        }
+        
+        //float len = alertFont.getBounds(string).width;
+        //alertPoses.add(alertPos.cpy().sub(len, 0));
+        alertPoses.add(alertPos.cpy());
+    }
+    
+    public void clearAlerts(){
+        for (String text : alertTextToRemove) {
+            alertTexts.removeValue(text, false);
+            alertTextTimes.removeIndex(0);
+            alertPoses.removeIndex(0);
+        }
+        alertTextToRemove.clear();
+    }
+    
+    public void addTitleAlert(String str){
+        titleText = str;
+        titleFC.start(fm);
+        titleAlpha = 0.01f;
+    }
+    
+    private void renderTitleAlert(SpriteBatch sb){
+        if( !titleText.equals("")){
+                
+                if(titleFC.complete)    titleText = "";
+                
+                //bring alpha 0 -> 100 -> 0
+                
+                titleAlpha = titleAlpha <= 0 ? 0
+                        : titleFC.getTimeRemaining() > titleTime*0.9f ? titleAlpha + 0.025f 
+                        : titleFC.getTimeRemaining() < titleTime*0.3f && titleFC.getTimeRemaining() >= 0 ? titleAlpha - 0.025f
+                        : 1;
+                
+                titleAlpha = titleAlpha <= 0 ? 0 : titleAlpha;
+                
+                titleFont.setColor(1, 1, 1, titleAlpha);
+                titleFont.draw(sb, titleText, 
+                        MainGame.WIDTH/2 - titleFont.getBounds(titleText).width/2, 
+                        MainGame.HEIGHT*0.965f);
+                
+                
+        }
+    }
+    
+    public void resetSkillSlot(int n){
+        skillHud.resetSlot(n);
+    }
+    
+    public void addItemArm(){
+        //skillHud.addItemArm();
+    }
+    
+    public void addDescAlert(Skill skill){
+        skillHud.addDescAlert(skill);
+    }
+    
+    
+    //handle transSprite during trasition 
+    //@param - transState
+    //    -true = beginning transition
+    //    -false = ending transition
+    //
+    //@return - is transition complete?
+    //    -true = transSprite has completed
+    //
+    //Called from Environment 
+    
+    public boolean transition(boolean transState){
+        
+        beginEndTransState = transState;
+        
+        if(transState){
+            transitioning = !transBeginSprite.isComplete();
+            
+            
+        }else{
+            transitioning = !transEndSprite.isComplete();
+            
+            
+        }
+        
+        
+        return !transitioning;
+        
+    }
+    
+    public void endTransition(){
+        transitioning = false;
+        //if(transBeginSprite.isComplete()){
+                transBeginSprite.reset();
+            //}
+            //if(transEndSprite.isComplete()){
+                transEndSprite.reset();
+            //}
+    }
+    
+    private void renderTransion(SpriteBatch sb){
+        if(transitioning){
+            if(beginEndTransState){
+                //begin trans
+                transBeginSprite.render(sb);
+            }else{
+                //end trans
+                transEndSprite.render(sb);
+            }
+        }
+    }
+    
+}

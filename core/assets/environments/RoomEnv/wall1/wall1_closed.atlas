@@ -1,0 +1,11 @@
+wall1_closed.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+wall1_closed
+  rotate: false
+  xy: 2, 2
+  size: 1200, 295
+  orig: 1200, 295
+  offset: 0, 0
+  index: 1
