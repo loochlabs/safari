@@ -7,7 +7,7 @@ package com.mygdx.combat.skills;
 
 import static com.mygdx.combat.skills.Skill.SkillAttribute.LIFE;
 import com.mygdx.entities.Entity;
-import com.mygdx.entities.esprites.EntitySprite;
+import com.mygdx.entities.ImageSprite;
 import com.mygdx.game.MainGame;
 import static com.mygdx.game.MainGame.RATIO;
 import com.mygdx.gui.descriptions.DescriptionWindow;
@@ -35,15 +35,15 @@ public class Skill_MommasTouch extends LightSkill{
         skillIcon = MainGame.am.get(ResourceManager.SKILL_MOMMASTOUCH);
         
         
-        impactTemplates.add(new EntitySprite("poe-attack4", false));
+        impactTemplates.add(new ImageSprite("poe-attack4", false));
         impactTemplates.get(0).sprite.setScale(1.4f*RATIO);
-        impactTemplates.add(new EntitySprite("poe-attack3", false));
+        impactTemplates.add(new ImageSprite("poe-attack3", false));
         impactTemplates.get(1).sprite.setScale(1.4f*RATIO);
         
         
         impactSound = new SoundObject_Sfx(ResourceManager.SFX_IMPACT_1);
         
-        skillSprite = new EntitySprite("light-attack-green",false);
+        skillSprite = new ImageSprite("light-attack-green",false);
         skillSprite.sprite.setScale(0.35f*RATIO);
         
     }

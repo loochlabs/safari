@@ -7,7 +7,7 @@ package com.mygdx.demo.demo2;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.entities.esprites.EntitySprite;
+import com.mygdx.entities.ImageSprite;
 import com.mygdx.environments.EnvironmentManager;
 import com.mygdx.game.MainGame;
 import static com.mygdx.game.MainGame.RATIO;
@@ -27,7 +27,7 @@ import com.mygdx.utilities.FrameCounter;
 public class DemoContScreen extends Screen{
 
     private DemoGoInputManager im;
-    private EntitySprite contSprite;
+    private ImageSprite contSprite;
     private FrameCounter endFC = new FrameCounter(15f);
     private FrameManager fm = new FrameManager();
     
@@ -43,7 +43,7 @@ public class DemoContScreen extends Screen{
         SoundManager.clear();
         
         //death anim
-        contSprite = new EntitySprite("end-cont", false, true, false, false);
+        contSprite = new ImageSprite("end-cont", false, true, false, false);
         contSprite.sprite.setBounds(
                 MainGame.WIDTH/2 - 500f*RATIO, 
                 MainGame.HEIGHT/2 , 

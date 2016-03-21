@@ -1,0 +1,110 @@
+sectionPad.png
+size: 1334, 925
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sectionPad
+  rotate: false
+  xy: 1072, 264
+  size: 260, 259
+  orig: 260, 259
+  offset: 52, -52
+  index: 1
+sectionPad
+  rotate: false
+  xy: 540, 266
+  size: 265, 261
+  orig: 265, 261
+  offset: 49, -52
+  index: 10
+sectionPad
+  rotate: false
+  xy: 807, 265
+  size: 263, 261
+  orig: 263, 261
+  offset: 50, -52
+  index: 11
+sectionPad
+  rotate: false
+  xy: 806, 529
+  size: 263, 262
+  orig: 263, 262
+  offset: 50, -51
+  index: 12
+sectionPad
+  rotate: false
+  xy: 809, 2
+  size: 262, 260
+  orig: 262, 260
+  offset: 50, -52
+  index: 13
+sectionPad
+  rotate: false
+  xy: 1071, 528
+  size: 261, 260
+  orig: 261, 260
+  offset: 51, -52
+  index: 14
+sectionPad
+  rotate: false
+  xy: 1073, 2
+  size: 259, 259
+  orig: 259, 259
+  offset: 52, -52
+  index: 15
+sectionPad
+  rotate: false
+  xy: 272, 533
+  size: 265, 262
+  orig: 265, 262
+  offset: 49, -52
+  index: 2
+sectionPad
+  rotate: false
+  xy: 2, 268
+  size: 267, 264
+  orig: 267, 264
+  offset: 48, -51
+  index: 3
+sectionPad
+  rotate: false
+  xy: 2, 2
+  size: 269, 264
+  orig: 269, 264
+  offset: 47, -51
+  index: 4
+sectionPad
+  rotate: false
+  xy: 2, 534
+  size: 268, 263
+  orig: 268, 263
+  offset: 47, -52
+  index: 5
+sectionPad
+  rotate: false
+  xy: 271, 268
+  size: 267, 263
+  orig: 267, 263
+  offset: 48, -52
+  index: 6
+sectionPad
+  rotate: false
+  xy: 273, 2
+  size: 267, 262
+  orig: 267, 262
+  offset: 48, -52
+  index: 7
+sectionPad
+  rotate: false
+  xy: 539, 533
+  size: 265, 262
+  orig: 265, 262
+  offset: 49, -52
+  index: 8
+sectionPad
+  rotate: false
+  xy: 542, 2
+  size: 265, 261
+  orig: 265, 261
+  offset: 49, -52
+  index: 9

@@ -1,0 +1,12 @@
+woogie-recov.png
+size: 260, 350
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+woogie-recov
+  rotate: false
+  xy: 2, 2
+  size: 256, 346
+  orig: 256, 346
+  offset: 0, 0
+  index: 1

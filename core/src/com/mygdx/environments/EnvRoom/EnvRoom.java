@@ -7,7 +7,7 @@ package com.mygdx.environments.EnvRoom;
 
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.environments.tears.NullWarp;
-import com.mygdx.entities.StaticEntities.walls.NullWall;
+import com.mygdx.entities.StaticEntities.NullWall;
 import com.mygdx.environments.Environment;
 import com.mygdx.game.MainGame;
 import static com.mygdx.game.MainGame.RATIO;

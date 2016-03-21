@@ -14,7 +14,7 @@ import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.StreamUtils;
-import com.mygdx.entities.esprites.EntitySprite;
+import com.mygdx.entities.ImageSprite;
 import com.mygdx.screen.GameScreen;
 import java.io.Reader;
 
@@ -28,9 +28,9 @@ public class En_Goober2 extends EnemyEntity2{
     public En_Goober2(Vector2 pos) {
         super(pos, 30f, 30f);
         
-        moveSprite = new EntitySprite("goober_move",true);
+        moveSprite = new ImageSprite("goober_move",true);
         moveSprite.sprite.setScale(0.38f);
-        esprite = moveSprite;
+        isprite = moveSprite;
         
         this.maxLinearSpeed = 50f;
         this.maxLinearAcceleration = 500f;

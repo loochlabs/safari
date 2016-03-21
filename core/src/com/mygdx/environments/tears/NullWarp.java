@@ -35,7 +35,7 @@ public class NullWarp extends TearPortal{
         GameScreen.player.warp(body.getPosition());
         EnvironmentManager.currentEnv.end(warpid,endTime);
         finished = true;
-        esprite = dmgSprite;
+        isprite = dmgSprite;
         warpSound.play(false);
     }
     

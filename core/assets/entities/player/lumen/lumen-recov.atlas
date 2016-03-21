@@ -1,0 +1,12 @@
+lumen-recov.png
+size: 320, 304
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+lumen-recov
+  rotate: false
+  xy: 2, 2
+  size: 316, 300
+  orig: 316, 300
+  offset: 0, 0
+  index: 1

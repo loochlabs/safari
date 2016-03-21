@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
-import com.mygdx.entities.esprites.EntitySprite;
+import com.mygdx.entities.ImageSprite;
 import com.mygdx.entities.pickups.Pickup;
 import com.mygdx.game.MainGame;
 import static com.mygdx.game.MainGame.RATIO;
@@ -24,7 +24,7 @@ import com.mygdx.utilities.ItemContainer;
  */
 public class InventoryUi extends OverlayComponent{
 
-    private EntitySprite dmIdleSprite;
+    private ImageSprite dmIdleSprite;
     private Texture dmTexture;
     private int dm_count;
     private BitmapFont font;
@@ -36,7 +36,7 @@ public class InventoryUi extends OverlayComponent{
         super(x, y, width, height);
         
         
-        dmIdleSprite = new EntitySprite("hud-dm-idle", true);
+        dmIdleSprite = new ImageSprite("hud-dm-idle", true);
         dmIdleSprite.sprite.setBounds(x, y, width, height);
         dmTexture = MainGame.am.get(ResourceManager.ITEM_DM1);
         font = new BitmapFont(Gdx.files.internal("fonts/nav-impact.fnt"));

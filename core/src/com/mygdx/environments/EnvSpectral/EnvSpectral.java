@@ -10,7 +10,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.camera.OrthoCamera;
 import com.mygdx.entities.Entity;
-import com.mygdx.entities.esprites.EntitySprite;
+import com.mygdx.entities.ImageSprite;
 import com.mygdx.environments.EnvSection;
 import com.mygdx.environments.Environment;
 import com.mygdx.game.MainGame;
@@ -39,7 +39,7 @@ public class EnvSpectral extends Environment{
     //int sideIndex = 0;
     //private Array<Coordinate> gridCoords = new Array<Coordinate>();
     
-    private EntitySprite introTextSprite, playerSprite, playerSpectralSprite, deathSprite;
+    private ImageSprite introTextSprite, playerSprite, playerSpectralSprite, deathSprite;
     private float playerSpriteScale = 1.0f;
     
     
@@ -58,16 +58,17 @@ public class EnvSpectral extends Environment{
         startPos = new Vector2(300*RATIO/PPM,300*RATIO/PPM);
         this.setPlayerToStart();
         
-        beginSprite = new EntitySprite(GameScreen.player.getBuffSprite(),
+        /*
+        beginSprite = new ImageSprite(GameScreen.player.getBuffSprite(),
                 MainGame.WIDTH/2,
                 MainGame.HEIGHT/2);
         
-        introTextSprite = new EntitySprite("run-text", false);
-        playerSprite = new EntitySprite(
+        introTextSprite = new ImageSprite("run-text", false);
+        playerSprite = new ImageSprite(
                 GameScreen.player.getBuffSprite(), 
                 startPos.x*PPM - GameScreen.player.getBuffSprite().sprite.getWidth()/2, 
                 startPos.y*PPM - GameScreen.player.getBuffSprite().sprite.getHeight()/2);
-        
+        */
         playerSpriteScale = playerSprite.sprite.getScaleX();
         
         playerSpectralSprite = GameScreen.player.getBeginSpectralSprite();

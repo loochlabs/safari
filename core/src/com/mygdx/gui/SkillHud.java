@@ -17,7 +17,7 @@ import static com.mygdx.combat.skills.Skill.SkillType.HEAVY;
 import static com.mygdx.combat.skills.Skill.SkillType.LIGHT;
 import static com.mygdx.combat.skills.Skill.SkillType.PASSIVE;
 import static com.mygdx.combat.skills.Skill.SkillType.SPECIAL;
-import com.mygdx.entities.esprites.EntitySprite;
+import com.mygdx.entities.ImageSprite;
 import com.mygdx.entities.pickups.Pickup;
 import com.mygdx.game.MainGame;
 import static com.mygdx.game.MainGame.RATIO;
@@ -42,10 +42,10 @@ public class SkillHud extends OverlayComponent{
     private final float slotWidth, slotHeight, skillOffsetX, skillOffsetY, slotOffset;
     
     //skill hud (8/8/15)
-    private final EntitySprite 
+    private final ImageSprite 
             skillHud_light, skillHud_heavy, skillHud_special, skillHud_passive, 
             skillHud_empty1, skillHud_empty2, skillHud_empty3, skillHud_empty4;
-    private EntitySprite skillSprite1, skillSprite2, skillSprite3, skillSprite4;
+    private ImageSprite skillSprite1, skillSprite2, skillSprite3, skillSprite4;
     private Texture dashTexture;
     
     //new item alert
@@ -84,23 +84,23 @@ public class SkillHud extends OverlayComponent{
         slotHeight = slotWidth;
         slotOffset = slotWidth;
         
-        skillHud_light = new EntitySprite("light-rot", false);
+        skillHud_light = new ImageSprite("light-rot", false);
         skillHud_light.sprite.setBounds(x + skillOffsetX, y, slotWidth, slotHeight);
-        skillHud_heavy = new EntitySprite("heavy-rot", false);
+        skillHud_heavy = new ImageSprite("heavy-rot", false);
         skillHud_heavy.sprite.setBounds(x + skillOffsetX + slotOffset, y, slotWidth, slotHeight);
-        skillHud_special = new EntitySprite("special-rot", false);
+        skillHud_special = new ImageSprite("special-rot", false);
         skillHud_special.sprite.setBounds(x + skillOffsetX + slotOffset*2, y, slotWidth, slotHeight);
-        skillHud_passive = new EntitySprite("passive-rotSlow", true);
+        skillHud_passive = new ImageSprite("passive-rotSlow", true);
         skillHud_passive.sprite.setBounds(x + skillOffsetX + slotOffset*3, y, slotWidth, slotHeight);
         skillHud_passive.setComplete(true);
         
-        skillHud_empty1 = new EntitySprite("skill-empty", true);
+        skillHud_empty1 = new ImageSprite("skill-empty", true);
         skillHud_empty1.sprite.setBounds(x + skillOffsetX, y, slotWidth, slotHeight);
-        skillHud_empty2 = new EntitySprite("skill-empty", true);
+        skillHud_empty2 = new ImageSprite("skill-empty", true);
         skillHud_empty2.sprite.setBounds(x + skillOffsetX + slotOffset, y, slotWidth, slotHeight);
-        skillHud_empty3 = new EntitySprite("skill-empty", true);
+        skillHud_empty3 = new ImageSprite("skill-empty", true);
         skillHud_empty3.sprite.setBounds(x + skillOffsetX + slotOffset*2, y, slotWidth, slotHeight);
-        skillHud_empty4 = new EntitySprite("skill-empty", true);
+        skillHud_empty4 = new ImageSprite("skill-empty", true);
         skillHud_empty4.sprite.setBounds(x + skillOffsetX + slotOffset*3, y, slotWidth, slotHeight);
         
         dashTexture = MainGame.am.get(ResourceManager.GUI_DASH);

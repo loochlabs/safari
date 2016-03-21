@@ -10,7 +10,7 @@ import com.badlogic.gdx.ai.btree.utils.BehaviorTreeParser;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.StreamUtils;
-import com.mygdx.entities.esprites.EntitySprite;
+import com.mygdx.entities.ImageSprite;
 import com.mygdx.game.MainGame;
 import com.mygdx.managers.ResourceManager;
 import com.mygdx.utilities.FrameCounter_Attack;
@@ -28,7 +28,7 @@ public class En_Murgle extends EnemyEntity{
         idleTexture = MainGame.am.get(ResourceManager.MURGLE_MAIN);
         prepTexture = MainGame.am.get(ResourceManager.MURGLE_MAIN);
         
-        moveSprite = new EntitySprite("murgle-front",true);
+        moveSprite = new ImageSprite("murgle-front",true);
         moveSprite.sprite.setScale(0.5f);
         
         texture = idleTexture;
@@ -78,12 +78,12 @@ public class En_Murgle extends EnemyEntity{
     @Override
     public void startAttack(){
         super.startAttack();
-        esprite = null;
+        isprite = null;
     }
     
     @Override
     public void moveTo(Vector2 dest, float speed){
         super.moveTo(dest, speed);
-        esprite = moveSprite;
+        isprite = moveSprite;
     }
 }

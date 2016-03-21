@@ -13,7 +13,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.StreamUtils;
 import com.mygdx.entities.DynamicEntities.DynamicEntity;
+import com.mygdx.entities.ImageSprite;
 import com.mygdx.entities.esprites.EntitySprite;
+import com.mygdx.entities.text.TextDamage;
 import com.mygdx.environments.EnvironmentManager;
 import static com.mygdx.game.MainGame.RATIO;
 import com.mygdx.managers.ResourceManager;
@@ -39,7 +41,7 @@ public class EnemyEntity extends DynamicEntity{
     
     protected BehaviorTree<EnemyEntity> enemybt;
     protected Texture idleTexture, prepTexture;//todo: not needed
-    protected EntitySprite moveSprite, attackSprite, prepSprite;
+    protected ImageSprite moveSprite, attackSprite, prepSprite;
     
     protected StateManager sm = new StateManager();
     
@@ -47,9 +49,12 @@ public class EnemyEntity extends DynamicEntity{
     protected float prepTime, attackTime, recovTime;
     protected Object attSensorData;
     protected boolean canAttack = true, canDmgPlayer = false;
+    protected float DAMAGE = 0;
+    protected FrameCounter_Attack attackFC;
     
     //damage
-    protected EntitySprite damageSprite, bodyDamageSprite,spraySprite,deathSprite;
+    protected ImageSprite damageSprite, bodyDamageSprite,spraySprite;
+    protected EntitySprite deathSprite;
     protected FrameCounter dmgFC = new FrameCounter(0.4f);
     protected boolean canInterrupt = true;
     
@@ -61,6 +66,7 @@ public class EnemyEntity extends DynamicEntity{
     //sound
     protected SoundObject_Sfx deathSound;
     
+    public FrameCounter_Attack getAttackFC() { return attackFC; }
     public Object getSensorData() { return attSensorData; }
     public boolean getCanAttack() { return canAttack; }
     
@@ -75,11 +81,10 @@ public class EnemyEntity extends DynamicEntity{
         
         attackFC = new FrameCounter_Attack(0,0,0);
         
-        spraySprite = new EntitySprite("spray1", false);
+        spraySprite = new ImageSprite("spray1", false);
         spraySprite.sprite.setScale(6.0f);
         
-        deathSprite = new EntitySprite("en-death2", false);
-        deathSprite.sprite.setScale(1.25f * RATIO);
+        deathSprite = new EntitySprite(pos, width,height, "en-death2", false, false, false, false, 1.25f*RATIO, false, false);
         
         sm.setState(1);
         
@@ -105,8 +110,8 @@ public class EnemyEntity extends DynamicEntity{
         }else if(sm.getState() == State.FALLING){
             
             if(fallFC.running){
-                if(esprite != null)
-                    esprite.sprite.setScale(esprite.sprite.getScaleX()*0.60f);
+                if(isprite != null)
+                    isprite.sprite.setScale(isprite.sprite.getScaleX()*0.60f);
             }else if(fallFC.complete){
                 death();
             }
@@ -131,20 +136,7 @@ public class EnemyEntity extends DynamicEntity{
         super.render(sb);
     }
     
-    @Override 
-    public void damage(float d){
-        super.damage(d);
-        
-        spraySprite.reset();
-        damageSprite = spraySprite;
-        damageSprite.sprite.setPosition(body.getPosition().x *PPM, body.getPosition().y *PPM);
-        
-        dmgFC.start(fm);
-        
-        if(canInterrupt && attackFC.state == AttackState.PREPPING){
-            attackFC.state = AttackState.RECOVERING;
-        }
-    }
+    
     
     @Override
     public void death(){
@@ -155,9 +147,10 @@ public class EnemyEntity extends DynamicEntity{
         EnvironmentManager.currentEnv.addKillCount();
         System.out.println("@EnemyEntity en death");
         
-        deathSprite.sprite.setPosition(body.getPosition().x*PPM - deathSprite.sprite.getWidth()/2, 
-                body.getPosition().y*PPM - deathSprite.sprite.getHeight()/2);
-        EnvironmentManager.currentEnv.spawnSprite(deathSprite);
+        deathSprite.setPosition(new Vector2(
+                pos.x - deathSprite.getWidth()/2, 
+                pos.y - deathSprite.getHeight()/2));
+        EnvironmentManager.currentEnv.spawnEntity(deathSprite);
         
         dispose();
     }
@@ -205,7 +198,7 @@ public class EnemyEntity extends DynamicEntity{
             attDest = body.getPosition().cpy().sub(
                 GameScreen.player.getBody().getPosition().cpy());
             
-            esprite = prepSprite;
+            isprite = prepSprite;
         }
     }
     

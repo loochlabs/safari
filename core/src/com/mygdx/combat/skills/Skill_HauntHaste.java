@@ -8,7 +8,7 @@ package com.mygdx.combat.skills;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.combat.PlayerProjectile;
 import static com.mygdx.combat.skills.Skill.SkillAttribute.SPEED;
-import com.mygdx.entities.esprites.EntitySprite;
+import com.mygdx.entities.ImageSprite;
 import com.mygdx.environments.EnvironmentManager;
 import com.mygdx.game.MainGame;
 import static com.mygdx.game.MainGame.RATIO;
@@ -44,9 +44,9 @@ public class Skill_HauntHaste extends HeavySkill{
         
         
         
-        impactTemplates.add(new EntitySprite("impact1", false));
+        impactTemplates.add(new ImageSprite("impact1", false));
         impactTemplates.get(0).sprite.setScale(1.4f*RATIO);
-        impactTemplates.add(new EntitySprite("impact2", false));
+        impactTemplates.add(new ImageSprite("impact2", false));
         impactTemplates.get(1).sprite.setScale(1.4f*RATIO);
         
         impactSound = new SoundObject_Sfx(ResourceManager.SFX_IMPACT_2);

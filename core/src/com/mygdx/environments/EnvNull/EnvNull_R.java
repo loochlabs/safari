@@ -5,10 +5,6 @@
  */
 package com.mygdx.environments.EnvNull;
 
-import com.badlogic.gdx.math.Vector2;
-import static com.mygdx.game.MainGame.RATIO;
-import com.mygdx.utilities.Coordinate;
-
 /**
  *
  * @author looch
@@ -24,6 +20,7 @@ public class EnvNull_R extends EnvNull{
     //GENERATE NULL SECTIONS
     @Override
     public void initSections(){
+        /*
         switch(DIFFICULTY){
             case(0):
                 sectionCount = 4;
@@ -54,18 +51,11 @@ public class EnvNull_R extends EnvNull{
     }
     
     
-    public void createSections(int sections){
+    public void createSections(){
         
         //CREATE THE SECITONS
-        generateSections(sections);
+        //generateSections();
 
-        /*
-        for(NullSection section: sectionsToAdd){
-            envSections.add(section);
-        }
-        
-        sectionsToAdd.clear();
-        */
     }
     
     

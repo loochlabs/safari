@@ -14,7 +14,7 @@ import com.mygdx.camera.OrthoCamera;
 import com.mygdx.combat.NormAttackSensor;
 import com.mygdx.entities.DynamicEntities.DogEntities.MurphyEntity;
 import com.mygdx.entities.Entity;
-import com.mygdx.entities.esprites.EntitySprite;
+import com.mygdx.entities.ImageSprite;
 import com.mygdx.entities.DynamicEntities.DogEntities.StellaEntity;
 import com.mygdx.environments.EnvNull.Tear_R_One;
 import com.mygdx.environments.tears.TearPortal;
@@ -101,11 +101,7 @@ public class EnvVoid extends Environment{
         this.setPlayerToStart();
         
         
-        //bg sprites
-        int spritecount = 20;
-        for(int i = 0; i < spritecount; i++){
-            spawnSprite(new BgSprite("bg-piece8", true, grid.getWidth() * rng.nextFloat(), grid.getHeight()* rng.nextFloat(), rng.nextFloat()+1));
-        }
+        
         
         fgFilter = MainGame.am.get(ResourceManager.VOID_BG_FILTER);
         
@@ -164,6 +160,13 @@ public class EnvVoid extends Environment{
         playerBodies.add(playerBodySE);
         playerBodies.add(playerBodySW);
         
+        
+        //bg sprites
+        int spritecount = 20;
+        for(int i = 0; i < spritecount; i++){
+            spawnEntity(new BgSprite(grid.getWidth() * rng.nextFloat(), grid.getHeight()* rng.nextFloat(), rng.nextFloat()+1));
+        }
+        
     }
     
     
@@ -187,22 +190,20 @@ public class EnvVoid extends Environment{
             
             map.render(sb);
             
-            //todo: add render(sb) method for EntitySprite
-            for(EntitySprite e: sprites){
-                e.render(sb);
-            }
             
-
             //entities.sort();
             Collections.sort(entities, new Entity.EntityComp());
             
             for (Entity e : entities) {
                 e.render(sb);
+                
+                drawGhostImage(sb, e);
             }
             
             
             //sprite ghost images
-            for(EntitySprite sprite: sprites){
+            /*
+            for(ImageSprite sprite: sprites){
                 sprite.drawOffset(sb, grid.getWidth(), 0);
                 sprite.drawOffset(sb, -grid.getWidth(), 0);
                 sprite.drawOffset(sb, 0, grid.getHeight());
@@ -211,20 +212,7 @@ public class EnvVoid extends Environment{
                 sprite.drawOffset(sb, -grid.getWidth(), grid.getHeight());
                 sprite.drawOffset(sb, grid.getWidth(), -grid.getHeight());
                 sprite.drawOffset(sb, -grid.getWidth(), -grid.getHeight());
-            }
-            
-            
-            //entity ghost images
-            for (Entity e : entities) {
-                e.offsetRender(sb, grid.getWidth(), 0, 0);
-                e.offsetRender(sb, -grid.getWidth(), 0, 0);
-                e.offsetRender(sb, 0, grid.getHeight(), 0);
-                e.offsetRender(sb, 0, -grid.getHeight(), 0);
-                e.offsetRender(sb, grid.getWidth(), grid.getHeight(), 0);
-                e.offsetRender(sb, -grid.getWidth(), grid.getHeight(), 0);
-                e.offsetRender(sb, grid.getWidth(), -grid.getHeight(), 0);
-                e.offsetRender(sb, -grid.getWidth(), -grid.getHeight(), 0);
-            }
+            }*/
             
             
             
@@ -260,6 +248,18 @@ public class EnvVoid extends Environment{
     }
     
     
+    private void drawGhostImage(SpriteBatch sb, Entity e) {
+        e.offsetRender(sb, grid.getWidth(), 0, 0);
+        e.offsetRender(sb, -grid.getWidth(), 0, 0);
+        e.offsetRender(sb, 0, grid.getHeight(), 0);
+        e.offsetRender(sb, 0, -grid.getHeight(), 0);
+        e.offsetRender(sb, grid.getWidth(), grid.getHeight(), 0);
+        e.offsetRender(sb, -grid.getWidth(), grid.getHeight(), 0);
+        e.offsetRender(sb, grid.getWidth(), -grid.getHeight(), 0);
+        e.offsetRender(sb, -grid.getWidth(), -grid.getHeight(), 0);
+    }
+    
+    
     
     @Override
     public void render(SpriteBatch sb, int layer){
@@ -292,9 +292,11 @@ public class EnvVoid extends Environment{
 
                     map.render(sb);
 
-                    for (EntitySprite e : sprites) {
+                    
+                    /*
+                    for (ImageSprite e : sprites) {
                         e.render(sb);
-                    }
+                    }*/
                     
                     //entities.sort();
                     Collections.sort(entities, new Entity.EntityComp());
@@ -304,7 +306,8 @@ public class EnvVoid extends Environment{
                     }
 
                     //sprite ghost images
-                    for (EntitySprite sprite : sprites) {
+                    /*
+                    for (ImageSprite sprite : sprites) {
                         sprite.drawOffset(sb, grid.getWidth(), 0);
                         sprite.drawOffset(sb, -grid.getWidth(), 0);
                         sprite.drawOffset(sb, 0, grid.getHeight());
@@ -313,7 +316,7 @@ public class EnvVoid extends Environment{
                         sprite.drawOffset(sb, -grid.getWidth(), grid.getHeight());
                         sprite.drawOffset(sb, grid.getWidth(), -grid.getHeight());
                         sprite.drawOffset(sb, -grid.getWidth(), -grid.getHeight());
-                    }
+                    }*/
 
                     //entity ghost images
                     for (Entity e : entities) {
@@ -361,27 +364,38 @@ public class EnvVoid extends Environment{
         if(sm.getState() == State.PLAYING){
             //entity wrap
             for (Entity e : entities) {
-                if (e.getBody().getPosition().x < grid.getX() / PPM) {
-                    e.getBody().setTransform(new Vector2(e.getBody().getPosition().x + grid.getWidth() / PPM, e.getBody().getPosition().y), 0);
+                //if (e.getBody().getPosition().x < grid.getX() / PPM) {
+                if(e.getPos().x < grid.getX()){
+                    //e.getBody().setTransform(new Vector2(e.getBody().getPosition().x + grid.getWidth() / PPM, e.getBody().getPosition().y), 0);
+                    e.setPosition(new Vector2(e.getPos().x + grid.getWidth(), e.getPos().y));
                     
                     if(e.equals(GameScreen.player)){
                         wrapGhostBodies();
                     }
                 }
-                if (e.getBody().getPosition().x > (grid.getX() + grid.getWidth()) / PPM) {
-                    e.getBody().setTransform(new Vector2(e.getBody().getPosition().x - grid.getWidth() / PPM, e.getBody().getPosition().y), 0);
+                //if (e.getBody().getPosition().x > (grid.getX() + grid.getWidth()) / PPM) {
+                if(e.getPos().x > (grid.getX() + grid.getWidth())){
+                    //e.getBody().setTransform(new Vector2(e.getBody().getPosition().x - grid.getWidth() / PPM, e.getBody().getPosition().y), 0);
+                    e.setPosition(new Vector2(e.getPos().x - grid.getWidth(), e.getPos().y));
+                    
                     if(e.equals(GameScreen.player)){
                         wrapGhostBodies();
                     }
                 }
-                if (e.getBody().getPosition().y < grid.getY() / PPM) {
-                    e.getBody().setTransform(new Vector2(e.getBody().getPosition().x, e.getBody().getPosition().y + grid.getHeight() / PPM), 0);
+                //if (e.getBody().getPosition().y < grid.getY() / PPM) {
+                if(e.getPos().y < grid.getY()){
+                    //e.getBody().setTransform(new Vector2(e.getBody().getPosition().x, e.getBody().getPosition().y + grid.getHeight() / PPM), 0);
+                    e.setPosition(new Vector2(e.getPos().x, e.getPos().y + grid.getHeight()));
+                    
                     if(e.equals(GameScreen.player)){
                         wrapGhostBodies();
                     }
                 }
-                if (e.getBody().getPosition().y > (grid.getY() + grid.getHeight()) / PPM) {
-                    e.getBody().setTransform(new Vector2(e.getBody().getPosition().x, e.getBody().getPosition().y - grid.getHeight() / PPM), 0);
+                //if (e.getBody().getPosition().y > (grid.getY() + grid.getHeight()) / PPM) {
+                if(e.getPos().y > (grid.getY() + grid.getHeight())){
+                    //e.getBody().setTransform(new Vector2(e.getBody().getPosition().x, e.getBody().getPosition().y - grid.getHeight() / PPM), 0);
+                    e.setPosition(new Vector2(e.getPos().x, e.getPos().y - grid.getHeight()));
+                    
                     if(e.equals(GameScreen.player)){
                         wrapGhostBodies();
                     }
@@ -390,7 +404,8 @@ public class EnvVoid extends Environment{
 
             
             //sprite wrap
-            for (EntitySprite es : sprites) {
+            /*
+            for (ImageSprite es : sprites) {
                 if (es.x < grid.getX()) {
                     es.x += grid.getWidth();
                     es.sprite.setX(es.sprite.getX() + grid.getWidth());
@@ -407,7 +422,7 @@ public class EnvVoid extends Environment{
                     es.y -= grid.getHeight();
                     es.sprite.setY(es.sprite.getY() + grid.getHeight());
                 }
-            }
+            }*/
             
             followGhostBodies();
             

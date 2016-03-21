@@ -34,7 +34,7 @@ public class Pickup_Statup_Life extends Pickup_Statup{
     public void death(){
         super.death();
         GameScreen.player.addStatPoints(1,0,0,0,0);
-        GameScreen.player.updateStats();
+        GameScreen.player.refreshStats();
         GameScreen.player.restoreHp();
         EnvironmentManager.currentEnv.addDamageText("Life Up", 
                 new Vector2(

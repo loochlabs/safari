@@ -35,6 +35,7 @@ public abstract class Pickup extends Entity{
     protected String desc;
     protected SkillType type = ITEM;
     protected DescriptionWindow descWindow;
+    protected boolean pickupComplete = false;
     
     protected FixtureDef solidfd;
     protected CircleShape sensorShape = new CircleShape();
@@ -100,7 +101,7 @@ public abstract class Pickup extends Entity{
             body.createFixture(solidfd);
             body.setLinearDamping(5.0f);
 
-            pickupFC.start(EnvironmentManager.currentEnv.getFrameManager());
+            pickupFC.start(fm);
 
             if (flagSpawnForce) {
 
@@ -125,16 +126,19 @@ public abstract class Pickup extends Entity{
             floatUp = true;
         }
         
-        if(esprite != null){
-            esprite.sprite.setPosition(
-                    (body.getPosition().x * PPM - esprite.sprite.getWidth() / 2),
-                    (body.getPosition().y * PPM - esprite.sprite.getHeight() / 2));
-            esprite.step();
-            esprite.sprite.draw(sb);
+        if(isprite != null){
+            isprite.sprite.setPosition(
+                    //(body.getPosition().x * PPM - esprite.sprite.getWidth() / 2),
+                    //(body.getPosition().y * PPM - esprite.sprite.getHeight() / 2));
+                    (pos.x - isprite.sprite.getWidth() / 2),
+                    (pos.y - isprite.sprite.getHeight() / 2));
+            isprite.step();
+            isprite.sprite.draw(sb);
         }else if(texture != null)
-            sb.draw(texture, body.getPosition().x*PPM-iw/2, body.getPosition().y*PPM-ih/2 + yfloat,iw,ih);
+            //sb.draw(texture, body.getPosition().x*PPM-iw/2, body.getPosition().y*PPM-ih/2 + yfloat,iw,ih);
+            sb.draw(texture, pos.x-iw/2, pos.y -ih/2 + yfloat, iw, ih);
         
-        if(dead){
+        if(pickupComplete){
             deathAnim();
         }
         
@@ -142,7 +146,7 @@ public abstract class Pickup extends Entity{
     }
     
     @Override
-    public void alert(){
+    public void alert(String str){
         if(canPickup)
             death();
     }
@@ -153,8 +157,7 @@ public abstract class Pickup extends Entity{
         
         GameScreen.overlay.addAlertText("+" + name + "");
         canPickup = false;
-        
-        //EnvironmentManager.currentEnv.deadAlert(this);
+        pickupComplete = true;
         
         //sound
         pickupSound.play(false);
@@ -169,7 +172,7 @@ public abstract class Pickup extends Entity{
         iw *= 1.3f;
         
         if(ih <= 5.0f){
-            EnvironmentManager.currentEnv.removeEntity(this);
+            dispose();
         }
         
     }

@@ -8,7 +8,7 @@ package com.mygdx.combat.skills;
 import com.badlogic.gdx.math.Vector2;
 import static com.mygdx.combat.skills.Skill.SkillType.HEAVY;
 import com.mygdx.entities.Entity;
-import com.mygdx.entities.esprites.EntitySprite;
+import com.mygdx.entities.ImageSprite;
 import com.mygdx.entities.esprites.PermSprite;
 import static com.mygdx.game.MainGame.RATIO;
 import com.mygdx.screen.GameScreen;
@@ -30,7 +30,7 @@ public abstract class HeavySkill extends Skill{
         
         FORCE = 250.0f;
         
-        skillSprite = new EntitySprite("poe-attack-heavy",false);
+        skillSprite = new ImageSprite("poe-attack-heavy",false);
         skillSprite.sprite.setScale(0.35f*RATIO);
     }
     
@@ -107,7 +107,7 @@ public abstract class HeavySkill extends Skill{
     }
 
     public void addImpactSprite(Entity e) {
-        EntitySprite isprite = new EntitySprite(impactTemplates.get(rng.nextInt(impactTemplates.size)));
+        ImageSprite isprite = new ImageSprite(impactTemplates.get(rng.nextInt(impactTemplates.size)));
 
         //flip sprite
         if (GameScreen.player.getBody().getPosition().x < e.getBody().getPosition().x) {

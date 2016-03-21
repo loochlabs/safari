@@ -5,6 +5,7 @@
  */
 package com.mygdx.entities.esprites;
 
+import com.mygdx.entities.ImageSprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
@@ -23,8 +24,8 @@ import java.util.Random;
 public class ManSprite extends Entity{
 
     private EnvVoid env;
-    private EntitySprite shadowSprite, crouchSprite, warpSprite;
-    private Array<EntitySprite> sprites = new Array<EntitySprite>();
+    private ImageSprite shadowSprite, crouchSprite, warpSprite;
+    private Array<ImageSprite> sprites = new Array<ImageSprite>();
     private Random rng = new Random();
     
     public ManSprite(Vector2 pos) {
@@ -36,18 +37,18 @@ public class ManSprite extends Entity{
         fd.shape = cshape;
         userdata = "man_"+id;
         
-        shadowSprite = new EntitySprite("mitb-shadow", true);
+        shadowSprite = new ImageSprite("mitb-shadow", true);
         shadowSprite.sprite.setScale(0.6f*RATIO);
-        crouchSprite = new EntitySprite("man-crouch", true);
+        crouchSprite = new ImageSprite("man-crouch", true);
         crouchSprite.sprite.setScale(0.6f*RATIO);
         
         sprites.add(shadowSprite);
         sprites.add(crouchSprite);
         
-        warpSprite = new EntitySprite("man-warp", false);
+        warpSprite = new ImageSprite("man-warp", false);
         warpSprite.sprite.setScale(0.6f);
         
-        esprite = sprites.random();
+        isprite = sprites.random();
     }
 
     @Override
@@ -99,7 +100,7 @@ public class ManSprite extends Entity{
     
     private void warpSprite(){
         if(!warpSprite.isComplete()){
-            esprite = warpSprite;
+            isprite = warpSprite;
         }else{
         
             do {
@@ -110,7 +111,7 @@ public class ManSprite extends Entity{
             } while (inRangeOfPlayer());
             
             warpSprite.reset();
-            esprite = sprites.random();
+            isprite = sprites.random();
         }
     }
 }

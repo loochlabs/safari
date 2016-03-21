@@ -1,0 +1,103 @@
+woogie-warp.png
+size: 2018, 750
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+woogie-warp
+  rotate: false
+  xy: 2, 2
+  size: 286, 372
+  orig: 286, 372
+  offset: 0, 0
+  index: 1
+woogie-warp
+  rotate: false
+  xy: 2, 376
+  size: 286, 372
+  orig: 286, 372
+  offset: 0, 0
+  index: 10
+woogie-warp
+  rotate: false
+  xy: 290, 2
+  size: 286, 372
+  orig: 286, 372
+  offset: 0, 0
+  index: 11
+woogie-warp
+  rotate: false
+  xy: 290, 376
+  size: 286, 372
+  orig: 286, 372
+  offset: 0, 0
+  index: 12
+woogie-warp
+  rotate: false
+  xy: 578, 2
+  size: 286, 372
+  orig: 286, 372
+  offset: 0, 0
+  index: 13
+woogie-warp
+  rotate: false
+  xy: 578, 376
+  size: 286, 372
+  orig: 286, 372
+  offset: 0, 0
+  index: 14
+woogie-warp
+  rotate: false
+  xy: 866, 2
+  size: 286, 372
+  orig: 286, 372
+  offset: 0, 0
+  index: 2
+woogie-warp
+  rotate: false
+  xy: 866, 376
+  size: 286, 372
+  orig: 286, 372
+  offset: 0, 0
+  index: 3
+woogie-warp
+  rotate: false
+  xy: 1154, 2
+  size: 286, 372
+  orig: 286, 372
+  offset: 0, 0
+  index: 4
+woogie-warp
+  rotate: false
+  xy: 1154, 376
+  size: 286, 372
+  orig: 286, 372
+  offset: 0, 0
+  index: 5
+woogie-warp
+  rotate: false
+  xy: 1442, 2
+  size: 286, 372
+  orig: 286, 372
+  offset: 0, 0
+  index: 6
+woogie-warp
+  rotate: false
+  xy: 1442, 376
+  size: 286, 372
+  orig: 286, 372
+  offset: 0, 0
+  index: 7
+woogie-warp
+  rotate: false
+  xy: 1730, 2
+  size: 286, 372
+  orig: 286, 372
+  offset: 0, 0
+  index: 8
+woogie-warp
+  rotate: false
+  xy: 1730, 376
+  size: 286, 372
+  orig: 286, 372
+  offset: 0, 0
+  index: 9

@@ -9,7 +9,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.mygdx.entities.StaticEntities.StaticEntity;
 import com.mygdx.entities.pickups.Pickup;
-import com.mygdx.entities.pickups.items.Item_DarkMatter;
+import com.mygdx.entities.pickups.Item_DarkMatter;
 import com.mygdx.managers.GameStats;
 import com.mygdx.screen.GameOver.GameOverScreen;
 import com.mygdx.screen.GameScreen;

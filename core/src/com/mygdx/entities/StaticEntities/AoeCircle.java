@@ -7,7 +7,7 @@ package com.mygdx.entities.StaticEntities;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
-import com.mygdx.entities.esprites.EntitySprite;
+import com.mygdx.entities.ImageSprite;
 import com.mygdx.environments.Environment;
 import com.mygdx.environments.EnvironmentManager;
 import static com.mygdx.game.MainGame.RATIO;
@@ -42,8 +42,8 @@ public class AoeCircle extends StaticEntity{
         
         this.flaggedForRenderSort = false;
         
-        esprite = new EntitySprite("aoe-heal", true);
-        esprite.sprite.setBounds(0, 0, width*2, height*2);
+        isprite = new ImageSprite("aoe-heal", true);
+        isprite.sprite.setBounds(0, 0, width*2, height*2);
     }
     
     

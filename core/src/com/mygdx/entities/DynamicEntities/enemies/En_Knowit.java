@@ -7,7 +7,7 @@ package com.mygdx.entities.DynamicEntities.enemies;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
-import com.mygdx.entities.esprites.EntitySprite;
+import com.mygdx.entities.ImageSprite;
 import com.mygdx.entities.projectiles.EnemyProj;
 import com.mygdx.environments.EnvironmentManager;
 import com.mygdx.screen.GameScreen;
@@ -33,9 +33,9 @@ public class En_Knowit extends EnemyEntity{
         recovTime = 3f;
         attackFC = new FrameCounter_Attack(prepTime, attackTime, recovTime);
         
-        moveSprite = new EntitySprite("knowit-move", true);
-        prepSprite = new EntitySprite("knowit-prep", true);
-        esprite = moveSprite;
+        moveSprite = new ImageSprite("knowit-move", true);
+        prepSprite = new ImageSprite("knowit-prep", true);
+        isprite = moveSprite;
         
         
         PLAYER_IDLE_RANGE = 6.0f;
@@ -102,7 +102,7 @@ public class En_Knowit extends EnemyEntity{
                         DAMAGE));
         
         canAttack = false;
-        esprite = moveSprite;
+        isprite = moveSprite;
     }
     
 }

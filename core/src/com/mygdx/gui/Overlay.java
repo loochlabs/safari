@@ -13,7 +13,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.combat.skills.Skill;
-import com.mygdx.entities.esprites.EntitySprite;
+import com.mygdx.entities.ImageSprite;
 import com.mygdx.game.MainGame;
 import static com.mygdx.game.MainGame.RATIO;
 import com.mygdx.managers.FrameManager;
@@ -55,8 +55,8 @@ public class Overlay {
     
     //transition sprite
     //Using old endSpectralSprite from player death
-    private final EntitySprite transEndSprite;
-    private final EntitySprite transBeginSprite;
+    private final ImageSprite transEndSprite;
+    private final ImageSprite transBeginSprite;
     private boolean beginEndTransState = true, transitioning = false;
     
     public SkillHud getSkillHud() { return skillHud; }
@@ -84,12 +84,12 @@ public class Overlay {
         
         
         //transtion sprite
-        transEndSprite = new EntitySprite("endSpectralSprite", false);
+        transEndSprite = new ImageSprite("endSpectralSprite", false);
         transEndSprite.sprite.setBounds(0, 0, MainGame.WIDTH, MainGame.HEIGHT);
         transEndSprite.reset();
         
         
-        transBeginSprite = new EntitySprite("endSpectralSprite", false, true, false, false, 0,0, true);
+        transBeginSprite = new ImageSprite("endSpectralSprite", false, true, false, false, 0,0, 1.0f, true);
         transBeginSprite.sprite.setBounds(0, 0, MainGame.WIDTH, MainGame.HEIGHT);
         transBeginSprite.reset();
         

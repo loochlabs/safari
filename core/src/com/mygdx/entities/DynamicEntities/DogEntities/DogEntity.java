@@ -18,7 +18,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.StreamUtils;
 import com.mygdx.entities.DynamicEntities.DynamicEntity;
 import com.mygdx.entities.Entity;
-import com.mygdx.entities.esprites.EntitySprite;
+import com.mygdx.entities.ImageSprite;
 import com.mygdx.environments.tears.TearPortal;
 import com.mygdx.environments.EnvVoid.EnvVoid;
 import com.mygdx.environments.EnvironmentManager;
@@ -47,7 +47,7 @@ public class DogEntity extends DynamicEntity{
     protected float dogWidth, dogHeight;
     protected float alertWidth, alertHeight;
     
-    protected EntitySprite moveSprite, alertSprite, idleSprite;
+    protected ImageSprite moveSprite, alertSprite, idleSprite;
     protected float spriteScale;
     
     private Array<Sprite> trailSprites = new Array<Sprite>();
@@ -100,10 +100,10 @@ public class DogEntity extends DynamicEntity{
         
         texture = dogTexture;
         
-        idleSprite = new EntitySprite("stella-idle", true);
+        idleSprite = new ImageSprite("stella-idle", true);
         idleSprite.sprite.setScale(0.26f * RATIO);
         
-        esprite = idleSprite;
+        isprite = idleSprite;
     }
     
     @Override
@@ -142,17 +142,17 @@ public class DogEntity extends DynamicEntity{
     
     @Override
     public void render(SpriteBatch sb){
-        if(esprite != null){
-            esprite.sprite.setPosition(
-                    (body.getPosition().x * PPM - esprite.sprite.getWidth() / 2),
-                    (body.getPosition().y * PPM - esprite.sprite.getHeight() / 2));
+        if(isprite != null){
+            isprite.sprite.setPosition(
+                    (body.getPosition().x * PPM - isprite.sprite.getWidth() / 2),
+                    (body.getPosition().y * PPM - isprite.sprite.getHeight() / 2));
             
-            esprite.render(sb);
+            isprite.render(sb);
             //esprite.sprite.draw(sb);
             //esprite.step();
             
-            if(esprite.equals(moveSprite)){
-                trailSprites.add(new Sprite(esprite.sprite));
+            if(isprite.equals(moveSprite)){
+                trailSprites.add(new Sprite(isprite.sprite));
                 trailAlphas.add(1.0f);
 
                 if (trailSprites.size > 0) {
@@ -189,7 +189,7 @@ public class DogEntity extends DynamicEntity{
     //@param: movement to destination, (catch up)
     public void moveTo(Vector2 dest, float speed){
         if(!atTear()){
-            esprite = moveSprite;
+            isprite = moveSprite;
             //idleRun.reset();
             idleFC.reset();
         }
@@ -225,7 +225,7 @@ public class DogEntity extends DynamicEntity{
                 thread.start();
                 */
             }else{
-                esprite = idleSprite;
+                isprite = idleSprite;
             }
             
             //esprite = null;
@@ -315,8 +315,8 @@ public class DogEntity extends DynamicEntity{
         for(TearPortal tp: tears){
             //if(TEARRANGE > playerBody.getPosition().dst(tp.getBody().getPosition())){
             if(TEARRANGE > findClosestBody().getPosition().dst(tp.getBody().getPosition())){
-                esprite = alertSprite;
-                esprite.sprite.rotate(-0.25f);
+                isprite = alertSprite;
+                isprite.sprite.rotate(-0.25f);
                 //texture = alertTexture;
                 //iw = alertWidth;
                 //ih = alertHeight;

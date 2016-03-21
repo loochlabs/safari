@@ -9,8 +9,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
-import com.mygdx.entities.StaticEntities.walls.NullWall;
-import com.mygdx.entities.esprites.EntitySprite;
+import com.mygdx.entities.StaticEntities.NullWall;
+import com.mygdx.entities.ImageSprite;
 import com.mygdx.entities.pickups.Pickup_Key;
 import com.mygdx.environments.EnvironmentManager;
 import com.mygdx.environments.tears.Tear_Room_Glyph1.EnvRoom_Glyph1_TEST;
@@ -33,7 +33,7 @@ public class Wall_Lock extends NullWall{
     protected FixtureDef sens = new FixtureDef();
     public boolean locked = true;
     protected Pickup_Key key;
-    protected EntitySprite openSprite;
+    protected ImageSprite openSprite;
     protected Object wallData;
     
     protected SoundObject_Sfx openSound; 
@@ -72,7 +72,7 @@ public class Wall_Lock extends NullWall{
         super.update();
         
         if(!locked){
-            esprite = openSprite;
+            isprite = openSprite;
             
             if(openSprite.isComplete()){
                 destroy();

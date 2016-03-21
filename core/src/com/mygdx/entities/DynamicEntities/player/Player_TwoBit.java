@@ -22,7 +22,7 @@ public class Player_TwoBit extends PlayerEntity{
         SPEED_STAT_COUNT = 5;
         SPECIAL_STAT_COUNT = 3;
         
-        updateStats();
+        refreshStats();
         life = CURRENT_LIFE;
         
     }

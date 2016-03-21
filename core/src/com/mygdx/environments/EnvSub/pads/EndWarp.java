@@ -10,12 +10,12 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.entities.Entity;
+import com.mygdx.entities.ImageSprite;
 import com.mygdx.entities.esprites.EntitySprite;
 import com.mygdx.environments.EnvSub.EnvSub;
 import com.mygdx.environments.EnvVoid.EnvVoid;
 import com.mygdx.environments.EnvironmentManager;
 import static com.mygdx.game.MainGame.RATIO;
-import com.mygdx.managers.GameStats;
 import com.mygdx.screen.GameScreen;
 import static com.mygdx.utilities.UtilityVars.BIT_PLAYER;
 import static com.mygdx.utilities.UtilityVars.BIT_WALL;
@@ -69,19 +69,15 @@ public abstract class EndWarp extends Entity{
         
         this.flaggedForRenderSort = false;
         
-        //texture = MainGame.am.get(ResourceManager.END_PAD_A);
-        //texture = MainGame.am.get(ResourceManager.ENVSUB_END_FG);
-        
-        
-        
-        mistSprite = new EntitySprite("endPad-mist",true);
-        mistSprite = new EntitySprite(
-                mistSprite, 
-                pos.x - mistSprite.sprite.getWidth()/2, 
-                pos.y - mistSprite.sprite.getHeight()/2);
-        
         mistScale = 2.0f * RATIO;
-        mistSprite.sprite.setScale(mistScale + 1f);
+        mistSprite = new EntitySprite(new Vector2(pos.x - 1000, pos.y - 1000), 1000,1000,"endPad-mist",true, false, false, false, mistScale + 1f, false, false);
+        //mistSprite = new ImageSprite(
+                //mistSprite, 
+                //pos.x - mistSprite.sprite.getWidth()/2, 
+                //pos.y - mistSprite.sprite.getHeight()/2);
+        
+        
+        //mistSprite.sprite.setScale(mistScale + 1f);
         
         createEnvSub();
     }
@@ -93,7 +89,7 @@ public abstract class EndWarp extends Entity{
         body.createFixture(fd).setUserData(userdata);
         body.setUserData(userdata);
         
-        EnvironmentManager.currentEnv.spawnSprite(mistSprite);
+        EnvironmentManager.currentEnv.spawnEntity(mistSprite);
         
         envVoid = (EnvVoid) EnvironmentManager.currentEnv;
         
@@ -112,10 +108,10 @@ public abstract class EndWarp extends Entity{
         if(playerInRange()){
             updateMist();
         }else{
-            mistSprite.sprite.setPosition(
-                    body.getPosition().x*PPM - mistSprite.sprite.getWidth()/2, 
-                    body.getPosition().y*PPM - mistSprite.sprite.getHeight()/2);
-            mistSprite.sprite.setScale(1.0f);
+            mistSprite.setPosition(new Vector2(
+                    pos.x - mistSprite.getWidth()/2, 
+                    pos.y - mistSprite.getHeight()/2));
+            mistSprite.getSprite().sprite.setScale(1.0f);
         }
     }
     
@@ -150,11 +146,11 @@ public abstract class EndWarp extends Entity{
                 dist = d;
         }
         
-        mistSprite.sprite.setScale(1 + mistScale * (1 - dist/PLAYER_RANGE));
+        mistSprite.getSprite().sprite.setScale(1 + mistScale * (1 - dist/PLAYER_RANGE));
     }
     
     @Override
-    public void alert(){
+    public void alert(String str){
         //warp to EnvSub-end
         
         //calculate point of entry

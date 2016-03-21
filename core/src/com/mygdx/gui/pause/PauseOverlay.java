@@ -31,7 +31,7 @@ public class PauseOverlay {
     }
     
     public void render(SpriteBatch sb){
-        screens.peek().render(sb);
+        //screens.peek().render(sb);
     }
     
     public void moveSelect(){}

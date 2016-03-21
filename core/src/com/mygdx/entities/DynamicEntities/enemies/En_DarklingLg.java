@@ -16,7 +16,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.StreamUtils;
-import com.mygdx.entities.esprites.EntitySprite;
+import com.mygdx.entities.ImageSprite;
 import static com.mygdx.game.MainGame.RATIO;
 import com.mygdx.screen.GameScreen;
 import com.mygdx.utilities.FrameCounter_Attack;
@@ -36,11 +36,11 @@ public class En_DarklingLg extends EnemyEntity2{
     public En_DarklingLg(Vector2 pos) {
         super(pos, 45f, 45f);
         
-        moveSprite = new EntitySprite("darkling-move",true);
+        moveSprite = new ImageSprite("darkling-move",true);
         moveSprite.sprite.setScale(0.57f);
-        prepSprite = new EntitySprite("darkling-prep", true);
+        prepSprite = new ImageSprite("darkling-prep", true);
         prepSprite.sprite.setScale(0.57f);
-        attackSprite = new EntitySprite("darkling-att", true);
+        attackSprite = new ImageSprite("darkling-att", true);
         attackSprite.sprite.setScale(0.57f);
         
         this.maxLinearSpeed = 50f;

@@ -5,16 +5,6 @@
  */
 package com.mygdx.environments.EnvSlum;
 
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.Array;
-import com.mygdx.entities.DynamicEntities.npcs.NpcEntity;
-import com.mygdx.entities.DynamicEntities.npcs.Npc_SlumGuy1;
-import com.mygdx.entities.shops.ShopItem;
-import com.mygdx.entities.shops.ShopPair;
-import com.mygdx.environments.EnvironmentManager;
-import com.mygdx.managers.ItemManager;
-import com.mygdx.utilities.Coordinate;
-
 /**
  *
  * @author looch

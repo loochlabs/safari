@@ -6,8 +6,8 @@
 package com.mygdx.environments.EnvRoom.binary;
 
 import com.badlogic.gdx.math.Vector2;
-import com.mygdx.entities.StaticEntities.walls.NullWall;
-import com.mygdx.entities.esprites.EntitySprite;
+import com.mygdx.entities.StaticEntities.NullWall;
+import com.mygdx.entities.ImageSprite;
 import com.mygdx.environments.EnvironmentManager;
 import com.mygdx.game.MainGame;
 import com.mygdx.managers.ResourceManager;
@@ -22,7 +22,7 @@ public class Wall_Binary extends NullWall{
     private final int LOCK_CODE; 
     private final int lockRange = 254;
     
-    private EntitySprite closedSprite, openSprite;
+    private ImageSprite closedSprite, openSprite;
     
     //hint sprite
     private CodeHintSprite codeHintSprite;
@@ -36,18 +36,18 @@ public class Wall_Binary extends NullWall{
         
         //texture = MainGame.am.get(ResourceManager.ROOM_BIN_WALL);
         
-        closedSprite = new EntitySprite("binWall-closed", false);
+        closedSprite = new ImageSprite("binWall-closed", false);
         closedSprite.sprite.setBounds(pos.x, pos.y, width*2, height*2);
         
-        openSprite = new EntitySprite("binWall-open", false);
+        openSprite = new ImageSprite("binWall-open", false);
         openSprite.sprite.setBounds(pos.x, pos.y, width*2, height*2);
         
-        esprite = closedSprite;
+        isprite = closedSprite;
         
         LOCK_CODE = rng.nextInt(lockRange + 1);
         System.out.println("@Wall_Binary LOCK_CODE : " + LOCK_CODE );
         
-        codeHintSprite = new CodeHintSprite(LOCK_CODE, 0, 0);
+        //codeHintSprite = new CodeHintSprite(LOCK_CODE, 0, 0);
         
         //create hint sprite in void
     }
@@ -57,7 +57,7 @@ public class Wall_Binary extends NullWall{
         super.update();
         
         if(!locked){
-            esprite = openSprite;
+            isprite = openSprite;
             
             if(openSprite.isComplete()){
                 destroy();

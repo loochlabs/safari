@@ -1,0 +1,12 @@
+lumen-idle.png
+size: 330, 288
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+lumen-idle
+  rotate: false
+  xy: 2, 2
+  size: 326, 284
+  orig: 326, 284
+  offset: 0, 0
+  index: 1

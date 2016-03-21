@@ -11,9 +11,10 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
-import com.mygdx.entities.esprites.EntitySprite;
+import com.mygdx.entities.ImageSprite;
 import com.mygdx.entities.StaticEntities.StaticEntity;
 import com.mygdx.entities.pickups.Pickup;
+import com.mygdx.entities.text.TextDamage;
 import com.mygdx.environments.Environment;
 import com.mygdx.environments.EnvironmentManager;
 import static com.mygdx.game.MainGame.RATIO;
@@ -34,7 +35,7 @@ import static com.mygdx.utilities.UtilityVars.PPM;
 public class TearPortal extends StaticEntity{
     
     protected int linkid;
-    protected EntitySprite dmgSprite, openSprite;
+    protected ImageSprite dmgSprite, openSprite;
     protected float spriteScale = 1.0f;
     
     protected FixtureDef tearfd, warpfd;
@@ -104,11 +105,11 @@ public class TearPortal extends StaticEntity{
     public void init(World world){
         super.init(world);
         
-        dmgSprite = new EntitySprite("damaged2",true);
+        dmgSprite = new ImageSprite("damaged2",true);
         dmgSprite.sprite.setPosition(body.getPosition().x*PPM,body.getPosition().y*PPM);
         dmgSprite.sprite.setScale(spriteScale);
         
-        openSprite = new EntitySprite("tear-open2",true);
+        openSprite = new ImageSprite("tear-open2",true);
         openSprite.sprite.setPosition(body.getPosition().x*PPM,body.getPosition().y*PPM);
         openSprite.sprite.setScale(spriteScale);
         
@@ -118,14 +119,13 @@ public class TearPortal extends StaticEntity{
     public void update(){
         super.update();
         
-        fm.update();
         
-        if(alive && CURRENT_HP < MAX_HP){
-            esprite = dmgSprite;
+        if(!dead && CURRENT_HP < MAX_HP){
+            isprite = dmgSprite;
         }
         
         //heal tear if not finished
-        if(!finished && alive){
+        if(!finished && !dead){
             if(healFC.complete)
                 healTear();
             
@@ -141,18 +141,17 @@ public class TearPortal extends StaticEntity{
     public void render(SpriteBatch sb){
         super.render(sb);
         
-        if(esprite != null){
-            esprite.sprite.setPosition(
-                    (body.getPosition().x * PPM - esprite.sprite.getWidth() / 2),
-                    (body.getPosition().y * PPM - esprite.sprite.getHeight() / 2));
-            esprite.step();
-            esprite.sprite.draw(sb);
+        if(isprite != null){
+            isprite.sprite.setPosition(
+                    (body.getPosition().x * PPM - isprite.sprite.getWidth() / 2),
+                    (body.getPosition().y * PPM - isprite.sprite.getHeight() / 2));
+            isprite.step();
+            isprite.sprite.draw(sb);
         }
     }
-    
-    
+
     @Override
-    public void death(){
+    public void death() {
         super.death();
         
         if(GameScreen.player.getAttTargets().contains(this)){
@@ -164,7 +163,7 @@ public class TearPortal extends StaticEntity{
     
     public void openWarp(){
         
-        esprite = openSprite;
+        isprite = openSprite;
         
         Array<Fixture> fixtures = body.getFixtureList();
         for(Fixture f: fixtures)
@@ -175,14 +174,14 @@ public class TearPortal extends StaticEntity{
         //play open sound
     }
     
-    @Override 
-    public void alert(){
-        warp();
-        
-    }
     
     @Override
     public void alert(String string){
+        if(string.equals("warp")){
+            warp();
+        }
+        
+        
         if(finished && string.equals("tear_resume")){
             Array<Fixture> fixtures = body.getFixtureList();
             for(Fixture f: fixtures)
@@ -191,10 +190,10 @@ public class TearPortal extends StaticEntity{
             body.createFixture(tearfd).setUserData(teardata);
             
             CURRENT_HP = 5;
-            alive = true;
             dead = false;
+            deadCheck = true;
             
-            esprite = dmgSprite;
+            isprite = dmgSprite;
         }
     }
     
@@ -212,7 +211,7 @@ public class TearPortal extends StaticEntity{
     }
     
     private void healTear(){
-        esprite = null;
+        isprite = null;
         CURRENT_HP = MAX_HP;
         healFC.reset();
         

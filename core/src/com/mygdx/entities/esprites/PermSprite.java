@@ -22,17 +22,18 @@ public class PermSprite extends EntitySprite{
     private final Random rng = new Random();
     
     public PermSprite(String key, Vector2 pos) {
-        super(key, false, false, false, false);
+        super(pos,325f*RATIO,325f*RATIO,key, false, false, false, false, 0.8f, false, false);
         
         durationFC = new FrameCounter(DURATION);
         
         
-        sprite.setPosition(pos.x - sprite.getWidth()/2, pos.y - sprite.getHeight()/2);
-        sprite.setScale(0.8f*RATIO);
-        sprite.rotate(360 * rng.nextFloat());
+        isprite.sprite.setPosition(pos.x - isprite.sprite.getWidth()/2, pos.y - isprite.sprite.getHeight()/2);
+        //sprite.setScale(0.8f*RATIO);
+        isprite.sprite.rotate(360 * rng.nextFloat());
         
-        this.x = pos.x - sprite.getWidth()/2;
-        this.y = pos.y - sprite.getHeight()/2;
+        this.pos = new Vector2(pos.x - isprite.sprite.getWidth()/2, pos.y - isprite.sprite.getHeight()/2);
+        //this.x = pos.x - sprite.getWidth()/2;
+        //this.y = pos.y - sprite.getHeight()/2;
     }
     
     @Override
@@ -45,12 +46,14 @@ public class PermSprite extends EntitySprite{
     
     public void start(){
         durationFC.start(EnvironmentManager.currentEnv.getFrameManager());
-        EnvironmentManager.currentEnv.spawnSprite(this);
+        //EnvironmentManager.currentEnv.spawnSprite(this);
+        EnvironmentManager.currentEnv.spawnEntity(this);
         
     }
     
     public void end(){
-        EnvironmentManager.currentEnv.removeSprite(this);
+        //EnvironmentManager.currentEnv.removeSprite(this);
+        EnvironmentManager.currentEnv.spawnEntity(this);
     }
     
     

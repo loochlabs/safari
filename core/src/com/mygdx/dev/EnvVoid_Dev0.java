@@ -6,11 +6,12 @@
 package com.mygdx.dev;
 
 import com.badlogic.gdx.math.Vector2;
+import com.mygdx.combat.skills.Skill_Haymaker;
 import com.mygdx.demo.demo2.EnvVoid_D2_1;
 import com.mygdx.entities.DynamicEntities.DogEntities.MurphyEntity;
 import com.mygdx.entities.DynamicEntities.DogEntities.StellaEntity;
+import com.mygdx.entities.StaticEntities.SkillPad;
 import com.mygdx.entities.StaticEntities.SkillPad_Primary;
-import com.mygdx.entities.StaticEntities.SkillPad_Secondary;
 import com.mygdx.entities.StaticEntities.breakable.Cyst_Blue;
 import com.mygdx.entities.esprites.EntitySprite;
 import com.mygdx.environments.EnvSub.pads.EndPad;
@@ -65,16 +66,16 @@ public class EnvVoid_Dev0 extends EnvVoid{
         //***************************************************
         
         //bg sprites
-        spawnSprite(
-                new EntitySprite(
+        spawnEntity(new EntitySprite(new Vector2(0, grid.getHeight()*0.9f),
+                        470f,200f,
                         "decom", 
                         true, false, false, false, 
-                        0, grid.getHeight()*0.9f
-                )).sprite.setScale(RATIO);
+                        1.0f * RATIO,
+                        false, false));
         
         
         spawnEntity(new SkillPad_Primary(new Vector2(900f, 1200f)));
-        spawnEntity(new SkillPad_Secondary(new Vector2(1100f, 1200f)));
+        spawnEntity(new SkillPad(new Vector2(1100f, 1200f), new Skill_Haymaker()));
     }
     
     
@@ -87,6 +88,7 @@ public class EnvVoid_Dev0 extends EnvVoid{
     @Override
     public void generateDogs(){
         //stella & murphy
+        
         
         StellaEntity stella = 
                 new StellaEntity(
@@ -107,7 +109,9 @@ public class EnvVoid_Dev0 extends EnvVoid{
     public void generateTears(){
         
         spawnEntity(new Tear_R_Dev0(new Vector2(1000f*RATIO,800f*RATIO), this.id));
-        
+        spawnEntity(new Tear_R_Dev0(new Vector2(800f*RATIO,800f*RATIO), this.id));
+        spawnEntity(new Tear_R_Dev0(new Vector2(550f*RATIO,800f*RATIO), this.id));
+        spawnEntity(new Tear_R_Dev0(new Vector2(300f*RATIO,800f*RATIO), this.id));
     }
     
     

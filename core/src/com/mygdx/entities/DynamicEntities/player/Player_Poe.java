@@ -6,7 +6,7 @@
 package com.mygdx.entities.DynamicEntities.player;
 
 import com.badlogic.gdx.math.Vector2;
-import com.mygdx.entities.esprites.EntitySprite;
+import com.mygdx.entities.ImageSprite;
 import com.mygdx.entities.esprites.MirrorSprite;
 import com.mygdx.environments.EnvironmentManager;
 import static com.mygdx.game.MainGame.RATIO;
@@ -17,8 +17,8 @@ import static com.mygdx.game.MainGame.RATIO;
  */
 public class Player_Poe extends PlayerEntity{
 
-    public Player_Poe(Vector2 pos, float w, float h) {
-        super(pos, w, h);
+    public Player_Poe(Vector2 pos) {
+        super(pos, 22f*RATIO, 31*RATIO);
         
         playerName = "Poe";
         
@@ -32,52 +32,50 @@ public class Player_Poe extends PlayerEntity{
         SPECIAL_STAT_COUNT = 2;
         
         //todo: move to init
-        updateStats();
+        refreshStats();
         life = CURRENT_LIFE;
         
         //sprites
         spriteScale = width / 60;
         //movement
-        idleSprite = new EntitySprite("poe-idle", true);
+        idleSprite = new ImageSprite("poe-idle", true);
         idleSprite.sprite.setScale(spriteScale);
         idleSprite.setComplete(true);
-        frontSprite = new EntitySprite("poe-front", true);
+        frontSprite = new ImageSprite("poe-front", true);
         frontSprite.sprite.setScale(spriteScale);
-        backSprite = new EntitySprite("poe-back", true);
+        backSprite = new ImageSprite("poe-back", true);
         backSprite.sprite.setScale(spriteScale);
         //leftSprite = new EntitySprite("poe-left-anim", true);
         
-        rightSprite = new EntitySprite("poe-side", true);
+        rightSprite = new ImageSprite("poe-side", true);
         rightSprite.sprite.setScale(spriteScale);
-        leftSprite = new EntitySprite("poe-side",true,true,true,false);
+        leftSprite = new ImageSprite("poe-side",true,true,true,false);
         leftSprite.sprite.setScale(spriteScale);
         
+        playerBuffSprite = new MirrorSprite("poe-buff",false);
+        playerBuffSprite.sprite.setScale(0.5f * RATIO);
+        
         //transition
-        diveSprite = new EntitySprite("poe-dive", true);
+        diveSprite = new ImageSprite("poe-dive", true);
         diveSprite.sprite.setScale(0.7f*RATIO);
         
-        warpSprite = new EntitySprite("poe-warp", false);
+        warpSprite = new ImageSprite("poe-warp", false);
         warpSprite.sprite.setScale(0.7f*RATIO);
         
         //combat
         attackSprite = new MirrorSprite("poe-body-light-att", false);
         attackSprite.sprite.setScale(spriteScale*1.30f, spriteScale*1.2f);
-        attackHeavySprite = new EntitySprite("poe-body-heavy-att", false);
+        attackHeavySprite = new ImageSprite("poe-body-heavy-att", false);
         attackHeavySprite.sprite.setScale(spriteScale*1.30f);
-        recovSprite = new EntitySprite("poe-recov", false);
+        recovSprite = new ImageSprite("poe-recov", false);
         recovSprite.sprite.setScale(spriteScale);
-        
-        
-        //skills
-        //skillSet[0] = new Skill_OneTwo();
-        //skillSet[1] = new Skill_Haymaker();
         
     }
     
     @Override
     public void soulUp(){
+        super.soulUp();
         this.addStatPoints(0, 0, 0, 1, 0);
-        EnvironmentManager.currentEnv.addDamageText("Speed up!", body.getPosition().cpy());
     }
     
 }

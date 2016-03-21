@@ -5,11 +5,13 @@
  */
 package com.mygdx.entities.esprites;
 
+import com.mygdx.entities.ImageSprite;
+
 /**
  *
  * @author saynt
  */
-public class MirrorSprite extends EntitySprite{
+public class MirrorSprite extends ImageSprite{
     
     public MirrorSprite(String key, boolean loop) {
         super(key, loop);

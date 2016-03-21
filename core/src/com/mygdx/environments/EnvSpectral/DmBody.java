@@ -29,8 +29,8 @@ public class DmBody extends Entity{
         fd.shape = cshape;
         userdata = "dm-body";
         
-        esprite = new Esprite_SpectralDm();
-        esprite.sprite.setScale(0.75f * RATIO);
+        isprite = new Esprite_SpectralDm();
+        isprite.sprite.setScale(0.75f * RATIO);
     }
 
     @Override
@@ -47,7 +47,7 @@ public class DmBody extends Entity{
     @Override
     public void render(SpriteBatch sb){
         super.render(sb);
-        esprite.sprite.scale(-0.01f);
+        isprite.sprite.scale(-0.01f);
     }
     
     

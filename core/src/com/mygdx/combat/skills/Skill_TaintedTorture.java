@@ -9,7 +9,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.entities.Entity;
 import com.mygdx.entities.StaticEntities.AoeCircle;
-import com.mygdx.entities.esprites.EntitySprite;
+import com.mygdx.entities.ImageSprite;
 import com.mygdx.environments.EnvironmentManager;
 import com.mygdx.game.MainGame;
 import com.mygdx.managers.ResourceManager;
@@ -75,8 +75,8 @@ public class Skill_TaintedTorture extends SpecialSkill{
             fd.filter.categoryBits = BIT_WALL;
             fd.filter.maskBits = BIT_EN;
             
-            esprite = new EntitySprite("aoe-dmg", true);
-            esprite.sprite.setBounds(0, 0, width*2, height*2);
+            isprite = new ImageSprite("aoe-dmg", true);
+            isprite.sprite.setBounds(0, 0, width*2, height*2);
             
             targets = new Array<Entity>();
             targetsFCs = new Array<FrameCounter>();

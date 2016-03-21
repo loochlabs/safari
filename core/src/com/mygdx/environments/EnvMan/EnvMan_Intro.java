@@ -10,8 +10,8 @@ import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.demo.demo2.DemoContScreen;
-import com.mygdx.entities.StaticEntities.walls.NullWall;
-import com.mygdx.entities.esprites.EntitySprite;
+import com.mygdx.entities.StaticEntities.NullWall;
+import com.mygdx.entities.ImageSprite;
 import com.mygdx.environments.EnvRoom.RoomArc;
 import com.mygdx.environments.Environment;
 import com.mygdx.environments.EnvironmentManager;
@@ -156,7 +156,7 @@ public class EnvMan_Intro extends Environment{
 
         protected FixtureDef sens = new FixtureDef();
         public boolean locked = true;
-        protected EntitySprite openSprite, closedSprite;
+        protected ImageSprite openSprite, closedSprite;
         protected Object wallData;
 
 
@@ -177,13 +177,13 @@ public class EnvMan_Intro extends Environment{
             sens.shape = c;
             sens.isSensor = true;
 
-            closedSprite = new EntitySprite("start-wall-closed", false);
+            closedSprite = new ImageSprite("start-wall-closed", false);
             closedSprite.sprite.setBounds(pos.x, pos.y, width * 2, height * 2);
 
-            openSprite = new EntitySprite("start-wall-lock", false);
+            openSprite = new ImageSprite("start-wall-lock", false);
             openSprite.sprite.setBounds(pos.x, pos.y, width * 2, height * 2);
 
-            esprite = closedSprite;
+            isprite = closedSprite;
             
             this.flaggedForRenderSort = false;
 
@@ -202,7 +202,7 @@ public class EnvMan_Intro extends Environment{
             super.update();
 
             if (!locked) {
-                esprite = openSprite;
+                isprite = openSprite;
 
                 if (openSprite.isComplete()) {
                     destroy();

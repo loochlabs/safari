@@ -5,13 +5,14 @@
  */
 package com.mygdx.entities.esprites;
 
+import com.mygdx.entities.ImageSprite;
 import com.badlogic.gdx.math.Vector2;
 
 /**
  *
  * @author looch
  */
-public class SubWebSprite extends EntitySprite{
+public class SubWebSprite {/*extends EntitySprite{
 
     //center of EnvSub
     private Vector2 cv;
@@ -26,6 +27,6 @@ public class SubWebSprite extends EntitySprite{
         
         //rotate sprite towards center
     }
-    
+    */
     
 }

@@ -1,0 +1,138 @@
+lumen-warp.png
+size: 980, 1871
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+lumen-warp
+  rotate: false
+  xy: 2, 2
+  size: 324, 265
+  orig: 324, 265
+  offset: 0, 0
+  index: 1
+lumen-warp
+  rotate: false
+  xy: 328, 2
+  size: 324, 265
+  orig: 324, 265
+  offset: 0, 0
+  index: 10
+lumen-warp
+  rotate: false
+  xy: 654, 2
+  size: 324, 265
+  orig: 324, 265
+  offset: 0, 0
+  index: 11
+lumen-warp
+  rotate: false
+  xy: 2, 269
+  size: 324, 265
+  orig: 324, 265
+  offset: 0, 0
+  index: 12
+lumen-warp
+  rotate: false
+  xy: 328, 269
+  size: 324, 265
+  orig: 324, 265
+  offset: 0, 0
+  index: 13
+lumen-warp
+  rotate: false
+  xy: 654, 269
+  size: 324, 265
+  orig: 324, 265
+  offset: 0, 0
+  index: 14
+lumen-warp
+  rotate: false
+  xy: 2, 536
+  size: 324, 265
+  orig: 324, 265
+  offset: 0, 0
+  index: 15
+lumen-warp
+  rotate: false
+  xy: 328, 536
+  size: 324, 265
+  orig: 324, 265
+  offset: 0, 0
+  index: 16
+lumen-warp
+  rotate: false
+  xy: 654, 536
+  size: 324, 265
+  orig: 324, 265
+  offset: 0, 0
+  index: 17
+lumen-warp
+  rotate: false
+  xy: 2, 803
+  size: 324, 265
+  orig: 324, 265
+  offset: 0, 0
+  index: 18
+lumen-warp
+  rotate: false
+  xy: 328, 803
+  size: 324, 265
+  orig: 324, 265
+  offset: 0, 0
+  index: 19
+lumen-warp
+  rotate: false
+  xy: 654, 803
+  size: 324, 265
+  orig: 324, 265
+  offset: 0, 0
+  index: 2
+lumen-warp
+  rotate: false
+  xy: 2, 1070
+  size: 324, 265
+  orig: 324, 265
+  offset: 0, 0
+  index: 3
+lumen-warp
+  rotate: false
+  xy: 2, 1337
+  size: 324, 265
+  orig: 324, 265
+  offset: 0, 0
+  index: 4
+lumen-warp
+  rotate: false
+  xy: 2, 1604
+  size: 324, 265
+  orig: 324, 265
+  offset: 0, 0
+  index: 5
+lumen-warp
+  rotate: false
+  xy: 328, 1070
+  size: 324, 265
+  orig: 324, 265
+  offset: 0, 0
+  index: 6
+lumen-warp
+  rotate: false
+  xy: 654, 1070
+  size: 324, 265
+  orig: 324, 265
+  offset: 0, 0
+  index: 7
+lumen-warp
+  rotate: false
+  xy: 328, 1337
+  size: 324, 265
+  orig: 324, 265
+  offset: 0, 0
+  index: 8
+lumen-warp
+  rotate: false
+  xy: 654, 1337
+  size: 324, 265
+  orig: 324, 265
+  offset: 0, 0
+  index: 9

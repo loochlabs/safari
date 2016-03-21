@@ -18,7 +18,7 @@ import com.mygdx.combat.skills.Skill;
 import com.mygdx.combat.skills.Skill.SkillType;
 import com.mygdx.combat.skills.Skill_GhostJab;
 import com.mygdx.entities.StaticEntities.StaticEntity;
-import com.mygdx.entities.esprites.EntitySprite;
+import com.mygdx.entities.ImageSprite;
 import com.mygdx.game.MainGame;
 import com.mygdx.managers.GameStats;
 import com.mygdx.managers.ResourceManager;
@@ -40,7 +40,7 @@ public class SkillPad extends StaticEntity{
     protected final Random rng = new Random();
     
     private Texture skillTexture, blankTexture;
-    private EntitySprite lightSprite, heavySprite, specialSprite, passiveSprite, emptySprite;
+    private ImageSprite lightSprite, heavySprite, specialSprite, passiveSprite, emptySprite;
     
     
     //sound
@@ -65,15 +65,15 @@ public class SkillPad extends StaticEntity{
         
         this.flaggedForRenderSort = false;
         
-        lightSprite = new EntitySprite("light-rotSlow", true);
+        lightSprite = new ImageSprite("light-rotSlow", true);
         lightSprite.sprite.setBounds(pos.x, pos.y, width*2, height*2);
-        heavySprite = new EntitySprite("heavy-rotSlow", true);
+        heavySprite = new ImageSprite("heavy-rotSlow", true);
         heavySprite.sprite.setBounds(pos.x, pos.y, width*2, height*2);
-        specialSprite = new EntitySprite("special-rotSlow", true);
+        specialSprite = new ImageSprite("special-rotSlow", true);
         specialSprite.sprite.setBounds(pos.x, pos.y, width*2, height*2);
-        passiveSprite = new EntitySprite("passive-rotSlow", true);
+        passiveSprite = new ImageSprite("passive-rotSlow", true);
         passiveSprite.sprite.setBounds(pos.x, pos.y, width*2, height*2);
-        emptySprite = new EntitySprite("skill-empty", false);
+        emptySprite = new ImageSprite("skill-empty", false);
         emptySprite.sprite.setBounds(pos.x, pos.y, width*2, height*2);
         
         
@@ -104,15 +104,15 @@ public class SkillPad extends StaticEntity{
         
         this.flaggedForRenderSort = false;
         
-        lightSprite = new EntitySprite("light-rotSlow", true);
+        lightSprite = new ImageSprite("light-rotSlow", true);
         lightSprite.sprite.setBounds(pos.x, pos.y, width*2, height*2);
-        heavySprite = new EntitySprite("heavy-rotSlow", true);
+        heavySprite = new ImageSprite("heavy-rotSlow", true);
         heavySprite.sprite.setBounds(pos.x, pos.y, width*2, height*2);
-        specialSprite = new EntitySprite("special-rotSlow", true);
+        specialSprite = new ImageSprite("special-rotSlow", true);
         specialSprite.sprite.setBounds(pos.x, pos.y, width*2, height*2);
-        passiveSprite = new EntitySprite("passive-rotSlow", true);
+        passiveSprite = new ImageSprite("passive-rotSlow", true);
         passiveSprite.sprite.setBounds(pos.x, pos.y, width*2, height*2);
-        emptySprite = new EntitySprite("skill-empty", false);
+        emptySprite = new ImageSprite("skill-empty", false);
         emptySprite.sprite.setBounds(pos.x, pos.y, width*2, height*2);
         
         
@@ -189,7 +189,7 @@ public class SkillPad extends StaticEntity{
         skillTexture = SKILL.getSkillIcon();
         GameStats.skillPool.removeValue(SKILL, false);
         
-        esprite = SKILL.getType() == SkillType.LIGHT ? lightSprite :
+        isprite = SKILL.getType() == SkillType.LIGHT ? lightSprite :
                 SKILL.getType() == SkillType.HEAVY ? heavySprite :
                 SKILL.getType() == SkillType.SPECIAL ? specialSprite :
                 passiveSprite;
@@ -217,7 +217,7 @@ public class SkillPad extends StaticEntity{
             skillTexture = SKILL.getSkillIcon();
         else{
             skillTexture = null;
-            esprite = emptySprite;
+            isprite = emptySprite;
         }
     }
     

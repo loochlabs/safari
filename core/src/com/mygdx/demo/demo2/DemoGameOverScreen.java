@@ -7,7 +7,7 @@ package com.mygdx.demo.demo2;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.entities.esprites.EntitySprite;
+import com.mygdx.entities.ImageSprite;
 import com.mygdx.environments.EnvironmentManager;
 import com.mygdx.game.MainGame;
 import static com.mygdx.game.MainGame.RATIO;
@@ -28,7 +28,7 @@ public class DemoGameOverScreen extends Screen{
 
     private Texture go_text;
     private DemoGoInputManager im;
-    private EntitySprite deathSprite1, deathSprite2;
+    private ImageSprite deathSprite1, deathSprite2;
     private FrameCounter deathFC = new FrameCounter(15f);
     private FrameManager fm = new FrameManager();
     
@@ -45,13 +45,13 @@ public class DemoGameOverScreen extends Screen{
         SoundManager.clear();
         
         //death anim
-        deathSprite1 = new EntitySprite("poeSpectral", false, true, false, false);
+        deathSprite1 = new ImageSprite("poeSpectral", false, true, false, false);
         deathSprite1.sprite.setBounds(
                 MainGame.WIDTH/2 -160f*RATIO, 
                 MainGame.HEIGHT/2 - 285f*RATIO, 
                 310f*RATIO, 300f*RATIO);
         
-        deathSprite2 = new EntitySprite("poe-death", false, true, false, false);
+        deathSprite2 = new ImageSprite("poe-death", false, true, false, false);
         deathSprite2.sprite.setBounds(
                 MainGame.WIDTH/2 - 300f*RATIO, 
                 MainGame.HEIGHT/2 - 250f*RATIO, 

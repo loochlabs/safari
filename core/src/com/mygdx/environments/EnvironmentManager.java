@@ -12,8 +12,9 @@ import com.mygdx.demo.demo2.EnvVoid_D2_0;
 import com.mygdx.demo.demo2.EnvVoid_D2_1;
 import com.mygdx.demo.demo2.EnvVoid_D2_2;
 import com.mygdx.dev.EnvVoid_Dev0;
-import com.mygdx.entities.DynamicEntities.player.Player_Poe;
+import com.mygdx.entities.DynamicEntities.player.Player_Lumen;
 import com.mygdx.environments.EnvMan.EnvMan_Intro;
+import com.mygdx.environments.EnvStart.EnvStart;
 import com.mygdx.environments.EnvSub.pads.EndPadManager;
 import com.mygdx.environments.EnvVoid.EnvVoid_Showcase;
 import static com.mygdx.game.MainGame.RATIO;
@@ -33,26 +34,6 @@ public class EnvironmentManager {
     public static Environment currentEnv;
     
     
-    /*
-    public EnvironmentManager(){
-        
-        
-        START_ENVS.add(new EnvVoid_Dev(-2, 4000,4000,4));
-        START_ENVS.add(new EnvVoid_Showcase(-3, 2000, 2000, 4));
-        START_ENVS.add(new EnvVoid_Demo1(-10));
-        START_ENVS.add(new EnvVoid_D2_0(-20));
-        START_ENVS.add(new EnvVoid_Demo1(-11));
-        START_ENVS.add(new EnvRoom_Start(-30, -20));
-        START_ENVS.add(new EnvMan_Intro(-100, -20));
-        
-        
-        
-        for (Environment e : START_ENVS) {
-            if (!FULL_ENV_MAP.containsValue(e)) {
-                FULL_ENV_MAP.put(e.getId(), e);
-            }
-        }
-    }*/
     
     public static void init(Environment e){
         currentEnv = e;
@@ -103,8 +84,6 @@ public class EnvironmentManager {
     
     //@param: 
     public static void createStart(int n){
-        //Environment e = START_ENVS.get(n);
-        
         Environment e;
         
         switch(n){
@@ -113,7 +92,8 @@ public class EnvironmentManager {
                 e = new EnvVoid_Dev0();
                 break;
             case 1:
-                e = new EnvVoid_D2_0(-20);
+                e = new EnvStart(-99,-20);
+                add(new EnvVoid_D2_0(-20));
                 break;
             default:
                 e = new EnvVoid_D2_0(-20);
@@ -122,8 +102,9 @@ public class EnvironmentManager {
         }
         
         //player, initial setup
-        if(GameScreen.player == null)
-            player = new Player_Poe(new Vector2(300 * RATIO , 400 * RATIO), 22 * RATIO , 31 * RATIO);
+        if(GameScreen.player == null){
+            player = new Player_Lumen(new Vector2(300 * RATIO , 400 * RATIO));
+        }
         
         //end pad manager
         EndPadManager.init();

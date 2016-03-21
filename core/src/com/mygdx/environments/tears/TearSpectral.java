@@ -8,7 +8,7 @@ package com.mygdx.environments.tears;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
-import com.mygdx.entities.esprites.EntitySprite;
+import com.mygdx.entities.ImageSprite;
 import com.mygdx.environments.EnvironmentManager;
 import com.mygdx.screen.GameScreen;
 import static com.mygdx.utilities.UtilityVars.BIT_PLAYER;
@@ -32,7 +32,7 @@ public class TearSpectral extends TearPortal{
         cshape.setRadius(0.5f * width/PPM);
         fd.shape = cshape;
         
-        esprite = new EntitySprite("tear-open2",true);
+        isprite = new ImageSprite("tear-open2",true);
     }
     
     @Override
@@ -41,11 +41,11 @@ public class TearSpectral extends TearPortal{
         warpenv = EnvironmentManager.get(linkid);
     }
     
-    
+    /*
     @Override 
     public void alert(){
         warp();
-    }
+    }*/
     
     @Override
     public void warp(){

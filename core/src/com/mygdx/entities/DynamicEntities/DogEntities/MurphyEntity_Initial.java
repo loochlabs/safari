@@ -10,7 +10,7 @@ import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.entities.Entity;
-import com.mygdx.entities.esprites.EntitySprite;
+import com.mygdx.entities.ImageSprite;
 import com.mygdx.environments.EnvironmentManager;
 import com.mygdx.environments.tears.TearPortal;
 import static com.mygdx.game.MainGame.RATIO;
@@ -31,7 +31,7 @@ public class MurphyEntity_Initial extends MurphyEntity{
     //Condition whether this stella has been activated yet
     //true at the beginning
     private boolean initialInactive = true;
-    private final EntitySprite initTextSprite;
+    private final ImageSprite initTextSprite;
     private FrameCounter initFC = new FrameCounter(3.5f);
     
     private final FixtureDef afd = new FixtureDef();
@@ -50,9 +50,9 @@ public class MurphyEntity_Initial extends MurphyEntity{
         afd.filter.maskBits = BIT_PLAYER ;
         afd.isSensor = true;
         
-        esprite = idleSprite;
+        isprite = idleSprite;
         
-        initTextSprite = new EntitySprite("murphy-init", false, true, false, false);
+        initTextSprite = new ImageSprite("murphy-init", false, true, false, false);
         initTextSprite.sprite.setScale(0.6f*RATIO);
         
         initSound = new SoundObject_Sfx(ResourceManager.SFX_PICKUP);
@@ -83,7 +83,7 @@ public class MurphyEntity_Initial extends MurphyEntity{
         initialInactive = false;
         userdata = tempUserData;
         initFC.start(fm);
-        esprite = initTextSprite;
+        isprite = initTextSprite;
         
         for(Entity e : EnvironmentManager.currentEnv.getEntities()){
             if(e.getUserData().toString().contains("bosst_")){

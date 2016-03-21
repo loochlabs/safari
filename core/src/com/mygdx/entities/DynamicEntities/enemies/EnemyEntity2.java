@@ -12,6 +12,7 @@ import com.badlogic.gdx.ai.steer.behaviors.Wander;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.entities.DynamicEntities.SteerableEntity;
+import com.mygdx.entities.ImageSprite;
 import com.mygdx.entities.esprites.EntitySprite;
 import com.mygdx.environments.EnvironmentManager;
 import static com.mygdx.game.MainGame.RATIO;
@@ -33,8 +34,13 @@ import java.util.Stack;
  */
 public class EnemyEntity2 extends SteerableEntity{
 
-    protected EntitySprite 
-            moveSprite, prepSprite, attackSprite, deathSprite;
+    protected ImageSprite 
+            moveSprite, prepSprite, attackSprite;
+    
+    protected EntitySprite deathSprite;
+    
+    protected FrameCounter_Attack attackFC;
+    protected float DAMAGE = 0;
     
     //ai
     protected BehaviorTree<EnemyEntity2> enemybt;
@@ -55,6 +61,7 @@ public class EnemyEntity2 extends SteerableEntity{
     //sound
     protected SoundObject_Sfx deathSound;
     
+    public FrameCounter_Attack getAttackFC() { return attackFC; } 
     public Seek<Vector2> getSeekWanderSb() { return seekWanderSB; }
     public Object getSensorData() { return attSensorData; }
     
@@ -75,8 +82,7 @@ public class EnemyEntity2 extends SteerableEntity{
         
         attSensorData = "en_att_sensor_" + id;
         
-        deathSprite = new EntitySprite("en-death2", false);
-        deathSprite.sprite.setScale(1.25f * RATIO);
+        deathSprite = new EntitySprite(pos, width, height, "en-death2", false, false, false, false, 1.25f*RATIO, false, false);
         
         deathSound = new SoundObject_Sfx(ResourceManager.SFX_DEATH_1);
         
@@ -118,9 +124,10 @@ public class EnemyEntity2 extends SteerableEntity{
         EnvironmentManager.currentEnv.addKillCount();
         System.out.println("@EnemyEntity en death");
         
-        deathSprite.sprite.setPosition(body.getPosition().x*PPM - deathSprite.sprite.getWidth()/2, 
-                body.getPosition().y*PPM - deathSprite.sprite.getHeight()/2);
-        EnvironmentManager.currentEnv.spawnSprite(deathSprite);
+        deathSprite.setPosition(new Vector2(
+                pos.x - deathSprite.getWidth()/2, 
+                pos.y - deathSprite.getHeight()/2));
+        EnvironmentManager.currentEnv.spawnEntity(deathSprite);
         
         EnvironmentManager.currentEnv.removeEntity(seekWanderTarget);
         
@@ -197,14 +204,14 @@ public class EnemyEntity2 extends SteerableEntity{
     public void updateSprites(){
         switch(attackFC.state){
             case PREPPING:
-                esprite = prepSprite;
+                isprite = prepSprite;
                 break;
             case ATTACKING:
-                esprite = attackSprite;
+                isprite = attackSprite;
                 attackSprite.sprite.setRotation(body.getAngle()*(float)(180/Math.PI));  
                 break;
             default:
-                esprite = moveSprite;
+                isprite = moveSprite;
                 break;
         }   
         

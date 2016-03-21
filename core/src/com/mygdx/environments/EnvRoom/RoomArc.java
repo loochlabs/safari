@@ -8,7 +8,7 @@ package com.mygdx.environments.EnvRoom;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.entities.StaticEntities.StaticEntity;
-import com.mygdx.entities.StaticEntities.walls.NullWall;
+import com.mygdx.entities.StaticEntities.NullWall;
 import com.mygdx.environments.EnvironmentManager;
 import com.mygdx.game.MainGame;
 import static com.mygdx.game.MainGame.RATIO;

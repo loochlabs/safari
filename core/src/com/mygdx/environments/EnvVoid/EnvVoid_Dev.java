@@ -18,7 +18,7 @@ import com.mygdx.entities.StaticEntities.SkillPad;
 import com.mygdx.environments.tears.Tear_A;
 import com.mygdx.environments.tears.Tear_Room_Binary;
 import com.mygdx.entities.esprites.ManSprite;
-import com.mygdx.entities.pickups.items.Item_DarkMatter;
+import com.mygdx.entities.pickups.Item_DarkMatter;
 import com.mygdx.environments.EnvRoom.EnvRoom_Glyph1;
 import static com.mygdx.game.MainGame.RATIO;
 

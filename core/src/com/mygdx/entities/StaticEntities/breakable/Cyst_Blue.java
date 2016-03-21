@@ -6,10 +6,10 @@
 package com.mygdx.entities.StaticEntities.breakable;
 
 import com.badlogic.gdx.math.Vector2;
-import com.mygdx.entities.esprites.EntitySprite;
+import com.mygdx.entities.ImageSprite;
 import com.mygdx.entities.pickups.Pickup_Life;
 import com.mygdx.entities.pickups.Pickup_SoulPiece;
-import com.mygdx.entities.pickups.items.Item_DarkMatter;
+import com.mygdx.entities.pickups.Item_DarkMatter;
 import static com.mygdx.game.MainGame.RATIO;
 
 /**
@@ -21,9 +21,9 @@ public class Cyst_Blue extends BreakableObject{
     public Cyst_Blue(Vector2 pos) {
         super(pos);
         
-        idleSprite = new EntitySprite("cyst-idle", true);
+        idleSprite = new ImageSprite("cyst-idle", true);
         idleSprite.sprite.setScale(0.7f * RATIO);
-        esprite = idleSprite;
+        isprite = idleSprite;
         
         itemRewardPool.add(new Pickup_SoulPiece());
         itemRewardPool.add(new Item_DarkMatter());

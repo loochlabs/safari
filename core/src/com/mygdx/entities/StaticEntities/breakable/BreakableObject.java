@@ -8,7 +8,7 @@ package com.mygdx.entities.StaticEntities.breakable;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.entities.StaticEntities.StaticEntity;
-import com.mygdx.entities.esprites.EntitySprite;
+import com.mygdx.entities.ImageSprite;
 import com.mygdx.entities.pickups.Pickup;
 import com.mygdx.environments.EnvironmentManager;
 import static com.mygdx.utilities.UtilityVars.BIT_ATT;
@@ -23,7 +23,7 @@ import static com.mygdx.utilities.UtilityVars.PPM;
  */
 public class BreakableObject extends StaticEntity{
 
-    protected EntitySprite idleSprite;
+    protected ImageSprite idleSprite;
     
     protected final Array<Pickup> itemRewardPool = new Array<Pickup>();
   

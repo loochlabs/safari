@@ -7,7 +7,7 @@ package com.mygdx.entities.DynamicEntities.enemies;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
-import com.mygdx.entities.esprites.EntitySprite;
+import com.mygdx.entities.ImageSprite;
 import static com.mygdx.game.MainGame.RATIO;
 
 /**
@@ -21,16 +21,16 @@ public class En_Sloober extends En_Goober{
         
         float sscale = 0.38f*RATIO;
         
-        moveSprite = new EntitySprite("sloober-move", true);
+        moveSprite = new ImageSprite("sloober-move", true);
         moveSprite.sprite.setScale(sscale);
-        prepSprite = new EntitySprite("sloober-prep", true);
+        prepSprite = new ImageSprite("sloober-prep", true);
         prepSprite.sprite.setScale(sscale);
-        attackSprite = new EntitySprite("sloober-att", true);
+        attackSprite = new ImageSprite("sloober-att", true);
         attackSprite.sprite.setScale(sscale);
-        bodyDamageSprite = new EntitySprite("sloober-dmg", true);
+        bodyDamageSprite = new ImageSprite("sloober-dmg", true);
         bodyDamageSprite.sprite.setScale(sscale);
         
-        esprite = moveSprite;
+        isprite = moveSprite;
         
     }
     

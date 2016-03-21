@@ -6,7 +6,7 @@
 package com.mygdx.entities.DynamicEntities.DogEntities;
 
 import com.badlogic.gdx.math.Vector2;
-import com.mygdx.entities.esprites.EntitySprite;
+import com.mygdx.entities.ImageSprite;
 import static com.mygdx.game.MainGame.RATIO;
 
 /**
@@ -22,10 +22,10 @@ public class StellaEntity extends DogEntity{
         
         spriteScale = width / 72;
         
-        moveSprite = new EntitySprite("stella-move", true);
+        moveSprite = new ImageSprite("stella-move", true);
         moveSprite.sprite.setScale(spriteScale * RATIO);
         
-        alertSprite = new EntitySprite("red-alert", true);
+        alertSprite = new ImageSprite("red-alert", true);
         alertSprite.sprite.setScale(0.65f * RATIO);
         
         

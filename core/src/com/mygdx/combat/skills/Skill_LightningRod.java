@@ -6,7 +6,7 @@
 package com.mygdx.combat.skills;
 
 import static com.mygdx.combat.skills.Skill.SkillAttribute.ENERGY;
-import com.mygdx.entities.esprites.EntitySprite;
+import com.mygdx.entities.ImageSprite;
 import com.mygdx.game.MainGame;
 import static com.mygdx.game.MainGame.RATIO;
 import com.mygdx.gui.descriptions.DescriptionWindow;
@@ -30,12 +30,12 @@ public class Skill_LightningRod extends LightSkill{
         skillIcon = MainGame.am.get(ResourceManager.SKILL_CRACKOFLIGHTNING);
         
         
-        impactTemplates.add(new EntitySprite("poe-attack4", false));
+        impactTemplates.add(new ImageSprite("poe-attack4", false));
         impactTemplates.get(0).sprite.setScale(1.4f*RATIO);
-        impactTemplates.add(new EntitySprite("poe-attack3", false));
+        impactTemplates.add(new ImageSprite("poe-attack3", false));
         impactTemplates.get(1).sprite.setScale(1.4f*RATIO);
         
-        skillSprite = new EntitySprite("light-att-yellow",false);
+        skillSprite = new ImageSprite("light-att-yellow",false);
         skillSprite.sprite.setScale(0.5f*RATIO);
         
         impactSound = new SoundObject_Sfx(ResourceManager.SFX_IMPACT_1);

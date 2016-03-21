@@ -6,7 +6,7 @@
 package com.mygdx.entities.DynamicEntities.player;
 
 import com.badlogic.gdx.math.Vector2;
-import com.mygdx.entities.esprites.EntitySprite;
+import com.mygdx.entities.ImageSprite;
 import com.mygdx.managers.ResourceManager;
 
 /**
@@ -27,7 +27,7 @@ public class Player_Petal extends PlayerEntity{
         SPEED_STAT_COUNT = 1;
         SPECIAL_STAT_COUNT = 3;
         
-        updateStats();
+        refreshStats();
         life = CURRENT_LIFE;
         
         //sprites
@@ -39,34 +39,34 @@ public class Player_Petal extends PlayerEntity{
         //ih *= 1.3f;
         
         //movement
-        frontSprite = new EntitySprite("petal-walk-front", true);
+        frontSprite = new ImageSprite("petal-walk-front", true);
         frontSprite.sprite.setScale(spriteScale);
         
-        idleSprite = new EntitySprite("petal-idle", true);
+        idleSprite = new ImageSprite("petal-idle", true);
         idleSprite.sprite.setScale(spriteScale);
         idleSprite.setComplete(true);
         
         //transition
-        diveSprite = new EntitySprite("petal-dive", true);
+        diveSprite = new ImageSprite("petal-dive", true);
         diveSprite.sprite.setScale(spriteScale);
         
         
         //********************************
         //poe
-        backSprite = new EntitySprite("poe-back-anim", true);
+        backSprite = new ImageSprite("poe-back-anim", true);
         backSprite.sprite.setScale(spriteScale);
-        leftSprite = new EntitySprite("poe-left-anim", true);
+        leftSprite = new ImageSprite("poe-left-anim", true);
         leftSprite.sprite.setScale(spriteScale);
-        rightSprite = new EntitySprite("poe-right-anim", true);
+        rightSprite = new ImageSprite("poe-right-anim", true);
         rightSprite.sprite.setScale(spriteScale);
         
         
         
-        warpSprite = new EntitySprite("poe-warp", false);
+        warpSprite = new ImageSprite("poe-warp", false);
         warpSprite.sprite.setScale(0.7f);
         
         //combat
-        attackSprite = new EntitySprite("poe-attack", false);
+        attackSprite = new ImageSprite("poe-attack", false);
         attackSprite.sprite.setScale(spriteScale*1.30f, spriteScale*1.2f);
         
     }

@@ -6,7 +6,7 @@
 package com.mygdx.combat.skills;
 
 import com.mygdx.entities.Entity;
-import com.mygdx.entities.esprites.EntitySprite;
+import com.mygdx.entities.ImageSprite;
 import com.mygdx.game.MainGame;
 import static com.mygdx.game.MainGame.RATIO;
 import com.mygdx.gui.descriptions.DescriptionWindow;
@@ -30,9 +30,9 @@ public class Skill_DashBolt extends Skill{
         desc = "Dash is now a light attack";
         descWindow = new DescriptionWindow(name, desc, type);
         
-        impactTemplates.add(new EntitySprite("poe-attack4", false));
+        impactTemplates.add(new ImageSprite("poe-attack4", false));
         impactTemplates.get(0).sprite.setScale(1.4f*RATIO);
-        impactTemplates.add(new EntitySprite("poe-attack3", false));
+        impactTemplates.add(new ImageSprite("poe-attack3", false));
         impactTemplates.get(1).sprite.setScale(1.4f*RATIO);
         
         //desc = new Desc_DashBolt();
@@ -50,7 +50,7 @@ public class Skill_DashBolt extends Skill{
             //ent.damage(GameScreen.player.getDamage() * GameScreen.player.getLightMod() * damageMod);
             ent.damage(GameScreen.player.getCurrentDamage() * GameScreen.player.getLightMod() * damageMod);
                     
-            EntitySprite isprite = new EntitySprite(impactTemplates.get(rng.nextInt(impactTemplates.size)));      
+            ImageSprite isprite = new ImageSprite(impactTemplates.get(rng.nextInt(impactTemplates.size)));      
             
             //flip sprite
             if(GameScreen.player.getBody().getPosition().x < ent.getBody().getPosition().x){
@@ -89,7 +89,7 @@ public class Skill_DashBolt extends Skill{
                 ent.damage(GameScreen.player.getCurrentDamage() * GameScreen.player.getLightMod() * damageMod);
             }
             
-            EntitySprite isprite = new EntitySprite(impactTemplates.get(rng.nextInt(impactTemplates.size)));      
+            ImageSprite isprite = new ImageSprite(impactTemplates.get(rng.nextInt(impactTemplates.size)));      
             
             //flip sprite
             if(GameScreen.player.getBody().getPosition().x < ent.getBody().getPosition().x){

@@ -7,7 +7,7 @@ package com.mygdx.entities.DynamicEntities.enemies;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
-import com.mygdx.entities.esprites.EntitySprite;
+import com.mygdx.entities.ImageSprite;
 import com.mygdx.entities.projectiles.EnemyProj;
 import com.mygdx.environments.EnvironmentManager;
 import static com.mygdx.game.MainGame.RATIO;
@@ -25,11 +25,11 @@ public class En_Peeker extends EnemyEntity{
         super(pos, 30f, 30f);
         
         
-        moveSprite = new EntitySprite("peeker-idle", true);
+        moveSprite = new ImageSprite("peeker-idle", true);
         moveSprite.sprite.setScale(0.55f*RATIO);
-        esprite = moveSprite;
+        isprite = moveSprite;
         attackSprite = moveSprite;
-        prepSprite = new EntitySprite("peeker-prep", true);
+        prepSprite = new ImageSprite("peeker-prep", true);
         prepSprite.sprite.setScale(0.55f*RATIO);
      
         
@@ -82,6 +82,6 @@ public class En_Peeker extends EnemyEntity{
                         dir,
                         DAMAGE));
         canAttack = false;
-        esprite = moveSprite;
+        isprite = moveSprite;
     }
 }

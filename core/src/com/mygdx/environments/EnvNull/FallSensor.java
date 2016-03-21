@@ -43,7 +43,7 @@ public class FallSensor extends StaticEntity{
     }
     
     @Override
-    public void alert(){
+    public void alert(String str){
         //init childSection PitSection
         //move player to center of childSection PitSection
         //set parentSection side type and texture to connected
@@ -53,33 +53,10 @@ public class FallSensor extends StaticEntity{
             System.out.println("@FallingSensor alert " + userdata);
             
             EnvNull ev = (EnvNull)EnvironmentManager.currentEnv;
-            ev.fall(childSection);
-            
-            
-            /*
-            WallType[] types = parentSection.getSideTypes();
-            for(int i = 0; i < types.length; i++){
-                if(types[i] == WallType.PIT){
-                    parentSection.setSide(i, false, WallType.CONNECTED);
-                    parentSection.setTexture();
-                }
-            }
-            
-            
-            active = false;
-            death();
-            dispose();
-        */
-            
+            ev.fall(childSection, true);
             
         }
         
     }
     
-    /*
-    @Override
-    public void dispose(){
-        EnvironmentManager.currentEnv.removeEntity(this);
-    }
-    */
 }

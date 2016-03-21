@@ -13,10 +13,10 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
-import com.mygdx.entities.StaticEntities.walls.NullWall;
-import com.mygdx.entities.esprites.EntitySprite;
+import com.mygdx.entities.StaticEntities.NullWall;
+import com.mygdx.entities.ImageSprite;
 import com.mygdx.entities.pickups.Pickup;
-import com.mygdx.entities.pickups.items.Item_DarkMatter;
+import com.mygdx.entities.pickups.Item_DarkMatter;
 import com.mygdx.environments.EnvironmentManager;
 import com.mygdx.environments.tears.Tear_Room_DMLock.EnvRoom_DMLock;
 import static com.mygdx.game.MainGame.RATIO;
@@ -33,7 +33,7 @@ public class Wall_DMLock extends NullWall{
 
     protected FixtureDef sens = new FixtureDef();
     public boolean locked = true;
-    protected EntitySprite openSprite, closedSprite;
+    protected ImageSprite openSprite, closedSprite;
     private DMCostSprite dmCostSprite;
     private boolean costSpriteOpenAnim = false;
     protected Object wallData;
@@ -58,13 +58,13 @@ public class Wall_DMLock extends NullWall{
         dmCostSprite = new DMCostSprite(pos.x, pos.y, dmcost);
         costSpriteOpenAnim = false;
         
-        closedSprite = new EntitySprite("binWall-closed", false);
+        closedSprite = new ImageSprite("binWall-closed", false);
         closedSprite.sprite.setBounds(pos.x, pos.y, width*2, height*2);
         
-        openSprite = new EntitySprite("binWall-open", false);
+        openSprite = new ImageSprite("binWall-open", false);
         openSprite.sprite.setBounds(pos.x, pos.y, width*2, height*2);
         
-        esprite = closedSprite;
+        isprite = closedSprite;
         
         
         System.out.println("@Wall_DMLock: dmCost " + dmcost );
@@ -86,7 +86,7 @@ public class Wall_DMLock extends NullWall{
         super.update();
         
         if(!locked){
-            esprite = openSprite;
+            isprite = openSprite;
             
             if(openSprite.isComplete()){
                 destroy();
@@ -145,7 +145,7 @@ public class Wall_DMLock extends NullWall{
     }
     
     
-    private class DMCostSprite extends EntitySprite {
+    private class DMCostSprite extends ImageSprite {
         
         private final BitmapFont countFont;
         private final int dmcost;

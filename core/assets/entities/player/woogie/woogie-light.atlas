@@ -1,0 +1,75 @@
+woogie-light.png
+size: 1880, 412
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+woogie-light
+  rotate: false
+  xy: 2, 2
+  size: 311, 408
+  orig: 311, 408
+  offset: 0, 0
+  index: 1
+woogie-light
+  rotate: false
+  xy: 315, 2
+  size: 311, 408
+  orig: 311, 408
+  offset: 0, 0
+  index: 10
+woogie-light
+  rotate: false
+  xy: 628, 2
+  size: 311, 408
+  orig: 311, 408
+  offset: 0, 0
+  index: 2
+woogie-light
+  rotate: false
+  xy: 941, 2
+  size: 311, 408
+  orig: 311, 408
+  offset: 0, 0
+  index: 3
+woogie-light
+  rotate: false
+  xy: 941, 2
+  size: 311, 408
+  orig: 311, 408
+  offset: 0, 0
+  index: 4
+woogie-light
+  rotate: false
+  xy: 1254, 2
+  size: 311, 408
+  orig: 311, 408
+  offset: 0, 0
+  index: 5
+woogie-light
+  rotate: false
+  xy: 1254, 2
+  size: 311, 408
+  orig: 311, 408
+  offset: 0, 0
+  index: 6
+woogie-light
+  rotate: false
+  xy: 1567, 2
+  size: 311, 408
+  orig: 311, 408
+  offset: 0, 0
+  index: 7
+woogie-light
+  rotate: false
+  xy: 1567, 2
+  size: 311, 408
+  orig: 311, 408
+  offset: 0, 0
+  index: 8
+woogie-light
+  rotate: false
+  xy: 315, 2
+  size: 311, 408
+  orig: 311, 408
+  offset: 0, 0
+  index: 9

@@ -7,6 +7,7 @@ package com.mygdx.dev;
 
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.environments.EnvNull.EnvNull;
+import com.mygdx.environments.EnvNull.NullSection;
 import com.mygdx.environments.EnvironmentManager;
 import com.mygdx.environments.tears.TearPortal;
 
@@ -29,20 +30,21 @@ public class Tear_R_Dev0 extends TearPortal{
     private class EnvNull_R_Dev0 extends EnvNull{
      
         public EnvNull_R_Dev0(int id, int linkid){
-            super(id,linkid,0);
+            super(id,linkid,1);
         }
 
+        
         @Override
         public void initSections() {
-            
-            sectionCount = 100;
-            this.generateSections(sectionCount);
-
-            for(LayerManager lm : layerManagers){
-                lm.init();
-            }
-            
             super.initSections();
+            
+            for(LayerManager lm : layerManagers){
+                for(int i = 1; i < lm.layerSections.size; i++){
+                //for(NullSection ns : lm.layerSections){
+                    spawnEnemyGroup(lm.layerSections.get(i));
+                }
+            }
+
         }
         
     }

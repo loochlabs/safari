@@ -81,7 +81,7 @@ public class MainContactListener implements ContactListener{
 
                 for (Entity e : entities) {
                     if (e.getUserData().equals(fa.getUserData())) {
-                        e.alert();
+                        e.alert("warp");
                     }
                 }
             }
@@ -92,7 +92,7 @@ public class MainContactListener implements ContactListener{
 
                 for (Entity e : entities) {
                     if (e.getUserData().equals(fb.getUserData())) {
-                        e.alert();
+                        e.alert("warp");
                     }
                 }
             }
@@ -130,7 +130,7 @@ public class MainContactListener implements ContactListener{
                     for (Entity e : entities) {
                         if (e.getUserData().equals(fa.getUserData())) {
 
-                            e.alert();
+                            e.alert("");
                         }
                     }
                 }
@@ -141,7 +141,7 @@ public class MainContactListener implements ContactListener{
                     for (Entity e : entities) {
                         if (e.getUserData().equals(fb.getUserData())) {
 
-                            e.alert();
+                            e.alert("");
                         }
                     }
                 }
@@ -183,7 +183,7 @@ public class MainContactListener implements ContactListener{
                 if (fb.getUserData().toString().contains("player_")) {
                     for (Entity e : entities) {
                         if (e.getUserData().equals(fa.getUserData())) {
-                            e.alert();
+                            e.alert("");
                         }
                     }
                 } else {
@@ -202,7 +202,7 @@ public class MainContactListener implements ContactListener{
                 if (fa.getUserData().toString().contains("player_")) {
                     for (Entity e : entities) {
                         if (e.getUserData().equals(fb.getUserData())) {
-                            e.alert();
+                            e.alert("");
                         }
                     }
                 } else {
@@ -222,7 +222,7 @@ public class MainContactListener implements ContactListener{
                     && fb.getUserData().toString().contains("player_")) {
                 for (Entity e : entities) {
                     if (e.getUserData().toString().equals(fa.getUserData())) {
-                        e.alert();
+                        e.alert("");
                     }
 
                 }
@@ -232,7 +232,7 @@ public class MainContactListener implements ContactListener{
                     && fa.getUserData().toString().contains("player_")) {
                 for (Entity e : entities) {
                     if (e.getUserData().toString().equals(fb.getUserData())) {
-                        e.alert();
+                        e.alert("");
                     }
                 }
             }

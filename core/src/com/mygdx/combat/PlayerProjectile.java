@@ -43,6 +43,6 @@ public class PlayerProjectile extends ProjectileEntity{
                 }
             }
         }
-        super.alert();
+        super.alert(str);
     }
 }

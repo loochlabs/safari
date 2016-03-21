@@ -1,0 +1,75 @@
+lumen-light.png
+size: 1466, 640
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+lumen-light
+  rotate: false
+  xy: 2, 2
+  size: 364, 317
+  orig: 364, 317
+  offset: 0, 0
+  index: 1
+lumen-light
+  rotate: false
+  xy: 2, 321
+  size: 364, 317
+  orig: 364, 317
+  offset: 0, 0
+  index: 10
+lumen-light
+  rotate: false
+  xy: 368, 2
+  size: 364, 317
+  orig: 364, 317
+  offset: 0, 0
+  index: 2
+lumen-light
+  rotate: false
+  xy: 368, 321
+  size: 364, 317
+  orig: 364, 317
+  offset: 0, 0
+  index: 3
+lumen-light
+  rotate: false
+  xy: 734, 2
+  size: 364, 317
+  orig: 364, 317
+  offset: 0, 0
+  index: 4
+lumen-light
+  rotate: false
+  xy: 1100, 2
+  size: 364, 317
+  orig: 364, 317
+  offset: 0, 0
+  index: 5
+lumen-light
+  rotate: false
+  xy: 734, 321
+  size: 364, 317
+  orig: 364, 317
+  offset: 0, 0
+  index: 6
+lumen-light
+  rotate: false
+  xy: 1100, 321
+  size: 364, 317
+  orig: 364, 317
+  offset: 0, 0
+  index: 7
+lumen-light
+  rotate: false
+  xy: 1100, 321
+  size: 364, 317
+  orig: 364, 317
+  offset: 0, 0
+  index: 8
+lumen-light
+  rotate: false
+  xy: 2, 321
+  size: 364, 317
+  orig: 364, 317
+  offset: 0, 0
+  index: 9

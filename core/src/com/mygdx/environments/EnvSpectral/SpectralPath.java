@@ -8,7 +8,7 @@ package com.mygdx.environments.EnvSpectral;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.mygdx.entities.StaticEntities.walls.NullWall;
+import com.mygdx.entities.StaticEntities.NullWall;
 import com.mygdx.environments.Environment;
 import com.mygdx.game.MainGame;
 import com.mygdx.managers.ResourceManager;

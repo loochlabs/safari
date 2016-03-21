@@ -33,7 +33,7 @@ public class EnemyProj extends ProjectileEntity{
     public void alert(String str){
         if(str.contains("player"))
             GameScreen.player.damage(DMG);
-        super.alert();
+        super.alert(str);
     }
     
 }

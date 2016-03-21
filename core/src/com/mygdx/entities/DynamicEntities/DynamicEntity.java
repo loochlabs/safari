@@ -39,8 +39,6 @@ public class DynamicEntity extends Entity{
         MAX_HP = 100;
         CURRENT_HP = MAX_HP;
         
-        //canGrab = true;
-        
         bd.position.set(pos.x/PPM,pos.y/PPM);
         bd.type = BodyType.DynamicBody;
         cshape.setRadius(width/PPM);

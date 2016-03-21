@@ -8,7 +8,7 @@ package com.mygdx.demo.demo2;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.entities.DynamicEntities.DogEntities.MurphyEntity_Initial;
 import com.mygdx.entities.DynamicEntities.DogEntities.StellaEntity;
-import com.mygdx.entities.DynamicEntities.npcs.Npc_SlumGuy1;
+import com.mygdx.entities.ImageSprite;
 import com.mygdx.entities.esprites.EntitySprite;
 import com.mygdx.environments.EnvSub.pads.EndPad;
 import com.mygdx.environments.EnvVoid.GridCell;
@@ -86,12 +86,12 @@ public class EnvVoid_D2_1 extends EnvVoid_D2{
         super.generateMisc();
         
         //bg sprites
-        spawnSprite(
-                new EntitySprite(
+        spawnEntity(new EntitySprite(new Vector2(0, grid.getHeight()*0.9f),
+                        185f,165f,
                         "decom2", 
-                        true, true, false, false, 
-                        0, grid.getHeight()*0.9f
-                )).sprite.setScale(RATIO);
+                        true, false, false, false, 
+                        1.0f * RATIO,
+                        false, false));
     }
     
     

@@ -5,6 +5,9 @@
  */
 package com.mygdx.entities.esprites;
 
+import com.badlogic.gdx.math.Vector2;
+import com.mygdx.entities.ImageSprite;
+import static com.mygdx.game.MainGame.RATIO;
 import java.util.Random;
 
 /**
@@ -18,18 +21,18 @@ public class BgSprite extends EntitySprite{
     
     public float getSpeed() { return SPEED; }   
     
-    public BgSprite(String key, boolean loop, float x, float y, float scale) {
-        super(key, loop,true, false, false,x,y);
+    public BgSprite(float x, float y, float scale) {
+        super(new Vector2(x,y),325f*RATIO,325f*RATIO,"bg-piece8", true, false, false, false, scale, false, false);
         
         SPEED *= rng.nextFloat() + 1; 
-        sprite.setScale(scale);
         
     }
     
     @Override
     public void update(){
-        sprite.setX(sprite.getX() + SPEED);
-        x = sprite.getX();
+        super.update();
+        isprite.sprite.setX(isprite.sprite.getX() + SPEED);
+        pos.x = isprite.sprite.getX();
     }
     
 }

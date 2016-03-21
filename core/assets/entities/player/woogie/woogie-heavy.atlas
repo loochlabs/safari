@@ -1,0 +1,75 @@
+woogie-heavy.png
+size: 1241, 956
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+woogie-heavy
+  rotate: false
+  xy: 2, 2
+  size: 411, 475
+  orig: 411, 475
+  offset: 0, 0
+  index: 1
+woogie-heavy
+  rotate: false
+  xy: 2, 479
+  size: 411, 475
+  orig: 411, 475
+  offset: 0, 0
+  index: 10
+woogie-heavy
+  rotate: false
+  xy: 415, 2
+  size: 411, 475
+  orig: 411, 475
+  offset: 0, 0
+  index: 2
+woogie-heavy
+  rotate: false
+  xy: 415, 479
+  size: 411, 475
+  orig: 411, 475
+  offset: 0, 0
+  index: 3
+woogie-heavy
+  rotate: false
+  xy: 415, 479
+  size: 411, 475
+  orig: 411, 475
+  offset: 0, 0
+  index: 4
+woogie-heavy
+  rotate: false
+  xy: 828, 2
+  size: 411, 475
+  orig: 411, 475
+  offset: 0, 0
+  index: 5
+woogie-heavy
+  rotate: false
+  xy: 828, 2
+  size: 411, 475
+  orig: 411, 475
+  offset: 0, 0
+  index: 6
+woogie-heavy
+  rotate: false
+  xy: 828, 479
+  size: 411, 475
+  orig: 411, 475
+  offset: 0, 0
+  index: 7
+woogie-heavy
+  rotate: false
+  xy: 828, 479
+  size: 411, 475
+  orig: 411, 475
+  offset: 0, 0
+  index: 8
+woogie-heavy
+  rotate: false
+  xy: 2, 479
+  size: 411, 475
+  orig: 411, 475
+  offset: 0, 0
+  index: 9

@@ -8,7 +8,7 @@ package com.mygdx.entities.DynamicEntities.DogEntities;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.entities.Entity;
-import com.mygdx.entities.esprites.EntitySprite;
+import com.mygdx.entities.ImageSprite;
 import com.mygdx.environments.tears.TearPortal;
 import com.mygdx.environments.EnvironmentManager;
 import com.mygdx.game.MainGame;
@@ -33,16 +33,16 @@ public class MurphyEntity extends DogEntity{
         
         spriteScale = width / 72;
         
-        moveSprite = new EntitySprite("murphy-move", true);
+        moveSprite = new ImageSprite("murphy-move", true);
         moveSprite.sprite.setScale(spriteScale * RATIO);
         
-        alertSprite = new EntitySprite("murphy-alert", true);
+        alertSprite = new ImageSprite("murphy-alert", true);
         alertSprite.sprite.setScale(0.65f* RATIO);
         
-        idleSprite = new EntitySprite("murphy-idle", true);
+        idleSprite = new ImageSprite("murphy-idle", true);
         idleSprite.sprite.setScale(0.29f * RATIO);
         
-        esprite = idleSprite;
+        isprite = idleSprite;
     }
     
     @Override
@@ -65,8 +65,8 @@ public class MurphyEntity extends DogEntity{
         for(TearPortal tp: tears){
             //if(TEARRANGE > GameScreen.player.getBody().getPosition().dst(tp.getBody().getPosition())){
             if(TEARRANGE > findClosestBody().getPosition().dst(tp.getBody().getPosition())){
-                esprite = alertSprite;
-                esprite.sprite.rotate(-0.25f);
+                isprite = alertSprite;
+                isprite.sprite.rotate(-0.25f);
                 //texture = alertTexture;
                 //iw = alertWidth;
                 //ih = alertHeight;

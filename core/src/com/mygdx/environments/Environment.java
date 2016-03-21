@@ -17,7 +17,7 @@ import com.badlogic.gdx.utils.Array;
 import com.mygdx.camera.OrthoCamera;
 import com.mygdx.entities.Entity;
 import com.mygdx.entities.Entity.EntityComp;
-import com.mygdx.entities.esprites.EntitySprite;
+import com.mygdx.entities.ImageSprite;
 import com.mygdx.entities.pickups.Pickup;
 import com.mygdx.entities.text.TextDamage;
 import com.mygdx.entities.text.TextEntity;
@@ -46,7 +46,7 @@ public class Environment {
     
     protected float width, height;
     protected Texture playTexture, introTexture, outroTexture;
-    protected EntitySprite beginSprite, endSprite, spectralPlayerSprite;
+    protected ImageSprite beginSprite, endSprite, spectralPlayerSprite;
     protected Texture bg, fg;
     protected float fgx, fgy, fgw, fgh;
     protected int renderLayers;
@@ -86,9 +86,9 @@ public class Environment {
     protected final Array<Body> bodyToRemove = new Array<Body>();
     protected final Array<Entity> entToAdd = new Array<Entity>();
     
-    protected final Array<EntitySprite> sprites = new Array<EntitySprite>();
-    protected final Array<EntitySprite> spriteToRemove = new Array<EntitySprite>();
-    protected final Array<EntitySprite> spriteToAdd = new Array<EntitySprite>();
+    //protected final Array<ImageSprite> sprites = new Array<ImageSprite>();
+    //protected final Array<ImageSprite> spriteToRemove = new Array<ImageSprite>();
+    //protected final Array<ImageSprite> spriteToAdd = new Array<ImageSprite>();
     
     protected int enemyCount = 0, killCount = 0;
     protected boolean enemiesClear = true;
@@ -159,7 +159,7 @@ public class Environment {
         
         
         //TODO: needed here?
-        spectralPlayerSprite = new EntitySprite(GameScreen.player.getRecovSprite());
+        spectralPlayerSprite = new ImageSprite(GameScreen.player.getRecovSprite());
         spectralPlayerSprite.sprite.setScale(0.65f);
         
     }
@@ -172,9 +172,9 @@ public class Environment {
             sb.draw(fg, fgx, fgy, fgw, fgh);
         }
 
-        for (EntitySprite e : sprites) {
-            e.render(sb);
-        }
+        //for (ImageSprite e : sprites) {
+            //e.render(sb);
+        //}
 
         //entities.sort();
         Collections.sort(entities, new EntityComp());
@@ -208,11 +208,12 @@ public class Environment {
         switch (layer){
             case 0:
                 
-                    for (EntitySprite e : sprites) {
+                /*
+                    for (ImageSprite e : sprites) {
                         e.step();
                         e.sprite.draw(sb);
                     }
-
+                       */
                     for (Entity e : entities) {
                         e.render(sb);
                     }
@@ -250,54 +251,12 @@ public class Environment {
         
         if(sm.getState() == State.PLAYING){
             
+            //update, add/remove entities
+            entityCheck();
             
-            for(EntitySprite sprite: sprites){
-                sprite.update();
-                
-                if(sprite.isComplete())
-                    spriteToRemove.add(sprite);
-            }
-            
-            //remove entities
-            for (Entity e : entToRemove) {
-                try {
-                    if (e.getBody() != null) {
-                        world.destroyBody(e.getBody());
-                        e.setBody(null);
-                    }
-                    entities.remove(e);
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-                
-            }
-            
-            if(entToRemove.size > 0)
-                entToRemove.clear();
-            
-            //add entities
-            for(Entity e: entToAdd){
-                try {
-                    addEntity(e);
-                    e.init(world);
-                    Collections.sort(entities, new EntityComp());
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }  
-            }
-            
-            if(entToAdd.size > 0){
-                entToAdd.clear();
-            }
-
-            
-            //update entities
-            for (Entity e : entities) {
-                e.update();
-            }
 
             //remove/add sprites
-            spriteCheck();
+            //spriteCheck();
             
             
             
@@ -364,6 +323,8 @@ public class Environment {
             GameScreen.player.getBody().setTransform(playerPos.cpy(),0);
         }
         
+        entityCheck();
+        
     }
     
     //Desription: starting playing
@@ -394,21 +355,13 @@ public class Environment {
         
         sm.setState(3);
         
-        //endFC.setTime(time);
-        //endFC.start(fm);
-        
-        /*
-        if(GameScreen.player.isDead()){
-            spectralPlayerSprite.sprite.setScale(0.65f);
-            endSpectralSprite.reset();
-            endSpectralSprite.sprite.setPosition(
-                    GameScreen.player.getBody().getPosition().x*PPM - endSpectralSprite.sprite.getWidth()/2, 
-                    GameScreen.player.getBody().getPosition().y*PPM - endSpectralSprite.sprite.getHeight()/2);
-        }*/
-        
         idwarp = id;
     }
     
+    //Called after end() has completed
+    public void complete(){
+        EnvironmentManager.setCurrent(idwarp);
+    }
     
     //Description: called when current environment is exited
     public void pause(){
@@ -463,19 +416,68 @@ public class Environment {
         return e;
     }
     
-    public EntitySprite spawnSprite(EntitySprite sprite){
+    /*
+    public ImageSprite spawnSprite(ImageSprite sprite){
         spriteToAdd.add(sprite);
         return sprite;
     }
     
-    public EntitySprite removeSprite(EntitySprite sprite){
+    public ImageSprite removeSprite(ImageSprite sprite){
         spriteToRemove.add(sprite);
         return sprite;
     }
+*/
     
+    public void entityCheck(){
+        /*for(ImageSprite sprite: sprites){
+                sprite.update();
+                
+                if(sprite.isComplete())
+                    spriteToRemove.add(sprite);
+            }*/
+            
+            //remove entities
+            for (Entity e : entToRemove) {
+                try {
+                    if (e.getBody() != null) {
+                        world.destroyBody(e.getBody());
+                        e.setBody(null);
+                    }
+                    entities.remove(e);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+                
+            }
+            
+            if(entToRemove.size > 0)
+                entToRemove.clear();
+            
+            //add entities
+            for(Entity e: entToAdd){
+                try {
+                    addEntity(e);
+                    e.init(world);
+                    Collections.sort(entities, new EntityComp());
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }  
+            }
+            
+            if(entToAdd.size > 0){
+                entToAdd.clear();
+            }
+
+            
+            //update entities
+            for (Entity e : entities) {
+                e.update();
+            }
+    }
     
+    /*
     public void spriteCheck(){
-        for (EntitySprite sprite : spriteToRemove) {
+        for (ImageSprite sprite : spriteToRemove) {
             sprites.removeValue(sprite, false);
         }
 
@@ -484,7 +486,7 @@ public class Environment {
         }
 
         //add entities
-        for (EntitySprite sprite : spriteToAdd) {
+        for (ImageSprite sprite : spriteToAdd) {
             sprites.add(sprite);
         }
 
@@ -492,7 +494,7 @@ public class Environment {
             spriteToAdd.clear();
         }
     }
-    
+    */
     
     
     public void addDamageText(String dmg, Vector2 pos){
@@ -557,7 +559,8 @@ public class Environment {
             if(GameScreen.overlay.transition(false)){
                 System.out.println("@Environment end trans " + this);
                 GameScreen.overlay.endTransition();
-                EnvironmentManager.setCurrent(idwarp);
+                complete();
+                
             }
             
         }

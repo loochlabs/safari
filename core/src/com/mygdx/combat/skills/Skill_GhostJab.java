@@ -11,7 +11,7 @@ import com.badlogic.gdx.graphics.g2d.ParticleEffectPool;
 import com.mygdx.combat.Buff;
 import com.mygdx.combat.PassiveBuff;
 import static com.mygdx.combat.skills.Skill.SkillAttribute.SPEED;
-import com.mygdx.entities.esprites.EntitySprite;
+import com.mygdx.entities.ImageSprite;
 import com.mygdx.game.MainGame;
 import static com.mygdx.game.MainGame.RATIO;
 import com.mygdx.gui.descriptions.DescriptionWindow;
@@ -42,9 +42,9 @@ public class Skill_GhostJab extends LightSkill{
         skillIcon = MainGame.am.get(ResourceManager.SKILL_GHOSTJAB);
         
         
-        impactTemplates.add(new EntitySprite("poe-attack4", false));
+        impactTemplates.add(new ImageSprite("poe-attack4", false));
         impactTemplates.get(0).sprite.setScale(1.4f*RATIO);
-        impactTemplates.add(new EntitySprite("poe-attack3", false));
+        impactTemplates.add(new ImageSprite("poe-attack3", false));
         impactTemplates.get(1).sprite.setScale(1.4f*RATIO);
         
         

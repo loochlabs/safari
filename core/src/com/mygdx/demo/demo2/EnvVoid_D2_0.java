@@ -7,6 +7,7 @@ package com.mygdx.demo.demo2;
 
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.entities.DynamicEntities.DogEntities.StellaEntity_Initial;
+import com.mygdx.entities.ImageSprite;
 import com.mygdx.entities.esprites.EntitySprite;
 import com.mygdx.environments.EnvSub.pads.EndPad;
 import com.mygdx.environments.EnvVoid.GridCell;
@@ -74,12 +75,12 @@ public class EnvVoid_D2_0 extends EnvVoid_D2{
         
 
         //bg sprites
-        spawnSprite(
-                new EntitySprite(
+        spawnEntity(new EntitySprite(new Vector2(0, grid.getHeight()*0.9f),
+                        470f,200f,
                         "decom", 
                         true, false, false, false, 
-                        0, grid.getHeight()*0.9f
-                )).sprite.setScale(RATIO);
+                        1.0f * RATIO,
+                        false, false));
     }
     
     @Override

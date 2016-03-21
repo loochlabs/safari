@@ -7,7 +7,7 @@ package com.mygdx.combat.skills;
 
 import static com.mygdx.combat.skills.Skill.SkillAttribute.ENERGY;
 import com.mygdx.entities.Entity;
-import com.mygdx.entities.esprites.EntitySprite;
+import com.mygdx.entities.ImageSprite;
 import com.mygdx.game.MainGame;
 import static com.mygdx.game.MainGame.RATIO;
 import com.mygdx.gui.descriptions.DescriptionWindow;
@@ -43,13 +43,13 @@ public class Skill_CrackOfThunder extends HeavySkill{
         skillIcon = MainGame.am.get(ResourceManager.SKILL_CRACKOFTHUNDER);
         
         
-        impactTemplates.add(new EntitySprite("impact1", false));
+        impactTemplates.add(new ImageSprite("impact1", false));
         impactTemplates.get(0).sprite.setScale(1.4f*RATIO);
-        impactTemplates.add(new EntitySprite("impact2", false));
+        impactTemplates.add(new ImageSprite("impact2", false));
         impactTemplates.get(1).sprite.setScale(1.4f*RATIO);
         
         
-        skillSprite = new EntitySprite("heavy-att-yellow",false);
+        skillSprite = new ImageSprite("heavy-att-yellow",false);
         skillSprite.sprite.setScale(0.5f*RATIO);
         
         impactSound = new SoundObject_Sfx(ResourceManager.SFX_IMPACT_2);

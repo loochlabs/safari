@@ -12,7 +12,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.entities.StaticEntities.StaticEntity;
-import com.mygdx.entities.esprites.EntitySprite;
+import com.mygdx.entities.ImageSprite;
 import com.mygdx.entities.pickups.Pickup;
 import com.mygdx.environments.EnvironmentManager;
 import static com.mygdx.game.MainGame.RATIO;
@@ -32,7 +32,7 @@ import static com.mygdx.utilities.UtilityVars.PPM;
  */
 public class En_EndNullArm extends StaticEntity{
 
-    private final EntitySprite spawnSprite, idleSprite, deathSprite;
+    private final ImageSprite spawnSprite, idleSprite, deathSprite;
     private final int expYield_MIN, expYield_MAX;
     private final Array<Pickup> itemRewardPool;
     private final int linkid;
@@ -69,14 +69,14 @@ public class En_EndNullArm extends StaticEntity{
         
         this.linkid = linkid;
         
-        spawnSprite = new EntitySprite("null_end_spawn", false);
+        spawnSprite = new ImageSprite("null_end_spawn", false);
         spawnSprite.sprite.setScale(RATIO);
-        idleSprite = new EntitySprite("null_end_idle", true);
+        idleSprite = new ImageSprite("null_end_idle", true);
         idleSprite.sprite.setScale(RATIO);
-        deathSprite = new EntitySprite("null_end_death", false);
+        deathSprite = new ImageSprite("null_end_death", false);
         deathSprite.sprite.setScale(RATIO);
         
-        esprite = spawnSprite;
+        isprite = spawnSprite;
         
         expYield_MIN = 3;
         expYield_MAX = 6;
@@ -109,8 +109,8 @@ public class En_EndNullArm extends StaticEntity{
     public void update(){
         super.update();
         
-        if(spawnSprite.isComplete() && !esprite.equals(idleSprite) && alive)
-            esprite = idleSprite;
+        if(spawnSprite.isComplete() && !isprite.equals(idleSprite) && !dead)
+            isprite = idleSprite;
         
         if(deathSprite.isComplete() && !endActive){
             createEndSensor();
@@ -120,26 +120,32 @@ public class En_EndNullArm extends StaticEntity{
     
     @Override
     public void render(SpriteBatch sb){
-        if(esprite != null){
-            esprite.sprite.setPosition(
-                    body.getPosition().x*PPM - esprite.sprite.getWidth()/2, 
-                    body.getPosition().y*PPM - esprite.sprite.getHeight()*0.13f);
+        if(isprite != null){
+            isprite.sprite.setPosition(
+                    //body.getPosition().x*PPM - esprite.sprite.getWidth()/2, 
+                    //body.getPosition().y*PPM - esprite.sprite.getHeight()*0.13f);
+                    pos.x - isprite.sprite.getWidth()/2,
+                    pos.y - isprite.sprite.getHeight()*0.13f);
             
-            esprite.render(sb);
+            isprite.render(sb);
         }
         
     }
     
+    
+    
     @Override
     public void death(){
         super.death();
-        esprite = deathSprite;
+        isprite = deathSprite;
         
         //spawn reward items
         for(Pickup item: itemRewardPool){
             Vector2 iv = new Vector2(
-                    body.getPosition().x*PPM + 25*rng.nextFloat()*rngNegSet.random(),
-                    body.getPosition().y*PPM + 25*rng.nextFloat()*rngNegSet.random());
+                    //body.getPosition().x*PPM + 25*rng.nextFloat()*rngNegSet.random(),
+                    //body.getPosition().y*PPM + 25*rng.nextFloat()*rngNegSet.random());
+                    pos.x + 25*rng.nextFloat()*rngNegSet.random(),
+                    pos.y + 25*rng.nextFloat()*rngNegSet.random());
             item.setPosition(iv);
             Pickup p = (Pickup)EnvironmentManager.currentEnv.spawnEntity(item);
             p.spawnForce();

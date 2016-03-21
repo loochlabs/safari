@@ -12,7 +12,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.StreamUtils;
-import com.mygdx.entities.esprites.EntitySprite;
+import com.mygdx.entities.ImageSprite;
 import static com.mygdx.game.MainGame.RATIO;
 import com.mygdx.screen.GameScreen;
 import com.mygdx.utilities.FrameCounter_Attack;
@@ -40,17 +40,17 @@ public class En_Goober extends EnemyEntity{
         
         float sscale = 0.38f *RATIO;
         
-        moveSprite = new EntitySprite("goober_move",true);
+        moveSprite = new ImageSprite("goober_move",true);
         moveSprite.sprite.setScale(sscale);
-        esprite = moveSprite;
+        isprite = moveSprite;
         
-        prepSprite = new EntitySprite("goober_prep",true);
+        prepSprite = new ImageSprite("goober_prep",true);
         prepSprite.sprite.setScale(sscale);
         
-        attackSprite = new EntitySprite("goober-attack2",false);
+        attackSprite = new ImageSprite("goober-attack2",false);
         attackSprite.sprite.setScale(sscale);
         
-        bodyDamageSprite = new EntitySprite("goober-dmg", false);
+        bodyDamageSprite = new ImageSprite("goober-dmg", false);
         bodyDamageSprite.sprite.setScale(sscale);
         
         MAX_HP = 30;
@@ -135,13 +135,13 @@ public class En_Goober extends EnemyEntity{
         enemybt.step();
         
         if(dmgFC.running){
-            esprite = bodyDamageSprite;
+            isprite = bodyDamageSprite;
         }else if(attackFC.state == AttackState.PREPPING){
-            esprite = prepSprite;
+            isprite = prepSprite;
         }else if(attackFC.state == AttackState.ATTACKING){
-            esprite = attackSprite;
+            isprite = attackSprite;
         }else{
-            esprite = moveSprite;
+            isprite = moveSprite;
         }
     }
     

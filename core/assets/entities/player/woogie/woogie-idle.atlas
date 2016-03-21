@@ -1,0 +1,12 @@
+woogie-idle.png
+size: 357, 395
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+woogie-idle
+  rotate: false
+  xy: 2, 2
+  size: 353, 391
+  orig: 353, 391
+  offset: 0, 0
+  index: 1

@@ -9,7 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.entities.StaticEntities.StaticEntity;
-import com.mygdx.entities.esprites.EntitySprite;
+import com.mygdx.entities.ImageSprite;
 import com.mygdx.environments.Environment;
 import com.mygdx.environments.EnvironmentManager;
 import static com.mygdx.game.MainGame.RATIO;
@@ -36,7 +36,7 @@ public class EndPad extends StaticEntity{
     protected int idwarp;
    
     //protected Texture completeTexture;
-    protected EntitySprite completeSprite;
+    protected ImageSprite completeSprite;
     private boolean complete = false;
     
     //sound 
@@ -53,7 +53,7 @@ public class EndPad extends StaticEntity{
         this.idwarp = idwarp;
         
         //completeTexture = MainGame.am.get(ResourceManager.ENDPAD_COMPLETE);
-        completeSprite = new EntitySprite("end-void-trans", false, true, false, false, 0,0,false, true);
+        completeSprite = new ImageSprite("end-void-trans", false, true, false, false, 0,0,1.0f, false, true);
         //completeSprite = new EntitySprite("end-void-trans", true);
         completeSprite.sprite.setBounds(pos.x,pos.y, width*2, height*2);
         //completeSprite.setComplete(true);
@@ -125,7 +125,7 @@ public class EndPad extends StaticEntity{
     public void complete(){
         complete = true;
         //texture = completeTexture;
-        esprite = completeSprite;
+        isprite = completeSprite;
         completeSprite.reset();
         
         for(EndPad_Section s : sections){

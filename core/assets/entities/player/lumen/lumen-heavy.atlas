@@ -1,0 +1,75 @@
+lumen-heavy.png
+size: 1601, 929
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+lumen-heavy
+  rotate: false
+  xy: 2, 2
+  size: 531, 307
+  orig: 531, 307
+  offset: 0, 0
+  index: 1
+lumen-heavy
+  rotate: false
+  xy: 2, 311
+  size: 531, 307
+  orig: 531, 307
+  offset: 0, 0
+  index: 10
+lumen-heavy
+  rotate: false
+  xy: 2, 620
+  size: 531, 307
+  orig: 531, 307
+  offset: 0, 0
+  index: 2
+lumen-heavy
+  rotate: false
+  xy: 535, 2
+  size: 531, 307
+  orig: 531, 307
+  offset: 0, 0
+  index: 3
+lumen-heavy
+  rotate: false
+  xy: 1068, 2
+  size: 531, 307
+  orig: 531, 307
+  offset: 0, 0
+  index: 4
+lumen-heavy
+  rotate: false
+  xy: 535, 311
+  size: 531, 307
+  orig: 531, 307
+  offset: 0, 0
+  index: 5
+lumen-heavy
+  rotate: false
+  xy: 535, 311
+  size: 531, 307
+  orig: 531, 307
+  offset: 0, 0
+  index: 6
+lumen-heavy
+  rotate: false
+  xy: 1068, 311
+  size: 531, 307
+  orig: 531, 307
+  offset: 0, 0
+  index: 7
+lumen-heavy
+  rotate: false
+  xy: 1068, 311
+  size: 531, 307
+  orig: 531, 307
+  offset: 0, 0
+  index: 8
+lumen-heavy
+  rotate: false
+  xy: 2, 311
+  size: 531, 307
+  orig: 531, 307
+  offset: 0, 0
+  index: 9

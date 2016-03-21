@@ -16,7 +16,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.StreamUtils;
-import com.mygdx.entities.esprites.EntitySprite;
+import com.mygdx.entities.ImageSprite;
 import static com.mygdx.game.MainGame.RATIO;
 import com.mygdx.screen.GameScreen;
 import com.mygdx.utilities.FrameCounter_Attack;
@@ -37,9 +37,9 @@ public class En_Worm extends EnemyEntity2{
     public En_Worm(Vector2 pos) {
         super(pos, 20f, 20f);
         
-        moveSprite = new EntitySprite("worm-move", true);
-        prepSprite = new EntitySprite("worm-prep", false);
-        attackSprite = new EntitySprite("worm-att", true);
+        moveSprite = new ImageSprite("worm-move", true);
+        prepSprite = new ImageSprite("worm-prep", false);
+        attackSprite = new ImageSprite("worm-att", true);
         
         this.maxLinearSpeed = 50f;
         this.maxLinearAcceleration = 500f;
@@ -144,19 +144,19 @@ public class En_Worm extends EnemyEntity2{
     @Override
     public void updateSprites(){
         if (attackFC.state == UtilityVars.AttackState.PREPPING) {
-            esprite = prepSprite;
+            isprite = prepSprite;
             prepSprite.sprite.setRotation(prepRotation);
         } else if (attackFC.state == UtilityVars.AttackState.ATTACKING) {
-            esprite = attackSprite;
+            isprite = attackSprite;
             attackSprite.sprite.setRotation(prepRotation);
         } else {
-            esprite = moveSprite;
+            isprite = moveSprite;
         }
     }
     
     @Override
-    public void alert(){
-        super.alert();
+    public void alert(String str){
+        super.alert(str);
         canDmgPlayer = false;
     }
     

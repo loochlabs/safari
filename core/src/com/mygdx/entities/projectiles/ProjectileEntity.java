@@ -9,6 +9,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.entities.Entity;
+import com.mygdx.entities.ImageSprite;
 import com.mygdx.entities.esprites.EntitySprite;
 import com.mygdx.environments.EnvironmentManager;
 import static com.mygdx.game.MainGame.RATIO;
@@ -41,8 +42,8 @@ public class ProjectileEntity extends Entity{
         durFC = new FrameCounter(DURATION);
         DMG = dmg;
         
-        deathSprite = new EntitySprite("proj-death", false, true, false, false);
-        deathSprite.sprite.setScale(0.4f * RATIO);
+        deathSprite = new EntitySprite(pos, width,height, "proj-death", false, true, false, false, 0.4f*RATIO, false, false);
+        //deathSprite.sprite.setScale(0.4f * RATIO);
         
     }
      
@@ -73,16 +74,16 @@ public class ProjectileEntity extends Entity{
     }
     
     @Override
-    public void alert(){
+    public void alert(String str){
         death();
     }
     
     @Override
     public void death(){
-        deathSprite.sprite.setPosition(
-                this.getBody().getPosition().x*PPM - deathSprite.sprite.getWidth()/2, 
-                this.getBody().getPosition().y*PPM - deathSprite.sprite.getHeight()/2);
-        EnvironmentManager.currentEnv.spawnSprite(deathSprite);
+        deathSprite.setPosition(new Vector2(
+                pos.x - width/2, 
+                pos.y - height/2));
+        EnvironmentManager.currentEnv.spawnEntity(deathSprite);
         
         super.death();
         dispose();

@@ -7,7 +7,7 @@ package com.mygdx.combat.skills;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.Array;
-import com.mygdx.entities.esprites.EntitySprite;
+import com.mygdx.entities.ImageSprite;
 import com.mygdx.gui.descriptions.DescriptionWindow;
 import com.mygdx.utilities.SoundObject_Sfx;
 import java.util.Random;
@@ -29,16 +29,16 @@ public abstract class Skill {
     protected String desc;
     protected float COST;
     protected float damageMod, comboBonus = 1.5f;
-    protected EntitySprite esprite;
+    protected ImageSprite esprite;
     protected float prepTime, attTime, recovTime;
     protected float FORCE;
     protected final Random rng = new Random();
-    protected final Array<EntitySprite> impactTemplates = new Array<EntitySprite>();
+    protected final Array<ImageSprite> impactTemplates = new Array<ImageSprite>();
     protected SoundObject_Sfx impactSound;
     protected boolean active = false;       //used for passiveSkills
     protected boolean newAlert = true;
     protected DescriptionWindow descWindow;
-    protected EntitySprite skillSprite;
+    protected ImageSprite skillSprite;
     
     public SkillType getType() {return type;}
     public SkillAttribute getAttribute() { return attribute; }
@@ -50,12 +50,12 @@ public abstract class Skill {
     public float getAttTime() { return attTime; }
     public float getRecovTime() { return recovTime; }
     public float getDamageMod() {return damageMod;}
-    public EntitySprite getSprite() { return esprite; }
+    public ImageSprite getSprite() { return esprite; }
     public boolean isActive() { return active; }
     public Texture getSkillIcon() { return skillIcon; }
     public DescriptionWindow getDescWindow() { return descWindow; }
     public boolean isNewAlert() { return newAlert; }
-    public EntitySprite getSkillSprite() { return skillSprite; }
+    public ImageSprite getSkillSprite() { return skillSprite; }
     
     public void setNewAlert(boolean alert) { this.newAlert = alert; }
     

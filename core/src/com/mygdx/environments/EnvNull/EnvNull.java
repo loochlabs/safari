@@ -7,16 +7,14 @@ package com.mygdx.environments.EnvNull;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.entities.DynamicEntities.enemies.EnemyManager;
 import com.mygdx.entities.DynamicEntities.player.PlayerEntity;
 import com.mygdx.entities.Entity;
-import com.mygdx.entities.StaticEntities.StaticEntity;
+import com.mygdx.entities.ImageSprite;
 import com.mygdx.entities.esprites.EntitySprite;
 import com.mygdx.entities.text.TextEntity;
 import com.mygdx.environments.Environment;
-import com.mygdx.environments.EnvironmentManager;
 import com.mygdx.game.MainGame;
 import static com.mygdx.game.MainGame.RATIO;
 import com.mygdx.managers.StateManager;
@@ -26,9 +24,8 @@ import com.mygdx.screen.GameScreen;
 import com.mygdx.utilities.Coordinate;
 import com.mygdx.utilities.SoundObject_Bgm;
 import com.mygdx.utilities.SoundObject_Sfx;
-import static com.mygdx.utilities.UtilityVars.BIT_PLAYER;
-import static com.mygdx.utilities.UtilityVars.BIT_WALL;
 import static com.mygdx.utilities.UtilityVars.PPM;
+import java.util.ArrayList;
 import java.util.Collections;
 
 /**
@@ -37,12 +34,13 @@ import java.util.Collections;
  */
 public abstract class EnvNull extends Environment {
     
-    
-    
-    protected EntitySprite playerDive, impactSprite, introTextSprite, bgRockSprite;
+    protected EntitySprite impactSprite, introTextSprite;
+    protected ImageSprite playerDiveSprite, bgRockSprite;
+    protected final float PLAYER_DIVE_SCALE;
+    protected final Vector2 PLAYER_DIVE_POS;
     protected long diveTime;
     protected final float moveSpeed = 10.0f;
-    protected float diveMovement = 1;
+    protected float diveMovement = 0.1f;
     protected boolean diveIn = false;
     
     //**************
@@ -59,15 +57,13 @@ public abstract class EnvNull extends Environment {
     
     
     //null sections
-    //protected Array<NullSection> envSections = new Array<NullSection>(); //old
-    //protected Array<NullSection> pitSections = new Array<NullSection>(); //old
-    //protected Array<NullSection> sectionToAdd = new Array<NullSection>(); //old
-    //protected Array<NullSection> sectionsToAdd = new Array<NullSection>();//old
     protected NullSection currentSection; 
     protected int currentDepth = 0;
     
     //new null sections
     protected Array<LayerManager> layerManagers = new Array<LayerManager>();
+    protected boolean initLayerSort = true; 
+    protected boolean initLayerBuffer = true;
     
     //change to array of enemies
     //check if empty to finish this null
@@ -86,16 +82,14 @@ public abstract class EnvNull extends Environment {
     private SoundObject_Bgm bgm1;
     private SoundObject_Sfx impactSound;
     
-    //public Array<NullSection> getEnvSections() { return envSections; }
-    //public Array<NullSection> getPitSection() { return pitSections; }
     
-    public EnvNull(int id, int linkid, int dif){
+    public EnvNull(int id, int linkid, int difficulty){
         super(id);
         
         this.linkid = linkid;
         this.width = MainGame.WIDTH;
         this.height = MainGame.HEIGHT;
-        this.DIFFICULTY = dif;
+        this.DIFFICULTY = difficulty;
         
         introDescription = "The Null";
         
@@ -108,23 +102,29 @@ public abstract class EnvNull extends Environment {
         fgw = width;
         fgh = height;
         
+        //todo: dont need 7 render layers
         renderLayers = 7;
         cameraZoom = 1.0f;
         
+        //todo: adjust position - coordinate with first section
         startPos = new Vector2(MainGame.WIDTH*0.55f/PPM,MainGame.HEIGHT*0.65f/PPM);
+        //startPos = new Vector2(400f*RATIO / PPM,400f*RATIO / PPM);
         this.setPlayerToStart();
         
-        playerDive = GameScreen.player.getDiveSprite();
-        playerDive.sprite.setPosition(width * 0.5f, height * 0.15f);
+        playerDiveSprite = GameScreen.player.getDiveSprite();
+        playerDiveSprite.sprite.setPosition(width * 0.5f, height * 0.15f);
+        PLAYER_DIVE_POS = new Vector2(playerDiveSprite.sprite.getX(), playerDiveSprite.sprite.getY());
+        PLAYER_DIVE_SCALE = playerDiveSprite.sprite.getScaleX();
         diveTime = (long)(2000 * 0.6);
         
-        impactSprite = new EntitySprite("player-impact", false, false, false, false);
-        impactSprite.sprite.setPosition(playerPos.x*PPM - impactSprite.sprite.getWidth()/2, 
-                playerPos.y*PPM - impactSprite.sprite.getHeight()*0.175f);
+        impactSprite = new EntitySprite(new Vector2(playerPos.x*PPM, playerPos.y*PPM), 185f, 390f, "player-impact", 1.0f);
+        //todo: change pos
+        impactSprite.setPosition(new Vector2(playerPos.x*PPM - impactSprite.getWidth()/2, 
+                playerPos.y*PPM - impactSprite.getHeight()*0.175f));
         
-        introTextSprite = new EntitySprite("kill-text", false);
+        introTextSprite = new EntitySprite(new Vector2(0,0), 350f,100f, "kill-text", 1.0f);
         
-        bgRockSprite = new EntitySprite("null-bg-rocks", false);
+        bgRockSprite = new ImageSprite("null-bg-rocks", false);
         bgRockSprite.sprite.setScale(1.0f * RATIO);
         bgRockSprite.sprite.setPosition(
                  - width/2 + 150f*RATIO, 
@@ -134,8 +134,6 @@ public abstract class EnvNull extends Environment {
         endFC.setTime(4.0f);
         
         //sound
-        //bgm.add(new SoundObject_Bgm(ResourceManager.BGM_NULL_1));
-        //bgm.add(new SoundObject_Bgm(ResourceManager.BGM_NULL_2));
         bgm.add(new SoundObject_Bgm(ResourceManager.BGM_NULL_3));
         bgm_end = new SoundObject_Bgm(ResourceManager.BGM_NULL_END);
         
@@ -147,32 +145,28 @@ public abstract class EnvNull extends Environment {
     @Override
     public void init(){
         super.init();
+        
+        //call after init to organize entities in proper layerManager
         this.initSections();
+        
     }
     
     @Override
     public void update(){
         
-        //TODO: remove
-        /*
-        if(sm.getState() == State.PLAYING){
-            for(NullSection section: sectionToAdd){
-                section.init();
-                
-                envSections.add(section);
-            }
-            
-            if(sectionToAdd.size > 0) {
-                sectionToAdd.clear();
-            }
-        }
-        */
-        //******************************************
-        
         if(sm.getState() == StateManager.State.BEGIN)
             fallingBeginUpdate();
         
         super.update();
+        
+        //dirty workaround to wait one extra frame to update entities in layerManagers
+        //initial entity layer render sort
+        if(!initLayerBuffer && initLayerSort && sm.getState() == StateManager.State.BEGIN){
+            this.renderSectionSort();
+            initLayerSort = false;
+        }
+        if(initLayerBuffer && sm.getState() == StateManager.State.BEGIN)    initLayerBuffer = false;
+        
         
         if(sm.getState() == StateManager.State.FALLING )
             fallingUpdate();
@@ -186,25 +180,48 @@ public abstract class EnvNull extends Environment {
         
     }
     
+    
     boolean beginCheck = false;     //used for initial beginning camera zoom
     float topRate = (9 * MainGame.STEP) / (2000 / 1000);
     
     //fall camera zoom during State.BEGIN
     
-    //TODO: add ability to render entities waiting in sections during zoom
     public void fallingBeginUpdate(){
         
         if(beginCheck){
             if(beginFC.complete){
+                //todo: remove?
                 currentTopZoom = TOP_LAYER_ZOOM;
+                currentPlayerZoom = PLAYER_LAYER_ZOOM;
+                
+                for(LayerManager lm : layerManagers){
+                    lm.zoom = lm.zoom <= lm.maxZoom ? lm.maxZoom : lm.zoom - topRate;
+                }
             }else{
-            
+                
+                //adjust layerManagers.zoom 
+                //todo: remove?
                 currentTopZoom = currentTopZoom <= TOP_LAYER_ZOOM ? TOP_LAYER_ZOOM : currentTopZoom - topRate;
+                
+                for(LayerManager lm : layerManagers){
+                    lm.updateBeginZoom();
+                }
             }
-        }else{
+        }
+        
+        else{      //initial check to init begin zoom
             beginCheck = true;
             
             currentTopZoom = BEGIN_TOP_ZOOM;
+            currentPlayerZoom = PLAYER_LAYER_ZOOM;
+
+            playerDiveSprite.sprite.setScale(1.0f);
+            playerDiveSprite.sprite.setPosition(startPos.x * PPM - playerDiveSprite.sprite.getWidth() / 2,
+                    startPos.y * PPM - playerDiveSprite.sprite.getHeight() / 2);
+
+            for (LayerManager lm : layerManagers) {
+                lm.setBeginZoom();
+            }
         }
         
         
@@ -215,33 +232,45 @@ public abstract class EnvNull extends Environment {
     public void fallingUpdate(){
         if (diveFC.complete) {
 
+            
             GameScreen.player.getBody().setTransform(
                     new Vector2(
                             (currentSection.getPos().x + currentSection.getWidth() / 2) / PPM, 
                             (currentSection.getPos().y + currentSection.getHeight() / 2) / PPM), 0);
             GameScreen.player.getBody().setLinearVelocity(new Vector2(0, 0));
+            
             //zoom out to normal
-            //todo: may need to clean up
-            currentPlayerZoom = currentPlayerZoom >= PLAYER_LAYER_ZOOM ? PLAYER_LAYER_ZOOM : currentPlayerZoom + 0.065f;
+            if(fallDown){
+                currentPlayerZoom = currentPlayerZoom >= PLAYER_LAYER_ZOOM ? PLAYER_LAYER_ZOOM : currentPlayerZoom + 0.065f;
+            }else{
+                
+                //fallUp
+                currentPlayerZoom = currentPlayerZoom <= PLAYER_LAYER_ZOOM ? PLAYER_LAYER_ZOOM : currentPlayerZoom + 0.065f;
+                
+            }
+            
 
             //complete current fall, resume play
             if (currentPlayerZoom == PLAYER_LAYER_ZOOM) {
 
                 sm.setState(1);
                 
-                //currentSectionZoom = SECTION_LAYER_ZOOM;
+                
                 currentTopZoom = TOP_LAYER_ZOOM;
                 currentPlayerZoom = PLAYER_LAYER_ZOOM;
 
                 diveIn = false;
-                diveMovement = 1;
+                diveMovement = 0.1f;
 
 
-                this.spawnSprite(new EntitySprite(
-                        impactSprite,
-                        GameScreen.player.getBody().getPosition().x * PPM - impactSprite.sprite.getWidth() / 2,
-                        GameScreen.player.getBody().getPosition().y * PPM - impactSprite.sprite.getHeight()*0.175f,
-                        false));
+                if (fallDown) {
+                    this.spawnEntity(new EntitySprite(
+                            impactSprite,
+                            GameScreen.player.getPos().x - impactSprite.getWidth() / 2,
+                            GameScreen.player.getPos().y - impactSprite.getHeight() * 0.175f,
+                            impactSprite.getWidth(),
+                            impactSprite.getHeight()));
+                }
                 
                 //play impact sound
                 impactSound.play(false);
@@ -250,37 +279,58 @@ public abstract class EnvNull extends Environment {
         } else {
             //fall zoom into current section
             //currentSectionZoom = currentSectionZoom <= 1.0f ? 1.0f : currentSectionZoom - 0.0678f;
-            for(LayerManager lm : layerManagers){
-                lm.zoom = lm.zoom <= lm.MAX_ZOOM ? lm.MAX_ZOOM : lm.zoom - 0.0678f;
-            }
-            
-            
-            //zoom for sections falling FROM
-            currentTopZoom = currentTopZoom <= 0.03f ? 0.03f : currentTopZoom - 0.055f;
-
-            //needed for player sprite going out of view at end of dive
-            if (!diveIn) {
-                currentPlayerZoom = currentPlayerZoom <= 0.80f ? 0.80f : currentPlayerZoom - 0.0075f;
-                if (currentPlayerZoom == 0.8f) {
-                    diveIn = true;
-                }
-            } else {
-                currentPlayerZoom = currentPlayerZoom >= 1.0f ? 1.0f : currentPlayerZoom + 0.016f;
+            for (LayerManager lm : layerManagers) {
+                lm.updatePitZoom(fallDown);
             }
 
-            
             //move player towards center of pit section
             Vector2 sectionPos = new Vector2(
                     (currentSection.getPos().x + currentSection.getWidth() / 2) / PPM,
                     (currentSection.getPos().y + currentSection.getHeight() / 2) / PPM);
-            
-            //todo: not needed
-            //Vector2 dv = sectionPos.cpy().scl(1 / PPM).sub(GameScreen.player.getBody().getPosition()).cpy().nor();
+            //prevSection
+            Vector2 dir = sectionPos.cpy().sub(prevSectionPosition).nor();
             float dist = sectionPos.dst(GameScreen.player.getBody().getPosition());
 
+            //move player to center of currentSection
             GameScreen.player.getBody().setTransform(
-                    sectionPos.sub(sectionPos.cpy().nor().scl(diveMovement * dist)), 0);
-            diveMovement = diveMovement <= 0 ? 0 : diveMovement * 0.975f;
+                    prevSectionPosition.add(dir.scl(diveMovement * dist)), 0);
+            diveMovement = diveMovement >= 1 ? 1 : diveMovement / 0.99f;
+
+  
+            if (fallDown) {
+                //zoom for sections falling FROM
+                currentTopZoom = currentTopZoom <= 0.03f ? 0.03f : currentTopZoom - 0.055f;
+
+                //needed for player sprite going out of view at end of dive
+                if (!diveIn) {
+                    currentPlayerZoom = currentPlayerZoom <= 0.80f ? 0.80f : currentPlayerZoom - 0.0075f;
+                    if (currentPlayerZoom == 0.8f) {
+                        diveIn = true;
+                    }
+                } else {
+                    currentPlayerZoom = currentPlayerZoom >= 1.0f ? 1.0f : currentPlayerZoom + 0.016f;
+                }
+
+
+            } else {
+
+                //fallUp
+                currentTopZoom = currentTopZoom >= 0.03f ? 0.03f : currentTopZoom + 0.055f;
+
+                //needed for player sprite going out of view at end of dive
+                if (!diveIn) {
+                    currentPlayerZoom = currentPlayerZoom >= 0.80f ? 0.80f : currentPlayerZoom + 0.0075f;
+                    if (currentPlayerZoom == 0.8f) {
+                        diveIn = true;
+                    }
+                } else {
+                    currentPlayerZoom = currentPlayerZoom <= 1.0f ? 1.0f : currentPlayerZoom - 0.016f;
+                }
+
+            }
+            
+            
+            
         }
     }
     
@@ -301,6 +351,17 @@ public abstract class EnvNull extends Environment {
         
     }
     
+    public void resetDiveSprite(ImageSprite e){
+        e.sprite.setPosition(PLAYER_DIVE_POS.x, PLAYER_DIVE_POS.y);
+        e.sprite.setScale(PLAYER_DIVE_SCALE);
+    }
+    
+    //Used during player dive
+    public void moveDiveSprite(ImageSprite e){
+        e.sprite.setPosition(e.sprite.getX() + moveSpeed, e.sprite.getY() + moveSpeed);
+        e.sprite.setScale(e.sprite.getScaleX()*1.015f);
+    }
+    
     private final float BG_ZOOM_RATE = 0.00065f, BG_ZOOM_IN = 0.9f;
     private boolean zoomIn = true;
     //zoom in/out on bg
@@ -313,19 +374,49 @@ public abstract class EnvNull extends Environment {
     }
     
     //called when player falls off platform
-    public void fall(NullSection section){
+    private boolean fallDown = true;
+    private Vector2 prevSectionPosition;     //used for fallingUpdate
+    
+    public void fall(NullSection section, boolean fallDown){
+        
+        this.fallDown = fallDown;
+        
         currentSection  = section;
+        
+        if (fallDown) {
+            prevSectionPosition = new Vector2(
+                    (currentSection.parentSection.getPos().x + currentSection.parentSection.getWidth() / 2) /PPM,
+                    (currentSection.parentSection.getPos().y + currentSection.parentSection.getHeight() / 2) /PPM);
+        } else {
+            prevSectionPosition = new Vector2(
+                    (currentSection.childSection.getPos().x + currentSection.childSection.getWidth() / 2)/PPM,
+                    (currentSection.childSection.getPos().y + currentSection.childSection.getHeight() / 2)/PPM);
+        }
         
         int tempDepth = currentDepth - section.LAYER_DEPTH;
         currentDepth = section.LAYER_DEPTH;
         
         for(LayerManager lm : layerManagers) { 
-            //lm.MAX_ZOOM /= 2;
             lm.adjustZoom(tempDepth);
         }
         
+        //add player to new section layerManager
+        int tdepth = 0;
+        for(LayerManager lm : layerManagers){
+            for(Entity e : lm.layerEntities){
+                if(e.equals(GameScreen.player)){
+                    lm.layerEntToRemove.add(e);
+                    tdepth = lm.depth;
+                }
+            }
+        }
+        tdepth = fallDown ? tdepth + 1 : tdepth - 1;
+        layerManagers.get(tdepth).layerEntities.add(GameScreen.player);
+        
+        
         diveFC.start(fm);
         sm.setState(4);
+        
         
     }
     
@@ -342,10 +433,10 @@ public abstract class EnvNull extends Environment {
             if (sm.getState() == StateManager.State.BEGIN) {
 
                 if (diveFC.complete) {
-                    moveDiveSprite(playerDive);
+                    moveDiveSprite(playerDiveSprite);
                 }
 
-                playerDive.render(sb);
+                playerDiveSprite.render(sb);
 
             }
 
@@ -374,53 +465,25 @@ public abstract class EnvNull extends Environment {
         
         
         else if (top1 == layer) {
-            if (sm.getState() == StateManager.State.PLAYING
-                    || sm.getState() == State.END) {
-                for (EntitySprite e : sprites) {
-                    e.step();
-                    e.sprite.draw(sb);
-                }
-
-                Collections.sort(entities, new Entity.EntityComp());
-
-                for (Entity e : entities) {
-                    e.render(sb);
-                }
-
-            }
-
-            if (sm.getState() == StateManager.State.FALLING) {
-                for (EntitySprite e : sprites) {
-                    e.step();
-                    e.sprite.draw(sb);
-                }
-
-                Collections.sort(entities, new Entity.EntityComp());
-
-                for (Entity e : entities) {
-                    //move this conditional to above looping
-                    if (!e.equals(GameScreen.player)) {
-                        e.render(sb);
-                    }
-                }
-            }
-
-            if (sm.getState() == State.END) {
-                endSpectralAnim(sb);
-            }
+            
 
             //set zoom for player
             GameScreen.camera.zoom = currentPlayerZoom;
+            //GameScreen.camera.zoom = currentTopZoom;
         } 
         
         
+        /*
+                RENDER LAYER MANAGERS
+        */
         
+        //accessed by layerManagers index (with top1 as offset)
         else if (layer > top1 && layer <= (layerManagers.size + top1)) {
 
             layerManagers.get(layer - top1 - 1).render(sb);
             
             //set zoom for next layer
-            if(layer-top1-2 < 0){
+            if(layer-top1-2 < 0){   //if at end of layerManagers, set zoom to currentTopZoom
                 GameScreen.camera.zoom = currentTopZoom;
             }else{
                 GameScreen.camera.zoom = layerManagers.get(layer - top1 - 2).zoom;
@@ -453,7 +516,10 @@ public abstract class EnvNull extends Environment {
             this.fgParallaxX = 0.05f;
             this.fgParallaxY = 0.025f;
         }
+        
     }
+    
+    
     
     
     @Override
@@ -466,386 +532,223 @@ public abstract class EnvNull extends Environment {
         
         GameScreen.camera.setPosition(playerPos.x*PPM, playerPos.y*PPM);
         
+        //for beginnign player dive
         beginCheck = false;
-        playerDive.sprite.setScale(1.0f);
-        playerDive.sprite.setPosition(
-                playerPos.x*PPM - playerDive.sprite.getWidth()/2, 
-                playerPos.y*PPM - playerDive.sprite.getHeight()/2);
+        
+        //resetDiveSprite(playerDiveSprite);
+        
+        playerDiveSprite.sprite.setScale(1.0f);
+        playerDiveSprite.sprite.setPosition(playerPos.x*PPM - playerDiveSprite.sprite.getWidth()/2, 
+                playerPos.y*PPM - playerDiveSprite.sprite.getHeight()/2);
         
         
         //sound
         bgm1 = bgm.random();
         bgm1.play();
+        
+        
     }
     
     @Override
     public void play(){
         super.play();
         
-        spawnSprite(impactSprite);
+        spawnEntity(impactSprite);
         
-        introTextSprite.sprite.setPosition(
-                playerPos.x*PPM - introTextSprite.sprite.getWidth()/2, 
-                playerPos.y*PPM - introTextSprite.sprite.getHeight()*2);
-        spawnSprite(introTextSprite);
+        introTextSprite.setPosition(new Vector2(
+                playerPos.x*PPM - introTextSprite.getWidth()/2, 
+                playerPos.y*PPM - introTextSprite.getHeight()*2)); // todo:  *2  why????
+        spawnEntity(introTextSprite);
         //begin null section
         
         //play impact sound
         impactSound.play(false);
+        
+        
+    }
+    
+    @Override
+    public void pause(){
+        sm.setPaused(true);
+        
+        playerPos = startPos.cpy();
+        reset();
     }
     
     @Override
     public void end(int id, float time){
         bgm1.stop();
-        sprites.clear();
+        //sprites.clear();
+        
         super.end(id, time);
     }
     
     //used for end arm warp
     //todo: remove, old code
     public void end(){
-        playerDive.sprite.setPosition(
-                GameScreen.player.getBody().getPosition().x*PPM - playerDive.sprite.getWidth()/2, 
-                GameScreen.player.getBody().getPosition().y*PPM - playerDive.sprite.getHeight()/2);
-        
         
         this.end(linkid, 0);
+    }
+    
+    @Override
+    public void complete(){
+        
+        for(LayerManager lm : layerManagers){
+            for(Entity e : lm.layerEntities){
+                if(e.equals(GameScreen.player)){
+                    lm.layerEntToRemove.add(e);
+                }
+            }
+            lm.removeUpdate();
+        }
+        
+        initLayerBuffer = true;
+        initLayerSort = true;
+        
+        this.setPlayerToStart();
+        
+        
+        
+        super.complete();
     }
     
     
     //init all sections in layerMap, layerManagers
     public void initSections(){
         
+        this.generateSections();
+        
+        for(LayerManager lm : layerManagers){
+            lm.init();
+        }
+        
+        
         //layers + top 2 and bottom 2
         renderLayers = layerManagers.size + 4;
-        
+
         top0 = 0;
         top1 = 1;
         bottom0 = renderLayers - 2;
         bottom1 = renderLayers - 1;
     }
     
-    //**************************************
-        
-        //  ENEMIES
-        
-    public void spawnEnemyGroup(NullSection sec){
-        Array<Entity> ent = EnemyManager.getGroup(DIFFICULTY, sec);
-        for(Entity e : ent){
-            this.spawnEntity(e);
-            this.addEnemyCount();
+    /**************************************
+    Sort entities/sprites for each section
+    *****************************************/
+    
+    private void renderSectionSort(){
+        //entites
+        for(Entity e : entities){
+            renderSectionSortEntity(e);
         }
+        //entitySprites
+        /*
+        for(ImageSprite e : sprites){
+            renderSectionSortSprite(e);
+        }*/
     }
     
-    
-    //TODO: transfer this to Environment class, not needed here
-    public void spawnEnemy(){
-        currentEnemies++;
-    }
-    
-    //Used during player dive
-    public void moveDiveSprite(EntitySprite e){
-        e.sprite.setPosition(e.sprite.getX() + moveSpeed, e.sprite.getY() + moveSpeed);
-        e.sprite.setScale(e.sprite.getScaleX()*1.015f);
-    }
-    
-    public void spawnEndWarp(){
-        
-        Vector2 secPos = layerManagers.get(0).layerSections.get(0).getPos();
-        
-        //loop through current layer
-        for(NullSection sec: layerManagers.get(0).layerSections){
-            //if player in section, spawn null warp here
-            PlayerEntity ply = GameScreen.player;
-            if(ply.getBody().getPosition().x*PPM > sec.getPos().x 
-                    && ply.getBody().getPosition().x*PPM <= sec.getPos().x + sec.getWidth()
-                    && ply.getBody().getPosition().y*PPM > sec.getPos().y
-                    && ply.getBody().getPosition().y*PPM <= sec.getPos().y + sec.getHeight()){
-             
-                secPos = sec.getPos();
-            }
-        }
-        
-        endNullArm = new En_EndNullArm(new Vector2(
-                secPos.x + 400*RATIO, 
-                secPos.y + 400*RATIO),
-                linkid);
-        
-        spawnEntity(endNullArm);
-        
-        //sound
-        bgm1.stop();
-        bgm1 = bgm_end;
-        bgm1.play();
-    }
-    
-    
-    //todo: remove, check layerManager.complete
-    @Override
-    public void addKillCount(){
-        super.addKillCount();
-        
-        if(killCount >= enemyCount){
-            spawnEndWarp();
-        }
-    }
-    
-    
-    //add parameter for layer depth 
-    public void generateSections(int scount){
-        
-        generateLayer0(scount);
-        
-        //generateLayer(1, sectionCount/2) -> layer 0
-        //generateLAyer(2, sectionCount/2) -> layer 1
-        //generateLayer(3, sectionCount/2) -> layer 2
-        
-        generateLayer(1, scount/2);
-    }
-    
-    
-    /*
-        CREATES AN INITIAL PIT SECTION AND NEW LAYERMANAGER, based on piChance
-    */
-    
-    private float pitChance = 0.5f;
-    
-    private int generateLayer(int depth, int scount){
-        
-        //recursive termination
-        if(scount <= 1) return 0;
-        
-        System.out.println("@EnvNull generate layer : depth:" + depth);
-        
-        
-        LayerManager prevLayer = layerManagers.peek();
-        layerManagers.add(new LayerManager(depth));
-        LayerManager currentLayer = layerManagers.peek();
-        
-        /*******************************************
-         * 
-         *          PIT SECTION GENERATION
-         * 
-         *******************************************/
-        
-        
-        //go through sections of prevLayer
-        for (NullSection prevSection : prevLayer.layerSections) {
-            //check to generate pit at this section
-            if (pitChance > rng.nextFloat()) {
-
-                //check section for available adjecent sections
-                boolean[] sides = prevSection.getAvailableSides();
-                boolean occupied;
-                int index;
-                int count = 0;
-
-                do {
-                    index = rng.nextInt(sides.length);
-                    occupied = false;
-                    count++;
-
-                    switch (index) {
-                        case 0:
-                            nullCoord = new Coordinate(prevSection.getCoord().getX(), prevSection.getCoord().getY() + 1);
-                            break;
-                        case 1:
-                            nullCoord = new Coordinate(prevSection.getCoord().getX() + 1, prevSection.getCoord().getY());
-                            break;
-                        case 2:
-                            nullCoord = new Coordinate(prevSection.getCoord().getX(), prevSection.getCoord().getY() - 1);
-                            break;
-                        case 3:
-                            nullCoord = new Coordinate(prevSection.getCoord().getX() - 1, prevSection.getCoord().getY());
-                            break;
-                        default:
-                            nullCoord = new Coordinate(prevSection.getCoord().getX() - 1, prevSection.getCoord().getY());
-                            break;
-                    }
-
-                    for (Coordinate coord : gridCoords) {
-                        if (coord.compareTo(nullCoord)) {
-                            occupied = true;
-                        }
-                    }
-
-                    //todo: fix the "spiral problem" w/ section generation
-                    if (count == 4) {
-                        break;
-                    }
-
-                } while (occupied);
-
-                //break if broken out of prev while loop
-                if (occupied) {
-                    break;
-                }
-
-                prevSection.setSide(index, false, NullSection.WallType.PIT_HIGHER);
-                gridCoords.add(nullCoord);
-
-                switch (index) {
-                    case 0:
-                        currentLayer.layerSections.add(new NullSection_R(
-                                prevSection.getPos().cpy().add(new Vector2(0, sectionHeight)),
-                                sectionWidth,
-                                sectionHeight,
-                                this,
-                                nullCoord,
-                                currentLayer.depth));
+    private void renderSectionSortEntity(Entity e){
+        //entites
+            Vector2 ep = e.getPos().cpy();
+            
+            for(LayerManager lm : layerManagers){
+                for(NullSection ns : lm.layerSections){
+                    if(ep.x >= ns.getPos().x 
+                            && ep.x < ns.getPos().x + ns.getWidth() 
+                            && ep.y >= ns.getPos().y 
+                            && ep.y < ns.getPos().y + ns.getHeight()
+                            && !lm.layerEntities.contains(e)){
                         
-                        currentLayer.layerSections.peek().setSide(2, false, NullSection.WallType.PIT_LOWER);
-                        break;
-                    case 1:
-                        currentLayer.layerSections.add(new NullSection_R(
-                                prevSection.getPos().cpy().add(new Vector2(sectionWidth, 0)),
-                                sectionWidth,
-                                sectionHeight,
-                                this,
-                                nullCoord,
-                                currentLayer.depth));
-
-                        currentLayer.layerSections.peek().setSide(3, false, NullSection.WallType.PIT_LOWER);
-                        break;
-                    case 2:
-                        currentLayer.layerSections.add(new NullSection_R(
-                                prevSection.getPos().cpy().add(new Vector2(0, -sectionHeight)),
-                                sectionWidth,
-                                sectionHeight,
-                                this,
-                                nullCoord,
-                                currentLayer.depth));
-
-                        currentLayer.layerSections.peek().setSide(0, false, NullSection.WallType.PIT_LOWER);
-                        break;
-                    case 3:
-                        currentLayer.layerSections.add(new NullSection_R(
-                                prevSection.getPos().cpy().add(new Vector2(-sectionWidth, 0)),
-                                sectionWidth,
-                                sectionHeight,
-                                this,
-                                nullCoord,
-                                currentLayer.depth));
-
-                        currentLayer.layerSections.peek().setSide(1, false, NullSection.WallType.PIT_LOWER);
-                        break;
-                    default:
-                        break;
-                }
-                prevSection.childSection = currentLayer.layerSections.peek();
-                
-                fillLayer(currentLayer, scount/2);
-
-            }
-
-        }
-
-        return generateLayer(depth + 1, scount / 2);
-    }
-    
-    
-    /*
-        FILL IN NEW PIT SECTION/LAYER WITH MORE SECTIONS
-    */
-    
-    private void fillLayer(LayerManager lm, int scount){
-        
-        for (int i = 0; i < scount; i++) {
-
-            //create ajoined null sections
-            NullSection prevSection = lm.layerSections.peek();
-            boolean[] prevSides = prevSection.getAvailableSides();
-            int index;
-
-            boolean occupied;
-            int count = 0;
-            Vector2 secPosition;
-
-            do {
-                count++;
-                index = rng.nextInt(prevSides.length);
-                occupied = false;
-
-                switch (index) {
-                    case 0:
-                        nullCoord = new Coordinate(prevSection.getCoord().getX(), prevSection.getCoord().getY() + 1);
-                        secPosition = new Vector2(0, sectionHeight);
-                        break;
-                    case 1:
-                        nullCoord = new Coordinate(prevSection.getCoord().getX() + 1, prevSection.getCoord().getY());
-                        secPosition = new Vector2(sectionWidth, 0);
-                        break;
-                    case 2:
-                        nullCoord = new Coordinate(prevSection.getCoord().getX(), prevSection.getCoord().getY() - 1);
-                        secPosition = new Vector2(0, -sectionHeight);
-                        break;
-                    default: //3
-                        nullCoord = new Coordinate(prevSection.getCoord().getX() - 1, prevSection.getCoord().getY());
-                        secPosition = new Vector2(-sectionWidth, 0);
-                        break;
-                }
-
-                //if coord is already taken
-                for (Coordinate coord : gridCoords) {
-                    if (coord.compareTo(nullCoord)) {
-                        occupied = true;
+                        lm.layerEntities.add(e);
                     }
                 }
-
-                //todo: fix the "spiral problem" w/ section generation
-                //perhaps just choose random coord??
-                //use array[s,s,s,s] to check all four sides
-                if (count == 4) {
-                    return;
-                }
-            } while (occupied);
-
-            prevSection.setSide(index, false, NullSection.WallType.CONNECTED);
-            gridCoords.add(nullCoord);
-
-            //create section at specifies coord(x,y)
-            lm.layerSections.add(new NullSection(
-                    prevSection.getPos().cpy().add(secPosition),
-                    sectionWidth,
-                    sectionHeight,
-                    this,
-                    nullCoord,
-                    lm.depth)); //layerDepth
-
-            switch (index) {
-                case 0:
-                    lm.layerSections.peek().setSide(2, false, NullSection.WallType.CONNECTED);
-                    break;
-                case 1:
-                    lm.layerSections.peek().setSide(3, false, NullSection.WallType.CONNECTED);
-
-                    break;
-                case 2:
-                    lm.layerSections.peek().setSide(0, false, NullSection.WallType.CONNECTED);
-
-                    break;
-                case 3:
-                    lm.layerSections.peek().setSide(1, false, NullSection.WallType.CONNECTED);
-                    break;
-                default:
-                    break;
             }
-
-        }
     }
     
-    
     /*
-        GENERATE FIRST LAYER
-    */
-    
-    private void generateLayer0(int scount){
-        sectionCount = scount;
-            
-        if(layerManagers.size == 0){
-                layerManagers.add(new LayerManager(0));
+    private void renderSectionSortSprite(ImageSprite e){
+        
+            Vector2 ep = new Vector2(e.sprite.getX(), e.sprite.getY());
+            for(LayerManager lm : layerManagers){
+                for(NullSection ns : lm.layerSections){
+                    if(ep.x >= ns.getPos().x 
+                            && ep.x < ns.getPos().x + ns.getWidth() 
+                            && ep.y >= ns.getPos().y 
+                            && ep.y < ns.getPos().y + ns.getHeight()
+                            && !lm.layerSprites.contains(e, false)){
+                        
+                        lm.layerSprites.add(e);
+                    }
+                }
             }
+        
+    }*/
+    
+    @Override 
+    public Entity spawnEntity(Entity e){
+        renderSectionSortEntity(e);
+        return super.spawnEntity(e);
+    }
+    
+     
+    /*
+    @Override 
+    public ImageSprite spawnSprite(ImageSprite e){
+        renderSectionSortSprite(e);
+        return super.spawnSprite(e);
+    }*/
+    
+    
+    //Set sectionCount based on difficulty
+    public void generateSections(){
+        
+        int scount;
+        int layers;
+        
+        switch(DIFFICULTY){
+            case 0:
+                scount = 3;
+                layers = 1;
+                break;
+                
+            case 1:
+                scount = 4;
+                layers = 2;
+                break;
             
+            case 2:
+                scount = 8;
+                layers = 3;
+                break;
+                
+            case 3:
+                scount = 10;
+                layers = 4;
+                break;
+                
+            default:
+                scount = 4;
+                layers = 1;
+                break;
+        }
+        
+        generateLayer0(scount, false);
+        
+        generateLayer(layers-1, scount/2);
+    }
+    
+    /*******************************
+        GENERATE FIRST LAYER
+    *******************************/
+    
+    private void generateLayer0(int scount, boolean reset){
+        sectionCount = scount;
+
+        if (layerManagers.size == 0) {
+            layerManagers.add(new LayerManager(0));
+        }
+    
         LayerManager mainLayer = layerManagers.peek();
         
         
@@ -863,20 +766,26 @@ public abstract class EnvNull extends Environment {
                 gridCoords.add(nullCoord);
             }else{
                 
-                
                 //create ajoined null sections
-                NullSection prevSection = mainLayer.layerSections.peek();
+                NullSection prevSection = reset ? mainLayer.layerSections.random() : mainLayer.layerSections.peek();
                 boolean [] prevSides = prevSection.getAvailableSides();
                 int index;
                 
-                boolean occupied;
-                int count = 0;
+                
                 Vector2 secPosition;
+
+                Array<Boolean> sideCheck = new Array<Boolean>();
+                sideCheck.add(false);
+                sideCheck.add(false);
+                sideCheck.add(false);
+                sideCheck.add(false);
+                boolean occupied;
+                int count;
                 
                 do{
-                    count++;
+                    
                     index = rng.nextInt(prevSides.length);
-                    occupied = false;
+                    
                     
                     switch (index){
                         case 0:
@@ -898,16 +807,32 @@ public abstract class EnvNull extends Environment {
                     }
                     
                     //if coord is already taken
-                    for(Coordinate coord: gridCoords){
-                        if (coord.compareTo(nullCoord))
-                            occupied = true;
+                    occupied = false;
+                    try {
+                        for (Coordinate coord : gridCoords) {
+                            if (coord.compareTo(nullCoord)) {
+                                sideCheck.set(index, true);
+                                occupied = true;
+                            }
+                        }
+                    } catch (IndexOutOfBoundsException ex) {
+                        ex.printStackTrace();
                     }
                     
                     
                     //todo: fix the "spiral problem" w/ section generation
                     //perhaps just choose random coord??
                     //use array[s,s,s,s] to check all four sides
-                    if(count == 4) return;
+                    //if(count == 4) return;
+                    count = 0;
+                    for(Boolean s : sideCheck){
+                        if(s) count++;
+                    }
+                    if(count >= 4){
+                        generateLayer0(sectionCount - i, true);
+                        return;
+                    }
+                    
                 }while(occupied);
                     
                 prevSection.setSide(index, false, NullSection.WallType.CONNECTED);
@@ -947,51 +872,458 @@ public abstract class EnvNull extends Environment {
     
     
     
+    
+    /*********************************************************************************
+        CREATES AN INITIAL PIT SECTION AND NEW LAYERMANAGER, based on piChance
+    *********************************************************************************/
+    
+    
+    private int generateLayer(int layers, int scount){
+        
+        //recursive termination
+        if(layers <= 0) return 0;
+        
+        int depth = layerManagers.size;
+        
+        System.out.println("@EnvNull generate layer : depth:" + depth);
+        
+        LayerManager prevLayer = layerManagers.get(depth - 1);
+        layerManagers.add(new LayerManager(depth));
+        LayerManager currentLayer = layerManagers.peek();
+
+        /**
+         * *****************************************
+         *
+         * PIT SECTION GENERATION
+         *
+         ******************************************
+         */
+        //go through sections of prevLayer
+        NullSection prevSection = prevLayer.layerSections.random();
+
+        //check section for available adjecent sections
+        boolean[] sides = prevSection.getAvailableSides();
+
+        int index;
+
+        Array<Boolean> sideCheck = new Array<Boolean>();
+        sideCheck.add(false);
+        sideCheck.add(false);
+        sideCheck.add(false);
+        sideCheck.add(false);
+        int count;
+        boolean occupied;
+
+        do {
+            index = rng.nextInt(sides.length);
+
+            switch (index) {
+                case 0:
+                    nullCoord = new Coordinate(prevSection.getCoord().getX(), prevSection.getCoord().getY() + 1);
+                    break;
+                case 1:
+                    nullCoord = new Coordinate(prevSection.getCoord().getX() + 1, prevSection.getCoord().getY());
+                    break;
+                case 2:
+                    nullCoord = new Coordinate(prevSection.getCoord().getX(), prevSection.getCoord().getY() - 1);
+                    break;
+                case 3:
+                    nullCoord = new Coordinate(prevSection.getCoord().getX() - 1, prevSection.getCoord().getY());
+                    break;
+                default:
+                    nullCoord = new Coordinate(prevSection.getCoord().getX() - 1, prevSection.getCoord().getY());
+                    break;
+            }
+
+            //if coord is already taken
+            occupied = false;
+            try {
+                for (Coordinate coord : gridCoords) {
+                    if (coord.compareTo(nullCoord)) {
+                        sideCheck.set(index, true);
+                        occupied = true;
+                    }
+                }
+            } catch (IndexOutOfBoundsException ex) {
+                ex.printStackTrace();
+            }
+
+            
+            count = 0;
+            for (Boolean s : sideCheck) {
+                if (s) {
+                    count++;
+                }
+            }
+            if (count >= 4) {
+                layerManagers.pop();
+                return generateLayer(layers, scount);
+            }
+
+        } while (occupied);
+
+        prevSection.setSide(index, false, NullSection.WallType.PIT_HIGHER);
+        gridCoords.add(nullCoord);
+
+        switch (index) {
+            case 0:
+                currentLayer.layerSections.add(new NullSection(
+                        prevSection.getPos().cpy().add(new Vector2(0, sectionHeight)),
+                        sectionWidth,
+                        sectionHeight,
+                        this,
+                        nullCoord,
+                        currentLayer.depth));
+
+                currentLayer.layerSections.peek().setSide(2, false, NullSection.WallType.PIT_LOWER);
+                break;
+            case 1:
+                currentLayer.layerSections.add(new NullSection(
+                        prevSection.getPos().cpy().add(new Vector2(sectionWidth, 0)),
+                        sectionWidth,
+                        sectionHeight,
+                        this,
+                        nullCoord,
+                        currentLayer.depth));
+
+                currentLayer.layerSections.peek().setSide(3, false, NullSection.WallType.PIT_LOWER);
+                break;
+            case 2:
+                currentLayer.layerSections.add(new NullSection(
+                        prevSection.getPos().cpy().add(new Vector2(0, -sectionHeight)),
+                        sectionWidth,
+                        sectionHeight,
+                        this,
+                        nullCoord,
+                        currentLayer.depth));
+
+                currentLayer.layerSections.peek().setSide(0, false, NullSection.WallType.PIT_LOWER);
+                break;
+            case 3:
+                currentLayer.layerSections.add(new NullSection(
+                        prevSection.getPos().cpy().add(new Vector2(-sectionWidth, 0)),
+                        sectionWidth,
+                        sectionHeight,
+                        this,
+                        nullCoord,
+                        currentLayer.depth));
+
+                currentLayer.layerSections.peek().setSide(1, false, NullSection.WallType.PIT_LOWER);
+                break;
+            default:
+                break;
+        }
+        //set pit section child of higher pit section
+        prevSection.childSection = currentLayer.layerSections.peek();
+        currentLayer.layerSections.peek().parentSection = prevSection;
+
+        fillLayer(currentLayer, scount / 2, false);
+
+        return generateLayer(layers - 1, scount / 2);
+    }
+    
+    
+    /***********************************************************************
+        FILL IN NEW PIT SECTION/LAYER WITH MORE SECTIONS
+    ***********************************************************************/
+    
+    private void fillLayer(LayerManager lm, int scount, boolean reset){
+        
+        for (int i = 0; i < scount; i++) {
+
+            //create ajoined null sections
+            NullSection prevSection = !reset ? lm.layerSections.peek() : lm.layerSections.random();
+            boolean[] prevSides = prevSection.getAvailableSides();
+            int index;
+
+            Vector2 secPosition;
+            
+            Array<Boolean> sideCheck = new Array<Boolean>();
+            sideCheck.add(false);
+            sideCheck.add(false);
+            sideCheck.add(false);
+            sideCheck.add(false);
+            boolean occupied;
+            int count;
+
+            do {
+                index = rng.nextInt(prevSides.length);
+                
+                switch (index) {
+                    case 0:
+                        nullCoord = new Coordinate(prevSection.getCoord().getX(), prevSection.getCoord().getY() + 1);
+                        secPosition = new Vector2(0, sectionHeight);
+                        break;
+                    case 1:
+                        nullCoord = new Coordinate(prevSection.getCoord().getX() + 1, prevSection.getCoord().getY());
+                        secPosition = new Vector2(sectionWidth, 0);
+                        break;
+                    case 2:
+                        nullCoord = new Coordinate(prevSection.getCoord().getX(), prevSection.getCoord().getY() - 1);
+                        secPosition = new Vector2(0, -sectionHeight);
+                        break;
+                    default: //3
+                        nullCoord = new Coordinate(prevSection.getCoord().getX() - 1, prevSection.getCoord().getY());
+                        secPosition = new Vector2(-sectionWidth, 0);
+                        break;
+                }
+
+                //if coord is already taken
+                occupied = false;
+                try {
+                    for (Coordinate coord : gridCoords) {
+                        if (coord.compareTo(nullCoord)) {
+                            sideCheck.set(index, true);
+                            occupied = true;
+                        }
+                    }
+                } catch (IndexOutOfBoundsException ex) {
+                    ex.printStackTrace();
+                }
+
+                //todo: fix the "spiral problem" w/ section generation
+                //perhaps just choose random coord??
+                //use array[s,s,s,s] to check all four sides
+                //if(count == 4) return;
+                count = 0;
+                for (Boolean s : sideCheck) {
+                    if (s) {
+                        count++;
+                    }
+                }
+                if (count >= 4) {
+                    fillLayer(lm, scount - i, true);
+                    return;
+                }
+
+            } while (occupied);
+
+            prevSection.setSide(index, false, NullSection.WallType.CONNECTED);
+            gridCoords.add(nullCoord);
+
+            //create section at specifies coord(x,y)
+            lm.layerSections.add(new NullSection(
+                    prevSection.getPos().cpy().add(secPosition),
+                    sectionWidth,
+                    sectionHeight,
+                    this,
+                    nullCoord,
+                    lm.depth)); //layerDepth
+
+            switch (index) {
+                case 0:
+                    lm.layerSections.peek().setSide(2, false, NullSection.WallType.CONNECTED);
+                    break;
+                case 1:
+                    lm.layerSections.peek().setSide(3, false, NullSection.WallType.CONNECTED);
+
+                    break;
+                case 2:
+                    lm.layerSections.peek().setSide(0, false, NullSection.WallType.CONNECTED);
+
+                    break;
+                case 3:
+                    lm.layerSections.peek().setSide(1, false, NullSection.WallType.CONNECTED);
+                    break;
+                default:
+                    break;
+            }
+
+        }
+    }
+    
+    
     protected class LayerManager{
         
         public Array<NullSection> layerSections = new Array<NullSection>();
-        public Array<Entity> layerEntities = new Array<Entity>();
+        public ArrayList<Entity> layerEntities = new ArrayList<Entity>();
+        private ArrayList<Entity> layerEntToRemove = new ArrayList<Entity>();
+        //public Array<ImageSprite> layerSprites = new Array<ImageSprite>();
+        //private Array<ImageSprite> layerSpriteToRemove = new Array<ImageSprite>();
         public int depth = 0;
         private final float BASE_ZOOM = 1.0f;
-        public float MAX_ZOOM;
+        private final float BEGIN_ZOOM_BASE = 10.f;
+        public float beginZoom;
+        public float maxZoom;
         public float zoom = 1.0f;
+        private float beginZoomRate = (9 * MainGame.STEP) / (2000 / 1000);
+        private float pitZoomRate = 0.0115f;
+        private double scaleFactor = 2.0;   //needed for adjusting zoom of pits during falls. see adJustZoom(int)
         
         public LayerManager(int depth){
             this.depth = depth;
             
-            zoom = BASE_ZOOM * (depth+1);
-            MAX_ZOOM = zoom;
+            zoom = BASE_ZOOM * (float)Math.pow(scaleFactor, (double)depth);
+            maxZoom = zoom;
+            beginZoom = BEGIN_ZOOM_BASE * (depth+1);
+            beginZoomRate *= (depth+1);
+            pitZoomRate *= (depth+1);
         }
         
         public void init(){
             for(NullSection s: layerSections){
                 s.init();
             }
-            
-            //todo: add entities.init()???
         }
         
         
         public boolean isComplete(){
-            return layerEntities.size == 0;
+            return layerEntities.isEmpty();
         }
         
         public void render(SpriteBatch sb){
             //render entities and sections here
             
-            for(NullSection s : layerSections){
+            for (NullSection s : layerSections) {
                 s.render(sb);
             }
+
+            
+            /*
+            for (ImageSprite e : layerSprites) {
+                e.step();
+                e.sprite.draw(sb);
+            }*/
+
+            Collections.sort(layerEntities, new Entity.EntityComp());
+
+            for (Entity e : layerEntities) {
+                if (e.equals(GameScreen.player) 
+                        && sm.getState() == StateManager.State.FALLING) {
+                    continue;
+                }
+                e.render(sb);
+            }
+            
+            //check for entity or sprite removal
+            removeUpdate();
+
+
+        }
+        
+        private void removeUpdate(){
+            for(Entity e : layerEntities){
+                if(!entities.contains(e) && !entToAdd.contains(e, false)){
+                    layerEntToRemove.add(e);
+                }
+            }
+            
+            for(Entity e : layerEntToRemove){
+                layerEntities.remove(e);
+            }
+            layerEntToRemove.clear();
+            
+            /*
+            for(ImageSprite e : layerSprites){
+                if(!sprites.contains(e, false) && !spriteToAdd.contains(e, false)){
+                    layerSpriteToRemove.add(e);
+                }
+            }
+            for(ImageSprite e : layerSpriteToRemove){
+                layerSprites.removeValue(e, false);
+            }
+            layerSpriteToRemove.clear();
+            */
+        }
+        
+        public void setBeginZoom(){
+            zoom = beginZoom;
+        }
+        
+        public void updateBeginZoom(){
+            zoom = zoom <= maxZoom ? maxZoom : zoom - beginZoomRate;
+        }
+        
+        public void updatePitZoom(boolean fallDown){
+            if(fallDown){
+                zoom = zoom <= maxZoom ? maxZoom : zoom - pitZoomRate;
+            }else{
+                zoom = zoom >= maxZoom ? maxZoom : zoom + pitZoomRate;
+            }
+            
         }
         
         public void adjustZoom(int direction){
             if(direction < 0){
-                MAX_ZOOM /= 2;
+                maxZoom /= scaleFactor;
             }else if(direction > 0){
-                MAX_ZOOM *= 2;
+                maxZoom *= scaleFactor;
             }
         }
+        
+        
     }
+    
+    
+    //**************************************
+        
+        //  ENEMIES
+        
+    public void spawnEnemyGroup(NullSection sec){
+        //TODO: temp difficulty until enemy rewrite
+        Array<Entity> ent = EnemyManager.getGroup(0, sec);
+        for(Entity e : ent){
+            this.toAddEntity(e);
+            
+            //todo: get rid of this enemy count
+            //use some sort of check in layer managers
+            this.addEnemyCount();
+        }
+    }
+    
+    
+    //TODO: transfer this to Environment class, not needed here
+    public void spawnEnemy(){
+        currentEnemies++;
+    }
+    
+    //todo: remove, check layerManager.complete
+    @Override
+    public void addKillCount(){
+        super.addKillCount();
+        
+        if(killCount >= enemyCount){
+            spawnEndWarp();
+        }
+    }
+    
+    
+    public void spawnEndWarp(){
+        
+        Vector2 secPos = layerManagers.get(0).layerSections.get(0).getPos();
+        
+        //loop through current layer
+        for (LayerManager lm : layerManagers) {
+            for (NullSection ns : lm.layerSections) {
+                //if player in section, spawn null warp here
+                PlayerEntity ply = GameScreen.player;
+                if (ply.getPos().x > ns.getPos().x
+                        && ply.getPos().x  <= ns.getPos().x + ns.getWidth()
+                        && ply.getPos().y  > ns.getPos().y
+                        && ply.getPos().y  <= ns.getPos().y + ns.getHeight()) {
+
+                    secPos = ns.getPos();
+                }
+            }
+        }
+        
+        endNullArm = new En_EndNullArm(new Vector2(
+                secPos.x + 400*RATIO, 
+                secPos.y + 400*RATIO),
+                linkid);
+        
+        spawnEntity(endNullArm);
+        
+        //sound
+        bgm1.stop();
+        bgm1 = bgm_end;
+        bgm1.play();
+    }
+    
+    
+    
+    
+    
     
 }
 

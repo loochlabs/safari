@@ -60,6 +60,32 @@ public class ResourceManager {
         this.loadAtlas("entities/player/poe/poe-attack3.atlas", "poe-attack3",1);
         this.loadAtlas("entities/player/poe/poe-attack4.atlas", "poe-attack4",1);
         
+        
+        //woogie
+        this.loadAtlas("entities/player/woogie/woogie-back.atlas", "woogie-back", 40);
+        this.loadAtlas("entities/player/woogie/woogie-buff.atlas", "woogie-buff", 20);
+        this.loadAtlas("entities/player/woogie/woogie-dive.atlas", "woogie-dive", 32);
+        this.loadAtlas("entities/player/woogie/woogie-front.atlas", "woogie-front", 40);
+        this.loadAtlas("entities/player/woogie/woogie-heavy.atlas", "woogie-heavy", 10);
+        this.loadAtlas("entities/player/woogie/woogie-idle.atlas", "woogie-idle", 1);
+        this.loadAtlas("entities/player/woogie/woogie-light.atlas", "woogie-light", 10);
+        this.loadAtlas("entities/player/woogie/woogie-recov.atlas", "woogie-recov", 1);
+        this.loadAtlas("entities/player/woogie/woogie-side.atlas", "woogie-side", 40);
+        this.loadAtlas("entities/player/woogie/woogie-warp.atlas", "woogie-warp", 14);
+        
+        //lumen
+        this.loadAtlas("entities/player/lumen/lumen-back.atlas", "lumen-back", 48);
+        this.loadAtlas("entities/player/lumen/lumen-buff.atlas", "lumen-buff", 18);
+        this.loadAtlas("entities/player/lumen/lumen-dive.atlas", "lumen-dive", 32);
+        this.loadAtlas("entities/player/lumen/lumen-front.atlas", "lumen-front", 48);
+        this.loadAtlas("entities/player/lumen/lumen-heavy.atlas", "lumen-heavy", 10);
+        this.loadAtlas("entities/player/lumen/lumen-idle.atlas", "lumen-idle", 1);
+        this.loadAtlas("entities/player/lumen/lumen-light.atlas", "lumen-light", 10);
+        this.loadAtlas("entities/player/lumen/lumen-recov.atlas", "lumen-recov", 1);
+        this.loadAtlas("entities/player/lumen/lumen-side.atlas", "lumen-side", 36);
+        this.loadAtlas("entities/player/lumen/lumen-warp.atlas", "lumen-warp", 19);
+        
+        
         //perm sprites
         this.loadAtlas("combat/perm-sprites/perm1.atlas", "perm1", 10);
         this.loadAtlas("combat/perm-sprites/perm2.atlas", "perm2", 10);
@@ -77,10 +103,11 @@ public class ResourceManager {
         this.loadAtlas("combat/skill-attacks/light-att-yellow.atlas", "light-att-yellow", 28);
         this.loadAtlas("combat/skill-attacks/heavy-att-yellow.atlas", "heavy-att-yellow", 27);
         
-        //end null
+        //EnvNull
         this.loadAtlas("entities/enemies/EndNull/null_end_spawn.atlas", "null_end_spawn",21);
         this.loadAtlas("entities/enemies/EndNull/null_end_idle.atlas", "null_end_idle",23);
         this.loadAtlas("entities/enemies/EndNull/null_end_death.atlas", "null_end_death",28);
+        this.loadAtlas("environments/NullEnv/sectionPad.atlas", "sectionPad",15);
         
         //enemies
         this.loadAtlas("entities/enemies/cyst-idle.atlas", "cyst-idle",20);
@@ -200,6 +227,9 @@ public class ResourceManager {
         asm.load(MURPHY_IDLE, Texture.class);
         asm.load(MURPHY_ALERT, Texture.class);
         
+        //env-start
+        asm.load(START_BG, Texture.class);
+        
         //null
         asm.load(NULL_BG1, Texture.class);
         asm.load(NULL_PH, Texture.class);
@@ -207,6 +237,61 @@ public class ResourceManager {
         asm.load(NULL_WALL1, Texture.class);
         asm.load(WALL_START, Texture.class);
         
+        //blue sections
+        asm.load(SECTION_B_0000, Texture.class);
+        asm.load(SECTION_B_0001, Texture.class);
+        asm.load(SECTION_B_0010, Texture.class);
+        asm.load(SECTION_B_0011, Texture.class);
+        asm.load(SECTION_B_0012, Texture.class);
+        
+        asm.load(SECTION_B_0021, Texture.class);
+        asm.load(SECTION_B_0100, Texture.class);
+        asm.load(SECTION_B_0101, Texture.class);
+        asm.load(SECTION_B_0102, Texture.class);
+        asm.load(SECTION_B_0110, Texture.class);
+        
+        asm.load(SECTION_B_0111, Texture.class);
+        asm.load(SECTION_B_0112, Texture.class);
+        asm.load(SECTION_B_0120, Texture.class);
+        asm.load(SECTION_B_0121, Texture.class);
+        asm.load(SECTION_B_0201, Texture.class);
+        
+        asm.load(SECTION_B_0210, Texture.class);
+        asm.load(SECTION_B_0211, Texture.class);
+        asm.load(SECTION_B_1000, Texture.class);
+        asm.load(SECTION_B_1001, Texture.class);
+        asm.load(SECTION_B_1002, Texture.class);
+        
+        asm.load(SECTION_B_1010, Texture.class);
+        asm.load(SECTION_B_1011, Texture.class);
+        asm.load(SECTION_B_1012, Texture.class);
+        asm.load(SECTION_B_1020, Texture.class);
+        asm.load(SECTION_B_1021, Texture.class);
+        
+        asm.load(SECTION_B_1100, Texture.class);
+        asm.load(SECTION_B_1101, Texture.class);
+        asm.load(SECTION_B_1102, Texture.class);
+        asm.load(SECTION_B_1110, Texture.class);
+        asm.load(SECTION_B_1111, Texture.class);
+
+        asm.load(SECTION_B_1112, Texture.class);
+        asm.load(SECTION_B_1120, Texture.class);
+        asm.load(SECTION_B_1121, Texture.class);
+        asm.load(SECTION_B_1200, Texture.class);
+        asm.load(SECTION_B_1201, Texture.class);
+
+        asm.load(SECTION_B_1210, Texture.class);
+        asm.load(SECTION_B_1211, Texture.class);
+        asm.load(SECTION_B_2010, Texture.class);
+        asm.load(SECTION_B_2001, Texture.class);
+        asm.load(SECTION_B_2011, Texture.class);
+
+        asm.load(SECTION_B_2100, Texture.class);
+        asm.load(SECTION_B_2101, Texture.class);
+        asm.load(SECTION_B_2110, Texture.class);
+        asm.load(SECTION_B_2111, Texture.class);
+        
+        //orange sections
         asm.load(NULL_SECTION_1000, Texture.class);
         asm.load(NULL_SECTION_0100, Texture.class);
         asm.load(NULL_SECTION_0010, Texture.class);
@@ -461,11 +546,6 @@ public class ResourceManager {
         
         //boss null
         this.loadAtlas("environments/boss-null/section1.atlas", "section1", 1);
-        this.loadAtlas("environments/boss-null/krakbak-intro.atlas", "krakbak-intro", 120);
-        this.loadAtlas("environments/boss-null/tent-idle.atlas", "tent-idle", 1);
-        this.loadAtlas("environments/boss-null/tent-attack.atlas", "tent-attack", 1);
-        this.loadAtlas("environments/boss-null/tent-right-attack.atlas", "tent-right-attack", 1);
-        this.loadAtlas("environments/boss-null/tent-right-idle.atlas", "tent-right-idle", 1);
         
         //sprites
         this.loadAtlas("entities/sprites/mitb-shadow.atlas", "mitb-shadow",1);
@@ -490,8 +570,8 @@ public class ResourceManager {
         
         
         
-        
-        
+ 
+    
         asm.load(NULL_SECTION_A_1000, Texture.class); 
         asm.load(NULL_SECTION_A_0100, Texture.class); 
         asm.load(NULL_SECTION_A_0010, Texture.class); 
@@ -657,9 +737,8 @@ public class ResourceManager {
     public static String NULLWALL_PH = "environments/NullEnv/northWallPH.png";
     public static String NULL_WALL1 = "environments/NullEnv/null-wall.png";
     public static String WALL_START = "environments/RoomEnv/wall-start.png";
-    //public static String NULL_1 = "environments/NullEnv/null-mega.png";
-    //public static String NULL_FG_1 = "environments/NullEnv/null-fg3.png";//todo: old
     
+    //orange sections
     public static String NULL_SECTION_1000 = "environments/NullEnv/sections/null-section-1000.png";
     public static String NULL_SECTION_0100 = "environments/NullEnv/sections/null-section-0100.png";
     public static String NULL_SECTION_0010 = "environments/NullEnv/sections/null-section-0010.png";
@@ -699,7 +778,7 @@ public class ResourceManager {
     public static String NULL_SECTION_1101 = "environments/NullEnv/sections/null-section-1101.png";
     public static String NULL_SECTION_1110 = "environments/NullEnv/sections/null-section-1110.png";
     
-    
+    //purple sections
     public static String NULL_SECTION_A_1000 = "environments/NullEnv/sections/A/section2-1000.png";
     public static String NULL_SECTION_A_0100 = "environments/NullEnv/sections/A/section2-0100.png";
     public static String NULL_SECTION_A_0010 = "environments/NullEnv/sections/A/section2-0010.png";
@@ -715,6 +794,52 @@ public class ResourceManager {
     public static String NULL_SECTION_A_1011 = "environments/NullEnv/sections/A/section2-1011.png";
     public static String NULL_SECTION_A_0111 = "environments/NullEnv/sections/A/section2-0111.png";
     public static String NULL_SECTION_A_1111 = "environments/NullEnv/sections/A/section2-1111.png";
+    
+    //blue sections
+    public static String SECTION_B_0000 = "environments/NullEnv/sections/b/section-0000.png";
+    public static String SECTION_B_0001 = "environments/NullEnv/sections/b/section-0001.png";
+    public static String SECTION_B_0010 = "environments/NullEnv/sections/b/section-0010.png";
+    public static String SECTION_B_0011 = "environments/NullEnv/sections/b/section-0011.png";
+    public static String SECTION_B_0012 = "environments/NullEnv/sections/b/section-0012.png";
+    public static String SECTION_B_0021 = "environments/NullEnv/sections/b/section-0021.png";
+    public static String SECTION_B_0100 = "environments/NullEnv/sections/b/section-0100.png";
+    public static String SECTION_B_0101 = "environments/NullEnv/sections/b/section-0101.png";
+    public static String SECTION_B_0102 = "environments/NullEnv/sections/b/section-0102.png";
+    public static String SECTION_B_0110 = "environments/NullEnv/sections/b/section-0110.png";
+    public static String SECTION_B_0111 = "environments/NullEnv/sections/b/section-0111.png";
+    public static String SECTION_B_0112 = "environments/NullEnv/sections/b/section-0112.png";
+    public static String SECTION_B_0120 = "environments/NullEnv/sections/b/section-0120.png";
+    public static String SECTION_B_0121 = "environments/NullEnv/sections/b/section-0121.png";
+    public static String SECTION_B_0201 = "environments/NullEnv/sections/b/section-0201.png";
+    public static String SECTION_B_0210 = "environments/NullEnv/sections/b/section-0210.png";
+    public static String SECTION_B_0211 = "environments/NullEnv/sections/b/section-0211.png";
+    public static String SECTION_B_1000 = "environments/NullEnv/sections/b/section-1000.png";
+    public static String SECTION_B_1001 = "environments/NullEnv/sections/b/section-1001.png";
+    public static String SECTION_B_1002 = "environments/NullEnv/sections/b/section-1002.png";
+    public static String SECTION_B_1010 = "environments/NullEnv/sections/b/section-1010.png";
+    public static String SECTION_B_1011 = "environments/NullEnv/sections/b/section-1011.png";
+    public static String SECTION_B_1012 = "environments/NullEnv/sections/b/section-1012.png";
+    public static String SECTION_B_1020 = "environments/NullEnv/sections/b/section-1020.png";
+    public static String SECTION_B_1021 = "environments/NullEnv/sections/b/section-1021.png";
+    public static String SECTION_B_1100 = "environments/NullEnv/sections/b/section-1100.png";
+    public static String SECTION_B_1101 = "environments/NullEnv/sections/b/section-1101.png";
+    public static String SECTION_B_1102 = "environments/NullEnv/sections/b/section-1102.png";
+    public static String SECTION_B_1110 = "environments/NullEnv/sections/b/section-1110.png";
+    public static String SECTION_B_1111 = "environments/NullEnv/sections/b/section-1111.png";
+    public static String SECTION_B_1112 = "environments/NullEnv/sections/b/section-1112.png";
+    public static String SECTION_B_1120 = "environments/NullEnv/sections/b/section-1120.png";
+    public static String SECTION_B_1121 = "environments/NullEnv/sections/b/section-1121.png";
+    public static String SECTION_B_1200 = "environments/NullEnv/sections/b/section-1200.png";
+    public static String SECTION_B_1201 = "environments/NullEnv/sections/b/section-1201.png";
+    public static String SECTION_B_1210 = "environments/NullEnv/sections/b/section-1210.png";
+    public static String SECTION_B_1211 = "environments/NullEnv/sections/b/section-1211.png";
+    public static String SECTION_B_2001 = "environments/NullEnv/sections/b/section-2001.png";
+    public static String SECTION_B_2010 = "environments/NullEnv/sections/b/section-2010.png";
+    public static String SECTION_B_2011 = "environments/NullEnv/sections/b/section-2011.png";
+    public static String SECTION_B_2100 = "environments/NullEnv/sections/b/section-2100.png";
+    public static String SECTION_B_2101 = "environments/NullEnv/sections/b/section-2101.png";
+    public static String SECTION_B_2110 = "environments/NullEnv/sections/b/section-2110.png";
+    public static String SECTION_B_2111 = "environments/NullEnv/sections/b/section-2111.png";
     
     //boss nulls
     public static String KRAKEN_FG = "environments/boss-nulls/kraken-bg1.png";
@@ -771,6 +896,9 @@ public class ResourceManager {
     
     public static String ENDPAD_COMPLETE = "environments/EnvSub/endPad-complete1.png";
     
+    
+    //env-start 
+    public static String START_BG = "environments/env-start/start-bg.png";
     
     //rooms
     public static String ROOM_BG1 = "environments/RoomEnv/room-bg3.png";
@@ -832,16 +960,12 @@ public class ResourceManager {
     public static String STAT_ITEM_SPEED = "entities/pickups/items/orb-speed1.png";
     
     //GUI
-    //public static String HUD_PH = "gui/hud-ph.png";
-    //public static String HUD1_BG = "gui/hud1/hud-bg.png";
     public static String HUD1_HP_BG = "gui/hud1/hud-hp-bg.png";
     public static String HUD1_HP_FG = "gui/hud1/hud-hp-fg.png";
     public static String HUD1_EXP_FG = "gui/hud1/hud-exp-fg.png";
-    //public static String GUI_SKILL_HUD = "gui/hud1/skill-hud4.png";
     public static String OVERLAY_GRID = "gui/hud1/overlay-grid.png"; 
     public static String ICON_HP = "gui/hud1/hp-icon2.png"; 
     public static String ICON_ENERGY = "gui/hud1/energy-icon.png"; 
-    //public static String GUI_ICON_NEW= "gui/icon-new1.png";
     //pad icons
     public static String GUI_PAD_A = "gui/padIcon-A2.png";
     public static String GUI_PAD_B = "gui/padIcon-B2.png";
@@ -889,25 +1013,6 @@ public class ResourceManager {
     public static String SKILL_TAINTEDTORTURE = "gui/skills/2/skill-TaintedTouch.png";
     public static String SKILL_CRACKOFLIGHTNING = "gui/skills/2/skill-CrackOfLightning.png";
     public static String SKILL_CRACKOFTHUNDER = "gui/skills/2/skill-CrackOfThunder.png"; 
-    
-    /*
-    public static String SKILL_PH = "gui/skills/1/skill-ph1.png";//TODO: REMOVE
-    public static String SKILL_RED = "gui/skills/1/skill-red.png";
-    public static String SKILL_NONE = "gui/skills/1/skill-none1.png";
-    public static String SKILL_POELIGHT = "gui/skills/1/skill-poelight.png";
-    public static String SKILL_POWERPLEASE = "gui/skills/1/skill-PowerPlease.png";
-    public static String SKILL_NRG = "gui/skills/1/skill-nrg.png";
-    public static String SKILL_HAYMAKER = "gui/skills/1/skill-haymaker.png";
-    public static String SKILL_DASHBOLT = "gui/skills/1/skill-dashbolt.png";
-    public static String SKILL_ONETWO = "gui/skills/1/skill-OneTwo.png";
-    public static String SKILL_CANTTOUCH = "gui/skills/1/skill-CantTouchThis.png";
-    public static String SKILL_HAUNTHASTE = "gui/skills/1/skill-HauntHaste.png";
-    public static String SKILL_MUCHHASTE = "gui/skills/1/skill-MuchHaste.png";
-    public static String SKILL_WARPIT = "gui/skills/1/skill-WarpIt.png";
-    
-    //SKILL ITEMS
-    public static String ITEM_POELIGHT = "gui/skills/1/skill-poelight-item.png";
-    */
     
     //***********************
     //      SOUND
@@ -980,485 +1085,4 @@ public class ResourceManager {
     
 }
 
-
-/*
-    public void load(){
-        
-        //PLAYER
-        //poe
-        
-        
-        this.loadAtlas("entities/player/poe/poe-dive.atlas", "poe-dive", 36);
-        this.loadAtlas("entities/player/poe/poe-attack.atlas", "poe-attack", 12);
-        this.loadAtlas("entities/player/poe/poe-attack-heavy.atlas", "poe-attack-heavy", 27);
-        this.loadAtlas("entities/player/poe/poe-attack-light.atlas", "poe-attack-light", 27);
-        this.loadAtlas("entities/player/poe/poe-body-light-att.atlas", "poe-body-light-att", 10);
-        this.loadAtlas("entities/player/poe/poe-body-heavy-att.atlas", "poe-body-heavy-att", 21);
-        this.loadAtlas("entities/player/poe/poe-warp.atlas", "poe-warp", 19);
-        this.loadAtlas("entities/player/poe/poe-recov.atlas", "poe-recov", 1);
-        this.loadAtlas("entities/player/poe/poe-buff.atlas", "poe-buff", 6);
-        this.loadAtlas("entities/player/poe/poe-front.atlas", "poe-front", 40);
-        this.loadAtlas("entities/player/poe/poe-back.atlas", "poe-back", 36);
-        this.loadAtlas("entities/player/poe/poe-side.atlas", "poe-side", 40);
-        this.loadAtlas("entities/player/poe/poe-idle.atlas", "poe-idle", 1);
-        this.loadAtlas("entities/player/poe/poeSpectral.atlas", "poeSpectral", 207);
-        this.loadAtlas("entities/player/poe/poe-death.atlas", "poe-death", 324);
-        
-        
-        this.loadAtlas("entities/player/poe/poe-attack3.atlas", "poe-attack3",1);
-        this.loadAtlas("entities/player/poe/poe-attack4.atlas", "poe-attack4",1);
-        
-        //petal
-        
-        //this.loadAtlas("entities/player/petal/petal-walk-front.atlas", "petal-walk-front", 32);
-        //this.loadAtlas("entities/player/petal/petal-dive.atlas", "petal-dive", 1);
-        //this.loadAtlas("entities/player/petal/petal-idle.atlas", "petal-idle", 1);
-        
-        
-        //perm sprites
-        
-        this.loadAtlas("combat/perm-sprites/perm1.atlas", "perm1", 10);
-        this.loadAtlas("combat/perm-sprites/perm2.atlas", "perm2", 10);
-        this.loadAtlas("combat/perm-sprites/perm-warpit.atlas", "perm-warpit", 1);
-        
-        
-        //skills
-        
-        this.loadAtlas("combat/player-att/impact1.atlas", "impact1",1);
-        this.loadAtlas("combat/player-att/impact2.atlas", "impact2",1);
-        
-        
-        //end null
-        
-        this.loadAtlas("entities/enemies/EndNull/null_end_spawn.atlas", "null_end_spawn",21);
-        this.loadAtlas("entities/enemies/EndNull/null_end_idle.atlas", "null_end_idle",23);
-        this.loadAtlas("entities/enemies/EndNull/null_end_death.atlas", "null_end_death",28);
-        
-        
-        //enemies
-        this.loadAtlas("entities/en-death2.atlas", "en-death2", 27);
-        this.loadAtlas("entities/enemies/krak-baby.atlas", "krak-baby",42);
-        this.loadAtlas("entities/enemies/murgle-front.atlas", "murgle-front",35);
-        this.loadAtlas("entities/enemies/cyst-idle.atlas", "cyst-idle",20);
-        this.loadAtlas("entities/enemies/knowit-move.atlas", "knowit-move",40);
-        this.loadAtlas("entities/enemies/knowit-prep.atlas", "knowit-prep",20);
-        
-        
-        this.loadAtlas("entities/enemies/cyst-idle.atlas", "cyst-idle",20);
-        this.loadAtlas("entities/enemies/peeker-idle.atlas", "peeker-idle",1);
-        this.loadAtlas("entities/enemies/peeker-prep.atlas", "peeker-prep",22);
-        this.loadAtlas("entities/enemies/sloober-prep.atlas", "sloober-prep",18);
-        this.loadAtlas("entities/enemies/sloober-move.atlas", "sloober-move",28);
-        this.loadAtlas("entities/enemies/sloober-att.atlas", "sloober-att",1);
-        this.loadAtlas("entities/enemies/sloober-dmg.atlas", "sloober-dmg",1);
-        
-        //goober
-        this.loadAtlas("entities/enemies/goober/goober_move.atlas", "goober_move", 26);
-        this.loadAtlas("entities/enemies/goober/goober_prep.atlas", "goober_prep", 16);
-        this.loadAtlas("entities/enemies/goober/goober-prep2.atlas", "goober-prep2", 12);
-        this.loadAtlas("entities/enemies/goober/goober-attack2.atlas", "goober-attack2", 1);
-        this.loadAtlas("entities/enemies/goober/goober-dmg.atlas", "goober-dmg", 1);
-        
-        
-        //darkling
-        this.loadAtlas("entities/enemies/darkling/darkling-move.atlas", "darkling-move", 28);
-        this.loadAtlas("entities/enemies/darkling/darkling-prep.atlas", "darkling-prep", 18);
-        this.loadAtlas("entities/enemies/darkling/darkling-att.atlas", "darkling-att", 1);
-        
-        //worm
-        this.loadAtlas("entities/enemies/worm/worm-move.atlas", "worm-move", 30);
-        this.loadAtlas("entities/enemies/worm/worm-prep.atlas", "worm-prep", 10);
-        this.loadAtlas("entities/enemies/worm/worm-att.atlas", "worm-att", 1);
-        
-        //spray
-        
-        this.loadAtlas("combat/spray/spray1.atlas", "spray1",9);
-        
-        
-        //environments
-        //null
-        
-        this.loadAtlas("environments/NullEnv/impact/player-impact.atlas", "player-impact",14);
-        this.loadAtlas("entities/sprites/kill-text.atlas", "kill-text",94);
-        this.loadAtlas("environments/NullEnv/null-bg-rocks.atlas", "null-bg-rocks",1);
-        
-        //spectral
-        this.loadAtlas("environments/envSpectral/run-text.atlas", "run-text",77);
-        this.loadAtlas("environments/envSpectral/spec-dm.atlas", "spec-dm",1);
-        this.loadAtlas("environments/envSpectral/dm_sprite2.atlas", "dm_sprite2",24);
-        this.loadAtlas("environments/envSpectral/endSpectralSprite.atlas", "endSpectralSprite",119);
-        
-        //room
-        
-        this.loadAtlas("environments/RoomEnv/wall1/wall1_open.atlas", "wall1_open",214);
-        this.loadAtlas("environments/RoomEnv/wall1/wall1_closed.atlas", "wall1_closed",1);
-        this.loadAtlas("environments/RoomEnv/binary/hintSprite.atlas", "hintSprite",30);
-        this.loadAtlas("environments/RoomEnv/binary/binWall-closed.atlas", "binWall-closed",1);
-        this.loadAtlas("environments/RoomEnv/binary/binWall-open.atlas", "binWall-open",56);
-        this.loadAtlas("environments/RoomEnv/dmlock.atlas", "dmlock",1);
-        
-        //EnvSub
-        this.loadAtlas("environments/EnvSub/endPad-mist.atlas", "endPad-mist",1);
-        this.loadAtlas("environments/EnvSub/bg-sub-piece1.atlas", "bg-sub-piece1",1);
-        this.loadAtlas("environments/EnvSub/sub-center-piece1.atlas", "sub-center-piece1",1);
-        this.loadAtlas("environments/EnvSub/web.atlas", "web",28);
-        
-        //dogs
-        
-        this.loadAtlas("entities/dogs/stella-move.atlas", "stella-move",1);
-        this.loadAtlas("entities/dogs/red-alert.atlas", "red-alert",1);
-        this.loadAtlas("entities/dogs/murphy-move.atlas", "murphy-move",1);
-        this.loadAtlas("entities/dogs/murphy-alert.atlas", "murphy-alert",1);
-        this.loadAtlas("entities/dogs/stella-idle.atlas", "stella-idle", 30);
-        this.loadAtlas("entities/dogs/murphy-idle.atlas", "murphy-idle", 90);
-        this.loadAtlas("entities/dogs/stella-init.atlas", "stella-init", 9);
-        this.loadAtlas("entities/dogs/murphy-init.atlas", "murphy-init", 9);
-        
-        
-        //tear
-        
-        this.loadAtlas("entities/tears/tear-damaged.atlas", "tear-damaged");
-        this.loadAtlas("entities/tears/tear-open2.atlas", "tear-open2",39);
-        this.loadAtlas("entities/tears/damaged2.atlas", "damaged2",1);
-        
-        
-        //boss null
-        this.loadAtlas("environments/boss-null/section1.atlas", "section1", 1);
-        this.loadAtlas("environments/boss-null/krakbak-intro.atlas", "krakbak-intro", 120);
-        this.loadAtlas("environments/boss-null/tent-idle.atlas", "tent-idle", 1);
-        this.loadAtlas("environments/boss-null/tent-attack.atlas", "tent-attack", 1);
-        this.loadAtlas("environments/boss-null/tent-right-attack.atlas", "tent-right-attack", 1);
-        this.loadAtlas("environments/boss-null/tent-right-idle.atlas", "tent-right-idle", 1);
-        
-        //sprites
-        
-        this.loadAtlas("entities/sprites/decom.atlas", "decom",1);
-        
-        this.loadAtlas("entities/sprites/mitb-shadow.atlas", "mitb-shadow",1);
-        this.loadAtlas("entities/sprites/man-crouch.atlas", "man-crouch",1);
-        this.loadAtlas("entities/sprites/man-warp.atlas", "man-warp",12);
-        
-        //bg sprites
-        
-        this.loadAtlas("environments/EnvVoid/bg-sprites/bg-piece8.atlas", "bg-piece8",1);
-        
-        //gui
-        this.loadAtlas("gui/hud1/hud-skills/light-rot.atlas", "light-rot",15);
-        this.loadAtlas("gui/hud1/hud-skills/light-rotSlow.atlas", "light-rotSlow",30);
-        this.loadAtlas("gui/hud1/hud-skills/heavy-rot.atlas", "heavy-rot",15);
-        this.loadAtlas("gui/hud1/hud-skills/heavy-rotSlow.atlas", "heavy-rotSlow",30);
-        this.loadAtlas("gui/hud1/hud-skills/special-rot.atlas", "special-rot",15);
-        this.loadAtlas("gui/hud1/hud-skills/special-rotSlow.atlas", "special-rotSlow",30);
-        this.loadAtlas("gui/hud1/hud-skills/passive-rot.atlas", "passive-rot",15);
-        this.loadAtlas("gui/hud1/hud-skills/passive-rotSlow.atlas", "passive-rotSlow",30);
-        this.loadAtlas("gui/hud1/hud-skills/skill-empty.atlas", "skill-empty",1);
-        this.loadAtlas("gui/hud1/hud-dm-idle.atlas", "hud-dm-idle",20);
-        
-        
-        //**********************************
-        //ASSET MANAGER
-        AssetManager asm = MainGame.am;
-        
-        
-        //menus
-        asm.load(MENU_NEW_GAME, Texture.class);
-        asm.load(MENU_RESUME, Texture.class);
-        asm.load(MENU_OPTIONS, Texture.class);
-        asm.load(MENU_HIGHLIGHT, Texture.class);
-        asm.load(MENU_BG,  Texture.class);
-        asm.load(MENU_LOGO,  Texture.class);
-        
-        //poe
-        asm.load(POE_IDLE, Texture.class);
-        
-        //enemies
-        asm.load(ENEMY_PH, Texture.class);
-        asm.load(EN_REDMATTER, Texture.class);
-        asm.load(GOOBER_IDLE, Texture.class);
-        asm.load(GOOBER_ATTACK, Texture.class);
-        //asm.load(KRAK_EYE_OPEN, Texture.class);
-        //asm.load(KRAK_EYE_CLOSED, Texture.class);
-        //asm.load(POLLOP_CLOSED, Texture.class);
-        //asm.load(POLLOP_OPEN, Texture.class);
-        asm.load(MURGLE_MAIN, Texture.class);
-        asm.load(MURGIE_MAIN, Texture.class);
-        asm.load(PEEKER_MAIN, Texture.class);
-        
-        //projectiles
-        asm.load(PROJ_EN_1, Texture.class);
-        
-        //breakable objects
-        asm.load(CYST_BLUE, Texture.class);
-        asm.load(CYST_PURPLE, Texture.class);
-        asm.load(CYST_GREEN, Texture.class);
-        asm.load(CYST_BIG, Texture.class);
-        
-        //npcs
-        asm.load(NPC_SLUMGUY1, Texture.class);
-        asm.load(NPC_SLUMGUY2, Texture.class);
-        
-        asm.load(STELLA_PH, Texture.class);
-        asm.load(STELLA_ALERT, Texture.class);
-        asm.load(MURPHY_IDLE, Texture.class);
-        asm.load(MURPHY_ALERT, Texture.class);
-        
-        //null
-        asm.load(NULL_BG1, Texture.class);
-        asm.load(NULL_PH, Texture.class);
-        asm.load(NULLWALL_PH, Texture.class);
-        asm.load(NULL_WALL1, Texture.class);
-        
-        asm.load(NULL_SECTION_1000, Texture.class);
-        asm.load(NULL_SECTION_0100, Texture.class);
-        asm.load(NULL_SECTION_0010, Texture.class);
-        asm.load(NULL_SECTION_0001, Texture.class);
-        asm.load(NULL_SECTION_1200, Texture.class);
-        asm.load(NULL_SECTION_1020, Texture.class);
-        asm.load(NULL_SECTION_1002, Texture.class);
-        asm.load(NULL_SECTION_2100, Texture.class);
-        asm.load(NULL_SECTION_0120, Texture.class);
-        asm.load(NULL_SECTION_0102, Texture.class);
-        asm.load(NULL_SECTION_2010, Texture.class);
-        asm.load(NULL_SECTION_0210, Texture.class);
-        asm.load(NULL_SECTION_0012, Texture.class);
-        asm.load(NULL_SECTION_2001, Texture.class);
-        asm.load(NULL_SECTION_0201, Texture.class);
-        asm.load(NULL_SECTION_0021, Texture.class);
-        asm.load(NULL_SECTION_1100, Texture.class);
-        asm.load(NULL_SECTION_1010, Texture.class);
-        asm.load(NULL_SECTION_1001, Texture.class);
-        asm.load(NULL_SECTION_0110, Texture.class);
-        asm.load(NULL_SECTION_0101, Texture.class);
-        asm.load(NULL_SECTION_0011, Texture.class);
-        asm.load(NULL_SECTION_1120, Texture.class);
-        asm.load(NULL_SECTION_1102, Texture.class);
-        asm.load(NULL_SECTION_1210, Texture.class);
-        asm.load(NULL_SECTION_1012, Texture.class);
-        asm.load(NULL_SECTION_1201, Texture.class);
-        asm.load(NULL_SECTION_1021, Texture.class);
-        asm.load(NULL_SECTION_2110, Texture.class);
-        asm.load(NULL_SECTION_0112, Texture.class);
-        asm.load(NULL_SECTION_2101, Texture.class);
-        asm.load(NULL_SECTION_0121, Texture.class);
-        asm.load(NULL_SECTION_2011, Texture.class);
-        asm.load(NULL_SECTION_0211, Texture.class);
-        asm.load(NULL_SECTION_0111, Texture.class);
-        asm.load(NULL_SECTION_1011, Texture.class);
-        asm.load(NULL_SECTION_1101, Texture.class);
-        asm.load(NULL_SECTION_1110, Texture.class);
-        
-        asm.load(NULL_SECTION_A_1000, Texture.class); 
-        asm.load(NULL_SECTION_A_0100, Texture.class); 
-        asm.load(NULL_SECTION_A_0010, Texture.class); 
-        asm.load(NULL_SECTION_A_0001, Texture.class); 
-        asm.load(NULL_SECTION_A_1100, Texture.class); 
-        asm.load(NULL_SECTION_A_1010, Texture.class); 
-        asm.load(NULL_SECTION_A_1001, Texture.class); 
-        asm.load(NULL_SECTION_A_0101, Texture.class); 
-        asm.load(NULL_SECTION_A_0011, Texture.class); 
-        asm.load(NULL_SECTION_A_1110, Texture.class); 
-        asm.load(NULL_SECTION_A_1101, Texture.class); 
-        asm.load(NULL_SECTION_A_1011, Texture.class); 
-        asm.load(NULL_SECTION_A_0111, Texture.class); 
-        asm.load(NULL_SECTION_A_1111, Texture.class); 
-        asm.load(NULL_SECTION_A_0110, Texture.class);
-        
-        
-        asm.load(KRAKEN_FG, Texture.class);
-        
-        //spectral 
-        asm.load(SP_SECTION_PH, Texture.class);
-        asm.load(SP_SECTION_0001, Texture.class);
-        asm.load(SP_SECTION_0010, Texture.class);
-        asm.load(SP_SECTION_0011, Texture.class); 
-        asm.load(SP_SECTION_0100, Texture.class);
-        asm.load(SP_SECTION_0101, Texture.class);
-        asm.load(SP_SECTION_0110, Texture.class); 
-        asm.load(SP_SECTION_0111, Texture.class); 
-        asm.load(SP_SECTION_1000, Texture.class);
-        asm.load(SP_SECTION_1001, Texture.class); 
-        asm.load(SP_SECTION_1010, Texture.class); 
-        asm.load(SP_SECTION_1011, Texture.class);
-        asm.load(SP_SECTION_1100, Texture.class);
-        asm.load(SP_SECTION_1101, Texture.class); 
-        asm.load(SP_SECTION_1110, Texture.class);
-        
-        //void
-        asm.load(VOID_BG, Texture.class);
-        asm.load(VOID_BG_PH, Texture.class);
-        asm.load(VOID_BG_FILTER, Texture.class);
-        asm.load(VOID_MAP, Texture.class);
-        asm.load(MAP_MARKER1, Texture.class);
-        asm.load(MAP_MARKER_YELLOW, Texture.class);
-        asm.load(MAP_STARTER, Texture.class);
-        asm.load(MAP_END, Texture.class);
-        //EnvSub-end
-        asm.load(ENVSUB_END_BG, Texture.class);
-        asm.load(ENVSUB_END_FG, Texture.class);
-        asm.load(ENDPIECE_A_1, Texture.class);
-        asm.load(ENDPIECE_A_2, Texture.class);
-        asm.load(ENDPIECE_A_3, Texture.class);
-        asm.load(ENDPIECE_A_4, Texture.class);
-        asm.load(ENDSECTION_A_1, Texture.class);
-        asm.load(ENDSECTION_A_1_FILL, Texture.class);
-        asm.load(ENDSECTION_A_2, Texture.class);
-        asm.load(ENDSECTION_A_2_FILL, Texture.class);
-        asm.load(ENDSECTION_A_3, Texture.class);
-        asm.load(ENDSECTION_A_3_FILL, Texture.class);
-        asm.load(ENDSECTION_A_4, Texture.class);
-        asm.load(ENDSECTION_A_4_FILL, Texture.class);
-        asm.load(ENDPAD_COMPLETE, Texture.class);
-        
-        
-        //EnvRoom
-        asm.load(ROOM_BG1, Texture.class);
-        asm.load(ROOM_SIMPLE_BG1, Texture.class);
-        asm.load(ROOM_GLYPHWALL_1, Texture.class);
-        asm.load(ROOM_BIN_BG, Texture.class);
-        asm.load(ROOM_ARC, Texture.class);
-        asm.load(ROOM_BIN_WALL, Texture.class);
-        asm.load(ROOM_CODEPANEL0, Texture.class);
-        asm.load(ROOM_CODEPANEL1, Texture.class);
-        asm.load(ROOM_CODEPANEL_SWITCH, Texture.class);
-        asm.load(ROOM_CODESWITCH_0, Texture.class);
-        asm.load(ROOM_CODESWITCH_1, Texture.class);
-        asm.load(ROOM_CODEMON, Texture.class);
-        asm.load(ROOM_CODENUM_BLANK, Texture.class);
-        asm.load(ROOM_CODENUM_0, Texture.class);
-        asm.load(ROOM_CODENUM_1, Texture.class);
-        asm.load(ROOM_CODENUM_2, Texture.class);
-        asm.load(ROOM_CODENUM_3, Texture.class);
-        asm.load(ROOM_CODENUM_4, Texture.class);
-        asm.load(ROOM_CODENUM_5, Texture.class);
-        asm.load(ROOM_CODENUM_6, Texture.class);
-        asm.load(ROOM_CODENUM_7, Texture.class);
-        asm.load(ROOM_CODENUM_8, Texture.class);
-        asm.load(ROOM_CODENUM_9, Texture.class);
-        
-        //envSlum
-        asm.load(SLUM_SECTION_BG, Texture.class);
-        asm.load(SLUM_SECTION_WALL, Texture.class);
-        asm.load(SLUM_SECTION_WALL_2, Texture.class);
-        
-        asm.load(BOSS_ICON, Texture.class);
-        
-        
-        //items
-        
-        
-        asm.load(GLYPH_ONE, Texture.class);
-        asm.load(ITEM_DM1, Texture.class);
-        asm.load(ITEM_MATTER_RED, Texture.class);
-        asm.load(ITEM_MATTER_GREEN, Texture.class);
-        asm.load(ITEM_MATTER_WHITE, Texture.class);
-        asm.load(ITEM_MATTER_YELLOW, Texture.class);
-        asm.load(ITEM_PED, Texture.class);
-        asm.load(ITEM_LIFE, Texture.class);
-        
-        
-        //gui
-        asm.load(HUD1_HP_BG, Texture.class);
-        asm.load(HUD1_HP_FG, Texture.class);
-        asm.load(HUD1_EXP_FG, Texture.class);
-        asm.load(OVERLAY_GRID, Texture.class);
-        asm.load(ICON_HP, Texture.class);
-        asm.load(ICON_ENERGY, Texture.class);
-        //asm.load(GUI_ICON_NEW, Texture.class);
-        //pad icons
-        asm.load(GUI_PAD_A, Texture.class);
-        asm.load(GUI_PAD_B, Texture.class);
-        asm.load(GUI_PAD_X, Texture.class);
-        asm.load(GUI_PAD_Y, Texture.class);
-        asm.load(GUI_PAD_RB, Texture.class);
-        //pause menu
-        asm.load(PAUSE_BG, Texture.class);
-        asm.load(PAUSE_CURSOR, Texture.class);
-        asm.load(PAUSE_OPTIONS, Texture.class);
-        asm.load(PAUSE_SOUND, Texture.class);
-        //desc
-        asm.load(DESC_BG, Texture.class);
-        
-        //skills
-        asm.load(SKILL_PAD_LIGHT, Texture.class);
-        asm.load(SKILL_PAD_HEAVY, Texture.class);
-        asm.load(SKILL_PAD_SPECIAL, Texture.class);
-        asm.load(SKILL_PAD_PASSIVE, Texture.class);
-        
-        //asm.load(SKILL_PH, Texture.class);
-        asm.load(SKILL_RED, Texture.class);
-        asm.load(SKILL_BLANK, Texture.class);
-        asm.load(SKILL_GHOSTJAB, Texture.class);
-        asm.load(SKILL_POWERPLEASE, Texture.class);
-        asm.load(SKILL_NRG, Texture.class);
-        asm.load(SKILL_MOMMASTOUCH, Texture.class);
-        asm.load(SKILL_DASHBOLT, Texture.class);
-        asm.load(SKILL_ONETWO, Texture.class);
-        asm.load(SKILL_CANTTOUCH, Texture.class);
-        asm.load(SKILL_HAUNTHASTE, Texture.class);
-        asm.load(SKILL_MUCHHASTE, Texture.class);
-        asm.load(SKILL_WARPIT, Texture.class);
-        
-        //screens
-        //game over
-        asm.load(GO_TEXT, Texture.class);
-        
-        
-        //**************************
-        //  SOUND
-        //************************
-        
-        //void bgm
-        asm.load(BGM_VOID_1, Music.class);
-        
-        //null bgm
-        asm.load(BGM_NULL_1, Music.class);
-        asm.load(BGM_NULL_2, Music.class);
-        asm.load(BGM_NULL_3, Music.class);
-        
-        //spectral bgm
-        asm.load(BGM_SPECTRAL_1, Music.class);
-        
-        //room bgm
-        asm.load(BGM_ROOM_1, Music.class);
-        asm.load(BGM_ROOM_2, Music.class);
-        
-        //slums bgm
-        asm.load(BGM_SLUM_1, Music.class);
-        
-        //SFX
-        //player
-        asm.load(SFX_DASH, Sound.class);
-        //poe
-        asm.load(POE_YELL_1, Sound.class);
-        asm.load(POE_YELL_2, Sound.class);
-        asm.load(POE_YELL_3, Sound.class);
-        asm.load(SFX_POE_DMG, Sound.class);
-        
-        //enemies
-        asm.load(SFX_GOOBER_MOVE, Sound.class);
-        
-        //null
-        asm.load(SFX_NULL_END_IDLE, Sound.class);
-        asm.load(SFX_NULL_END_DEATH, Sound.class);
-        
-        //ui
-        asm.load(SFX_UI_MOVE, Sound.class);
-        asm.load(SFX_UI_EQUIP, Sound.class);
-        asm.load(SFX_INV_OPEN, Sound.class);
-        asm.load(SFX_INV_CLOSE, Sound.class);
-        
-        //pickups
-        asm.load(SFX_PICKUP, Sound.class);
-        asm.load(SFX_PICKUP_SKILL, Sound.class);
-        asm.load(SFX_PICKUP_USE, Sound.class);
-        
-        //impacts
-        asm.load(SFX_IMPACT_1, Sound.class);
-        asm.load(SFX_IMPACT_2, Sound.class);
-        asm.load(SFX_DEATH_1, Sound.class);
-        
-        //powerups
-        asm.load(SFX_POWER_1, Sound.class);
-    }
-    */
     

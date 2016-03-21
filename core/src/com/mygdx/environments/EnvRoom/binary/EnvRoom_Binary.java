@@ -39,7 +39,7 @@ public class EnvRoom_Binary extends EnvRoom{
         
         EnvVoid env = (EnvVoid)EnvironmentManager.get(linkid);
         Vector2 v = env.createSpawnLocation();
-        env.spawnSprite(new CodeHintSprite(binWall.getHintSprite(), v.x, v.y));
+        //env.spawnSprite(new CodeHintSprite(binWall.getHintSprite(), v.x, v.y));
     }
     
     @Override

@@ -10,7 +10,7 @@ import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.entities.Entity;
-import com.mygdx.entities.esprites.EntitySprite;
+import com.mygdx.entities.ImageSprite;
 import com.mygdx.environments.EnvVoid.EnvVoid;
 import com.mygdx.environments.EnvironmentManager;
 import com.mygdx.environments.tears.TearPortal;
@@ -41,7 +41,7 @@ public class StellaEntity_Initial extends StellaEntity{
     //Condition whether this stella has been activated yet
     //true at the beginning
     private boolean initialInactive = true;
-    private EntitySprite initTextSprite;
+    private ImageSprite initTextSprite;
     private FrameCounter initFC = new FrameCounter(3.5f);
     
     private final FixtureDef afd = new FixtureDef();
@@ -60,7 +60,7 @@ public class StellaEntity_Initial extends StellaEntity{
         afd.filter.maskBits = BIT_PLAYER ;
         afd.isSensor = true;
         
-        initTextSprite = new EntitySprite("stella-init", false, true, false, false);
+        initTextSprite = new ImageSprite("stella-init", false, true, false, false);
         initTextSprite.sprite.setScale(0.6f*RATIO);
         
         //sound
@@ -75,7 +75,7 @@ public class StellaEntity_Initial extends StellaEntity{
         userdata = action_data;
         body.createFixture(afd).setUserData(action_data);
         
-        esprite = idleSprite;
+        isprite = idleSprite;
         
             for (Entity e : EnvironmentManager.currentEnv.getEntities()) {
                 if (e.getUserData().toString().contains("tear_")) {
@@ -95,7 +95,7 @@ public class StellaEntity_Initial extends StellaEntity{
         initialInactive = false;
         userdata = tempUserData;
         initFC.start(fm);
-        esprite = initTextSprite;
+        isprite = initTextSprite;
         
         EnvVoid env = (EnvVoid)EnvironmentManager.currentEnv;
         env.getMap().setEnable(true);

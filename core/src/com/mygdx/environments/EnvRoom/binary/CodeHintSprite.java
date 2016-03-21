@@ -9,14 +9,14 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.entities.esprites.EntitySprite;
+import com.mygdx.entities.ImageSprite;
 import static com.mygdx.game.MainGame.RATIO;
 
 /**
  *
  * @author looch
  */
-public class CodeHintSprite extends EntitySprite{
+public class CodeHintSprite{/* extends ImageSprite{
 
     private final int CODE_VALUE;
     private BitmapFont font;
@@ -56,6 +56,6 @@ public class CodeHintSprite extends EntitySprite{
         float tempy = this.y + y;
         font.draw(sb, "" + CODE_VALUE + "", tempx + sprite.getWidth()/2, tempy);
     }
-    
+    */
     
 }

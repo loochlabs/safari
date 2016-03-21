@@ -6,7 +6,7 @@
 package com.mygdx.environments.EnvSpectral;
 
 import com.badlogic.gdx.math.Vector2;
-import com.mygdx.entities.StaticEntities.walls.NullWall;
+import com.mygdx.entities.StaticEntities.NullWall;
 import com.mygdx.environments.EnvSection;
 import com.mygdx.environments.Environment;
 import com.mygdx.game.MainGame;

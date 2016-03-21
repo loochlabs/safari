@@ -21,7 +21,7 @@ import com.mygdx.combat.skills.Skill;
 import com.mygdx.combat.skills.Skill.SkillType;
 import com.mygdx.entities.DynamicEntities.SteerableEntity;
 import com.mygdx.entities.Entity;
-import com.mygdx.entities.esprites.EntitySprite;
+import com.mygdx.entities.ImageSprite;
 import com.mygdx.entities.esprites.MirrorSprite;
 import com.mygdx.environments.EnvironmentManager;
 import com.mygdx.game.MainGame;
@@ -52,10 +52,10 @@ public class PlayerEntity extends SteerableEntity{
     
     //graphics
     
-    protected EntitySprite frontSprite,backSprite, rightSprite, leftSprite;
-    protected EntitySprite idleSprite, diveSprite, warpSprite, recovSprite;
-    protected EntitySprite attackSprite, attackHeavySprite, playerBuffSprite;//player body animations
-    protected EntitySprite beginSpectralSprite, deathSprite;
+    protected ImageSprite frontSprite,backSprite, rightSprite, leftSprite;
+    protected ImageSprite idleSprite, diveSprite, warpSprite, recovSprite;
+    protected ImageSprite attackSprite, attackHeavySprite, playerBuffSprite;//player body animations
+    protected ImageSprite beginSpectralSprite, deathSprite;
     
     protected float spriteScale = 1.0f;
     protected boolean warping = false;
@@ -127,6 +127,7 @@ public class PlayerEntity extends SteerableEntity{
     //***********************************************
     //damage to player
     private FrameCounter dmgFC = new FrameCounter(0.25f);
+    //private boolean dead = false;
     
     //movement
     private boolean moveUp, moveDown,moveLeft,moveRight = false;
@@ -142,12 +143,13 @@ public class PlayerEntity extends SteerableEntity{
     private float DASHMOD = 1;
     private final Array<Sprite> dashSprites = new Array<Sprite>();
     private final Array<Float> dashAlphas = new Array<Float>();
-    private boolean isDashSkill = false;
+    private boolean isDashSkill = false; //todo: move to Skill(), not here
     
     //player state
     private final StateManager sm;
     
     //Combat
+    private FrameCounter_Attack attackFC;
     protected final Skill[] skillSet = {null,null,null,null};
     private Skill currentSkill; //SKILL_LIGHT, SKILL_HEAVY, SKILL_SPEC, SKILL_PASSIVE;
     private Skill previousSkill;
@@ -156,9 +158,9 @@ public class PlayerEntity extends SteerableEntity{
     private final ArrayList<Entity> attTargets = new ArrayList<Entity>();
     private NormAttackSensor normAttSensor;
     
-    private Array<EntitySprite> skillSprites = new Array<EntitySprite>();//collection of skillSprite, skillHeavySprite
-    private Array<EntitySprite> skillsToRemove = new Array<EntitySprite>();
-    private Array<EntitySprite> impactSprites = new Array<EntitySprite>();//todo: place in EntityEnemy, not here
+    private Array<ImageSprite> skillSprites = new Array<ImageSprite>();//collection of skillSprite, skillHeavySprite
+    private Array<ImageSprite> skillsToRemove = new Array<ImageSprite>();
+    private Array<ImageSprite> impactSprites = new Array<ImageSprite>();//todo: place in EntityEnemy, not here
     private Array<Float> impactAlphas = new Array<Float>();
     
     
@@ -183,11 +185,12 @@ public class PlayerEntity extends SteerableEntity{
     
     //***************
     
-    public EntitySprite getBeginSpectralSprite() { return beginSpectralSprite; }
-    public EntitySprite getDeathSprite() { return deathSprite; }
-    public EntitySprite getRecovSprite() { return recovSprite; }
-    public EntitySprite getDiveSprite() { return diveSprite; }
-    public EntitySprite getBuffSprite() { return playerBuffSprite; }
+    public boolean isDead() { return dead; }
+    public ImageSprite getBeginSpectralSprite() { return beginSpectralSprite; }
+    public ImageSprite getDeathSprite() { return deathSprite; }
+    public ImageSprite getRecovSprite() { return recovSprite; }
+    public ImageSprite getDiveSprite() { return diveSprite; }
+    public ImageSprite getBuffSprite() { return playerBuffSprite; }
     public ArrayList<Entity> getAttTargets() { return attTargets; }
     public Skill[] getSkillSet() { return skillSet; }
     public Skill getPreviousSkill() { return previousSkill; }
@@ -232,19 +235,10 @@ public class PlayerEntity extends SteerableEntity{
         
         //************************************
         
-        //animations
-        /*
-        skillSprite = new EntitySprite("poe-attack-light",false);
-        skillSprite.sprite.setScale(0.6f*RATIO);
-        skillHeavySprite = new EntitySprite("poe-attack-heavy",false);
-        skillHeavySprite.sprite.setScale(0.6f*RATIO);
-        */
-        playerBuffSprite = new MirrorSprite("poe-buff",false);
-        playerBuffSprite.sprite.setScale(0.5f * RATIO);
         
-        beginSpectralSprite = new EntitySprite("poeSpectral", false);
+        beginSpectralSprite = new ImageSprite("poeSpectral", false);
         beginSpectralSprite.sprite.setScale(1.06f*RATIO);
-        deathSprite = new EntitySprite("poe-death", false);
+        deathSprite = new ImageSprite("poe-death", false);
         
         
         //SOUND
@@ -295,11 +289,11 @@ public class PlayerEntity extends SteerableEntity{
     public void render(SpriteBatch sb){
         
         //attack sprite
-        for(EntitySprite e: skillsToRemove){
+        for(ImageSprite e: skillsToRemove){
             skillSprites.removeValue(e, false);
         }
         
-        for(EntitySprite e: skillSprites){
+        for(ImageSprite e: skillSprites){
             e.render(sb);
             
             if(e.isComplete()){
@@ -309,36 +303,36 @@ public class PlayerEntity extends SteerableEntity{
         
         //dive sprite
         if(EnvironmentManager.currentEnv.getStateManager().getState() == State.FALLING){
-            esprite = diveSprite;
+            isprite = diveSprite;
         }
         
         
-        if(esprite != null && !warping){
+        if(isprite != null && !warping){
             
             //damage animation
             if(dmgFC.running){
-                esprite = recovSprite;
-                esprite.sprite.setAlpha(0.65f);
+                isprite = recovSprite;
+                isprite.sprite.setAlpha(0.65f);
             }else{
-                esprite.sprite.setAlpha(1.0f);
+                isprite.sprite.setAlpha(1.0f);
             }
             
-            if(esprite.getXFlip()){
-                esprite.sprite.setPosition(
-                    (body.getPosition().x * PPM + (esprite.sprite.getWidth()*0.15f)),
-                    (body.getPosition().y * PPM - (esprite.sprite.getHeight()/2)));
-            }else{
-                esprite.sprite.setPosition(
-                        (body.getPosition().x * PPM - (esprite.sprite.getWidth() / 2) ),
-                        (body.getPosition().y * PPM - (esprite.sprite.getHeight() / 2)));
+            if (isprite.getXFlip()) {
+                isprite.sprite.setPosition(
+                        (pos.x + (isprite.sprite.getWidth() * 0.15f)),
+                        (pos.y - (isprite.sprite.getHeight() / 2)));
+            } else {
+                isprite.sprite.setPosition(
+                        (pos.x - (isprite.sprite.getWidth() / 2)),
+                        (pos.y - (isprite.sprite.getHeight() / 2)));
             }
             
-            esprite.render(sb);
+            isprite.render(sb);
             
             //*******************
             //dash effect
             if(dashFC.running){
-                dashSprites.add(new Sprite(esprite.sprite));
+                dashSprites.add(new Sprite(isprite.sprite));
                 dashAlphas.add(1.0f);
             }else if(dashFC.complete && dashSprites.size > 0){
                 boolean clearAlphas = true;
@@ -356,8 +350,8 @@ public class PlayerEntity extends SteerableEntity{
             //*******************
             }
             
-        }else if(esprite != null && warping){
-            esprite.render(sb);
+        }else if(isprite != null && warping){
+            isprite.render(sb);
         
         }else
             super.render(sb);
@@ -377,8 +371,8 @@ public class PlayerEntity extends SteerableEntity{
                 impactAlphas.clear();
             }
             
-            if(esprite != null)
-                esprite.sprite.setAlpha(1.0f);//TODO clean up
+            if(isprite != null)
+                isprite.sprite.setAlpha(1.0f);//TODO clean up
         }
         
         
@@ -433,13 +427,13 @@ public class PlayerEntity extends SteerableEntity{
             if (!GameInputProcessor.controller) {
                 font.draw(sb,
                         Keys.toString(GameInputProcessor.KEY_ACTION_4),
-                        body.getPosition().x * PPM - width,
-                        body.getPosition().y * PPM + height * 2.5f + font.getCapHeight());
+                        pos.x - width,
+                        pos.y + height * 2.5f + font.getCapHeight());
             } else {
                 sb.draw(
                         actionTexture,
-                        body.getPosition().x * PPM - width,
-                        body.getPosition().y * PPM + height * 2.5f,
+                        pos.x - width,
+                        pos.y + height * 2.5f,
                         50f * RATIO, 50f * RATIO);
             }
         }
@@ -452,8 +446,6 @@ public class PlayerEntity extends SteerableEntity{
         //todo: have this check in env.update(), not here
         if(EnvironmentManager.currentEnv.getStateManager().getState() == State.PLAYING){
         
-            //update frames
-            fm.update();
             
             moveUpdate();
             
@@ -518,7 +510,7 @@ public class PlayerEntity extends SteerableEntity{
     }
     
     public void revive(){
-        alive = true;
+        //alive = true;
         dead = false;
         life = CURRENT_LIFE*0.5f;
     }
@@ -556,20 +548,20 @@ public class PlayerEntity extends SteerableEntity{
 
             if (!(moveUp || moveDown || moveRight || moveLeft)
                     || ( (moveUp && moveDown) || (moveLeft && moveRight) )) {
-                esprite = idleSprite;
+                isprite = idleSprite;
             }
             
             if(moveDown && !moveUp){
-                esprite = frontSprite;
+                isprite = frontSprite;
             }
             if(moveUp && !moveDown){
-                esprite = backSprite;
+                isprite = backSprite;
             }
             if(moveRight && !moveLeft){
-                esprite = rightSprite;
+                isprite = rightSprite;
             }
             if(moveLeft && !moveRight){
-                esprite = leftSprite;
+                isprite = leftSprite;
             }
         }
     }
@@ -673,7 +665,7 @@ public class PlayerEntity extends SteerableEntity{
                 body.applyForce(currentDirection.cpy().scl(dashSpeed), body.getPosition(), true);
 
             } else {
-                esprite = recovSprite;
+                isprite = recovSprite;
             }
         }
         
@@ -691,7 +683,8 @@ public class PlayerEntity extends SteerableEntity{
             System.out.println("@PlayerEntity " + this.toString() + " damaged - hp: " + life);
 
             if (life <= 0) {
-                alive = false;
+                //alive = false;
+                dead = true;
             }
 
             EnvironmentManager.currentEnv.addDamageText(
@@ -702,8 +695,8 @@ public class PlayerEntity extends SteerableEntity{
                             "red");
             
             
-            esprite = recovSprite;
-            esprite.reset();
+            isprite = recovSprite;
+            isprite.reset();
             
             dmgFC.start(fm);
             
@@ -730,13 +723,13 @@ public class PlayerEntity extends SteerableEntity{
             
             switch(currentSkill.getType()){
                 case HEAVY:
-                    esprite = attackHeavySprite;
+                    isprite = attackHeavySprite;
                     break;
                 case SPECIAL:
-                    esprite = playerBuffSprite;
+                    isprite = playerBuffSprite;
                     break;
                 default:
-                    esprite = attackSprite;
+                    isprite = attackSprite;
                     break;  
             }
             
@@ -787,11 +780,12 @@ public class PlayerEntity extends SteerableEntity{
         
         
         if(currentSkill.getSkillSprite() != null){
-            EntitySprite ss = currentSkill.getSkillSprite();
-            skillSprites.add(new EntitySprite(ss,
+            ImageSprite ss = currentSkill.getSkillSprite();
+            skillSprites.add(new ImageSprite(ss,
                     body.getPosition().x * PPM - ss.sprite.getWidth() / 2, 
-                    body.getPosition().y * PPM - ss.sprite.getHeight() / 2));
-            skillSprites.peek().sprite.setScale(0.75f);
+                    body.getPosition().y * PPM - ss.sprite.getHeight() / 2,
+                    0.75f));
+            //skillSprites.peek().sprite.setScale(0.75f);
         }
         /*
         if (currentSkill.getType() == SkillType.HEAVY) {
@@ -991,12 +985,12 @@ public class PlayerEntity extends SteerableEntity{
     }
     
     //todo: needed or handled in individual skill??
-    public void addImpactSprite(float x, float y, EntitySprite isprite){
+    public void addImpactSprite(float x, float y, ImageSprite isprite){
         isprite.sprite.setPosition(x, y);
         impactSprites.add(isprite);
         
         impactAlphas.add(1.0f);
-        for(EntitySprite impsp: impactSprites){
+        for(ImageSprite impsp: impactSprites){
             impsp.sprite.setScale(spriteScale * 1.4f);
         }
     }
@@ -1010,7 +1004,7 @@ public class PlayerEntity extends SteerableEntity{
         warpSprite.sprite.setPosition(
                 pos.x*PPM - warpSprite.sprite.getWidth()/2, 
                 pos.y*PPM - warpSprite.sprite.getHeight()/2);
-        esprite = warpSprite;
+        isprite = warpSprite;
         
     }
     
@@ -1060,7 +1054,7 @@ public class PlayerEntity extends SteerableEntity{
     }
     
     public void soulUp(){
-        addStatPoints(1,0,0,0,0);
+        addStatPoints(1,1,1,1,1);
     }
     
     //Adds to stat counter
@@ -1074,7 +1068,7 @@ public class PlayerEntity extends SteerableEntity{
         updateCurrentStatValues(life, energy, dmg, speed, special);
     }
     
-    public void updateStats(){
+    public void refreshStats(){
         CURRENT_LIFE =      BASE_LIFE +    LIFE_STAT_COUNT *   LIFE_STAT_VALUE;
         CURRENT_ENERGY =    BASE_ENERGY +  ENERGY_STAT_COUNT * ENERGY_STAT_VALUE;
         CURRENT_DAMAGE =    BASE_DAMAGE +  DAMAGE_STAT_COUNT * DAMAGE_STAT_VALUE;

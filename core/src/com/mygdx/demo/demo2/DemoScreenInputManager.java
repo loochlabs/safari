@@ -26,7 +26,7 @@ public class DemoScreenInputManager {
             //start game
             System.out.println("@DemoScreenInputManager any key pressed");
             GameKeyLibrary.clear();
-            ScreenManager.setScreen(new GameScreen(5));
+            ScreenManager.setScreen(new GameScreen(1));
         }
 
     }
