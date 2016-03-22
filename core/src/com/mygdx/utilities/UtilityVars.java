@@ -11,7 +11,7 @@ package com.mygdx.utilities;
  */
 public class UtilityVars {
     
-    public static enum AttackState { NONE, PREPPING, ATTACKING, RECOVERING };
+    public static enum AttackState { NONE, PREPPING, ATTACKING, RECOVERING, COMBO };
     public static enum EnvType { DELTA, PSI, OMEGA };
     
     public static final float STEP = 1 / 60f;

@@ -35,8 +35,8 @@ public class Skill_WarpIt extends Skill{
         COST = 60f;
         skillIcon = MainGame.am.get(ResourceManager.SKILL_WARPIT);
         
-        prepTime = 0;
-        attTime = 0.3f;
+        attackTime = 0;
+        comboTime = 0.3f;
         recovTime = 0;
         
         impactSound = new SoundObject_Sfx(ResourceManager.SFX_POWER_1);

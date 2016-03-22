@@ -24,8 +24,8 @@ public abstract class LightSkill extends Skill{
         type = LIGHT;
         COST = 20.0f;
         
-        prepTime = 0;
-        attTime = 0.75f;
+        attackTime = 0;
+        comboTime = 0.75f;
         recovTime = 0.1f;
         
         FORCE = 250.0f;

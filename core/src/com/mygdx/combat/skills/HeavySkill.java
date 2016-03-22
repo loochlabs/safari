@@ -24,8 +24,8 @@ public abstract class HeavySkill extends Skill{
         type = HEAVY;
         COST = 40.0f;
         
-        prepTime = 0;
-        attTime = 0.85f;
+        attackTime = 0;
+        comboTime = 0.85f;
         recovTime = 0.2f;
         
         FORCE = 250.0f;

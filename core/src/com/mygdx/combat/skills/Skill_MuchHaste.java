@@ -27,8 +27,8 @@ public class Skill_MuchHaste extends Skill{
         desc = "More speed";
         descWindow = new DescriptionWindow(name, desc, type);
         
-        prepTime = 0;
-        attTime = 0.3f;
+        attackTime = 0;
+        comboTime = 0.3f;
         recovTime = 0;
         
     }

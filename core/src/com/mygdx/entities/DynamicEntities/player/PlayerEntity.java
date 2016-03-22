@@ -22,7 +22,6 @@ import com.mygdx.combat.skills.Skill.SkillType;
 import com.mygdx.entities.DynamicEntities.SteerableEntity;
 import com.mygdx.entities.Entity;
 import com.mygdx.entities.ImageSprite;
-import com.mygdx.entities.esprites.MirrorSprite;
 import com.mygdx.environments.EnvironmentManager;
 import com.mygdx.game.MainGame;
 import static com.mygdx.game.MainGame.RATIO;
@@ -748,6 +747,9 @@ public class PlayerEntity extends SteerableEntity{
             if(!attackFC.running){
                 initNewSkill(index);
                isCombo = false;
+               //set attackFC to new skill.comboFC
+               
+               //todo: REDUNDANT, attackFC set in initNewSkill()
                 attackFC.setTime(currentSkill.getPrepTime(), currentSkill.getAttTime(), currentSkill.getRecovTime());
                 attackFC.start(fm);
             }else if (attackFC.state == AttackState.ATTACKING) {   //combo
@@ -832,7 +834,11 @@ public class PlayerEntity extends SteerableEntity{
                 break;
         }
         
-        
+        /***********
+         * 
+        ADD COMBO BAR TO OVERLAY
+        * 
+        ***********/
         
     }
     

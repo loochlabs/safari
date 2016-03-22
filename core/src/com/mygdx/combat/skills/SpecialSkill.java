@@ -19,8 +19,8 @@ public abstract class SpecialSkill extends Skill{
         type = SPECIAL;
         COST = 60.0f;
         
-        prepTime = 0;
-        attTime = 0.5f;
+        attackTime = 0;
+        comboTime = 0.5f;
         recovTime = 0.25f;
         
         impactSound = new SoundObject_Sfx(ResourceManager.SFX_POWER_1);

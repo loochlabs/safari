@@ -15,7 +15,7 @@ import com.mygdx.managers.FrameManager;
 public class FrameCounter {
  
     public boolean running = false, complete = false;
-    protected int CURRENT_FRAME, MAX_FRAME;
+    public int CURRENT_FRAME, MAX_FRAME;
     
     public void setTime(float time) { 
         MAX_FRAME = (int)(time * Math.pow(MainGame.STEP,-1));

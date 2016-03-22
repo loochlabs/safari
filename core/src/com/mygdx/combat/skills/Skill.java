@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.entities.ImageSprite;
 import com.mygdx.gui.descriptions.DescriptionWindow;
+import com.mygdx.utilities.FrameCounter_Combo;
 import com.mygdx.utilities.SoundObject_Sfx;
 import java.util.Random;
 
@@ -30,7 +31,8 @@ public abstract class Skill {
     protected float COST;
     protected float damageMod, comboBonus = 1.5f;
     protected ImageSprite esprite;
-    protected float prepTime, attTime, recovTime;
+    protected float attackTime, comboTime, recovTime;
+    protected FrameCounter_Combo comboFC;
     protected float FORCE;
     protected final Random rng = new Random();
     protected final Array<ImageSprite> impactTemplates = new Array<ImageSprite>();
@@ -46,8 +48,9 @@ public abstract class Skill {
     public float getCost() { return COST; }
     public String getName() { return name; }
     public String getDesc() { return desc; }
-    public float getPrepTime() { return prepTime; }
-    public float getAttTime() { return attTime; }
+    public FrameCounter_Combo getComboFC() { return comboFC; }
+    public float getPrepTime() { return attackTime; }
+    public float getAttTime() { return comboTime; }
     public float getRecovTime() { return recovTime; }
     public float getDamageMod() {return damageMod;}
     public ImageSprite getSprite() { return esprite; }
