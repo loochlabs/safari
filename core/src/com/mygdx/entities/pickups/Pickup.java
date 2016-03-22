@@ -132,7 +132,7 @@ public abstract class Pickup extends Entity{
                     //(body.getPosition().y * PPM - esprite.sprite.getHeight() / 2));
                     (pos.x - isprite.sprite.getWidth() / 2),
                     (pos.y - isprite.sprite.getHeight() / 2));
-            isprite.step();
+            //isprite.step();
             isprite.sprite.draw(sb);
         }else if(texture != null)
             //sb.draw(texture, body.getPosition().x*PPM-iw/2, body.getPosition().y*PPM-ih/2 + yfloat,iw,ih);

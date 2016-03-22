@@ -212,11 +212,11 @@ public class Overlay {
         
         if(transState){
             transitioning = !transBeginSprite.isComplete();
-            
+            transBeginSprite.step();
             
         }else{
             transitioning = !transEndSprite.isComplete();
-            
+            transEndSprite.step();
             
         }
         

@@ -126,7 +126,7 @@ public class EnemyEntity extends DynamicEntity{
     public void render(SpriteBatch sb){
         if(damageSprite != null){
             damageSprite.sprite.draw(sb);
-            damageSprite.step();
+            damageSprite.step(); //todo: move this to update
             
             if(damageSprite.isComplete()){
                 damageSprite = null;
