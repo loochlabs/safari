@@ -147,8 +147,6 @@ public abstract class Entity{
             deadCheck = false;
             death();
         }
-        
-        
     }
     
     public void render(SpriteBatch sb){

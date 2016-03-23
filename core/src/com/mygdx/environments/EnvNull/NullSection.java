@@ -78,7 +78,7 @@ public class NullSection {
     public void render(SpriteBatch sb){
         if(bgSprite != null){
             bgSprite.sprite.setPosition(bgSprite.x, bgSprite.y);//todo: not needed here, just set in constructor/init()
-            //bgSprite.step();
+            bgSprite.step();
             bgSprite.sprite.draw(sb);
         }
         else if(bg != null){

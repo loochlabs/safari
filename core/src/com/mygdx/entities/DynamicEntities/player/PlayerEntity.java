@@ -382,20 +382,27 @@ public class PlayerEntity extends SteerableEntity{
             dashSprites.get(i).draw(sb);
         }
         
-        
-        
-        for(ImageSprite i : impactSprites){
-            //flip sprite
-            if(i.getXFlip())  
-                i.sprite.flip(true, false);
+        //impact effect
+        for(int i = 0; i < impactSprites.size; i++){
+            impactSprites.get(i).sprite.setAlpha(impactAlphas.get(i));
             
-            i.sprite.draw(sb);
+            if(impactAlphas.get(i) >0.75f)
+                impactSprites.get(i).sprite.setScale(impactSprites.get(i).sprite.getScaleX()* impactAlphas.get(i));
+            
+            impactSprites.get(i).step();
+            
+            //flip sprite
+            if(impactSprites.get(i).getXFlip())  
+                impactSprites.get(i).sprite.flip(true, false);
+            
+            impactSprites.get(i).sprite.draw(sb);
             
             //unflip sprite
-            if(i.getXFlip())  
-                i.sprite.flip(true, false);
+            if(impactSprites.get(i).getXFlip())  
+                impactSprites.get(i).sprite.flip(true, false);
+            
+            impactAlphas.set(i, impactAlphas.get(i) - 0.05f < 0 ? 0 : impactAlphas.get(i) - 0.05f);
         }
-        
         
         //particle effects
         renderEffects(sb);
@@ -465,24 +472,7 @@ public class PlayerEntity extends SteerableEntity{
             if (!dead && life <= 0) {
                 death();
             }
-            
-            //impact effect
-            for (int i = 0; i < impactSprites.size; i++) {
-                impactSprites.get(i).sprite.setAlpha(impactAlphas.get(i));
-
-                if (impactAlphas.get(i) > 0.75f) {
-                    impactSprites.get(i).sprite.setScale(impactSprites.get(i).sprite.getScaleX() * impactAlphas.get(i));
-                }
-
-                impactSprites.get(i).step();
-
-                impactAlphas.set(i, impactAlphas.get(i) - 0.05f < 0 ? 0 : impactAlphas.get(i) - 0.05f);
-            }
-            
-            for(ImageSprite i : skillSprites){
-                i.step();
-            }
-
+        
         }
     }
     
@@ -763,7 +753,6 @@ public class PlayerEntity extends SteerableEntity{
                 attackFC.setTime(currentSkill.getPrepTime(), currentSkill.getAttTime(), currentSkill.getRecovTime());
                 attackFC.start(fm);
             }else if (attackFC.state == AttackState.ATTACKING) {   //combo
-                //EnvironmentManager.currentEnv.frameFreeze(8);
                 initNewSkill(index);
                 isCombo = true;
                 attackFC.reset();

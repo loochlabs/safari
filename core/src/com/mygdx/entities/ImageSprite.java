@@ -30,7 +30,7 @@ public class ImageSprite {
     protected int totalFrames;
     protected boolean xflip = false, yflip = false;
     protected boolean reverse = false;
-    public boolean pause = false;
+    protected boolean pause = false;
     
     public String getKey() { return key;}
     public boolean getLoop() { return loop; }
@@ -40,6 +40,7 @@ public class ImageSprite {
     public boolean getFlagForComplete() { return flagForComplete; }
     public boolean getXFlip() { return xflip; }
     public boolean getYFlip() { return yflip; }
+    public boolean getPause() { return pause; }
     
     public Texture getFrame(int i) {
         if(i >= 0 && i < totalFrames){
@@ -126,14 +127,12 @@ public class ImageSprite {
         this(esprite.getKey(), esprite.getLoop(), flagForComplete, esprite.getXFlip(), esprite.getYFlip(), x, y, scale);
     }
     
-    //todo:remove
-    //public static void update(){}
+    public void update(){}
     
-    public void render(SpriteBatch sb) {
-        if (!pause) {
-            step();
+    public void render(SpriteBatch sb){
+        if(!pause) {
+            this.step();
         }
-
         sprite.draw(sb);
     }
     

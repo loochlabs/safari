@@ -241,33 +241,35 @@ public class Environment {
     
     public void update(){
         
-        if (frameFreeze) {
-            updateFrameFreeze();
-        } else {
-            //update frame coutners
-            fm.update();
-
-            //sound prox update
-            if (GameScreen.player.getBody() != null) {
-                SoundManager.update(GameScreen.player.getBody().getPosition());
-            }
-
-            if (sm.getState() == State.PLAYING) {
-
-                //update, add/remove entities
-                entityCheck();
-
-                //remove/add sprites
-                //spriteCheck();
-                world.step(UtilityVars.STEP, 6, 2);//new position (2/17/16)
-
-            }
-
-            //TRANSITION SCENES
-            envTransition();
-
+        //update frame coutners
+        fm.update();
+        
+        //sound prox update
+        if(GameScreen.player.getBody() != null){
+            SoundManager.update(GameScreen.player.getBody().getPosition());
         }
+        
+        if(sm.getState() == State.PLAYING){
+            
+            //update, add/remove entities
+            entityCheck();
+            
 
+            //remove/add sprites
+            //spriteCheck();
+            
+            
+            
+            
+            world.step(UtilityVars.STEP, 6, 2);//new position (2/17/16)
+        
+        }
+        
+        //TRANSITION SCENES
+        envTransition();
+        
+        
+        
         
     }
     
@@ -292,24 +294,6 @@ public class Environment {
             cam.setPosition(GameScreen.player.getBody().getPosition().x, GameScreen.player.getBody().getPosition().y);
             
         }
-    }
-    
-    private int frameFreezeCount = 0;
-    private int currentFreezeCount = 0;
-    private boolean frameFreeze = false;
-    
-    public void frameFreeze(int frameCount){
-        frameFreezeCount = frameCount;
-        currentFreezeCount = 0;
-        frameFreeze = true;
-    }
-    
-    private void updateFrameFreeze(){
-        if(currentFreezeCount >= frameFreezeCount){
-            frameFreeze = false;
-        }
-        
-        currentFreezeCount++;
     }
     
     //todo:old code
@@ -432,6 +416,17 @@ public class Environment {
         return e;
     }
     
+    /*
+    public ImageSprite spawnSprite(ImageSprite sprite){
+        spriteToAdd.add(sprite);
+        return sprite;
+    }
+    
+    public ImageSprite removeSprite(ImageSprite sprite){
+        spriteToRemove.add(sprite);
+        return sprite;
+    }
+*/
     
     public void entityCheck(){
         /*for(ImageSprite sprite: sprites){

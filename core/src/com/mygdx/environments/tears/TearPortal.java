@@ -141,7 +141,6 @@ public class TearPortal extends StaticEntity{
     public void render(SpriteBatch sb){
         super.render(sb);
         
-        //todo: set in init/constructor
         if(isprite != null){
             isprite.sprite.setPosition(
                     (body.getPosition().x * PPM - isprite.sprite.getWidth() / 2),
