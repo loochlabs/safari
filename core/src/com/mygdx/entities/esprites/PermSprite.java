@@ -41,7 +41,7 @@ public class PermSprite extends EntitySprite{
         super.update();
         
         if(durationFC.complete)
-            end();
+            dispose();
     }
     
     public void start(){
@@ -49,11 +49,6 @@ public class PermSprite extends EntitySprite{
         //EnvironmentManager.currentEnv.spawnSprite(this);
         EnvironmentManager.currentEnv.spawnEntity(this);
         
-    }
-    
-    public void end(){
-        //EnvironmentManager.currentEnv.removeSprite(this);
-        EnvironmentManager.currentEnv.spawnEntity(this);
     }
     
     

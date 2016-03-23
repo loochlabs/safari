@@ -37,13 +37,13 @@ public class FallSensor extends StaticEntity{
         fd.shape = shape;
         userdata = "fallsensor_" + id;
         fd.filter.categoryBits = BIT_WALL;
-        fd.filter.maskBits = BIT_PLAYER | BIT_EN | BIT_PICKUP;
+        fd.filter.maskBits = BIT_PLAYER; //todo: add BIT_EN for enemy fall
         fd.isSensor = true;
         
     }
     
     @Override
-    public void alert(String str){
+    public void alert(String []str){
         //init childSection PitSection
         //move player to center of childSection PitSection
         //set parentSection side type and texture to connected

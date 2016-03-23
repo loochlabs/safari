@@ -150,7 +150,7 @@ public abstract class EndWarp extends Entity{
     }
     
     @Override
-    public void alert(String str){
+    public void alert(String []str){
         //warp to EnvSub-end
         
         //calculate point of entry

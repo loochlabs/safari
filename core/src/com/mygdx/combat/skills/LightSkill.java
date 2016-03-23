@@ -12,6 +12,7 @@ import com.mygdx.entities.ImageSprite;
 import com.mygdx.entities.esprites.PermSprite;
 import static com.mygdx.game.MainGame.RATIO;
 import com.mygdx.screen.GameScreen;
+import com.mygdx.utilities.FrameCounter_Combo;
 import static com.mygdx.utilities.UtilityVars.PPM;
 
 /**
@@ -24,9 +25,10 @@ public abstract class LightSkill extends Skill{
         type = LIGHT;
         COST = 20.0f;
         
-        attackTime = 0;
-        comboTime = 0.75f;
-        recovTime = 0.1f;
+        //comboFC = new FrameCounter_Combo(0.5f, 0.5f, 0);
+        //attackTime = 0;
+        //comboTime = 0.75f;
+        //recovTime = 0.1f;
         
         FORCE = 250.0f;
         

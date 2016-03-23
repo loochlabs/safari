@@ -255,21 +255,18 @@ public class Environment {
             entityCheck();
             
 
-            //remove/add sprites
-            //spriteCheck();
-            
-            
-            
             
             world.step(UtilityVars.STEP, 6, 2);//new position (2/17/16)
         
+        }else{
+            GameScreen.player.update();
         }
         
         //TRANSITION SCENES
         envTransition();
         
         
-        
+        //step through isprites
         
     }
     
@@ -343,8 +340,10 @@ public class Environment {
         GameScreen.player.init(world);
         GameScreen.player.getBody().setTransform(playerPos.cpy(),0);
         
+        //todo: make specfic to tears
+        String [] str = {"", "tear_resume", ""};
         for(Entity e: entities){
-            e.alert("tear_resume");
+            e.alert(str);
         }
     }
     
@@ -429,12 +428,6 @@ public class Environment {
 */
     
     public void entityCheck(){
-        /*for(ImageSprite sprite: sprites){
-                sprite.update();
-                
-                if(sprite.isComplete())
-                    spriteToRemove.add(sprite);
-            }*/
             
             //remove entities
             for (Entity e : entToRemove) {

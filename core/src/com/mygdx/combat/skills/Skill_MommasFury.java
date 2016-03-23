@@ -109,7 +109,7 @@ public class Skill_MommasFury extends HeavySkill {
         }
 
         @Override
-        public void alert(String str) {
+        public void alert(String [] str) {
             if (str.equals("active")) {
                 active = true;
             }

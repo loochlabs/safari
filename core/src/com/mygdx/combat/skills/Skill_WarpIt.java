@@ -11,11 +11,10 @@ import com.mygdx.entities.ImageSprite;
 import com.mygdx.environments.Environment;
 import com.mygdx.environments.EnvironmentManager;
 import com.mygdx.game.MainGame;
-import static com.mygdx.game.MainGame.RATIO;
 import com.mygdx.managers.ResourceManager;
 import com.mygdx.screen.GameScreen;
+import com.mygdx.utilities.FrameCounter_Combo;
 import com.mygdx.utilities.SoundObject_Sfx;
-import static com.mygdx.utilities.UtilityVars.PPM;
 
 /**
  *
@@ -35,9 +34,10 @@ public class Skill_WarpIt extends Skill{
         COST = 60f;
         skillIcon = MainGame.am.get(ResourceManager.SKILL_WARPIT);
         
-        attackTime = 0;
-        comboTime = 0.3f;
-        recovTime = 0;
+        comboFC = new FrameCounter_Combo(0.3f, 0, 0);
+        //attackTime = 0;
+        //comboTime = 0.3f;
+        //recovTime = 0;
         
         impactSound = new SoundObject_Sfx(ResourceManager.SFX_POWER_1);
         

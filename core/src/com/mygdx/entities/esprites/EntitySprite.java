@@ -40,4 +40,13 @@ public class EntitySprite extends Entity {
         
     }
     
+    @Override
+    public void update(){
+        super.update();
+        
+        if(isprite.isComplete()){
+            this.dispose();
+        }
+    }
+    
 }

@@ -74,7 +74,7 @@ public class ProjectileEntity extends Entity{
     }
     
     @Override
-    public void alert(String str){
+    public void alert(String [] str){
         death();
     }
     

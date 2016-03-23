@@ -147,6 +147,10 @@ public abstract class Entity{
             deadCheck = false;
             death();
         }
+        
+        if(isprite != null){
+            isprite.step();
+        }
     }
     
     public void render(SpriteBatch sb){
@@ -262,7 +266,7 @@ public abstract class Entity{
     
     //Description: generic alert method
     //public void alert(){}
-    public void alert(String string){}
+    public void alert(String [] string){}
     
     public void actionEvent(){}
     

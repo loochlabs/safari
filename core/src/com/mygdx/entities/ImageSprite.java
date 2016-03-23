@@ -130,9 +130,9 @@ public class ImageSprite {
     public void update(){}
     
     public void render(SpriteBatch sb){
-        if(!pause) {
-            this.step();
-        }
+        //if(!pause) {
+            //this.step();
+        //}
         sprite.draw(sb);
     }
     

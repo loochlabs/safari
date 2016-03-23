@@ -140,14 +140,18 @@ public class EndPad extends StaticEntity{
     //public void warpToNextEnv(){}
     
     @Override
-    public void alert(String str){
-        if (str.equals("active")) {
-            if (complete) {
-                GameScreen.player.inRangeForAction(this);
+    public void alert(String []str){
+        try {
+            if (str[0].equals("begin") && str[1].contains("action_")) {
+                if (complete) {
+                    GameScreen.player.inRangeForAction(this);
+                }
             }
-        }
-        if(str.equals("inactive")){
-            GameScreen.player.outRangeForAction(this);
+            if (str[0].equals("end") && str[1].contains("action_")) {
+                GameScreen.player.outRangeForAction(this);
+            }
+        } catch (IndexOutOfBoundsException ex) {
+            ex.printStackTrace();
         }
     }
     

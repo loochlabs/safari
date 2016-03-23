@@ -46,6 +46,7 @@ public class SkillHud extends OverlayComponent{
             skillHud_light, skillHud_heavy, skillHud_special, skillHud_passive, 
             skillHud_empty1, skillHud_empty2, skillHud_empty3, skillHud_empty4;
     private ImageSprite skillSprite1, skillSprite2, skillSprite3, skillSprite4;
+    private Array<ImageSprite> sprites = new Array<ImageSprite>();
     private Texture dashTexture;
     
     //new item alert
@@ -86,22 +87,32 @@ public class SkillHud extends OverlayComponent{
         
         skillHud_light = new ImageSprite("light-rot", false);
         skillHud_light.sprite.setBounds(x + skillOffsetX, y, slotWidth, slotHeight);
+        sprites.add(skillHud_light);
         skillHud_heavy = new ImageSprite("heavy-rot", false);
         skillHud_heavy.sprite.setBounds(x + skillOffsetX + slotOffset, y, slotWidth, slotHeight);
+        sprites.add(skillHud_heavy);
         skillHud_special = new ImageSprite("special-rot", false);
         skillHud_special.sprite.setBounds(x + skillOffsetX + slotOffset*2, y, slotWidth, slotHeight);
+        sprites.add(skillHud_special);
         skillHud_passive = new ImageSprite("passive-rotSlow", true);
         skillHud_passive.sprite.setBounds(x + skillOffsetX + slotOffset*3, y, slotWidth, slotHeight);
+        sprites.add(skillHud_passive);
         skillHud_passive.setComplete(true);
         
         skillHud_empty1 = new ImageSprite("skill-empty", true);
         skillHud_empty1.sprite.setBounds(x + skillOffsetX, y, slotWidth, slotHeight);
+        sprites.add(skillHud_empty1);
         skillHud_empty2 = new ImageSprite("skill-empty", true);
         skillHud_empty2.sprite.setBounds(x + skillOffsetX + slotOffset, y, slotWidth, slotHeight);
+        sprites.add(skillHud_empty2);
         skillHud_empty3 = new ImageSprite("skill-empty", true);
         skillHud_empty3.sprite.setBounds(x + skillOffsetX + slotOffset*2, y, slotWidth, slotHeight);
+        sprites.add(skillHud_empty3);
         skillHud_empty4 = new ImageSprite("skill-empty", true);
         skillHud_empty4.sprite.setBounds(x + skillOffsetX + slotOffset*3, y, slotWidth, slotHeight);
+        sprites.add(skillHud_empty4);
+        
+        
         
         dashTexture = MainGame.am.get(ResourceManager.GUI_DASH);
         
@@ -147,6 +158,10 @@ public class SkillHud extends OverlayComponent{
         fm.update();
         dmui.update();
         soulHud.update();
+
+        for(ImageSprite i : sprites){
+            i.step();
+        }
     }
     
     @Override

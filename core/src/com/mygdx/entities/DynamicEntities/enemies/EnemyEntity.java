@@ -84,7 +84,7 @@ public class EnemyEntity extends DynamicEntity{
         spraySprite = new ImageSprite("spray1", false);
         spraySprite.sprite.setScale(6.0f);
         
-        deathSprite = new EntitySprite(pos, width,height, "en-death2", false, false, false, false, 1.25f*RATIO, false, false);
+        deathSprite = new EntitySprite(pos, width,height, "en-death2", false, true, false, false, 1.25f*RATIO, false, false);
         
         sm.setState(1);
         
@@ -238,11 +238,15 @@ public class EnemyEntity extends DynamicEntity{
     }
     
     @Override
-    public void alert(String string){
-        if(string.equals("en_damage_begin")){
-            canDmgPlayer = true;
-        }else if(string.equals("en_damage_end")){
-            canDmgPlayer = false;
+    public void alert(String [] string){
+        try {
+            if (string[0].equals("begin")) {
+                canDmgPlayer = true;
+            } else if (string[0].equals("end")) {
+                canDmgPlayer = false;
+            }
+        } catch (IndexOutOfBoundsException ex) {
+            ex.printStackTrace();
         }
     }
     

@@ -253,13 +253,15 @@ public class EnemyEntity2 extends SteerableEntity{
     }
     
     @Override
-    public void alert(String string){
-        if(string.equals("en_damage_begin")){
-            attSensorStack.push(string);
-            //canDmgPlayer = true;
-        }else if(string.equals("en_damage_end")){
-            attSensorStack.pop();
-            //canDmgPlayer = false;
+    public void alert(String []string){
+        try {
+            if (string[0].equals("begin")) {
+                attSensorStack.push(string[2]);
+            } else if (string[0].equals("end")) {
+                attSensorStack.pop();
+            }
+        } catch (IndexOutOfBoundsException ex) {
+            ex.printStackTrace();
         }
     }
     
