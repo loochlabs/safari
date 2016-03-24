@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -16,13 +16,15 @@ import java.util.Random;
  */
 public class BgSprite extends EntitySprite{
 
-    private float SPEED = 1.0f;
+    private float SPEED = 1f;
     private final Random rng = new Random();
     
-    public float getSpeed() { return SPEED; }   
+    //public float getSpeed() { return SPEED; }   
     
     public BgSprite(float x, float y, float scale) {
-        super(new Vector2(x,y),325f*RATIO,325f*RATIO,"bg-piece8", true, false, false, false, scale, false, false);
+        super(new Vector2(x,y),325f*RATIO,325f*RATIO, "bg-piece8", 
+                true, false, false, false, scale, false, false,
+                true, false);
         
         SPEED *= rng.nextFloat() + 1; 
         
@@ -30,9 +32,8 @@ public class BgSprite extends EntitySprite{
     
     @Override
     public void update(){
+        pos.x += SPEED;
         super.update();
-        isprite.sprite.setX(isprite.sprite.getX() + SPEED);
-        pos.x = isprite.sprite.getX();
     }
     
 }

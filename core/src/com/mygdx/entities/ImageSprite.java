@@ -19,7 +19,7 @@ import com.mygdx.game.MainGame;
 public class ImageSprite {
     
     public Sprite sprite;
-    public float x, y;
+    //public float x, y;
     
     protected TextureAtlas atlas;
     protected AtlasRegion region; 
@@ -82,11 +82,11 @@ public class ImageSprite {
     public ImageSprite(String key, boolean loop, boolean flagForComplete, boolean xflip, boolean yflip, float x, float y , float scale){
         this(key,loop,flagForComplete,xflip,yflip);
         
-        this.x = x;
-        this.y = y;
+        //this.x = x;
+        //this.y = y;
         sprite.setScale(scale);
-        sprite.setPosition(this.x , this.y); 
-        
+        //sprite.setPosition(this.x , this.y); 
+        sprite.setPosition(x,y);
         
     }
     
@@ -126,8 +126,6 @@ public class ImageSprite {
         this(esprite.getKey(), esprite.getLoop(), flagForComplete, esprite.getXFlip(), esprite.getYFlip(), x, y, scale);
     }
     
-    //todo:remove
-    //public static void update(){}
     
     public void render(SpriteBatch sb){
         //if(!pause) {
@@ -137,8 +135,10 @@ public class ImageSprite {
     }
     
     public void drawOffset(SpriteBatch sb, float x, float y){
-        float tempx = this.x + x;
-        float tempy = this.y + y;
+        //float tempx = this.x + x;
+        //float tempy = this.y + y;
+        float tempx = sprite.getX() + x;
+        float tempy = sprite.getY() + y;
         float tx2 = sprite.getX();
         float ty2 = sprite.getY();
         this.sprite.setPosition(tempx, tempy);

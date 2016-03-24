@@ -179,7 +179,8 @@ public class DogEntity extends DynamicEntity{
             
         }
         else if(texture.equals(alertTexture))
-            offsetRender(sb,width - iw/2, height -ih/2, 0.5f);
+            //offsetRender(sb,width - iw/2, height -ih/2, 0.5f);
+            offsetRender(sb,width - iw/2, height -ih/2);
         else
             super.render(sb);
     

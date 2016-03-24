@@ -198,9 +198,9 @@ public class Environment {
         dmgTextToRemove.clear();
             
            
-        if(sm.getState() == State.END){
-            endSpectralAnim(sb);
-        }
+        //if(sm.getState() == State.END){
+            //endSpectralAnim(sb);
+        //}
     }
     
     //render parralax layers (0-n, where 0 is the top layer)
@@ -385,6 +385,7 @@ public class Environment {
         
     }
     
+    /*
     public void endSpectralAnim(SpriteBatch sb){
         
         if (GameScreen.player.isDead()) {
@@ -398,7 +399,7 @@ public class Environment {
             //endSpectralSprite.render(sb);
         }
         
-    }
+    }*/
     
     public void gameOver(){
         ScreenManager.setScreen(new GameOverScreen());

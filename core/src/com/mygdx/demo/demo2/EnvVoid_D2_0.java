@@ -80,6 +80,7 @@ public class EnvVoid_D2_0 extends EnvVoid_D2{
                         "decom", 
                         true, false, false, false, 
                         1.0f * RATIO,
+                        false, false,
                         false, false));
     }
     

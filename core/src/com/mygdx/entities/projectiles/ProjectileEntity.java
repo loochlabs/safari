@@ -42,7 +42,8 @@ public class ProjectileEntity extends Entity{
         durFC = new FrameCounter(DURATION);
         DMG = dmg;
         
-        deathSprite = new EntitySprite(pos, width,height, "proj-death", false, true, false, false, 0.4f*RATIO, false, false);
+        deathSprite = new EntitySprite(pos, width,height, "proj-death", 
+                false, true, false, false, 0.4f*RATIO, false, false, true, false);
         //deathSprite.sprite.setScale(0.4f * RATIO);
         
     }

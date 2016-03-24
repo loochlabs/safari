@@ -82,7 +82,9 @@ public class EnemyEntity2 extends SteerableEntity{
         
         attSensorData = "en_att_sensor_" + id;
         
-        deathSprite = new EntitySprite(pos, width, height, "en-death2", false, false, false, false, 1.25f*RATIO, false, false);
+        deathSprite = new EntitySprite(pos, width, height, "en-death2", 
+                false, false, false, false, 1.25f*RATIO, false, false,
+                true, true);
         
         deathSound = new SoundObject_Sfx(ResourceManager.SFX_DEATH_1);
         

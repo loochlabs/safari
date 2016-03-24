@@ -84,7 +84,9 @@ public class EnemyEntity extends DynamicEntity{
         spraySprite = new ImageSprite("spray1", false);
         spraySprite.sprite.setScale(6.0f);
         
-        deathSprite = new EntitySprite(pos, width,height, "en-death2", false, true, false, false, 1.25f*RATIO, false, false);
+        deathSprite = new EntitySprite(pos, width,height, "en-death2", 
+                false, true, false, false, 1.25f*RATIO, false, false,
+                true, false);
         
         sm.setState(1);
         

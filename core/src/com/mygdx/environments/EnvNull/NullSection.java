@@ -30,7 +30,7 @@ import static com.mygdx.utilities.UtilityVars.PPM;
 public class NullSection {
     
     protected Texture bg;
-    protected ImageSprite bgSprite;
+    //protected ImageSprite bgSprite;
     protected Vector2 pos;
     protected final float width, height;
     protected final EnvNull env;
@@ -76,12 +76,12 @@ public class NullSection {
     }
     
     public void render(SpriteBatch sb){
-        if(bgSprite != null){
-            bgSprite.sprite.setPosition(bgSprite.x, bgSprite.y);//todo: not needed here, just set in constructor/init()
+        //if(bgSprite != null){
+            //bgSprite.sprite.setPosition(bgSprite.x, bgSprite.y);//todo: not needed here, just set in constructor/init()
             //bgSprite.step();
-            bgSprite.sprite.draw(sb);
-        }
-        else if(bg != null){
+            //bgSprite.sprite.draw(sb);
+        //}
+        if(bg != null){
             sb.draw(bg, pos.x, pos.y, width+(10*RATIO), height+(10*RATIO));
         }
     }

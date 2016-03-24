@@ -117,12 +117,13 @@ public abstract class EnvNull extends Environment {
         PLAYER_DIVE_SCALE = playerDiveSprite.sprite.getScaleX();
         diveTime = (long)(2000 * 0.6);
         
-        impactSprite = new EntitySprite(new Vector2(playerPos.x*PPM, playerPos.y*PPM), 185f, 390f, "player-impact", 1.0f);
+        impactSprite = new EntitySprite(new Vector2(playerPos.x*PPM, playerPos.y*PPM), 185f, 390f, 
+                "player-impact", 1.0f, true, false);
         //todo: change pos
         impactSprite.setPosition(new Vector2(playerPos.x*PPM - impactSprite.getWidth()/2, 
                 playerPos.y*PPM - impactSprite.getHeight()*0.175f));
         
-        introTextSprite = new EntitySprite(new Vector2(0,0), 350f,100f, "kill-text", 1.0f);
+        introTextSprite = new EntitySprite(new Vector2(0,0), 350f,100f, "kill-text", 1.0f, false, true);
         
         bgRockSprite = new ImageSprite("null-bg-rocks", false);
         bgRockSprite.sprite.setScale(1.0f * RATIO);
@@ -172,8 +173,8 @@ public abstract class EnvNull extends Environment {
             fallingUpdate();
             
         
-        if(sm.getState() == State.END)
-            fallingEndUpdate();
+        //if(sm.getState() == State.END)
+            //fallingEndUpdate();
         
         bgZoomUpdate();
         
@@ -269,7 +270,8 @@ public abstract class EnvNull extends Environment {
                             GameScreen.player.getPos().x - impactSprite.getWidth() / 2,
                             GameScreen.player.getPos().y - impactSprite.getHeight() * 0.175f,
                             impactSprite.getWidth(),
-                            impactSprite.getHeight()));
+                            impactSprite.getHeight(),
+                            true, false));
                 }
                 
                 //play impact sound
@@ -336,6 +338,7 @@ public abstract class EnvNull extends Environment {
     
     
     //fall camera zoom during State.END
+    @Deprecated
     public void fallingEndUpdate(){
         //update currentTopZoom
         //update currentSectionZoom (playerDive)

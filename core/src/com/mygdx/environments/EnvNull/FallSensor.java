@@ -7,10 +7,7 @@ package com.mygdx.environments.EnvNull;
 
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.entities.StaticEntities.StaticEntity;
-import com.mygdx.environments.EnvNull.NullSection.WallType;
 import com.mygdx.environments.EnvironmentManager;
-import static com.mygdx.utilities.UtilityVars.BIT_EN;
-import static com.mygdx.utilities.UtilityVars.BIT_PICKUP;
 import static com.mygdx.utilities.UtilityVars.BIT_PLAYER;
 import static com.mygdx.utilities.UtilityVars.BIT_WALL;
 import static com.mygdx.utilities.UtilityVars.PPM;
@@ -22,7 +19,7 @@ import static com.mygdx.utilities.UtilityVars.PPM;
 public class FallSensor extends StaticEntity{
     
     private final NullSection childSection, parentSection;
-    private boolean active = true;
+    //private boolean active = true;
     
     public NullSection getParent() { return parentSection; }
     
@@ -48,13 +45,9 @@ public class FallSensor extends StaticEntity{
         //move player to center of childSection PitSection
         //set parentSection side type and texture to connected
         
-        if(active){
-        
-            System.out.println("@FallingSensor alert " + userdata);
-            
+        if(str[0].equals("begin") && str[1].equals(userdata.toString())){
             EnvNull ev = (EnvNull)EnvironmentManager.currentEnv;
             ev.fall(childSection, true);
-            
         }
         
     }

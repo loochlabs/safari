@@ -22,7 +22,7 @@ public class PermSprite extends EntitySprite{
     private final Random rng = new Random();
     
     public PermSprite(String key, Vector2 pos) {
-        super(pos,325f*RATIO,325f*RATIO,key, false, false, false, false, 0.8f, false, false);
+        super(pos,325f*RATIO,325f*RATIO,key, false, false, false, false, 0.8f, false, false, false, false);
         
         durationFC = new FrameCounter(DURATION);
         

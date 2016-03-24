@@ -170,16 +170,16 @@ public abstract class Entity{
         renderEffects(sb);
     }
     
-    public void offsetRender(SpriteBatch sb, float x, float y, float rotation){
+    public void offsetRender(SpriteBatch sb, float x, float y){
         if(isprite != null){
-            isprite.drawOffset(sb, 
-                    pos.x - isprite.sprite.getWidth()/2 + x,
-                    pos.y - isprite.sprite.getHeight()/2 + y);
+            isprite.drawOffset(sb, x, y);
+                    //pos.x - isprite.sprite.getWidth()/2 + x,
+                    //pos.y - isprite.sprite.getHeight()/2 + y);
         }else if(texture != null){
             sb.draw(
-                    texture, 
-                    pos.x - width + x,
-                    pos.y - height + y,
+                    texture, x, y, 
+                    //pos.x - width + x,
+                    //pos.y - height + y,
                     iw,ih);
         }
     }

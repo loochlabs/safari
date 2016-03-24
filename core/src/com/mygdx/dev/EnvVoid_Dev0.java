@@ -66,11 +66,12 @@ public class EnvVoid_Dev0 extends EnvVoid{
         //***************************************************
         
         //bg sprites
-        spawnEntity(new EntitySprite(new Vector2(0, grid.getHeight()*0.9f),
+        spawnEntity(new EntitySprite(new Vector2(25f, grid.getHeight()*0.9f),
                         470f,200f,
                         "decom", 
                         true, false, false, false, 
                         1.0f * RATIO,
+                        false, false,
                         false, false));
         
         

@@ -70,7 +70,8 @@ public abstract class EndWarp extends Entity{
         this.flaggedForRenderSort = false;
         
         mistScale = 2.0f * RATIO;
-        mistSprite = new EntitySprite(new Vector2(pos.x - 1000, pos.y - 1000), 1000,1000,"endPad-mist",true, false, false, false, mistScale + 1f, false, false);
+        mistSprite = new EntitySprite(new Vector2(pos.x - 1000, pos.y - 1000), 1000,1000,
+                "endPad-mist",true, false, false, false, mistScale + 1f, false, false, true, false);
         //mistSprite = new ImageSprite(
                 //mistSprite, 
                 //pos.x - mistSprite.sprite.getWidth()/2, 
