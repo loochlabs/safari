@@ -859,17 +859,11 @@ public class PlayerEntity extends SteerableEntity{
                //set attackFC to new skill.comboFC
                
                //todo: REDUNDANT, attackFC set in initNewSkill()
-
-                //attackFC.setTime(currentSkill.getPrepTime(), currentSkill.getAttTime(), currentSkill.getRecovTime());
-                //attackFC.start(fm);
-            }else if (attackFC.state == AttackState.ATTACKING) {   //combo
-
                 //attackFC.setTime(currentSkill.getPrepTime(), currentSkill.getAttTime(), currentSkill.getRecovTime());
                 //attackFC = currentSkill.getComboFC();
                 //attackFC.start(fm);
             }else if (attackFC.state == AttackState.COMBO
                         && !currentAttackFail) {   //combo
-
                 initNewSkill(index);
                 isCombo = true;
                 //attackFC = currentSkill.getComboFC();
