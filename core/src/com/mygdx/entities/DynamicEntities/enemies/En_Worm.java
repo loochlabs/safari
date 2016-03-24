@@ -155,7 +155,7 @@ public class En_Worm extends EnemyEntity2{
     }
     
     @Override
-    public void alert(String str){
+    public void alert(String []str){
         super.alert(str);
         canDmgPlayer = false;
     }

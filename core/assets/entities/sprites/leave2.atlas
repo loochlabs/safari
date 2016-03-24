@@ -1,0 +1,145 @@
+leave2.png
+size: 458, 987
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+leave2
+  rotate: false
+  xy: 2, 2
+  size: 454, 195
+  orig: 454, 195
+  offset: 0, 0
+  index: 1
+leave2
+  rotate: false
+  xy: 2, 199
+  size: 454, 195
+  orig: 454, 195
+  offset: 0, 0
+  index: 10
+leave2
+  rotate: false
+  xy: 2, 199
+  size: 454, 195
+  orig: 454, 195
+  offset: 0, 0
+  index: 11
+leave2
+  rotate: false
+  xy: 2, 199
+  size: 454, 195
+  orig: 454, 195
+  offset: 0, 0
+  index: 12
+leave2
+  rotate: false
+  xy: 2, 396
+  size: 454, 195
+  orig: 454, 195
+  offset: 0, 0
+  index: 13
+leave2
+  rotate: false
+  xy: 2, 396
+  size: 454, 195
+  orig: 454, 195
+  offset: 0, 0
+  index: 14
+leave2
+  rotate: false
+  xy: 2, 396
+  size: 454, 195
+  orig: 454, 195
+  offset: 0, 0
+  index: 15
+leave2
+  rotate: false
+  xy: 2, 396
+  size: 454, 195
+  orig: 454, 195
+  offset: 0, 0
+  index: 16
+leave2
+  rotate: false
+  xy: 2, 593
+  size: 454, 195
+  orig: 454, 195
+  offset: 0, 0
+  index: 17
+leave2
+  rotate: false
+  xy: 2, 593
+  size: 454, 195
+  orig: 454, 195
+  offset: 0, 0
+  index: 18
+leave2
+  rotate: false
+  xy: 2, 593
+  size: 454, 195
+  orig: 454, 195
+  offset: 0, 0
+  index: 19
+leave2
+  rotate: false
+  xy: 2, 2
+  size: 454, 195
+  orig: 454, 195
+  offset: 0, 0
+  index: 2
+leave2
+  rotate: false
+  xy: 2, 593
+  size: 454, 195
+  orig: 454, 195
+  offset: 0, 0
+  index: 20
+leave2
+  rotate: false
+  xy: 2, 2
+  size: 454, 195
+  orig: 454, 195
+  offset: 0, 0
+  index: 3
+leave2
+  rotate: false
+  xy: 2, 2
+  size: 454, 195
+  orig: 454, 195
+  offset: 0, 0
+  index: 4
+leave2
+  rotate: false
+  xy: 2, 790
+  size: 454, 195
+  orig: 454, 195
+  offset: 0, 0
+  index: 5
+leave2
+  rotate: false
+  xy: 2, 790
+  size: 454, 195
+  orig: 454, 195
+  offset: 0, 0
+  index: 6
+leave2
+  rotate: false
+  xy: 2, 790
+  size: 454, 195
+  orig: 454, 195
+  offset: 0, 0
+  index: 7
+leave2
+  rotate: false
+  xy: 2, 790
+  size: 454, 195
+  orig: 454, 195
+  offset: 0, 0
+  index: 8
+leave2
+  rotate: false
+  xy: 2, 199
+  size: 454, 195
+  orig: 454, 195
+  offset: 0, 0
+  index: 9

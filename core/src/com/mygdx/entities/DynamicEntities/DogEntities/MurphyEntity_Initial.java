@@ -96,18 +96,23 @@ public class MurphyEntity_Initial extends MurphyEntity{
     }
     
     @Override
-    public void alert(String str){
-        super.alert(str);
-        System.out.println("@MurphyEntity_Initial alert");
-        if (str.equals("active")) {
-            if (initialInactive) {
-                System.out.println("@MurphyEntity_Initial active");
-                GameScreen.player.inRangeForAction(this);
+    public void alert(String [] str){
+        try {
+            if (!str[1].contains("action_")) {
+                return;
             }
-        }
-        if(str.equals("inactive")){
-            System.out.println("@MurphyEntity_Initial inactivessa");
-            GameScreen.player.outRangeForAction(this);
+
+            super.alert(str);
+            if (str[0].equals("begin")) {
+                if (initialInactive) {
+                    GameScreen.player.inRangeForAction(this);
+                }
+            }
+            if (str.equals("end")) {
+                GameScreen.player.outRangeForAction(this);
+            }
+        } catch (IndexOutOfBoundsException ex) {
+            ex.printStackTrace();
         }
     }
     

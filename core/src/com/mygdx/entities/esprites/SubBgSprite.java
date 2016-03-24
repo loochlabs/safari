@@ -69,7 +69,7 @@ public class SubBgSprite extends EntitySprite{
     */
 
     public SubBgSprite(Vector2 pos, float w, float h, String key, float scale) {
-        super(pos, w, h, key, scale);
+        super(pos, w, h, key, scale, false, false);
     }
 
     /*

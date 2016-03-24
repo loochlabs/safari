@@ -64,7 +64,8 @@ public class SpectralTrap extends StaticEntity{
     }
     
     @Override
-    public void alert(String str){
+    public void alert(String []str){
+        /*
         if (str.equals("active")) {
             //create joint on player
             //enable action event
@@ -74,7 +75,7 @@ public class SpectralTrap extends StaticEntity{
         }
         if(str.equals("inactive")){
             GameScreen.player.outRangeForAction(this);
-        }
+        }*/
     }
     
     @Override

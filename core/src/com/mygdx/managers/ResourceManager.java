@@ -174,6 +174,9 @@ public class ResourceManager {
         //sprites
         this.loadAtlas("entities/sprites/decom.atlas", "decom",1);
         this.loadAtlas("entities/sprites/decom2.atlas", "decom2",30);
+        this.loadAtlas("entities/sprites/leave1.atlas", "leave1",20);
+        this.loadAtlas("entities/sprites/leave2.atlas", "leave2",20);
+        this.loadAtlas("entities/sprites/decom3.atlas", "decom3",20);
         
         //bg sprites
         this.loadAtlas("environments/EnvVoid/bg-sprites/bg-piece8.atlas", "bg-piece8",1);

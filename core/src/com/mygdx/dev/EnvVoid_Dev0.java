@@ -13,7 +13,7 @@ import com.mygdx.entities.DynamicEntities.DogEntities.StellaEntity;
 import com.mygdx.entities.StaticEntities.SkillPad;
 import com.mygdx.entities.StaticEntities.SkillPad_Primary;
 import com.mygdx.entities.StaticEntities.breakable.Cyst_Blue;
-import com.mygdx.entities.esprites.EntitySprite;
+import com.mygdx.entities.esprites.DecomSprite;
 import com.mygdx.environments.EnvSub.pads.EndPad;
 import com.mygdx.environments.EnvVoid.EnvVoid;
 import com.mygdx.environments.EnvironmentManager;
@@ -66,13 +66,16 @@ public class EnvVoid_Dev0 extends EnvVoid{
         //***************************************************
         
         //bg sprites
-        spawnEntity(new EntitySprite(new Vector2(0, grid.getHeight()*0.9f),
+        /*
+        spawnEntity(new EntitySprite(new Vector2(25f, grid.getHeight()*0.9f),
                         470f,200f,
                         "decom", 
                         true, false, false, false, 
                         1.0f * RATIO,
+                        false, false,
                         false, false));
-        
+        */
+        spawnEntity(new DecomSprite(new Vector2(25f*RATIO, grid.getHeight()*0.9f)));
         
         spawnEntity(new SkillPad_Primary(new Vector2(900f, 1200f)));
         spawnEntity(new SkillPad(new Vector2(1100f, 1200f), new Skill_Haymaker()));

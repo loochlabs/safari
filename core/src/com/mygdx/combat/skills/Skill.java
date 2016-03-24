@@ -31,8 +31,8 @@ public abstract class Skill {
     protected float COST;
     protected float damageMod, comboBonus = 1.5f;
     protected ImageSprite esprite;
-    protected float attackTime, comboTime, recovTime;
-    protected FrameCounter_Combo comboFC;
+    //protected float attackTime, comboTime, recovTime;
+    protected FrameCounter_Combo comboFC = new FrameCounter_Combo(0.3f, 0.3f, 0.15f);
     protected float FORCE;
     protected final Random rng = new Random();
     protected final Array<ImageSprite> impactTemplates = new Array<ImageSprite>();
@@ -49,9 +49,9 @@ public abstract class Skill {
     public String getName() { return name; }
     public String getDesc() { return desc; }
     public FrameCounter_Combo getComboFC() { return comboFC; }
-    public float getPrepTime() { return attackTime; }
-    public float getAttTime() { return comboTime; }
-    public float getRecovTime() { return recovTime; }
+    //public float getPrepTime() { return attackTime; }
+    //public float getAttTime() { return comboTime; }
+    //public float getRecovTime() { return recovTime; }
     public float getDamageMod() {return damageMod;}
     public ImageSprite getSprite() { return esprite; }
     public boolean isActive() { return active; }

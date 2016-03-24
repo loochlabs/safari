@@ -83,14 +83,18 @@ public class Wall_Lock extends NullWall{
     
     
     @Override
-    public void alert(String str){
-        if (str.equals("active")) {
-            if (GameStats.inventory.hasItem(key)) {
-                GameScreen.player.inRangeForAction(this);
+    public void alert(String []str){
+        try {
+            if (str[0].equals("begin") && str[1].contains("action_")) {
+                if (GameStats.inventory.hasItem(key)) {
+                    GameScreen.player.inRangeForAction(this);
+                }
             }
-        }
-        if(str.equals("inactive")){
-            GameScreen.player.outRangeForAction(this);
+            if (str[0].equals("end") && str[1].contains("action_")) {
+                GameScreen.player.outRangeForAction(this);
+            }
+        } catch (IndexOutOfBoundsException ex) {
+            ex.printStackTrace();
         }
     }
     

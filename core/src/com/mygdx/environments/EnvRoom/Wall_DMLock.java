@@ -15,6 +15,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.entities.StaticEntities.NullWall;
 import com.mygdx.entities.ImageSprite;
+import com.mygdx.entities.esprites.EntitySprite;
 import com.mygdx.entities.pickups.Pickup;
 import com.mygdx.entities.pickups.Item_DarkMatter;
 import com.mygdx.environments.EnvironmentManager;
@@ -105,14 +106,18 @@ public class Wall_DMLock extends NullWall{
     
     
     @Override
-    public void alert(String str){
-        if (str.equals("active")) {
-            if (GameStats.inventory.hasItemAmmount(itemLock, dmcost)) {
-                GameScreen.player.inRangeForAction(this);
+    public void alert(String [] str){
+        try {
+            if (str[0].equals("begin") && str[1].contains("action_")) {
+                if (GameStats.inventory.hasItemAmmount(itemLock, dmcost)) {
+                    GameScreen.player.inRangeForAction(this);
+                }
             }
-        }
-        if(str.equals("inactive")){
-            GameScreen.player.outRangeForAction(this);
+            if (str[0].equals("end") && str[1].contains("action_")) {
+                GameScreen.player.outRangeForAction(this);
+            }
+        } catch (IndexOutOfBoundsException ex) {
+            ex.printStackTrace();
         }
     }
     
@@ -145,13 +150,14 @@ public class Wall_DMLock extends NullWall{
     }
     
     
-    private class DMCostSprite extends ImageSprite {
+    private class DMCostSprite extends EntitySprite {
         
         private final BitmapFont countFont;
         private final int dmcost;
         
         public DMCostSprite(float x, float y, int dmcost) {
-            super("dmlock", false);
+            super(new Vector2(x,y), 100f*RATIO, 100f*RATIO, "dmlock", 
+                    false, false, false, false, 1f, false, false, true, false);
             
             this.dmcost = dmcost;
             
@@ -159,10 +165,10 @@ public class Wall_DMLock extends NullWall{
             countFont.setColor(Color.WHITE);
             countFont.setScale(0.65f);
             
-            this.setComplete(true);
-            this.x = x - sprite.getWidth()/2;
-            this.y = y - sprite.getHeight()/2;
-            sprite.setPosition(this.x, this.y);
+            isprite.setComplete(true);
+            //this.x = x - sprite.getWidth()/2;
+            //this.y = y - sprite.getHeight()/2;
+            //sprite.setPosition(this.x, this.y);
             
         }
         
@@ -171,17 +177,17 @@ public class Wall_DMLock extends NullWall{
             super.render(sb);
             
             if(openAnim){
-                sprite.setScale(sprite.getScaleX() * 0.95f);
+                isprite.sprite.setScale(isprite.sprite.getScaleX() * 0.95f);
                 
-                if(sprite.getWidth() < (35f*RATIO)){
+                if(isprite.sprite.getWidth() < (35f*RATIO)){
                     dmCostSprite = null;
                 }
             }else{
                 //render font
                 countFont.draw(sb, 
                     "" + dmcost + "", 
-                    x + sprite.getWidth()*0.48f, 
-                    y + sprite.getHeight()*0.53f );
+                    pos.x + isprite.sprite.getWidth()*0.48f, 
+                    pos.y + isprite.sprite.getHeight()*0.53f );
             }
             
             

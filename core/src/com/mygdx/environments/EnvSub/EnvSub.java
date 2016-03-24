@@ -82,7 +82,7 @@ public abstract class EnvSub extends Environment{
         
         
         mistSprite = new EntitySprite(new Vector2(0,0), 1000,1000,"endPad-mist",true, false,
-                false, false, 3.0f, false, false);
+                false, false, 3.0f, false, false, true, true);
         
           createPad();
         
@@ -109,7 +109,8 @@ public abstract class EnvSub extends Environment{
                 mistSprite, 
                 playerPos.x - mistSprite.getWidth()/2, 
                 playerPos.y - mistSprite.getHeight()/2,
-                1000,1000f);
+                1000,1000f,
+                false, true);
         
         //mistSprite.sprite.setScale(3.0f * RATIO);
         

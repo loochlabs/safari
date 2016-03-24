@@ -198,9 +198,9 @@ public class Environment {
         dmgTextToRemove.clear();
             
            
-        if(sm.getState() == State.END){
-            endSpectralAnim(sb);
-        }
+        //if(sm.getState() == State.END){
+            //endSpectralAnim(sb);
+        //}
     }
     
     //render parralax layers (0-n, where 0 is the top layer)
@@ -241,35 +241,27 @@ public class Environment {
     
     public void update(){
         
-        //update frame coutners
-        fm.update();
-        
-        //sound prox update
-        if(GameScreen.player.getBody() != null){
-            SoundManager.update(GameScreen.player.getBody().getPosition());
-        }
-        
-        if(sm.getState() == State.PLAYING){
-            
-            //update, add/remove entities
-            entityCheck();
-            
+        //if (frameFreeze) {
+            //updateFrameFreeze();
+        //} else {
+            //update frame coutners
+            fm.update();
 
-            //remove/add sprites
-            //spriteCheck();
-            
-            
-            
-            
-            world.step(UtilityVars.STEP, 6, 2);//new position (2/17/16)
-        
-        }
-        
+            if (sm.getState() == State.PLAYING) {
+
+                entityCheck();
+
+                world.step(UtilityVars.STEP, 6, 2);//new position (2/17/16)
+
+            } else {
+                GameScreen.player.update();
+            }
+        //}
         //TRANSITION SCENES
         envTransition();
         
         
-        
+        //step through isprites
         
     }
     
@@ -343,8 +335,10 @@ public class Environment {
         GameScreen.player.init(world);
         GameScreen.player.getBody().setTransform(playerPos.cpy(),0);
         
+        //todo: make specfic to tears
+        String [] str = {"", "tear_resume", ""};
         for(Entity e: entities){
-            e.alert("tear_resume");
+            e.alert(str);
         }
     }
     
@@ -373,6 +367,7 @@ public class Environment {
         
     }
     
+    /*
     public void endSpectralAnim(SpriteBatch sb){
         
         if (GameScreen.player.isDead()) {
@@ -386,7 +381,7 @@ public class Environment {
             //endSpectralSprite.render(sb);
         }
         
-    }
+    }*/
     
     public void gameOver(){
         ScreenManager.setScreen(new GameOverScreen());
@@ -429,12 +424,6 @@ public class Environment {
 */
     
     public void entityCheck(){
-        /*for(ImageSprite sprite: sprites){
-                sprite.update();
-                
-                if(sprite.isComplete())
-                    spriteToRemove.add(sprite);
-            }*/
             
             //remove entities
             for (Entity e : entToRemove) {

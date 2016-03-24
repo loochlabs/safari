@@ -222,14 +222,23 @@ public class SkillPad extends StaticEntity{
     }
     
     @Override
-    public void alert(String str){
-        if (str.equals("active")) {
-            if (SKILL != null) {
-                GameScreen.player.inRangeForAction(this);
+    public void alert(String [] str){
+        try {
+            if (!str[1].contains("action_")) {
+                return;
             }
-        }
-        if(str.equals("inactive")){
-            GameScreen.player.outRangeForAction(this);
+
+            super.alert(str);
+            if (str[0].equals("begin")) {
+                if (SKILL != null) {
+                    GameScreen.player.inRangeForAction(this);
+                }
+            }
+            if (str[0].equals("end")) {
+                GameScreen.player.outRangeForAction(this);
+            }
+        } catch (IndexOutOfBoundsException ex) {
+            ex.printStackTrace();
         }
     }
     

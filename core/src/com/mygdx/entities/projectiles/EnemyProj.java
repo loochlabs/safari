@@ -30,9 +30,14 @@ public class EnemyProj extends ProjectileEntity{
     }
     
     @Override
-    public void alert(String str){
-        if(str.contains("player"))
-            GameScreen.player.damage(DMG);
+    public void alert(String []str){
+        try {
+            if (str[2].contains("player")) {
+                GameScreen.player.damage(DMG);
+            }
+        } catch (IndexOutOfBoundsException ex) {
+            ex.printStackTrace();
+        }
         super.alert(str);
     }
     

@@ -91,6 +91,7 @@ public class EnvVoid_D2_1 extends EnvVoid_D2{
                         "decom2", 
                         true, false, false, false, 
                         1.0f * RATIO,
+                        false, false,
                         false, false));
     }
     

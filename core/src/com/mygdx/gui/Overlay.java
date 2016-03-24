@@ -19,6 +19,7 @@ import static com.mygdx.game.MainGame.RATIO;
 import com.mygdx.managers.FrameManager;
 import com.mygdx.managers.ResourceManager;
 import com.mygdx.utilities.FrameCounter;
+import com.mygdx.utilities.FrameCounter_Combo;
 
 /**
  *
@@ -32,6 +33,7 @@ public class Overlay {
     //componenets
     private final BarHud barHud;
     private final SkillHud skillHud;
+    private ComboBar comboBar;
     
     private Texture debugGrid;
     
@@ -100,6 +102,14 @@ public class Overlay {
         barHud.update();
         skillHud.update();
         
+        if(comboBar != null){
+            comboBar.update();
+            
+            if(comboBar.complete){
+                removeComboBar();
+            }
+        }
+        
         fm.update();
     }
     
@@ -107,7 +117,10 @@ public class Overlay {
         if(enable){
             barHud.render(sb);
             skillHud.render(sb);
-            //buffUi.render(sb);
+            
+            if(comboBar != null){
+                comboBar.render(sb);
+            }
             
             
             for (int i = 0; i < alertTexts.size; i++) {
@@ -195,6 +208,13 @@ public class Overlay {
         skillHud.addDescAlert(skill);
     }
     
+    public void addComboBar(FrameCounter_Combo comboFC){
+        comboBar = new ComboBar(MainGame.WIDTH/2, MainGame.HEIGHT*0.25f, comboFC);
+    }
+    
+    public void removeComboBar(){
+        comboBar = null;
+    }
     
     //handle transSprite during trasition 
     //@param - transState

@@ -176,24 +176,28 @@ public class TearPortal extends StaticEntity{
     
     
     @Override
-    public void alert(String string){
-        if(string.equals("warp")){
-            warp();
-        }
-        
-        
-        if(finished && string.equals("tear_resume")){
-            Array<Fixture> fixtures = body.getFixtureList();
-            for(Fixture f: fixtures)
-                body.destroyFixture(f);
-            userdata = teardata;
-            body.createFixture(tearfd).setUserData(teardata);
-            
-            CURRENT_HP = 5;
-            dead = false;
-            deadCheck = true;
-            
-            isprite = dmgSprite;
+    public void alert(String []string){
+        try {
+            if (string[1].contains("warp")) {
+                warp();
+            }
+
+            if (finished && string[1].equals("tear_resume")) {
+                Array<Fixture> fixtures = body.getFixtureList();
+                for (Fixture f : fixtures) {
+                    body.destroyFixture(f);
+                }
+                userdata = teardata;
+                body.createFixture(tearfd).setUserData(teardata);
+
+                CURRENT_HP = 5;
+                dead = false;
+                deadCheck = true;
+
+                isprite = dmgSprite;
+            }
+        } catch (IndexOutOfBoundsException ex) {
+            ex.printStackTrace();
         }
     }
     

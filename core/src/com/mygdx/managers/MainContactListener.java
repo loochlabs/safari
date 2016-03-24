@@ -49,6 +49,7 @@ public class MainContactListener implements ContactListener{
             //   PLAYER ATT targets list update
             //*********************
      
+            
             if (fa.getUserData().toString().contains("att_norm")) {
                 for (Entity e : entities) {
                     if (e.getUserData() != null 
@@ -71,10 +72,21 @@ public class MainContactListener implements ContactListener{
 
             }
 
+            for(Entity e : entities){
+                if(e.getUserData().equals(fa.getUserData())){
+                    String [] str = { "begin", fa.getUserData().toString(), fb.getUserData().toString()};
+                    e.alert(str);
+                }else if(e.getUserData().equals(fb.getUserData())){
+                    String [] str = {"begin", fb.getUserData().toString(), fa.getUserData().toString()};
+                    e.alert(str);
+                }
+            }
+            
             /**
              * ***********************
              * WARP
              */
+            /*
             if (fa.getUserData().toString().contains("warp_")) {
                 //warp to new environment
                 System.out.println("@MainContactListener warp");
@@ -124,6 +136,7 @@ public class MainContactListener implements ContactListener{
              * ***************************
              * FRAGMENTS
              */
+            /*
             if (fa.getUserData().toString().contains("fragment")) {
 
                 if (fb.getUserData().toString().contains("player_")) {
@@ -145,11 +158,12 @@ public class MainContactListener implements ContactListener{
                         }
                     }
                 }
-            }
+            }*/
 
             //*****************
             //  ENEMY DAMAGE TO PLAYER
             //TODO: Fork project for Demo, EnemyEntity2 AI dev
+            /*
             if (fa.getUserData().toString().contains("en_att_sensor")
                     && fb.getUserData().toString().contains("player_")) {
                 for (Entity e : entities) {
@@ -254,7 +268,7 @@ public class MainContactListener implements ContactListener{
                         e.alert(fa.getUserData().toString());
                     }
                 }
-            }
+            }*/
         
         
         }catch(Exception e){
@@ -274,7 +288,7 @@ public class MainContactListener implements ContactListener{
         if(fa == null || fa.getUserData() == null || fb == null || fb.getUserData() == null ) return;
         
         try{
-        
+            
             if (fa.getUserData().toString().contains("att_norm")) {
                 for (Entity e : entities) {
                     if (e.getUserData() != null && e.getUserData().equals(fb.getUserData())) {
@@ -291,8 +305,20 @@ public class MainContactListener implements ContactListener{
                 }
             }
 
+            
+            for(Entity e : entities){
+                if(e.getUserData().equals(fa.getUserData().toString())){
+                    String [] str = { "end", fa.getUserData().toString(), fb.getUserData().toString() };
+                    e.alert(str);
+                }else if(e.getUserData().equals(fb.getUserData())){
+                    String [] str = {"end", fb.getUserData().toString(), fa.getUserData().toString() };
+                    e.alert(str);
+                }
+            }
+            
             //*****************
             //  ENEMY DAMAGE TO PLAYER
+            /*
             if (fa.getUserData().toString().contains("en_att_sensor")
                     && fb.getUserData().toString().contains("player_")) {
                 for (Entity e : entities) {
@@ -320,10 +346,12 @@ public class MainContactListener implements ContactListener{
 
             //VOID
             //EnvSub end
+            //TODO: change this to only contact with player
             if (fa.getUserData().toString().contains("envEnd_wall_")
                     && fb.getUserData().toString().contains("player_")) {
 
                 //warp player back to EnvVoid
+                //todo: change to alert message
                 EnvironmentManager.currentEnv.end(
                         EnvironmentManager.currentEnv.getLinkid(),
                         0);
@@ -355,7 +383,7 @@ public class MainContactListener implements ContactListener{
                         e.alert("inactive");
                     }
                 }
-            }
+            }*/
         
         }catch(Exception e){
             e.printStackTrace();

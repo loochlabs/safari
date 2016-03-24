@@ -118,7 +118,9 @@ public abstract class Pickup extends Entity{
     }
     
     @Override
-    public void render(SpriteBatch sb){
+    public void update(){
+        super.update();
+        
         yfloat = floatUp ? yfloat+ Y_AMMOUNT: yfloat - Y_AMMOUNT;
         if(yfloat > Y_FLOATING_UP && floatUp){
             floatUp = false;
@@ -126,16 +128,17 @@ public abstract class Pickup extends Entity{
             floatUp = true;
         }
         
+    }
+    
+    @Override
+    public void render(SpriteBatch sb){
+        
         if(isprite != null){
             isprite.sprite.setPosition(
-                    //(body.getPosition().x * PPM - esprite.sprite.getWidth() / 2),
-                    //(body.getPosition().y * PPM - esprite.sprite.getHeight() / 2));
                     (pos.x - isprite.sprite.getWidth() / 2),
                     (pos.y - isprite.sprite.getHeight() / 2));
-            isprite.step();
             isprite.sprite.draw(sb);
         }else if(texture != null)
-            //sb.draw(texture, body.getPosition().x*PPM-iw/2, body.getPosition().y*PPM-ih/2 + yfloat,iw,ih);
             sb.draw(texture, pos.x-iw/2, pos.y -ih/2 + yfloat, iw, ih);
         
         if(pickupComplete){
@@ -146,7 +149,22 @@ public abstract class Pickup extends Entity{
     }
     
     @Override
-    public void alert(String str){
+    public void offsetRender(SpriteBatch sb, float x, float y){
+        if(isprite != null){
+            isprite.drawOffset(sb, 
+                    pos.x - isprite.sprite.getWidth()/2 + x,
+                    pos.y - isprite.sprite.getHeight()/2 + y);
+        }else if(texture != null){
+            sb.draw(
+                    texture, 
+                    pos.x - iw/2 + x,
+                    pos.y - ih/2 + y + yfloat,
+                    iw,ih);
+        }
+    }
+    
+    @Override
+    public void alert(String [] str){
         if(canPickup)
             death();
     }

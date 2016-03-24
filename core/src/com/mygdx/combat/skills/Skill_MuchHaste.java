@@ -10,6 +10,7 @@ import com.mygdx.game.MainGame;
 import com.mygdx.gui.descriptions.DescriptionWindow;
 import com.mygdx.managers.ResourceManager;
 import com.mygdx.screen.GameScreen;
+import com.mygdx.utilities.FrameCounter_Combo;
 
 /**
  *
@@ -27,9 +28,10 @@ public class Skill_MuchHaste extends Skill{
         desc = "More speed";
         descWindow = new DescriptionWindow(name, desc, type);
         
-        attackTime = 0;
-        comboTime = 0.3f;
-        recovTime = 0;
+        comboFC = new FrameCounter_Combo(0.3f, 0,0);
+        //attackTime = 0;
+        //comboTime = 0.3f;
+        //recovTime = 0;
         
     }
     

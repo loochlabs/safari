@@ -34,14 +34,18 @@ public class PlayerProjectile extends ProjectileEntity{
     }
     
     @Override
-    public void alert(String str) {
-        if (str.contains("en_")) {
-            for (Entity e : EnvironmentManager.currentEnv.getEntities()) {
-                if (e.getUserData().toString().equals(str)) {
-                    //damage that enemy
-                    e.damage(DMG);
+    public void alert(String []str) {
+        try {
+            if (str[2].contains("en_")) {
+                for (Entity e : EnvironmentManager.currentEnv.getEntities()) {
+                    if (e.getUserData().toString().equals(str[2])) {
+                        //damage that enemy
+                        e.damage(DMG);
+                    }
                 }
             }
+        } catch (IndexOutOfBoundsException ex) {
+            ex.printStackTrace();
         }
         super.alert(str);
     }

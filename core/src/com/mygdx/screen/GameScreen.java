@@ -208,35 +208,31 @@ public class GameScreen extends Screen{
     }
     
     public void renderEnv(SpriteBatch sb){
-        for(int i = currentEnv.getRenderLayers()-1; i >= 0; i--){
-            
-            //new - 7/17/15
-            if(i == currentEnv.getRenderLayers()-1){
-                renderEnvLayer(sb, camera.calculateParallaxMatrix(currentEnv.getBgParallaxX(), currentEnv.getBgParallaxY()), i);
-            }else{
-                renderEnvLayer(sb, camera.calculateParallaxMatrix(currentEnv.getFgParallaxX(), currentEnv.getFgParallaxY()), i);
-            }
-        }
-        
         
         if (currentEnv.getRenderLayers() == 0) {
             GameScreen.this.renderEnvLayer(sb, camera.combined);
 
+        } else {
+            for (int i = currentEnv.getRenderLayers() - 1; i >= 0; i--) {
+
+                //new - 3/23/16
+                if (i == currentEnv.getRenderLayers() - 1) {
+                    renderEnvLayer(sb, camera.calculateParallaxMatrix(currentEnv.getBgParallaxX(), currentEnv.getBgParallaxY()), i);
+                } else {
+                    renderEnvLayer(sb, camera.calculateParallaxMatrix(currentEnv.getFgParallaxX(), currentEnv.getFgParallaxY()), i);
+                }
+            }
         }
     }
     
     public void renderEnvLayer(SpriteBatch sb, Matrix4 mat){
         sb.setProjectionMatrix(mat);
-        //sb.begin();
         currentEnv.render(sb);
-        //sb.end();
     }
     
     public void renderEnvLayer(SpriteBatch sb, Matrix4 mat, int layer){
         sb.setProjectionMatrix(mat);
-        //sb.begin();
         currentEnv.render(sb, layer);
-        //sb.end();
     }
     
     

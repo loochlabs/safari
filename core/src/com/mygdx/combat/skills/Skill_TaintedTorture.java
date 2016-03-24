@@ -86,8 +86,8 @@ public class Skill_TaintedTorture extends SpecialSkill{
         }
         
         @Override
-        public void alert(String str) {
-            
+        public void alert(String [] str) {
+            /*
             System.out.println("@TaintedTOuch " + str);
             //add enemy to targets
             if(active){
@@ -118,7 +118,7 @@ public class Skill_TaintedTorture extends SpecialSkill{
             if (str.equals("inactive")) {
                 active = false;
             }
-            
+            */
         }
         
         

@@ -112,15 +112,23 @@ public class StellaEntity_Initial extends StellaEntity{
     }
     
     @Override
-    public void alert(String str){
-        super.alert(str);
-        if (str.equals("active")) {
-            if (initialInactive) {
-                GameScreen.player.inRangeForAction(this);
+    public void alert(String [] str){
+        try {
+            if (!str[1].contains("action_")) {
+                return;
             }
-        }
-        if(str.equals("inactive")){
-            GameScreen.player.outRangeForAction(this);
+
+            super.alert(str);
+            if (str[0].equals("begin")) {
+                if (initialInactive) {
+                    GameScreen.player.inRangeForAction(this);
+                }
+            }
+            if (str.equals("end")) {
+                GameScreen.player.outRangeForAction(this);
+            }
+        } catch (IndexOutOfBoundsException ex) {
+            ex.printStackTrace();
         }
     }
     
