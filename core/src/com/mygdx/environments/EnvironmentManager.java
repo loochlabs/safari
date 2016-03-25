@@ -104,6 +104,8 @@ public class EnvironmentManager {
         //player, initial setup
         if(GameScreen.player == null){
             player = new Player_Lumen(new Vector2(300 * RATIO , 400 * RATIO));
+            //player = new Player_Poe(new Vector2(300 * RATIO , 400 * RATIO));
+            //player = new Player_Woogie(new Vector2(300 * RATIO , 400 * RATIO));
         }
         
         //end pad manager

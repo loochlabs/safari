@@ -7,14 +7,14 @@ package com.mygdx.environments.tears;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
+import com.mygdx.entities.DynamicEntities.SteerableEntity;
 import com.mygdx.entities.ImageSprite;
-import com.mygdx.entities.StaticEntities.StaticEntity;
 import com.mygdx.entities.pickups.Pickup;
-import com.mygdx.entities.text.TextDamage;
 import com.mygdx.environments.Environment;
 import com.mygdx.environments.EnvironmentManager;
 import static com.mygdx.game.MainGame.RATIO;
@@ -32,7 +32,7 @@ import static com.mygdx.utilities.UtilityVars.PPM;
  *
  * @author looch
  */
-public class TearPortal extends StaticEntity{
+public class TearPortal extends SteerableEntity{
     
     protected int linkid;
     protected ImageSprite dmgSprite, openSprite;
@@ -59,7 +59,7 @@ public class TearPortal extends StaticEntity{
     public TearPortal(Vector2 pos, int linkid){
         super(pos,50f*RATIO,50f*RATIO);
         
-        
+        bd.type = BodyType.StaticBody;
         bd.position.set(pos.x/PPM,pos.y/PPM);
         cshape.setRadius(0.5f * width/PPM);
         

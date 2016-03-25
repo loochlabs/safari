@@ -11,8 +11,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.StreamUtils;
 import com.mygdx.entities.ImageSprite;
-import com.mygdx.game.MainGame;
-import com.mygdx.managers.ResourceManager;
 import com.mygdx.utilities.FrameCounter_Attack;
 import java.io.Reader;
 
@@ -25,24 +23,20 @@ public class En_Murgle extends EnemyEntity{
     public En_Murgle(Vector2 pos, float w, float h){
         super(pos,w,h);
         
-        idleTexture = MainGame.am.get(ResourceManager.MURGLE_MAIN);
-        prepTexture = MainGame.am.get(ResourceManager.MURGLE_MAIN);
         
         moveSprite = new ImageSprite("murgle-front",true);
         moveSprite.sprite.setScale(0.5f);
         
-        texture = idleTexture;
         
         MAX_HP = 5;
         CURRENT_HP = MAX_HP;
-        CHARSPEED = 10.0f;
         DAMAGE = 20.0f;
         
         prepTime = 0.5f;
-        attackTime = 0.3f;
+        attTime = 0.3f;
         recovTime = 3f;
         
-        attackFC = new FrameCounter_Attack(prepTime, attackTime, recovTime);
+        attackFC = new FrameCounter_Attack(prepTime, attTime, recovTime);
         
         //expYield = 3;
     }
@@ -56,7 +50,7 @@ public class En_Murgle extends EnemyEntity{
         try {
             reader = Gdx.files.internal("ai/enemies/en_murgle.tree").reader();
             BehaviorTreeParser<EnemyEntity> parser = new BehaviorTreeParser<EnemyEntity>(BehaviorTreeParser.DEBUG_NONE);
-            enemybt = parser.parse(reader,this);
+            bt = parser.parse(reader,this);
         } finally {
             StreamUtils.closeQuietly(reader);
         }
@@ -66,7 +60,7 @@ public class En_Murgle extends EnemyEntity{
     public void update(){
         super.update();
         
-        enemybt.step();
+        bt.step();
     }
     
     @Override
@@ -74,6 +68,8 @@ public class En_Murgle extends EnemyEntity{
         super.attack();
         body.applyForce(attDest.scl(-800.0f), body.getPosition(), true);
     }
+    
+    /*
     
     @Override
     public void startAttack(){
@@ -86,4 +82,5 @@ public class En_Murgle extends EnemyEntity{
         super.moveTo(dest, speed);
         isprite = moveSprite;
     }
+*/
 }

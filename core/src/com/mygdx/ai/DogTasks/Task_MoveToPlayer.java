@@ -17,9 +17,7 @@ public class Task_MoveToPlayer extends LeafTask<DogEntity>{
 
     @Override
     public void run(DogEntity dog) {
-        
-        //dog.moveTo(GameScreen.player.getBody().getPosition(),dog.getSpeed());
-        dog.moveTo(dog.findClosestBody().getPosition(),dog.getSpeed());
+        dog.moveToPlayer();
         success();
     }
 

@@ -5,15 +5,18 @@
  */
 package com.mygdx.entities.DynamicEntities.enemies;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.ai.btree.utils.BehaviorTreeParser;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.StreamUtils;
 import com.mygdx.entities.ImageSprite;
 import com.mygdx.entities.projectiles.EnemyProj;
 import com.mygdx.environments.EnvironmentManager;
 import static com.mygdx.game.MainGame.RATIO;
 import com.mygdx.screen.GameScreen;
 import com.mygdx.utilities.FrameCounter_Attack;
-import static com.mygdx.utilities.UtilityVars.PPM;
+import java.io.Reader;
 
 /**
  *
@@ -37,51 +40,38 @@ public class En_Peeker extends EnemyEntity{
         CURRENT_HP = MAX_HP;
         DAMAGE = 10f;
         
-        prepTime = 0.5f;
-        attackTime = 0.3f;
-        recovTime = 3f;
-        attackFC = new FrameCounter_Attack(prepTime, attackTime, recovTime);
+        //combat
+        ATTACK_RANGE = 4.5f*RATIO;
         
-        PLAYER_ATTACK_RANGE = 6f; 
+        prepTime = 0.5f;
+        attTime = 0.3f;
+        recovTime = 3f;
+        attackFC = new FrameCounter_Attack(prepTime, attTime, recovTime);
         
         canInterrupt = false;
     }
     
-    
     @Override
-    public void init(World world){
+    public void init(World world) {
         super.init(world);
-        
-        initBT();
+        //ai
+        Reader reader = null;
+        try {
+            //read this file in resource manager
+            reader = Gdx.files.internal("ai/enemies/en_goober2.tree").reader();
+            BehaviorTreeParser<EnemyEntity> parser = new BehaviorTreeParser<EnemyEntity>(BehaviorTreeParser.DEBUG_NONE);
+            bt = parser.parse(reader, this);
+        } finally {
+            StreamUtils.closeQuietly(reader);
+        }
     }
-    
-    @Override
-    public void update(){
-        super.update();
-        
-        enemybt.step();
-    }
-    
-    @Override
-    public void moveTo(Vector2 dv, float speed){}
-    
-    @Override
-    public void startAttack(){
-        //launch bullet at player
-        
-        super.startAttack();
-        attDest = null;
-    }
-    
+
     @Override
     public void attack(){
-        Vector2 dir = GameScreen.player.getBody().getPosition().cpy().sub(body.getPosition()).nor();
+        Vector2 dir = GameScreen.player.getPos().cpy().sub(pos).nor();
         EnvironmentManager.currentEnv.spawnEntity(
-                new EnemyProj(
-                        new Vector2(body.getPosition().x * PPM, body.getPosition().y * PPM),
-                        dir,
-                        DAMAGE));
+                new EnemyProj(pos.cpy(), dir, DAMAGE));
+        
         canAttack = false;
-        isprite = moveSprite;
     }
 }

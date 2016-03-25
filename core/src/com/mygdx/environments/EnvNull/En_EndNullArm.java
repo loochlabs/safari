@@ -151,6 +151,10 @@ public class En_EndNullArm extends StaticEntity{
             p.spawnForce();
         }
         
+        if(GameScreen.player.getAttTargets().contains(this)){
+            GameScreen.player.getAttTargets().remove(this);
+        }
+        
         //sound
         //SFX_IDLE.stop();
         SFX_DEATH.play(false);

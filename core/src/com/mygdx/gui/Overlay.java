@@ -19,7 +19,6 @@ import static com.mygdx.game.MainGame.RATIO;
 import com.mygdx.managers.FrameManager;
 import com.mygdx.managers.ResourceManager;
 import com.mygdx.utilities.FrameCounter;
-import com.mygdx.utilities.FrameCounter_Combo;
 
 /**
  *
@@ -28,12 +27,14 @@ import com.mygdx.utilities.FrameCounter_Combo;
 public class Overlay {
     
     public boolean enable = true;
+    
+    //todo: get rid of width, height
     private float width, height;
     
     //componenets
     private final BarHud barHud;
     private final SkillHud skillHud;
-    private ComboBar comboBar;
+    //private ComboBar comboBar;
     
     private Texture debugGrid;
     
@@ -47,7 +48,7 @@ public class Overlay {
     private final long ALERT_TIME = 60;//counted by # of frames, todo: use frameCounter
     
     //title alter for environment
-    private String titleText;
+    private String titleText = "";
     private final BitmapFont titleFont;
     private final FrameManager fm = new FrameManager();
     private final float titleTime = 5f; 
@@ -102,13 +103,14 @@ public class Overlay {
         barHud.update();
         skillHud.update();
         
+        /*
         if(comboBar != null){
             comboBar.update();
             
             if(comboBar.complete){
                 removeComboBar();
             }
-        }
+        }*/
         
         fm.update();
     }
@@ -118,9 +120,10 @@ public class Overlay {
             barHud.render(sb);
             skillHud.render(sb);
             
+            /*
             if(comboBar != null){
                 comboBar.render(sb);
-            }
+            }*/
             
             
             for (int i = 0; i < alertTexts.size; i++) {
@@ -208,13 +211,14 @@ public class Overlay {
         skillHud.addDescAlert(skill);
     }
     
+    /*
     public void addComboBar(FrameCounter_Combo comboFC){
         comboBar = new ComboBar(MainGame.WIDTH/2, MainGame.HEIGHT*0.25f, comboFC);
     }
     
     public void removeComboBar(){
         comboBar = null;
-    }
+    }*/
     
     //handle transSprite during trasition 
     //@param - transState
@@ -226,33 +230,26 @@ public class Overlay {
     //
     //Called from Environment 
     
-    public boolean transition(boolean transState){
-        
+    public boolean transition(boolean transState) {
+
         beginEndTransState = transState;
-        
-        if(transState){
+
+        if (transState) {
             transitioning = !transBeginSprite.isComplete();
-            
-            
-        }else{
+            transBeginSprite.step();
+        } else {
             transitioning = !transEndSprite.isComplete();
-            
-            
+            transEndSprite.step();
         }
-        
-        
+
         return !transitioning;
-        
+
     }
     
-    public void endTransition(){
+    public void endTransition() {
         transitioning = false;
-        //if(transBeginSprite.isComplete()){
-                transBeginSprite.reset();
-            //}
-            //if(transEndSprite.isComplete()){
-                transEndSprite.reset();
-            //}
+        transBeginSprite.reset();
+        transEndSprite.reset();
     }
     
     private void renderTransion(SpriteBatch sb){

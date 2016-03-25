@@ -7,6 +7,10 @@ package com.mygdx.entities.DynamicEntities.enemies;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ai.btree.utils.BehaviorTreeParser;
+import com.badlogic.gdx.ai.steer.behaviors.Arrive;
+import com.badlogic.gdx.ai.steer.behaviors.Seek;
+import com.badlogic.gdx.ai.steer.behaviors.Wander;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
@@ -55,19 +59,16 @@ public class En_Goober extends EnemyEntity{
         
         MAX_HP = 30;
         CURRENT_HP = MAX_HP;
-        CHARSPEED = 12.0f;
         DAMAGE = 15.0f;
         
-        prepTime = 0.5f;
-        attackTime = 0.3f;
+        prepTime = 1.0f;
+        attTime = 0.3f;
         recovTime = 3f;
         
-        attackFC = new FrameCounter_Attack(prepTime, attackTime, recovTime);
-        
-        //expYield = 3;
+        attackFC = new FrameCounter_Attack(prepTime, attTime, recovTime);
         
         
-        
+        //attack sensors
         attFd1 = new FixtureDef();
         PolygonShape vertBox = new PolygonShape();
         vertBox.setAsBox(width*0.4f/PPM, (75f/PPM)*RATIO, new Vector2(0,(75f/PPM)*RATIO), 0);
@@ -101,65 +102,65 @@ public class En_Goober extends EnemyEntity{
         attFd4.filter.categoryBits = BIT_EN;
         attFd4.filter.maskBits = BIT_PLAYER;
         
-        //sound
-        //SFX_MOVE = new SoundObject_Sfx(ResourceManager.SFX_GOOBER_MOVE);
+        
+        //ai
+        moveToSB = new Arrive<Vector2>(this, GameScreen.player)
+                .setTimeToTarget(0.01f)
+                .setArrivalTolerance(2f)
+                .setDecelerationRadius(10);
+        
+        wanderSB = new Wander<Vector2>(this)
+                .setFaceEnabled(false)
+                .setAlignTolerance(0.001f)
+                .setDecelerationRadius(5)
+                .setTimeToTarget(0.1f)
+                .setWanderOffset(90)
+                .setWanderOrientation(10)
+                .setWanderRadius(40f)
+                .setWanderRate(MathUtils.PI2 * 4);
+                
+        seekWanderSB = new Seek<Vector2>(this, seekWanderTarget);
+        
+        //ai
+        this.maxLinearSpeed = 150f;
+        this.maxLinearAcceleration = 500f;
+        this.maxAngularSpeed = 30f;
+        this.maxAngularAcceleration = 5f;
+        
     }
     
     @Override
     public void init(World world){
         super.init(world);
         
-        body.createFixture(attFd1).setUserData(attSensorData);
-        body.createFixture(attFd2).setUserData(attSensorData);
-        body.createFixture(attFd3).setUserData(attSensorData);
-        body.createFixture(attFd4).setUserData(attSensorData);
+        body.createFixture(attFd1).setUserData(sensordata);
+        body.createFixture(attFd2).setUserData(sensordata);
+        body.createFixture(attFd3).setUserData(sensordata);
+        body.createFixture(attFd4).setUserData(sensordata);
         
         //ai
         Reader reader = null;
         try {
-            reader = Gdx.files.internal("ai/grunt.tree").reader();
+            //read this file in resource manager
+            reader = Gdx.files.internal("ai/enemies/en_goober2.tree").reader();
             BehaviorTreeParser<EnemyEntity> parser = new BehaviorTreeParser<EnemyEntity>(BehaviorTreeParser.DEBUG_NONE);
-            enemybt = parser.parse(reader,this);
+            bt = parser.parse(reader,this);
         } finally {
             StreamUtils.closeQuietly(reader);
         }
-        
-        
-        //SFX_MOVE.play(true, body.getPosition());
     }
     
     @Override
-    public void update(){
-        super.update();
-        
-        enemybt.step();
-        
-        if(dmgFC.running){
-            isprite = bodyDamageSprite;
-        }else if(attackFC.state == AttackState.PREPPING){
-            isprite = prepSprite;
-        }else if(attackFC.state == AttackState.ATTACKING){
-            isprite = attackSprite;
-        }else{
-            isprite = moveSprite;
-        }
+    public void attack() {
+        body.applyForce(attDest.scl(-400.0f), body.getPosition(), true);
+        super.attack();
     }
-    
+
     @Override
-    public void death(){
-        //SFX_MOVE.stop();
-        super.death();
-    }
-    
-    @Override
-    public void startAttack(){
-        if(!attackFC.running && !dmgFC.running){
-            attDest = body.getPosition().cpy().sub(
+    public void prepAttack() {
+        super.prepAttack();
+        attDest = body.getPosition().cpy().sub(
                 GameScreen.player.getBody().getPosition().cpy());
-            
-            body.applyForce(attDest.scl(-800.0f), body.getPosition(), true);
-        }
-        
-        super.startAttack();
     }
+
 }

@@ -9,6 +9,10 @@ import com.badlogic.gdx.ai.steer.Steerable;
 import com.badlogic.gdx.ai.steer.SteeringAcceleration;
 import com.badlogic.gdx.ai.steer.SteeringBehavior;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
+import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.World;
+import com.mygdx.entities.Entity;
 import com.mygdx.game.MainGame;
 import com.mygdx.utilities.SteeringUtils;
 import static com.mygdx.utilities.UtilityVars.PPM;
@@ -17,7 +21,7 @@ import static com.mygdx.utilities.UtilityVars.PPM;
  *
  * @author looch
  */
-public class SteerableEntity extends DynamicEntity implements Steerable<Vector2>{
+public class SteerableEntity extends Entity implements Steerable<Vector2>{
 
     protected boolean tagged;
     protected float boundingRadius;
@@ -27,8 +31,22 @@ public class SteerableEntity extends DynamicEntity implements Steerable<Vector2>
     protected SteeringBehavior<Vector2> behavior;
     protected SteeringAcceleration<Vector2> steeringOutput;
     
+    protected float RANGE;
+    
+    public float getRange() { return this.RANGE; }
+    
     public SteerableEntity(Vector2 pos, float w, float h) {
         super(pos, w, h);
+        
+        MAX_HP = 100;
+        CURRENT_HP = MAX_HP;
+        
+        bd.position.set(pos.x/PPM,pos.y/PPM);
+        bd.type = BodyDef.BodyType.DynamicBody;
+        cshape.setRadius(width/PPM);
+        shape.setAsBox(width/PPM, height/PPM);
+        fd.shape = cshape;
+        userdata = "steerable_" + id;
         
         this.maxLinearSpeed = 500f;
         this.maxLinearAcceleration = 500f;
@@ -40,6 +58,21 @@ public class SteerableEntity extends DynamicEntity implements Steerable<Vector2>
         this.tagged = false;
         this.steeringOutput = new SteeringAcceleration<Vector2>(new Vector2());
         
+    }
+    
+    //Needed for getting player closest body in DogEntity AI
+    public SteerableEntity(Body b){
+        this(new Vector2(0,0),0f,0f);
+        
+        this.body = b;
+    }
+    
+    @Override
+    public void init(World world) {
+        body = world.createBody(bd);
+        body.createFixture(fd).setUserData(userdata);
+        body.setUserData(userdata);
+        body.setLinearDamping(8.0f);
     }
 
     @Override
@@ -186,5 +219,7 @@ public class SteerableEntity extends DynamicEntity implements Steerable<Vector2>
     public SteeringBehavior<Vector2> getBehavior(){
         return behavior;
     }
+
+    
     
 }

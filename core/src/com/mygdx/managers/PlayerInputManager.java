@@ -69,7 +69,8 @@ public class PlayerInputManager {
             
             
             if(GameKeyLibrary.isPressed(GameKeyLibrary.DASH)){
-                GameScreen.player.dash();
+                //GameScreen.player.dash();
+                GameScreen.player.attack(5);
             } 
         
         }

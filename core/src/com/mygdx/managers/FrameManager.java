@@ -44,4 +44,7 @@ public class FrameManager {
         }
     }
     
+    public boolean contains(FrameCounter counter){
+        return fCounters.contains(counter, true);
+    }
 }

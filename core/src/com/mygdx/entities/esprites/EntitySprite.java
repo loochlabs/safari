@@ -46,6 +46,16 @@ public class EntitySprite extends Entity {
     }
     
     @Override
+    public void setPosition(Vector2 pos){
+        super.setPosition(pos);
+        
+        if(isprite != null){
+            isprite.sprite.setPosition(
+                    pos.x - isprite.sprite.getWidth()/2, pos.y - isprite.sprite.getHeight()/2);
+        }
+    }
+    
+    @Override
     public void init(World world) {}
     
     @Override

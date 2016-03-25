@@ -10,10 +10,8 @@ import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
-import com.mygdx.entities.DynamicEntities.enemies.EnemyEntity;
 import com.mygdx.entities.Entity;
 import com.mygdx.environments.Environment;
-import com.mygdx.environments.EnvironmentManager;
 import com.mygdx.screen.GameScreen;
 import java.util.ArrayList;
 
@@ -49,7 +47,7 @@ public class MainContactListener implements ContactListener{
             //   PLAYER ATT targets list update
             //*********************
      
-            
+            /*
             if (fa.getUserData().toString().contains("att_norm")) {
                 for (Entity e : entities) {
                     if (e.getUserData() != null 
@@ -70,16 +68,28 @@ public class MainContactListener implements ContactListener{
                     }
                 }
 
-            }
-
-            for(Entity e : entities){
-                if(e.getUserData().equals(fa.getUserData())){
-                    String [] str = { "begin", fa.getUserData().toString(), fb.getUserData().toString()};
+            }*/
+            
+            //String data;
+            for (Entity e : entities) {
+                
+                if (e.getSensorData() != null && fa.getUserData().equals(e.getSensorData())) {
+                    String[] str = {"begin", e.getSensorData().toString(), fb.getUserData().toString()};
                     e.alert(str);
-                }else if(e.getUserData().equals(fb.getUserData())){
-                    String [] str = {"begin", fb.getUserData().toString(), fa.getUserData().toString()};
+                } else if(e.getUserData().equals(fa.getUserData())){
+                    String[] str = {"begin", fa.getUserData().toString(), fb.getUserData().toString()};
                     e.alert(str);
                 }
+
+                if (e.getSensorData() != null && fb.getUserData().equals(e.getSensorData())) {
+                    String[] str = {"begin", e.getSensorData().toString(), fa.getUserData().toString()};
+                    e.alert(str);
+                } else if(e.getUserData().equals(fb.getUserData())){
+                    String[] str = {"begin", fb.getUserData().toString(), fa.getUserData().toString()};
+                    e.alert(str);
+                }
+
+   
             }
             
             /**
@@ -289,6 +299,7 @@ public class MainContactListener implements ContactListener{
         
         try{
             
+            /*
             if (fa.getUserData().toString().contains("att_norm")) {
                 for (Entity e : entities) {
                     if (e.getUserData() != null && e.getUserData().equals(fb.getUserData())) {
@@ -303,15 +314,23 @@ public class MainContactListener implements ContactListener{
                         GameScreen.player.removeTarget(e);
                     }
                 }
-            }
+            }*/
 
             
             for(Entity e : entities){
-                if(e.getUserData().equals(fa.getUserData().toString())){
-                    String [] str = { "end", fa.getUserData().toString(), fb.getUserData().toString() };
+                if (e.getSensorData() != null && fa.getUserData().equals(e.getSensorData())) {
+                    String[] str = {"end", e.getSensorData().toString(), fb.getUserData().toString()};
                     e.alert(str);
-                }else if(e.getUserData().equals(fb.getUserData())){
-                    String [] str = {"end", fb.getUserData().toString(), fa.getUserData().toString() };
+                } else if(e.getUserData().equals(fa.getUserData())){
+                    String[] str = {"end", fa.getUserData().toString(), fb.getUserData().toString()};
+                    e.alert(str);
+                }
+
+                if (e.getSensorData() != null && fb.getUserData().equals(e.getSensorData())) {
+                    String[] str = {"end", e.getSensorData().toString(), fa.getUserData().toString()};
+                    e.alert(str);
+                } else if(e.getUserData().equals(fb.getUserData())){
+                    String[] str = {"end", fb.getUserData().toString(), fa.getUserData().toString()};
                     e.alert(str);
                 }
             }

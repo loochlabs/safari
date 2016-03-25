@@ -16,6 +16,7 @@ public class FrameCounter {
  
     public boolean running = false, complete = false;
     public int CURRENT_FRAME, MAX_FRAME;
+    private FrameManager fm;
     
     public void setTime(float time) { 
         MAX_FRAME = (int)(time * Math.pow(MainGame.STEP,-1));
@@ -31,12 +32,16 @@ public class FrameCounter {
     }
     
     public void start(FrameManager fm){
-        fm.add(this);
+        this.fm = fm;
+        if(!fm.contains(this)){
+            this.fm.add(this);
+        }
         reset();
     }
     
-    public void stop(FrameManager fm){
-        fm.remove(this);
+    public void stop(){
+        if(fm != null)
+            fm.remove(this);
     }
     
     public void step(){
@@ -61,6 +66,10 @@ public class FrameCounter {
     public void complete(){
         complete = true;
         running = false;
+        
+        if(fm.contains(this)){
+            fm.remove(this);
+        }
     }
     
 }

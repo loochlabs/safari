@@ -11,10 +11,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
-import com.mygdx.combat.skills.Skill.SkillType;
-import static com.mygdx.combat.skills.Skill.SkillType.ITEM;
 import com.mygdx.entities.Entity;
-import com.mygdx.environments.EnvironmentManager;
 import com.mygdx.gui.descriptions.DescriptionWindow;
 import com.mygdx.managers.ResourceManager;
 import com.mygdx.screen.GameScreen;
@@ -33,7 +30,7 @@ public abstract class Pickup extends Entity{
     
     protected Object name;
     protected String desc;
-    protected SkillType type = ITEM;
+    //protected SkillType type = ITEM;
     protected DescriptionWindow descWindow;
     protected boolean pickupComplete = false;
     

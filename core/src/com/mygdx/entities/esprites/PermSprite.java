@@ -26,14 +26,10 @@ public class PermSprite extends EntitySprite{
         
         durationFC = new FrameCounter(DURATION);
         
-        
-        isprite.sprite.setPosition(pos.x - isprite.sprite.getWidth()/2, pos.y - isprite.sprite.getHeight()/2);
-        //sprite.setScale(0.8f*RATIO);
+        //isprite.sprite.setPosition(pos.x - isprite.sprite.getWidth()/2, pos.y - isprite.sprite.getHeight()/2);
         isprite.sprite.rotate(360 * rng.nextFloat());
         
-        this.pos = new Vector2(pos.x - isprite.sprite.getWidth()/2, pos.y - isprite.sprite.getHeight()/2);
-        //this.x = pos.x - sprite.getWidth()/2;
-        //this.y = pos.y - sprite.getHeight()/2;
+        //this.pos = new Vector2(pos.x - isprite.sprite.getWidth()/2, pos.y - isprite.sprite.getHeight()/2);
     }
     
     @Override
@@ -46,7 +42,6 @@ public class PermSprite extends EntitySprite{
     
     public void start(){
         durationFC.start(EnvironmentManager.currentEnv.getFrameManager());
-        //EnvironmentManager.currentEnv.spawnSprite(this);
         EnvironmentManager.currentEnv.spawnEntity(this);
         
     }

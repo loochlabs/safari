@@ -6,7 +6,7 @@
 package com.mygdx.dev;
 
 import com.badlogic.gdx.math.Vector2;
-import com.mygdx.combat.skills.Skill_Haymaker;
+import com.mygdx.combat.skills.Skill_HauntHaste;
 import com.mygdx.demo.demo2.EnvVoid_D2_1;
 import com.mygdx.entities.DynamicEntities.DogEntities.MurphyEntity;
 import com.mygdx.entities.DynamicEntities.DogEntities.StellaEntity;
@@ -78,7 +78,7 @@ public class EnvVoid_Dev0 extends EnvVoid{
         spawnEntity(new DecomSprite(new Vector2(25f*RATIO, grid.getHeight()*0.9f)));
         
         spawnEntity(new SkillPad_Primary(new Vector2(900f, 1200f)));
-        spawnEntity(new SkillPad(new Vector2(1100f, 1200f), new Skill_Haymaker()));
+        spawnEntity(new SkillPad(new Vector2(1100f, 1200f), new Skill_HauntHaste()));
     }
     
     
@@ -115,6 +115,8 @@ public class EnvVoid_Dev0 extends EnvVoid{
         spawnEntity(new Tear_R_Dev0(new Vector2(800f*RATIO,800f*RATIO), this.id));
         spawnEntity(new Tear_R_Dev0(new Vector2(550f*RATIO,800f*RATIO), this.id));
         spawnEntity(new Tear_R_Dev0(new Vector2(300f*RATIO,800f*RATIO), this.id));
+        
+        spawnEntity(new Tear_R_Dev1(new Vector2(1300f*RATIO, 800f*RATIO), this.id));
     }
     
     

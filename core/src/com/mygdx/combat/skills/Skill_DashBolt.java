@@ -5,22 +5,23 @@
  */
 package com.mygdx.combat.skills;
 
-import com.mygdx.entities.Entity;
-import com.mygdx.entities.ImageSprite;
-import com.mygdx.game.MainGame;
-import static com.mygdx.game.MainGame.RATIO;
-import com.mygdx.gui.descriptions.DescriptionWindow;
-import com.mygdx.managers.ResourceManager;
-import com.mygdx.screen.GameScreen;
-import static com.mygdx.utilities.UtilityVars.PPM;
-
 /**
  *
  * @author looch
  */
 public class Skill_DashBolt extends Skill{
+    //TEMP FOR DASH DEFENSE SKILL EDIT
+    @Override
+    public void activate() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
-    
+    @Override
+    public void deactivate() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    /*
     public Skill_DashBolt(){
         name = "Dash Bolt";
         type = SkillType.PASSIVE;
@@ -77,7 +78,7 @@ public class Skill_DashBolt extends Skill{
     
     
     @Override
-    public void effect(boolean isCombo, Skill prevSkill){
+    public void effect(boolean isCombo, Skill prevSkill, boolean isComboChain){
         
         for(Entity ent: GameScreen.player.getAttTargets()){
             //ent.damage(GameScreen.player.getDamage() * GameScreen.player.getLightMod() * damageMod);
@@ -112,5 +113,5 @@ public class Skill_DashBolt extends Skill{
         
         reset();
     }
-    
+    */
 }

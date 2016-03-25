@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mygdx.ai;
+package com.mygdx.ai.DogTasks;
 
 import com.badlogic.gdx.ai.btree.LeafTask;
 import com.badlogic.gdx.ai.btree.Task;
@@ -14,7 +14,7 @@ import com.mygdx.environments.tears.TearPortal;
  *
  * @author looch
  */
-public class NearTearTask extends LeafTask<DogEntity>{
+public class Task_IsNearTear extends LeafTask<DogEntity>{
 
     @Override
     public void run(DogEntity dog) {
@@ -27,7 +27,7 @@ public class NearTearTask extends LeafTask<DogEntity>{
 
     @Override
     protected Task<DogEntity> copyTo(Task<DogEntity> task) {
-        NearTearTask near = (NearTearTask)task;
+        Task_IsNearTear near = (Task_IsNearTear)task;
         return near;
     }
     

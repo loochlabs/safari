@@ -64,7 +64,7 @@ public class MurphyEntity extends DogEntity{
         
         for(TearPortal tp: tears){
             //if(TEARRANGE > GameScreen.player.getBody().getPosition().dst(tp.getBody().getPosition())){
-            if(TEARRANGE > findClosestBody().getPosition().dst(tp.getBody().getPosition())){
+            if(PLAYER_RANGE_FOR_TEARS > findClosestBody().getPosition().dst(tp.getBody().getPosition())){
                 isprite = alertSprite;
                 isprite.sprite.rotate(-0.25f);
                 //texture = alertTexture;

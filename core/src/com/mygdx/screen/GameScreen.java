@@ -187,7 +187,7 @@ public class GameScreen extends Screen{
         //**********
         // PAUSE MENU
         if(sm.getState() == State.PAUSED){
-            pauseOverlay.render(sb);
+            //pauseOverlay.render(sb);
         }
         
         
@@ -405,9 +405,9 @@ public class GameScreen extends Screen{
         if(sm.getState() != State.PAUSED){
             sm.setState(2);
             
-            pauseOverlay = new PauseOverlay();
+            //pauseOverlay = new PauseOverlay();
         }else{
-            pauseOverlay.back();
+            //pauseOverlay.back();
         }
     }
 

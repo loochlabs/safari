@@ -21,13 +21,12 @@ public class Player_Lumen extends PlayerEntity{
         
         playerName = "Lumen";
         
-        //box2d
-        fd.shape = shape;
+        
         
         LIFE_STAT_COUNT = 3;
-        ENERGY_STAT_COUNT = 3;
+        ENERGY_STAT_COUNT = 7;
         DAMAGE_STAT_COUNT = 6;
-        SPEED_STAT_COUNT = 1;
+        SPEED_STAT_COUNT = 3;
         SPECIAL_STAT_COUNT = 4;
         
         refreshStats();

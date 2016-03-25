@@ -22,7 +22,6 @@ import com.mygdx.game.MainGame;
 import com.mygdx.managers.FrameManager;
 import com.mygdx.managers.GameStats;
 import com.mygdx.screen.GameScreen;
-import com.mygdx.utilities.FrameCounter_Attack;
 import static com.mygdx.utilities.UtilityVars.PPM;
 import java.util.Comparator;
 import java.util.Random;
@@ -37,6 +36,7 @@ public abstract class Entity{
     protected float width, height, iw, ih;
     protected int id;
     protected Object userdata = "default";
+    protected Object sensordata = null;
     protected boolean active = true;
     
     //animations
@@ -57,19 +57,15 @@ public abstract class Entity{
     protected CircleShape cshape = new CircleShape();
     protected Body body;
     
-    //protected FrameCounter_Attack attackFC;
-    
     //frame counter
     protected FrameManager fm = new FrameManager();
     
     protected boolean dead = false;
     protected boolean deadCheck = true;
-    //protected boolean alive = true, dead = false;
     
     
     //stats
     protected float MAX_HP = 0, CURRENT_HP = 0;
-    //protected float DAMAGE;
     
     protected final Random rng = new Random();
     protected final Array<Integer> rngNegSet = new Array<Integer>();
@@ -82,6 +78,7 @@ public abstract class Entity{
     public float getIh() {return ih;}
     public int getId() {return id;}
     public Object getUserData() { return userdata; }
+    public Object getSensorData() { return sensordata; }
     public Texture getTexture() {return texture;}
     public ImageSprite getSprite() { return isprite; }
     public BodyDef getBodyDef() {return bd;}
@@ -155,6 +152,7 @@ public abstract class Entity{
     
     public void render(SpriteBatch sb){
         if(isprite != null){
+            //todo: needed? xflip, yflip covered in ImageSprite
             if (isprite.getXFlip()) {
                 isprite.sprite.setPosition((pos.x + isprite.sprite.getWidth()/2),
                         (pos.y - isprite.sprite.getHeight()/2));

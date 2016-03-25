@@ -44,7 +44,7 @@ public class Skill_WarpIt extends Skill{
     }
     
     @Override
-    public void effect(boolean isCombo, Skill prevSkill) {
+    public void effect(boolean isCombo, Skill prevSkill, boolean isComboChain) {
          if(!EnvironmentManager.currentEnv.equals(env)){
              pos = null;
              posSet = false;

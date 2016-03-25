@@ -5,9 +5,8 @@
  */
 package com.mygdx.entities.pickups;
 
-import com.mygdx.entities.pickups.Pickup_Item;
 import com.badlogic.gdx.math.Vector2;
-import com.mygdx.entities.pickups.Pickup;
+import static com.mygdx.combat.skills.Skill.SkillType.NONE;
 import com.mygdx.game.MainGame;
 import static com.mygdx.game.MainGame.RATIO;
 import com.mygdx.gui.descriptions.DescriptionWindow;
@@ -30,7 +29,7 @@ public class Item_DarkMatter extends Pickup_Item{
         name = "Dark Matter";
         desc = "\"It binds the universe together.\"";
         
-        descWindow = new DescriptionWindow("" + name + "", desc, type, true);
+        descWindow = new DescriptionWindow("" + name + "", desc, NONE, true);
     }
     
     @Override

@@ -48,7 +48,7 @@ public class Skill_PowerPlease extends SpecialSkill{
     public void deactivate(){}
     
     @Override
-    public void effect(boolean isCombo, Skill prevSkill) {
+    public void effect(boolean isCombo, Skill prevSkill, boolean isComboChain) {
         
         if(!GameScreen.player.hasBuff(buff))
             buff = GameScreen.player.addBuff(new Buff_PowerPlease(30));

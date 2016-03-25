@@ -36,7 +36,7 @@ public class Skill_TaintedTorture extends SpecialSkill{
     }
     
     @Override
-    public void effect(boolean isCombo, Skill prevSkill) {
+    public void effect(boolean isCombo, Skill prevSkill, boolean isComboChain) {
         
         try {
             if (aoeCircle == null

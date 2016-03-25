@@ -63,7 +63,7 @@ public class DecomSprite extends EntitySprite{
     
     private void updateDecomStage(){
         
-        if (!stageFC.running) {
+        if (!stageFC.running && decomStage < 3) {
             decomStage++;
             stageFC.start(fm);
 

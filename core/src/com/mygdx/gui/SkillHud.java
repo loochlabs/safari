@@ -50,6 +50,7 @@ public class SkillHud extends OverlayComponent{
     private Texture dashTexture;
     
     //new item alert
+    //todo: cleanup
     private Texture newAlertTexture;
     private boolean newAlert = false;
     
@@ -141,7 +142,7 @@ public class SkillHud extends OverlayComponent{
        
         
         //desc window
-        desc_x = x ;
+        desc_x = x - 400f*RATIO;
         desc_y = y + 150f*RATIO;
         
         

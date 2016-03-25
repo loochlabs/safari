@@ -8,7 +8,6 @@ package com.mygdx.entities.DynamicEntities.player;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.entities.ImageSprite;
 import com.mygdx.entities.esprites.MirrorSprite;
-import com.mygdx.environments.EnvironmentManager;
 import static com.mygdx.game.MainGame.RATIO;
 
 /**
@@ -26,7 +25,7 @@ public class Player_Poe extends PlayerEntity{
         fd.shape = shape;
         
         LIFE_STAT_COUNT = 1;
-        ENERGY_STAT_COUNT = 2;
+        ENERGY_STAT_COUNT = 5;
         DAMAGE_STAT_COUNT = 3;
         SPEED_STAT_COUNT = 2;
         SPECIAL_STAT_COUNT = 2;

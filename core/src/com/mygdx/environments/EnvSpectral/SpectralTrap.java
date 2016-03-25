@@ -98,7 +98,7 @@ public class SpectralTrap extends StaticEntity{
     private void deactivateTrap(){
         trapActive = false;
         
-        trapFC.stop(fm);
+        trapFC.stop();
     }
     
     private void applyTrap(){

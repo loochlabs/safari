@@ -6,7 +6,7 @@
 package com.mygdx.combat;
 
 import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.mygdx.entities.DynamicEntities.DynamicEntity;
+import com.mygdx.entities.DynamicEntities.SteerableEntity;
 import static com.mygdx.utilities.UtilityVars.BIT_ATT;
 import static com.mygdx.utilities.UtilityVars.BIT_EN;
 import static com.mygdx.utilities.UtilityVars.BIT_TEAR;
@@ -18,13 +18,13 @@ import static com.mygdx.utilities.UtilityVars.BIT_TEAR;
 public abstract class AttackSensor extends FixtureDef{
     
     
-    protected DynamicEntity parent;
+    protected SteerableEntity parent;
     protected String data;
     
     public String getData() {return data;}
     
     
-    public AttackSensor(DynamicEntity parent){
+    public AttackSensor(SteerableEntity parent){
         
         this.parent = parent;
         this.filter.categoryBits = BIT_ATT;

@@ -7,16 +7,16 @@ package com.mygdx.ai.enemies;
 
 import com.badlogic.gdx.ai.btree.LeafTask;
 import com.badlogic.gdx.ai.btree.Task;
-import com.mygdx.entities.DynamicEntities.enemies.EnemyEntity2;
+import com.mygdx.entities.DynamicEntities.enemies.EnemyEntity;
 
 /**
  *
  * @author looch
  */
-public class Task_InRangeOfPlayer extends LeafTask<EnemyEntity2>{
+public class Task_InRangeOfPlayer extends LeafTask<EnemyEntity>{
 
     @Override
-    public void run(EnemyEntity2 en) {
+    public void run(EnemyEntity en) {
         if(en.inRangeOfPlayer()){
             en.removeWanderPos();
             this.success();
@@ -26,7 +26,7 @@ public class Task_InRangeOfPlayer extends LeafTask<EnemyEntity2>{
     }
 
     @Override
-    protected Task<EnemyEntity2> copyTo(Task<EnemyEntity2> task) {
+    protected Task<EnemyEntity> copyTo(Task<EnemyEntity> task) {
         Task_InRangeOfPlayer moveTo = (Task_InRangeOfPlayer)task;
         return moveTo;
     }

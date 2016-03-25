@@ -25,7 +25,7 @@ public class Player_Woogie extends PlayerEntity{
         fd.shape = shape;
         
         LIFE_STAT_COUNT = 3;
-        ENERGY_STAT_COUNT = 1;
+        ENERGY_STAT_COUNT = 5;
         DAMAGE_STAT_COUNT = 5;
         SPEED_STAT_COUNT = 2;
         SPECIAL_STAT_COUNT = 1;

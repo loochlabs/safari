@@ -3,32 +3,32 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mygdx.ai.enemies;
+package com.mygdx.ai.DogTasks;
 
 import com.badlogic.gdx.ai.btree.LeafTask;
 import com.badlogic.gdx.ai.btree.Task;
-import com.mygdx.entities.DynamicEntities.enemies.EnemyEntity;
+import com.mygdx.entities.DynamicEntities.DogEntities.DogEntity;
 
 /**
  *
  * @author looch
  */
-public class StartAttTask extends LeafTask<EnemyEntity>{
+public class Task_MoveToTear extends LeafTask<DogEntity>{
 
     @Override
-    public void run(EnemyEntity en) {
+    public void run(DogEntity dog) {
         
-        if (!en.getAttackFC().running) {
-            en.startAttack();
+        if (dog.isNearTear() != null) {
+            dog.moveToTear();
         } else {
             success();
         }
     }
 
     @Override
-    protected Task<EnemyEntity> copyTo(Task<EnemyEntity> task) {
-        StartAttTask idle = (StartAttTask)task;
-        return idle;
+    protected Task<DogEntity> copyTo(Task<DogEntity> task) {
+        Task_MoveToTear moveTo = (Task_MoveToTear)task;
+        return moveTo;
     }
     
 }

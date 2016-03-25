@@ -39,7 +39,7 @@ public class EnemyManager {
         Array<Entity> e = new Array<Entity>();
         
         Random rng = new Random();
-        int index = (int)(5 * rng.nextFloat());
+        int index = (int)(7 * rng.nextFloat());
         
         switch(index){
             case 0:
@@ -70,6 +70,16 @@ public class EnemyManager {
                 e.add(new En_Sloober(new Vector2(s.getPos().x + s.getWidth()*0.4f,s.getPos().y + s.getHeight()*0.6f)));
                 e.add(new En_Sloober(new Vector2(s.getPos().x + s.getWidth()*0.5f,s.getPos().y + s.getHeight()*0.65f)));
                 e.add(new En_Sloober(new Vector2(s.getPos().x + s.getWidth()*0.45f,s.getPos().y + s.getHeight()*0.5f)));
+            case 5:
+                e.add(new En_Worm(new Vector2(s.getPos().x + s.getWidth()*0.4f,s.getPos().y + s.getHeight()*0.6f)));
+                e.add(new En_Worm(new Vector2(s.getPos().x + s.getWidth()*0.5f,s.getPos().y + s.getHeight()*0.65f)));
+                e.add(new En_Worm(new Vector2(s.getPos().x + s.getWidth()*0.45f,s.getPos().y + s.getHeight()*0.5f)));
+            case 6:
+                e.add(new En_Worm(new Vector2(s.getPos().x + s.getWidth()*0.4f,s.getPos().y + s.getHeight()*0.6f)));
+                e.add(new En_Worm(new Vector2(s.getPos().x + s.getWidth()*0.5f,s.getPos().y + s.getHeight()*0.65f)));
+                e.add(new En_Worm(new Vector2(s.getPos().x + s.getWidth()*0.45f,s.getPos().y + s.getHeight()*0.5f)));
+                e.add(new En_Worm(new Vector2(s.getPos().x + s.getWidth()*0.5f,s.getPos().y + s.getHeight()*0.75f)));
+                e.add(new En_Worm(new Vector2(s.getPos().x + s.getWidth()*0.35f,s.getPos().y + s.getHeight()*0.5f)));
             default:
                 break;
         }

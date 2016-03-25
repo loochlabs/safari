@@ -18,7 +18,6 @@ import com.mygdx.environments.Environment;
 import com.mygdx.game.MainGame;
 import static com.mygdx.game.MainGame.RATIO;
 import com.mygdx.managers.StateManager;
-import com.mygdx.managers.StateManager.State;
 import com.mygdx.managers.ResourceManager;
 import com.mygdx.screen.GameScreen;
 import com.mygdx.utilities.Coordinate;
@@ -62,8 +61,8 @@ public abstract class EnvNull extends Environment {
     
     //new null sections
     protected Array<LayerManager> layerManagers = new Array<LayerManager>();
-    protected boolean initLayerSort = true; 
-    protected boolean initLayerBuffer = true;
+    //protected boolean initLayerSort = true; 
+    //protected boolean initLayerBuffer = true;
     
     //change to array of enemies
     //check if empty to finish this null
@@ -123,7 +122,8 @@ public abstract class EnvNull extends Environment {
         impactSprite.setPosition(new Vector2(playerPos.x*PPM - impactSprite.getWidth()/2, 
                 playerPos.y*PPM - impactSprite.getHeight()*0.175f));
         
-        introTextSprite = new EntitySprite(new Vector2(0,0), 350f,100f, "kill-text", 1.0f, false, true);
+        introTextSprite = new EntitySprite(new Vector2(0,0), 350f*RATIO,100f*RATIO, "kill-text",  
+                false, true, false, false, 1.0f, false, false, false, false);
         
         bgRockSprite = new ImageSprite("null-bg-rocks", false);
         bgRockSprite.sprite.setScale(1.0f * RATIO);
@@ -160,21 +160,11 @@ public abstract class EnvNull extends Environment {
         
         super.update();
         
-        //dirty workaround to wait one extra frame to update entities in layerManagers
-        //initial entity layer render sort
-        if(!initLayerBuffer && initLayerSort && sm.getState() == StateManager.State.BEGIN){
-            this.renderSectionSort();
-            initLayerSort = false;
-        }
-        if(initLayerBuffer && sm.getState() == StateManager.State.BEGIN)    initLayerBuffer = false;
-        
         
         if(sm.getState() == StateManager.State.FALLING )
             fallingUpdate();
             
         
-        //if(sm.getState() == State.END)
-            //fallingEndUpdate();
         
         bgZoomUpdate();
         
@@ -225,7 +215,7 @@ public abstract class EnvNull extends Environment {
             }
         }
         
-        
+        playerDiveSprite.step();
         
     }
     
@@ -233,37 +223,34 @@ public abstract class EnvNull extends Environment {
     public void fallingUpdate(){
         if (diveFC.complete) {
 
-            
             GameScreen.player.getBody().setTransform(
                     new Vector2(
-                            (currentSection.getPos().x + currentSection.getWidth() / 2) / PPM, 
+                            (currentSection.getPos().x + currentSection.getWidth() / 2) / PPM,
                             (currentSection.getPos().y + currentSection.getHeight() / 2) / PPM), 0);
             GameScreen.player.getBody().setLinearVelocity(new Vector2(0, 0));
-            
+
             //zoom out to normal
-            if(fallDown){
+            if (fallDown) {
                 currentPlayerZoom = currentPlayerZoom >= PLAYER_LAYER_ZOOM ? PLAYER_LAYER_ZOOM : currentPlayerZoom + 0.065f;
-            }else{
-                
+            } else {
+
                 //fallUp
                 currentPlayerZoom = currentPlayerZoom <= PLAYER_LAYER_ZOOM ? PLAYER_LAYER_ZOOM : currentPlayerZoom + 0.065f;
-                
+
             }
-            
 
             //complete current fall, resume play
             if (currentPlayerZoom == PLAYER_LAYER_ZOOM) {
 
                 sm.setState(1);
-                
-                
+
                 currentTopZoom = TOP_LAYER_ZOOM;
                 currentPlayerZoom = PLAYER_LAYER_ZOOM;
 
                 diveIn = false;
                 diveMovement = 0.1f;
 
-
+                /*
                 if (fallDown) {
                     this.spawnEntity(new EntitySprite(
                             impactSprite,
@@ -272,8 +259,8 @@ public abstract class EnvNull extends Environment {
                             impactSprite.getWidth(),
                             impactSprite.getHeight(),
                             true, false));
-                }
-                
+                }*/
+
                 //play impact sound
                 impactSound.play(false);
             }
@@ -298,7 +285,6 @@ public abstract class EnvNull extends Environment {
                     prevSectionPosition.add(dir.scl(diveMovement * dist)), 0);
             diveMovement = diveMovement >= 1 ? 1 : diveMovement / 0.99f;
 
-  
             if (fallDown) {
                 //zoom for sections falling FROM
                 currentTopZoom = currentTopZoom <= 0.03f ? 0.03f : currentTopZoom - 0.055f;
@@ -312,7 +298,6 @@ public abstract class EnvNull extends Environment {
                 } else {
                     currentPlayerZoom = currentPlayerZoom >= 1.0f ? 1.0f : currentPlayerZoom + 0.016f;
                 }
-
 
             } else {
 
@@ -330,29 +315,14 @@ public abstract class EnvNull extends Environment {
                 }
 
             }
-            
-            
-            
+
         }
+        
+        GameScreen.player.fall();
+        //playerDiveSprite.step();
     }
     
     
-    //fall camera zoom during State.END
-    @Deprecated
-    public void fallingEndUpdate(){
-        //update currentTopZoom
-        //update currentSectionZoom (playerDive)
-        //update currentPitZoom
-        
-        if(endFC.running){
-            
-            currentTopZoom = currentTopZoom < 0 ? 0.01f : currentTopZoom - 0.02f;
-            currentPitZoom = currentPitZoom < 0 ? 0.01f : currentPitZoom - 0.02f;
-            //currentSectionZoom = 1.0f;
-            
-        }
-        
-    }
     
     public void resetDiveSprite(ImageSprite e){
         e.sprite.setPosition(PLAYER_DIVE_POS.x, PLAYER_DIVE_POS.y);
@@ -417,9 +387,10 @@ public abstract class EnvNull extends Environment {
         layerManagers.get(tdepth).layerEntities.add(GameScreen.player);
         
         
+        GameScreen.player.fall();
+        
         diveFC.start(fm);
         sm.setState(4);
-        
         
     }
     
@@ -568,6 +539,17 @@ public abstract class EnvNull extends Environment {
         impactSound.play(false);
         
         
+        //dirty workaround to wait one extra frame to update entities in layerManagers
+        //initial entity layer render sort
+        //if(!initLayerBuffer && initLayerSort && sm.getState() == StateManager.State.BEGIN){
+            
+            //initLayerSort = false;
+        //}
+        //if(initLayerBuffer && sm.getState() == StateManager.State.BEGIN)    initLayerBuffer = false;
+        
+        entityCheck();
+        this.renderSectionSort();
+        
     }
     
     @Override
@@ -605,8 +587,8 @@ public abstract class EnvNull extends Environment {
             lm.removeUpdate();
         }
         
-        initLayerBuffer = true;
-        initLayerSort = true;
+        //initLayerBuffer = true;
+        //initLayerSort = true;
         
         this.setPlayerToStart();
         
@@ -728,6 +710,11 @@ public abstract class EnvNull extends Environment {
             case 3:
                 scount = 10;
                 layers = 4;
+                break;
+                
+            case -1:
+                scount = 50;
+                layers = 6;
                 break;
                 
             default:

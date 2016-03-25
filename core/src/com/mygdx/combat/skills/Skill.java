@@ -19,19 +19,19 @@ import java.util.Random;
  */
 public abstract class Skill {
     
-    public enum SkillType { LIGHT, HEAVY, SPECIAL, PASSIVE, ITEM } 
-    public enum SkillAttribute { LIFE, ENERGY, DAMAGE, SPEED, SPECIAL, LIGHT_DAMAGE, HEAVY_DAMAGE}
+    public enum SkillType { LIGHT, HEAVY, SPECIAL, PASSIVE, DEFENSE, NONE } 
+    public enum SkillAttribute { LIFE, ENERGY, DAMAGE, SPEED, SPECIAL, LIGHT_DAMAGE, HEAVY_DAMAGE, NONE}
     
     protected SkillType type;
     protected SkillAttribute attribute;
-    protected boolean dashSkill = false;
+    //protected boolean dashSkill = false;
     protected Texture skillIcon;
     protected String name;
     protected String desc;
     protected float COST;
     protected float damageMod, comboBonus = 1.5f;
+    protected boolean comboChain = false;
     protected ImageSprite esprite;
-    //protected float attackTime, comboTime, recovTime;
     protected FrameCounter_Combo comboFC = new FrameCounter_Combo(0.3f, 0.3f, 0.15f);
     protected float FORCE;
     protected final Random rng = new Random();
@@ -44,14 +44,11 @@ public abstract class Skill {
     
     public SkillType getType() {return type;}
     public SkillAttribute getAttribute() { return attribute; }
-    public boolean isDashSkill() { return dashSkill; }
+    //public boolean isDashSkill() { return dashSkill; }
     public float getCost() { return COST; }
     public String getName() { return name; }
     public String getDesc() { return desc; }
     public FrameCounter_Combo getComboFC() { return comboFC; }
-    //public float getPrepTime() { return attackTime; }
-    //public float getAttTime() { return comboTime; }
-    //public float getRecovTime() { return recovTime; }
     public float getDamageMod() {return damageMod;}
     public ImageSprite getSprite() { return esprite; }
     public boolean isActive() { return active; }
@@ -63,7 +60,7 @@ public abstract class Skill {
     public void setNewAlert(boolean alert) { this.newAlert = alert; }
     
     public void effect(){}       //used for passive skills
-    public void effect(boolean isCombo, Skill prevSkill){}
+    public void effect(boolean isCombo, Skill prevSkill, boolean isComboChain){}
     public void removeEffect(){}
     
     //called when skill is picked up

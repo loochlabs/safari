@@ -4,19 +4,19 @@
 #
 
 #Alias definitions
-import moveToPlayer:"com.mygdx.ai.MoveToTask"
-import idle:"com.mygdx.ai.IdleTask"
-import isNearTear:"com.mygdx.ai.NearTearTask"
-import moveToTear:"com.mygdx.ai.MoveToTearTask"
-import returnPlayer:"com.mygdx.ai.DogTasks.Task_MoveToPlayer"
+import moveToIdle:"com.mygdx.ai.DogTasks.Task_MoveToIdle"
+import idle:"com.mygdx.ai.DogTasks.Task_IdleTask"
+import isNearTear:"com.mygdx.ai.DogTasks.Task_IsNearTear"
+import moveToTear:"com.mygdx.ai.DogTasks.Task_MoveToTear"
+import moveToPlayer:"com.mygdx.ai.DogTasks.Task_MoveToPlayer"
 import inRangeOfPlayer:"com.mygdx.ai.DogTasks.Task_InRangeOfPlayer"
 
 root
     selector
         sequence
-            invert
+            invert 
                 inRangeOfPlayer
-            returnPlayer  
+            moveToPlayer  
         sequence
             selector
                 invert
@@ -24,6 +24,6 @@ root
                 sequence
                     moveToTear   
             sequence
-                moveToPlayer
+                moveToIdle
                 idle
         

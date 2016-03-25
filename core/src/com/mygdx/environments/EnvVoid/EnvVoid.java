@@ -161,7 +161,7 @@ public class EnvVoid extends Environment{
         
         
         //bg sprites
-        int spritecount = 20;
+        int spritecount = 5;
         for(int i = 0; i < spritecount; i++){
             spawnEntity(new BgSprite(grid.getWidth() * rng.nextFloat(), grid.getHeight()* rng.nextFloat(), rng.nextFloat()+1));
         }

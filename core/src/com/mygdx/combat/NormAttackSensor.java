@@ -7,7 +7,7 @@ package com.mygdx.combat;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.CircleShape;
-import com.mygdx.entities.DynamicEntities.DynamicEntity;
+import com.mygdx.entities.DynamicEntities.SteerableEntity;
 
 /**
  *
@@ -20,9 +20,8 @@ public class NormAttackSensor extends AttackSensor{
     
     private final CircleShape cshape = new CircleShape();
     
-    public NormAttackSensor(DynamicEntity parent){
+    public NormAttackSensor(SteerableEntity parent){
         super(parent);
-        data = "playatt_norm";
         
         cshape.setRadius(parent.getRange());
         cshape.setPosition(new Vector2(0,0));

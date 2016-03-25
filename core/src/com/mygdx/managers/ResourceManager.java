@@ -420,6 +420,14 @@ public class ResourceManager {
         //desc
         asm.load(DESC_BG, Texture.class);
         
+        //combo
+        asm.load(COMBO_BASE, Texture.class);
+        asm.load(COMBO_CENTER, Texture.class);
+        asm.load(COMBO_CURSOR, Texture.class);
+        asm.load(COMBO_YELLOW, Texture.class);
+        asm.load(COMBO_ORANGE, Texture.class);
+        asm.load(COMBO_RED, Texture.class);
+        
         //skills
         asm.load(SKILL_PAD_LIGHT, Texture.class);
         asm.load(SKILL_PAD_HEAVY, Texture.class);
@@ -991,6 +999,14 @@ public class ResourceManager {
     
     //GAME OVER SCREEN
     public static String GO_TEXT = "screens/GameOver/gameOver-text.png";
+    
+    //COMBO
+    public static String COMBO_BASE = "combat/combo/combo-base.png";
+    public static String COMBO_CENTER = "combat/combo/combo-center.png";
+    public static String COMBO_CURSOR = "combat/combo/combo-cursor.png";
+    public static String COMBO_YELLOW = "combat/combo/combo2-yellow.png";
+    public static String COMBO_ORANGE = "combat/combo/combo2-orange.png";
+    public static String COMBO_RED = "combat/combo/combo2-red.png";
     
     //SKILLS
     public static String SKILL_PAD_LIGHT = "entities/pickups/pad-light.png";

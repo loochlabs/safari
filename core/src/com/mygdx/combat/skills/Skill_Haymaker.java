@@ -37,12 +37,6 @@ public class Skill_Haymaker extends HeavySkill{
         skillIcon = MainGame.am.get(ResourceManager.SKILL_ONETWO);
         
         
-        //prepTime = 0;
-        //attTime = 0.4f;
-        //recovTime = 0.2f;
-        
-        
-        
         impactTemplates.add(new ImageSprite("impact1", false));
         impactTemplates.get(0).sprite.setScale(1.4f*RATIO);
         impactTemplates.add(new ImageSprite("impact2", false));
@@ -62,12 +56,12 @@ public class Skill_Haymaker extends HeavySkill{
     
     
     @Override 
-    public void comboEffect(Skill prevSkill){
+    public void comboChainEffect(Skill prevSkill){
         
         float projDamage = GameScreen.player.getCurrentDamage() * GameScreen.player.getLightMod();
         float projSpeed = 3f;
         
-        if(prevSkill.getType() != type && prevSkill.getAttribute() == attribute){
+        //if(prevSkill.getType() != type && prevSkill.getAttribute() == attribute){
             EnvironmentManager.currentEnv.spawnEntity(
                 new PlayerProjectile_Haymaker(
                         new Vector2(
@@ -100,7 +94,12 @@ public class Skill_Haymaker extends HeavySkill{
                         30f*RATIO, 30f*RATIO,
                         new Vector2(-1,-1).scl(projSpeed),
                         projDamage));
-        }
+        //}
+    }
+    
+    @Override
+    public void removeComboChainEffect(){
+        comboChain = false;
     }
     
     private class PlayerProjectile_Haymaker extends PlayerProjectile{

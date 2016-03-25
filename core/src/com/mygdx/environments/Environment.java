@@ -25,7 +25,6 @@ import com.mygdx.entities.text.TextHealing;
 import com.mygdx.game.MainGame;
 import static com.mygdx.game.MainGame.RATIO;
 import com.mygdx.managers.FrameManager;
-import com.mygdx.managers.SoundManager;
 import com.mygdx.managers.StateManager;
 import com.mygdx.managers.StateManager.State;
 import com.mygdx.screen.GameOver.GameOverScreen;
@@ -142,7 +141,7 @@ public class Environment {
         
         dmgFont = MainGame.FONT_DMG;
         dmgFont.setColor(Color.YELLOW);
-        dmgFont.setScale(0.85f * RATIO);
+        dmgFont.setScale(0.55f * RATIO);
         
         //endSpectralSprite = new EntitySprite("endSpectralSprite", false);
         //endSpectralSprite.sprite.setScale(1.06f*RATIO);
@@ -307,7 +306,7 @@ public class Environment {
         sm.setState(0);
         
         beginFC.start(fm);
-        endFC.stop(fm);
+        endFC.stop();
         
         if(!sm.isPaused()){
             this.init();
@@ -463,28 +462,6 @@ public class Environment {
                 e.update();
             }
     }
-    
-    /*
-    public void spriteCheck(){
-        for (ImageSprite sprite : spriteToRemove) {
-            sprites.removeValue(sprite, false);
-        }
-
-        if (spriteToRemove.size > 0) {
-            spriteToRemove.clear();
-        }
-
-        //add entities
-        for (ImageSprite sprite : spriteToAdd) {
-            sprites.add(sprite);
-        }
-
-        if (spriteToAdd.size > 0) {
-            spriteToAdd.clear();
-        }
-    }
-    */
-    
     
     public void addDamageText(String dmg, Vector2 pos){
         

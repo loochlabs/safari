@@ -12,7 +12,6 @@ import com.mygdx.entities.ImageSprite;
 import com.mygdx.entities.esprites.PermSprite;
 import static com.mygdx.game.MainGame.RATIO;
 import com.mygdx.screen.GameScreen;
-import com.mygdx.utilities.FrameCounter_Combo;
 import static com.mygdx.utilities.UtilityVars.PPM;
 
 /**
@@ -25,12 +24,8 @@ public abstract class LightSkill extends Skill{
         type = LIGHT;
         COST = 20.0f;
         
-        //comboFC = new FrameCounter_Combo(0.5f, 0.5f, 0);
-        //attackTime = 0;
-        //comboTime = 0.75f;
-        //recovTime = 0.1f;
-        
         FORCE = 250.0f;
+        damageMod = 1.0f;
         
         skillSprite = new ImageSprite("poe-attack-light",false);
         skillSprite.sprite.setScale(0.35f*RATIO);
@@ -38,7 +33,7 @@ public abstract class LightSkill extends Skill{
     }
     
     @Override
-    public void effect(boolean isCombo, Skill prevSkill){
+    public void effect(boolean isCombo, Skill prevSkill, boolean isComboChain){
         //screen shake
         screenShake();
         
@@ -46,12 +41,16 @@ public abstract class LightSkill extends Skill{
         //sound
         boolean playSound = false;
         
-        //movementForce();
+        //combo chain effect
+        if(isComboChain){
+            comboChain = true;
+            comboChainEffect(prevSkill);
+        }
         
         //effected enemies
         for(Entity ent: GameScreen.player.getAttTargets()){
             //damage enemy
-            damageEnemy(ent,isCombo, GameScreen.player.getPreviousSkill());
+            damageEnemy(ent, isCombo, prevSkill);
             
             
             //knockback force
@@ -112,7 +111,24 @@ public abstract class LightSkill extends Skill{
     }
     
     public void comboEffect(Skill prevSkill){}
+    
+    public void comboChainEffect(Skill prevSkill){
+        damageMod *= 2;
+    }
 
+    public void removeComboChainEffect(){
+        damageMod /= 2;
+        comboChain = false;
+    }
+    
+    @Override
+    public void reset(){
+        super.reset();
+        if(comboChain){
+            removeComboChainEffect();
+        }
+    }
+    
     public void knockbackEnemy(Entity e) {
         Vector2 dv = e.getBody().getPosition().sub(GameScreen.player.getBody().getPosition()).cpy().nor();
         e.getBody().applyForce(dv.scl(FORCE), e.getBody().getPosition(), true); 
@@ -135,19 +151,9 @@ public abstract class LightSkill extends Skill{
     public void addPermSprite() {
         PermSprite p = new PermSprite("perm1",
                     new Vector2(
-                            GameScreen.player.getBody().getPosition().x *PPM, 
-                            GameScreen.player.getBody().getPosition().y*PPM));
+                            GameScreen.player.getPos().x, 
+                            GameScreen.player.getPos().y));
             p.start();
     }
-    
-    /*
-    public void movementForce(){
-        PlayerEntity p = GameScreen.player;
-        
-        Vector2 cd = p.getCurrentDirection();
-        System.out.println("@LightSKill cd " + cd.x + " y: " + cd.y);
-        p.getBody().applyForce(cd.cpy().scl(100f), p.getBody().getPosition(), true);
-    }*/
-    
     
 }

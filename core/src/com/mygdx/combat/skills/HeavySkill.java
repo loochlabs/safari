@@ -35,13 +35,19 @@ public abstract class HeavySkill extends Skill{
     }
     
     @Override
-    public void effect(boolean isCombo, Skill prevSkill){
+    public void effect(boolean isCombo, Skill prevSkill, boolean isComboChain){
         reset();
         
         boolean playSound = false;
         
         //screen shake
         screenShake();
+        
+        if(isComboChain){
+            comboChain = true;
+            comboChainEffect(prevSkill);
+            
+        }
         
         
         for(Entity ent: GameScreen.player.getAttTargets()){
@@ -100,6 +106,24 @@ public abstract class HeavySkill extends Skill{
     }
     
     public void comboEffect(Skill prevSkill){}
+    
+    
+    public void comboChainEffect(Skill prevSkill){
+        damageMod *= 2;
+    }
+
+    public void removeComboChainEffect(){
+        damageMod /= 2;
+        comboChain = false;
+    }
+    
+    @Override
+    public void reset(){
+        super.reset();
+        if(comboChain){
+            removeComboChainEffect();
+        }
+    }
 
     public void knockbackEnemy(Entity e) {
         Vector2 dv = e.getBody().getPosition().sub(GameScreen.player.getBody().getPosition()).cpy().nor();

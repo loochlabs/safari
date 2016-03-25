@@ -19,6 +19,7 @@ import com.mygdx.combat.NormAttackSensor;
 import com.mygdx.combat.Buff;
 import com.mygdx.combat.skills.Skill;
 import com.mygdx.combat.skills.Skill.SkillType;
+import com.mygdx.combat.skills.defense.DefenseSkill;
 import com.mygdx.entities.DynamicEntities.SteerableEntity;
 import com.mygdx.entities.Entity;
 import com.mygdx.entities.ImageSprite;
@@ -33,7 +34,6 @@ import com.mygdx.screen.GameScreen;
 import com.mygdx.screen.ScreenManager;
 import com.mygdx.utilities.Direction;
 import com.mygdx.utilities.FrameCounter;
-import com.mygdx.utilities.FrameCounter_Attack;
 import com.mygdx.utilities.FrameCounter_Combo;
 import com.mygdx.utilities.SoundObject_Sfx;
 import com.mygdx.utilities.UtilityVars.AttackState;
@@ -71,7 +71,7 @@ public class PlayerEntity extends SteerableEntity{
     protected final float BASE_LIFE = 30f;
     protected final float BASE_ENERGY = 60f;
     protected final float BASE_DAMAGE = 1.0f;
-    protected final float BASE_SPEED = 30.0f * RATIO;
+    protected final float BASE_SPEED = 45f * RATIO;
     protected final float BASE_SPECIAL = 1.0f;
     
     //stat points
@@ -85,7 +85,7 @@ public class PlayerEntity extends SteerableEntity{
     protected final float LIFE_STAT_VALUE = 10f;
     protected final float ENERGY_STAT_VALUE = 15f;
     protected final float DAMAGE_STAT_VALUE = 1.0f;
-    protected final float SPEED_STAT_VALUE = 3.5f;
+    protected final float SPEED_STAT_VALUE = 3f;
     protected final float SPECIAL_STAT_VALUE = 0.2f;
     
     protected float CURRENT_LIFE;
@@ -136,27 +136,31 @@ public class PlayerEntity extends SteerableEntity{
     private float currentAngle = 0;
 
     //dash
-    private final FrameCounter_Attack dashFC = new FrameCounter_Attack(0,0.25f,0.75f);
-    private final float DASH_COST;
-    private float dashSpeed;
-    private boolean canDash = true;
-    private float DASHMOD = 1;
+    //private final FrameCounter_Combo dashFC = new FrameCounter_Combo(0.3f, 0.3f, 0.15f);
+    //private final float DASH_COST;
+    //private float dashSpeed;
+    //private boolean canDash = true;
+    //private float DASHMOD = 1;
     private final Array<Sprite> dashSprites = new Array<Sprite>();
     private final Array<Float> dashAlphas = new Array<Float>();
-    private boolean isDashSkill = false; //todo: move to Skill(), not here
+    //private boolean isDashSkill = false; //todo: move to Skill(), not here
     
     //player state
     private final StateManager sm;
     
     //Combat
-    //private FrameCounter_Attack attackFC;
-    private FrameCounter_Combo attackFC = new FrameCounter_Combo(0,0,0);
     
-    protected final Skill[] skillSet = {null,null,null,null};
-    private Skill currentSkill; //SKILL_LIGHT, SKILL_HEAVY, SKILL_SPEC, SKILL_PASSIVE;
+    private FrameCounter_Combo attackFC = new FrameCounter_Combo(0,0,0);
+    private ComboCircle comboCircle; 
+    private boolean isCombo = false;  //todo: remove canAttack?
+    private int comboChain = 0;
+    private int comboChain_max = 3;
+    
+    protected final Skill[] skillSet = {null,null,null,null, null};
+    private Skill currentSkill;     //SKILL_LIGHT, SKILL_HEAVY, SKILL_SPEC, SKILL_PASSIVE;
     private Skill previousSkill;
     private float LIGHT_MOD, HEAVY_MOD, SPECIAL_MOD;
-    private boolean isCombo = false;  //todo: remove canAttack?
+    
     private boolean currentAttackFail = false;
     private final ArrayList<Entity> attTargets = new ArrayList<Entity>();
     private NormAttackSensor normAttSensor;
@@ -203,7 +207,7 @@ public class PlayerEntity extends SteerableEntity{
     public float getHeavyMod() { return HEAVY_MOD; }
     public float getSpecialMod() { return SPECIAL_MOD; }
     public Array<Buff> getBuffs() { return buffs; }
-    public boolean isDashSkill() { return isDashSkill; }
+    //public boolean isDashSkill() { return isDashSkill; }
     public NormAttackSensor getNormAttSensor() { return normAttSensor; }
     public float getCurrentAngle() { return currentAngle; } 
     public Vector2 getCurrentDirection() { return currentDirection; }
@@ -212,7 +216,7 @@ public class PlayerEntity extends SteerableEntity{
     public void setHeavyMod(float heavy) { this.HEAVY_MOD = heavy; }
     public void setSpecialMod(float special) { this.SPECIAL_MOD = special; }
     public void setCurrentEnergy(float energy) { this.energy = energy; }
-    public void setDashSkill(boolean dashSkill) { this.isDashSkill = dashSkill; }
+    //public void setDashSkill(boolean dashSkill) { this.isDashSkill = dashSkill; }
     
     public PlayerEntity(Vector2 pos, float w, float h){
         super(pos,w,h);
@@ -220,23 +224,31 @@ public class PlayerEntity extends SteerableEntity{
         userdata = "player_" + id;
         fd.filter.categoryBits = BIT_PLAYER;
         fd.filter.maskBits = BIT_WALL | BIT_EN | BIT_PICKUP;
-        fd.restitution = 0.2f;
+        fd.restitution = 0.05f;
+        fd.density = 5.0f;
+        fd.shape = shape;
+        bd.fixedRotation = true;
+        sensordata = "playatt_norm";
         
         sm = new StateManager();
         
-        //*************  STATS ********************
-        DASH_COST = 20.0f;
+        //*********     STATS & SKILLS     ******************
+        //DASH_COST = 20.0f;
         
         //DAMAGE = 5;
         LIGHT_MOD = 1.0f;
         HEAVY_MOD = 1.0f;
         SPECIAL_MOD = 1.0f;
-        //ATTSPEED = 200;
         RANGE = 1.3f*RATIO;     //needed for NormalAttackSensor size, radius
         
         life = CURRENT_LIFE;
         
-        //************************************
+        try {
+            skillSet[4] = new DefenseSkill();
+        } catch (IndexOutOfBoundsException ex) {
+            ex.printStackTrace();
+        }
+        //***************************************************
         
         
         beginSpectralSprite = new ImageSprite("poeSpectral", false);
@@ -277,9 +289,10 @@ public class PlayerEntity extends SteerableEntity{
         
         //combat
         normAttSensor = new NormAttackSensor(this);
-        body.createFixture(normAttSensor).setUserData(normAttSensor.getData());
+        body.createFixture(normAttSensor).setUserData(sensordata);
+        body.resetMassData();   //needed for setting density
         
-        //skill init
+        //activate passive skills
         for(Skill skill: skillSet){
             if(skill != null && skill.getType() == SkillType.PASSIVE && !skill.isActive()){
                 skill.effect();
@@ -305,62 +318,8 @@ public class PlayerEntity extends SteerableEntity{
             }
         }
         
-        //dive sprite
-        if(EnvironmentManager.currentEnv.getStateManager().getState() == State.FALLING){
-            isprite = diveSprite;
-        }
+        renderComboCircle(sb);
         
-        
-        /*
-        if(isprite != null && !warping){
-            
-            //damage animation
-            if(dmgFC.running){
-                isprite = recovSprite;
-                isprite.sprite.setAlpha(0.65f);
-            }else{
-                isprite.sprite.setAlpha(1.0f);
-            }
-            
-            if (isprite.getXFlip()) {
-                isprite.sprite.setPosition(
-                        (pos.x + (isprite.sprite.getWidth() * 0.15f)),
-                        (pos.y - (isprite.sprite.getHeight() / 2)));
-            } else {
-                isprite.sprite.setPosition(
-                        (pos.x - (isprite.sprite.getWidth() / 2)),
-                        (pos.y - (isprite.sprite.getHeight() / 2)));
-            }
-            
-            isprite.render(sb);
-            
-            //*******************
-            //dash effect
-            if(dashFC.running){
-                dashSprites.add(new Sprite(isprite.sprite));
-                dashAlphas.add(1.0f);
-            }else if(dashFC.complete && dashSprites.size > 0){
-                boolean clearAlphas = true;
-                for (Float alpha : dashAlphas) {
-                    if (alpha > 0) {
-                        clearAlphas = false;
-                    }
-                }
-            
-            
-                if(clearAlphas){
-                    dashSprites.clear();
-                    dashAlphas.clear();
-                }
-            //*******************
-            }
-            
-        }else if(isprite != null && warping){
-            isprite.render(sb);
-        
-        }else
-            super.render(sb);
-        */
         
         if(isprite != null){
             isprite.render(sb);
@@ -407,6 +366,14 @@ public class PlayerEntity extends SteerableEntity{
         renderActionKey(sb);
     }
     
+    private void renderComboCircle(SpriteBatch sb){
+        if(comboCircle != null){
+            comboCircle.render(sb);
+        }
+    }
+    
+    
+    
     @Override 
     public void renderEffects(SpriteBatch sb){
         
@@ -434,6 +401,7 @@ public class PlayerEntity extends SteerableEntity{
             }
         }
     }
+    
     private void updateSprites() {
          if(attackFC.complete){//TODO: clean up to only execute once
             boolean clearAlphas = true;
@@ -497,6 +465,8 @@ public class PlayerEntity extends SteerableEntity{
             
             //*******************
             //dash effect
+            
+            /*
             if(dashFC.running){
                 dashSprites.add(new Sprite(isprite.sprite));
                 dashAlphas.add(1.0f);
@@ -514,15 +484,16 @@ public class PlayerEntity extends SteerableEntity{
                     dashAlphas.clear();
                 }
             //*******************
-            }
+            }*/
             
         }
         //dash effect
+        /*
         for(int i = 0; i < dashSprites.size; i++){
             dashSprites.get(i).setAlpha(dashAlphas.get(i));
             dashAlphas.set(i, dashAlphas.get(i) - 0.15f < 0 ? 0 : dashAlphas.get(i) - 0.15f);
             
-        }
+        }*/
     }
     
     private void renderSprites(SpriteBatch sb){
@@ -557,10 +528,11 @@ public class PlayerEntity extends SteerableEntity{
             
 
             //reset dash
-            dashUpdate();
+            //dashUpdate();
 
             //combat
             updateSkill();
+            
             
             //impact
             updateSprites();
@@ -578,6 +550,7 @@ public class PlayerEntity extends SteerableEntity{
             updateDirection();
 
             //death
+            //todo: redundant
             if (!dead && life <= 0) {
                 death();
             }
@@ -594,20 +567,8 @@ public class PlayerEntity extends SteerableEntity{
     public void death(){
         
         if (!dead) {
-            
             //Edit: 2/10/16
-            //ScreenManager.setScreen(new GameOverScreen());
             ScreenManager.gameOverScreen(1);        //DemoGameOverScreen
-            
-            /*
-            int specid = ++GameStats.idcount;
-            EnvironmentManager.add(
-                    new EnvSpectral(
-                            specid,
-                            EnvironmentManager.currentEnv.getId()));
-
-            EnvironmentManager.currentEnv.end(specid, endTime);
-            */
             
         }
         super.death();
@@ -629,29 +590,31 @@ public class PlayerEntity extends SteerableEntity{
         //applies movement and adjusts sprites
         dv.x = 0;
         dv.y = 0;
-        if (!attackFC.running && !dmgFC.running && !dashFC.running) {
-            if (moveDown && -CURRENT_SPEED * DASHMOD < body.getLinearVelocity().y) {
-                //body.applyForce(new Vector2(0, -CURRENT_SPEED * DASHMOD), body.getPosition(), true);
+        //if (!dmgFC.running && !dashFC.running) {
+        if (!dmgFC.running){
+            //if (moveDown && -CURRENT_SPEED * DASHMOD < body.getLinearVelocity().y) {
+            if (moveDown && -CURRENT_SPEED < body.getLinearVelocity().y) {
                 dv.y -= 1;
             }
 
-            if (moveUp && CURRENT_SPEED * DASHMOD > body.getLinearVelocity().y) {
-                //body.applyForce(new Vector2(0, CURRENT_SPEED * DASHMOD), body.getPosition(), true);
+            //if (moveUp && CURRENT_SPEED * DASHMOD > body.getLinearVelocity().y) {
+            if (moveUp && CURRENT_SPEED > body.getLinearVelocity().y) {
                 dv.y += 1;
             }
 
-            if (moveRight && CURRENT_SPEED * DASHMOD > body.getLinearVelocity().x) {
-                //body.applyForce(new Vector2(CURRENT_SPEED * DASHMOD, 0), body.getPosition(), true);
+            //if (moveRight && CURRENT_SPEED * DASHMOD > body.getLinearVelocity().x) {
+            if (moveRight && CURRENT_SPEED > body.getLinearVelocity().x) {
                 dv.x += 1;
             }
 
-            if (moveLeft && -CURRENT_SPEED * DASHMOD < body.getLinearVelocity().x) {
-                //body.applyForce(new Vector2(-CURRENT_SPEED * DASHMOD, 0), body.getPosition(), true);
+            //if (moveLeft && -CURRENT_SPEED * DASHMOD < body.getLinearVelocity().x) {
+            if (moveLeft && -CURRENT_SPEED < body.getLinearVelocity().x) {
                 dv.x -= 1;
             }
             
+            float dv_scale = attackFC.running ? CURRENT_SPEED * 0.25f : CURRENT_SPEED;
             
-            dv.nor().scl(CURRENT_SPEED * DASHMOD);
+            dv.nor().scl(dv_scale);
             body.applyForce(dv, body.getPosition(), true);
 
             if (!(moveUp || moveDown || moveRight || moveLeft)
@@ -681,19 +644,16 @@ public class PlayerEntity extends SteerableEntity{
             switch (d) {
                 case UP:
                     moveUp = true;
-                    //moveDown = false;
                     break;
                 case DOWN:
                     moveDown = true;
-                    //moveUp = false;
+                    //moveUp = false
                     break;
                 case LEFT:
                     moveLeft = true;
-                    //moveRight = false;
                     break;
                 case RIGHT:
                     moveRight = true;
-                    //moveLeft = false;
                     break;
                 default:
                     break;
@@ -731,42 +691,46 @@ public class PlayerEntity extends SteerableEntity{
     
     public boolean isUserMoving() { return moveUp || moveRight || moveLeft || moveDown; }
     
+    /*
     public  void dash(){
-        if(canDash && energy >= DASH_COST && !dead){
-            if(attackFC.running){ //added to allow players to combo off a dash
-                System.out.println("@PlayerEntity combo dash");
-                attackFC.complete();
+        if(canDash && energy >= DASH_COST){
+            
+            if(attackFC.running){
+                if(attackFC.state != AttackState.COMBO){
+                    attackFail();
+                    return;
+                }else{  //combo with dash
+                    comboCircle = null;
+                }
             }
             
             
-            //remove ability to control player
-            //maybe use attackFC? dash during prep && attack, stand still during recov
-            //flat speed (Max_Speed * dash_mod) 
-            
-            energy -= DASH_COST;
-            canDash = false;
+            //energy -= DASH_COST;
+            //canDash = false;
             DASHMOD *= 2.6;
             dashSpeed = CURRENT_SPEED * DASHMOD;
             
             dashFC.start(fm);
             
             //dash skill effects
+            /*
             for(Skill skill: skillSet){
                 if(skill != null && skill.isDashSkill()){
                     skill.effect();
                 }
-            }
+            }*/
             
             //sound
-            SFX_DASH.play(false);
-        }
-    }
+            //SFX_DASH.play(false);
+        //}
+    //}
     
     
+    /*
     private void dashUpdate() {
         
         if (dashFC.running) {
-            if (dashFC.state != AttackState.RECOVERING
+            if (dashFC.state == AttackState.ATTACKING
                     && dashSpeed > body.getLinearVelocity().x) {
                 //edit: (2/17/16) 
                 //apply persistent force on player, based on current direction
@@ -782,7 +746,8 @@ public class PlayerEntity extends SteerableEntity{
             DASHMOD /= DASHMOD;
         }
     }
-
+    */
+    
     @Override
     public void damage(float damage){
         if(!dmgFC.running){
@@ -791,15 +756,14 @@ public class PlayerEntity extends SteerableEntity{
             System.out.println("@PlayerEntity " + this.toString() + " damaged - hp: " + life);
 
             if (life <= 0) {
-                //alive = false;
                 dead = true;
             }
 
             EnvironmentManager.currentEnv.addDamageText(
                     "" + (int) (damage + 1) + "",
                     new Vector2(
-                            body.getPosition().x * PPM - width * rng.nextFloat() / 2,
-                            body.getPosition().y * PPM + height * 1.1f),
+                            pos.x - width * rng.nextFloat() / 2,
+                            pos.y * PPM + height * 1.1f),
                             "red");
             
             
@@ -818,30 +782,7 @@ public class PlayerEntity extends SteerableEntity{
     
     
     
-    private void updateSkill() {
-
-        if(attackFC.running) {
-            if (attackFC.state == AttackState.ATTACKING) {
-
-                if (currentSkill != null && currentSkill.isActive()) {
-                    currentSkill.effect(isCombo, previousSkill);
-                }
-            }
-            
-            switch(currentSkill.getType()){
-                case HEAVY:
-                    isprite = attackHeavySprite;
-                    break;
-                case SPECIAL:
-                    isprite = playerBuffSprite;
-                    break;
-                default:
-                    isprite = attackSprite;
-                    break;  
-            }
-            
-        }
-    }
+    
     
     
     public void attack(int index) {
@@ -851,27 +792,19 @@ public class PlayerEntity extends SteerableEntity{
                 && energy >= skillSet[index - 1].getCost() ) {   
 
             
-            
             if(!attackFC.running){
                 initNewSkill(index);
                isCombo = false;
                currentAttackFail = false;
-               //set attackFC to new skill.comboFC
-               
-               //todo: REDUNDANT, attackFC set in initNewSkill()
-                //attackFC.setTime(currentSkill.getPrepTime(), currentSkill.getAttTime(), currentSkill.getRecovTime());
-                //attackFC = currentSkill.getComboFC();
-                //attackFC.start(fm);
+               comboChain = 1;
             }else if (attackFC.state == AttackState.COMBO
                         && !currentAttackFail) {   //combo
                 initNewSkill(index);
                 isCombo = true;
-                //attackFC = currentSkill.getComboFC();
-                //attackFC.reset();
-                //attackFC.setTime(0, currentSkill.getAttTime(), currentSkill.getRecovTime());
-                //attackFC.start(fm);
+                comboChain++;
             } else{
                 attackFail();
+                comboChain = 0;
             }
             
         }
@@ -885,16 +818,14 @@ public class PlayerEntity extends SteerableEntity{
         float cost = currentSkill.getCost();
         energy -= cost;
 
+        
         attackFC = currentSkill.getComboFC();
-        //attackFC.setTime(currentSkill.getPrepTime(), currentSkill.getAttTime(), currentSkill.getRecovTime());
         attackFC.start(fm);
 
         //execute background effects of skills (buffs, etc)
         //not the actual damage attack on enemy
         currentSkill.active();
 
-        //animation
-        
         
         if(currentSkill.getSkillSprite() != null){
             ImageSprite ss = currentSkill.getSkillSprite();
@@ -902,29 +833,20 @@ public class PlayerEntity extends SteerableEntity{
                     body.getPosition().x * PPM - ss.sprite.getWidth() / 2, 
                     body.getPosition().y * PPM - ss.sprite.getHeight() / 2,
                     0.75f));
-            //skillSprites.peek().sprite.setScale(0.75f);
         }
-        /*
-        if (currentSkill.getType() == SkillType.HEAVY) {
-            skillSprites.add(new EntitySprite(skillHeavySprite,
-                    body.getPosition().x * PPM - skillHeavySprite.sprite.getWidth() / 2,
-                    body.getPosition().y * PPM - skillHeavySprite.sprite.getHeight() / 2));
-            skillSprites.peek().sprite.setScale(0.75f);
-        } else if (currentSkill.getType() != SkillType.SPECIAL) {
-            skillSprites.add(new EntitySprite(skillSprite,
-                    body.getPosition().x * PPM - skillSprite.sprite.getWidth() / 2,
-                    body.getPosition().y * PPM - skillSprite.sprite.getHeight() / 2));
-            skillSprites.peek().sprite.setScale(0.75f);
-        }*/
-
         
         //reset appropriate skill sprite
         switch(currentSkill.getType()){
+            case LIGHT:
+                attackSprite.reset();
+                GameScreen.overlay.resetSkillSlot(0);
             case HEAVY:
                 attackHeavySprite.reset();
+                GameScreen.overlay.resetSkillSlot(1);
                 break;
             case SPECIAL:
                 playerBuffSprite.reset();
+                GameScreen.overlay.resetSkillSlot(2);
                 break;
             default:
                 attackSprite.reset();
@@ -934,53 +856,50 @@ public class PlayerEntity extends SteerableEntity{
         //sound
         SFX_YELLS.random().play(false);
 
-        //overlay
-        switch (currentSkill.getType()) {
-            case LIGHT:
-                GameScreen.overlay.resetSkillSlot(0);
-                break;
-            case HEAVY:
-                GameScreen.overlay.resetSkillSlot(1);
-                break;
-            case SPECIAL:
-                GameScreen.overlay.resetSkillSlot(2);
-                break;
-            default:
-                break;
-        }
         
         /***********
          * 
         ADD COMBO BAR TO OVERLAY
         * 
         ***********/
-        GameScreen.overlay.addComboBar(attackFC);
+        comboCircle = new ComboCircle(attackFC);
     }
     
     
     public void setCurrentSkill(Skill skill){
        
-        switch (skill.getType()){
-            case LIGHT:
-                if(skillSet[0] != null) skillSet[0].deactivate();
-                skillSet[0] = skill;
-                break;
-            case HEAVY:
-                if(skillSet[1] != null) skillSet[1].deactivate();
-                skillSet[1] = skill;
-                break;
-            case SPECIAL:
-                if(skillSet[2] != null) skillSet[2].deactivate();
-                skillSet[2] = skill;
-                break;
-            case PASSIVE:
-                if(skillSet[3] != null) skillSet[3].deactivate();
-                skillSet[3] = skill;
-                break;
-            default:
-                return;
+        try {
+            switch (skill.getType()) {
+                case LIGHT:
+                    if (skillSet[0] != null) {
+                        skillSet[0].deactivate();
+                    }
+                    skillSet[0] = skill;
+                    break;
+                case HEAVY:
+                    if (skillSet[1] != null) {
+                        skillSet[1].deactivate();
+                    }
+                    skillSet[1] = skill;
+                    break;
+                case SPECIAL:
+                    if (skillSet[2] != null) {
+                        skillSet[2].deactivate();
+                    }
+                    skillSet[2] = skill;
+                    break;
+                case PASSIVE:
+                    if (skillSet[3] != null) {
+                        skillSet[3].deactivate();
+                    }
+                    skillSet[3] = skill;
+                    break;
+                default:
+                    return;
+            }
+        } catch (IndexOutOfBoundsException ex) {
+            ex.printStackTrace();
         }
-        
         skill.activate();
         
     }
@@ -1002,14 +921,59 @@ public class PlayerEntity extends SteerableEntity{
     }
     
     private void attackFail(){
-        //fail comboBar on overlay
+        //fail comboCircle
         currentAttackFail = true;
-        GameScreen.overlay.removeComboBar();
+        comboCircle = null;
+    }
+    
+    private void updateSkill() {
+
+        if(attackFC.running) {
+            if (attackFC.state == AttackState.ATTACKING) {
+
+                if (currentSkill != null && currentSkill.isActive()) {
+                    currentSkill.effect(isCombo, previousSkill, comboChain >= comboChain_max);
+                }
+            }
+            
+            switch(currentSkill.getType()){
+                case LIGHT:
+                    isprite = attackSprite;
+                    break;
+                case HEAVY:
+                    isprite = attackHeavySprite;
+                    break;
+                case SPECIAL:
+                    isprite = playerBuffSprite;
+                    break;
+                default:
+                    
+                    break;  
+            }
+            
+        }
+        
+        //combo
+        updateComboCircle();
+        
+        
+    }
+    
+    private void updateComboCircle(){
+        if(comboCircle != null){
+            comboCircle.update();
+            
+            if(comboCircle.complete){
+                comboCircle = null;
+            }
+        }
+        
     }
     
     
     private void updateEnergy(){
-        if (energy < CURRENT_ENERGY && !attackFC.running && !dashFC.running) {
+        //if (energy < CURRENT_ENERGY && !attackFC.running && !dashFC.running) {
+        if (energy < CURRENT_ENERGY && !attackFC.running) {
             regenEnergy();
         } else if (energy > CURRENT_ENERGY) {
             energy = CURRENT_ENERGY;
@@ -1050,8 +1014,8 @@ public class PlayerEntity extends SteerableEntity{
             EnvironmentManager.currentEnv.addHealingText(
                     "" + ammountRestored + "",
                     new Vector2(
-                            body.getPosition().x * PPM - width * rng.nextFloat() / 2,
-                            body.getPosition().y * PPM + height * 1.1f));
+                            pos.x - width * rng.nextFloat() / 2,
+                            pos.y + height * 1.1f));
         }
     }
     
@@ -1100,6 +1064,31 @@ public class PlayerEntity extends SteerableEntity{
         }
     }
     
+    @Override
+    public void alert(String[] str) {
+        try {
+            if (str[0].equals("begin") && str[1].contains(sensordata.toString())) {
+                for (Entity e : EnvironmentManager.currentEnv.getEntities()) {
+                    if (e.getUserData() != null
+                            && e.getUserData().equals(str[2])) {
+
+                        addTarget(e);
+                    }
+                }
+            } else if (str[0].equals("end") && str[1].contains(sensordata.toString())) {
+                for (Entity e : EnvironmentManager.currentEnv.getEntities()) {
+                    if (e.getUserData() != null
+                            && e.getUserData().equals(str[2])) {
+
+                        removeTarget(e);
+                    }
+                }
+            }
+        } catch (IndexOutOfBoundsException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
     public void addTarget(Entity e){
         if(!attTargets.contains(e)){
             attTargets.add(e);
@@ -1134,6 +1123,12 @@ public class PlayerEntity extends SteerableEntity{
                 pos.y*PPM - warpSprite.sprite.getHeight()/2);
         isprite = warpSprite;
         
+    }
+    
+    @Override
+    public void fall(){
+        diveSprite.sprite.setPosition(pos.x - diveSprite.sprite.getWidth()/2, pos.y - diveSprite.sprite.getHeight()/2);
+        isprite = diveSprite;
     }
     
     //*****************************
@@ -1213,5 +1208,88 @@ public class PlayerEntity extends SteerableEntity{
         CURRENT_SPECIAL +=      SPECIAL_STAT_VALUE * special;
     }
 
+    
+    private class ComboCircle{
+        
+        private final Texture base, center, cursor, red, yellow, orange;
+        private final float Y_OFFSET = 50f*RATIO;
+        public float base_x, base_y, cursor_x, cursor_y, center_x, center_y, red_x, red_y;
+        private float base_w, base_h, cursor_w, cursor_h, center_w, center_h, red_w, red_h;
+        
+        private final FrameCounter_Combo fc;
+        public boolean complete;
+        
+        public ComboCircle(FrameCounter_Combo fc) {
+
+            this.fc = fc;
+
+            base = MainGame.am.get(ResourceManager.COMBO_BASE);
+            center = MainGame.am.get(ResourceManager.COMBO_CENTER);
+            cursor = MainGame.am.get(ResourceManager.COMBO_CURSOR);
+            yellow = MainGame.am.get(ResourceManager.COMBO_YELLOW);
+            orange = MainGame.am.get(ResourceManager.COMBO_ORANGE);
+            red = MainGame.am.get(ResourceManager.COMBO_RED);
+
+            base_w = 400f*RATIO;
+            base_h = base_w;
+            red_w = base_w - base_w * ((float)fc.attTime/(float)fc.MAX_FRAME);
+            red_h = red_w;
+            center_w = base_w - (base_w * ((float)fc.comboTime/(float)fc.MAX_FRAME));
+            center_h = center_w;
+
+            setPosition();
+            setCursor();
+
+        }
+        
+        private void setPosition(){
+            base_x = pos.x - base_w/2;
+            base_y = pos.y - base_h/2 - Y_OFFSET;
+            red_x = base_x +  (base_w/2) * ((float)fc.attTime/(float)fc.MAX_FRAME);
+            red_y = base_y +  (base_h/2) * ((float)fc.attTime/(float)fc.MAX_FRAME);
+            center_x = base_x + (base_w/2) * ((float)fc.comboTime/(float)fc.MAX_FRAME);
+            center_y = base_y + (base_h/2) * ((float)fc.comboTime/(float)fc.MAX_FRAME);
+        }
+        
+        private void setCursor(){
+            cursor_w = base_w - base_w * ((float)fc.CURRENT_FRAME/(float)fc.MAX_FRAME);
+            cursor_h = cursor_w;
+            cursor_x = base_x + (base_w/2) * ((float)fc.CURRENT_FRAME/(float)fc.MAX_FRAME);
+            cursor_y = base_y + (base_h/2) * ((float)fc.CURRENT_FRAME/(float)fc.MAX_FRAME);
+        }
+
+        public void update() {
+            setPosition();
+            setCursor();
+            
+            complete = fc.complete;
+        }
+        
+
+        public void render(SpriteBatch sb) {
+            //sb.draw(base, base_x, base_y, base_w, base_h);
+            
+            switch(comboChain){
+                case 1:
+                    sb.draw(yellow, red_x, red_y, red_w, red_h);
+                    break;
+                case 2:
+                    sb.draw(orange, red_x, red_y, red_w, red_h);
+                    break;
+                case 3:
+                    sb.draw(red, red_x, red_y, red_w, red_h);
+                    break;
+                default:
+                    sb.draw(red, red_x, red_y, red_w, red_h);
+                    break;
+            }
+            
+            
+            sb.draw(center, center_x, center_y, center_w, center_h);
+            sb.draw(cursor, cursor_x, cursor_y, cursor_w, cursor_h);
+        }
+
+        
+    }
     
 }

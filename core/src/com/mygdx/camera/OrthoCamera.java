@@ -81,7 +81,7 @@ public class OrthoCamera extends OrthographicCamera {
                     
                     if(shakeFC.complete){
                         toShake = false;
-                        shakeFC.stop(fm);
+                        shakeFC.stop();
                     }
                 }
 	}

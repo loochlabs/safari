@@ -7,31 +7,28 @@ package com.mygdx.ai.enemies;
 
 import com.badlogic.gdx.ai.btree.LeafTask;
 import com.badlogic.gdx.ai.btree.Task;
-import com.mygdx.entities.DynamicEntities.enemies.EnemyEntity2;
+import com.mygdx.entities.DynamicEntities.enemies.EnemyEntity;
 
 /**
  *
  * @author looch
  */
-public class Task_AttackPlayer extends LeafTask<EnemyEntity2>{
+public class Task_AttackPlayer extends LeafTask<EnemyEntity>{
 
     @Override
-    public void run(EnemyEntity2 en) {
+    public void run(EnemyEntity en) {
         if(en.getAttackFC().running){
-            System.out.println("@Task_AttackPlayer running ");
             this.running();
         }else if(en.getAttackFC().complete){
-            System.out.println("@Task_AttackPlayer success ");
             en.resetAttack();
             this.success();
         }else{
-            System.out.println("@Task_AttackPlayer en attakcing ");
             en.prepAttack();
         }
     }
 
     @Override
-    protected Task<EnemyEntity2> copyTo(Task<EnemyEntity2> task) {
+    protected Task<EnemyEntity> copyTo(Task<EnemyEntity> task) {
         Task_AttackPlayer moveTo = (Task_AttackPlayer)task;
         return moveTo;
     }

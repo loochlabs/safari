@@ -29,7 +29,7 @@ import java.io.Reader;
  *
  * @author looch
  */
-public class En_DarklingSm extends EnemyEntity2{
+public class En_DarklingSm extends EnemyEntity{
 
     private FixtureDef attFd1, attFd2, attFd3, attFd4;
     
@@ -115,17 +115,17 @@ public class En_DarklingSm extends EnemyEntity2{
         super.init(world);
         
         //att sensors
-        body.createFixture(attFd1).setUserData(attSensorData);
-        body.createFixture(attFd2).setUserData(attSensorData);
-        body.createFixture(attFd3).setUserData(attSensorData);
-        body.createFixture(attFd4).setUserData(attSensorData);
+        body.createFixture(attFd1).setUserData(sensordata);
+        body.createFixture(attFd2).setUserData(sensordata);
+        body.createFixture(attFd3).setUserData(sensordata);
+        body.createFixture(attFd4).setUserData(sensordata);
         
         //ai
         Reader reader = null;
         try {
             reader = Gdx.files.internal("ai/enemies/en_goober2.tree").reader();
-            BehaviorTreeParser<EnemyEntity2> parser = new BehaviorTreeParser<EnemyEntity2>(BehaviorTreeParser.DEBUG_NONE);
-            enemybt = parser.parse(reader,this);
+            BehaviorTreeParser<EnemyEntity> parser = new BehaviorTreeParser<EnemyEntity>(BehaviorTreeParser.DEBUG_NONE);
+            bt = parser.parse(reader,this);
         } finally {
             StreamUtils.closeQuietly(reader);
         }
