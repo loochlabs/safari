@@ -5,6 +5,7 @@
  */
 package com.mygdx.environments.tears;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
@@ -17,6 +18,7 @@ import com.mygdx.entities.ImageSprite;
 import com.mygdx.entities.pickups.Pickup;
 import com.mygdx.environments.Environment;
 import com.mygdx.environments.EnvironmentManager;
+import com.mygdx.game.MainGame;
 import static com.mygdx.game.MainGame.RATIO;
 import com.mygdx.managers.ResourceManager;
 import com.mygdx.screen.GameScreen;
@@ -36,6 +38,7 @@ public class TearPortal extends SteerableEntity{
     
     protected int linkid;
     protected ImageSprite dmgSprite, openSprite;
+    protected Texture completeMark;
     protected float spriteScale = 1.0f;
     
     protected FixtureDef tearfd, warpfd;
@@ -43,7 +46,12 @@ public class TearPortal extends SteerableEntity{
     protected Environment warpenv;//todo:not needed
     
     //description: has the tear been entered
-    protected boolean finished = false;
+    //todo: change to opened
+    protected boolean opened = false; 
+    protected FrameCounter openDelayFC = new FrameCounter(0.75f);
+    
+    //is the env complete
+    protected boolean complete = false;
     
     protected FrameCounter healFC;
     protected float beginTime, endTime, healTime;
@@ -52,8 +60,9 @@ public class TearPortal extends SteerableEntity{
     //sound
     protected SoundObject_Sfx warpSound;
     
-    public boolean isFinished() { return finished; }
-    public void setFinished(boolean finished) { this.finished = finished; }
+    public boolean isOpened() { return opened; }
+    public boolean isCompelte() { return complete; }
+    public void setOpened(boolean opened) { this.opened = opened; }
     public Environment getWarpEnv() { return warpenv; }
     
     public TearPortal(Vector2 pos, int linkid){
@@ -95,6 +104,8 @@ public class TearPortal extends SteerableEntity{
         healTime = 10;
         healFC = new FrameCounter(healTime);
         
+        completeMark = MainGame.am.get(ResourceManager.MAP_MARKER1);
+        
         //sound
         warpSound = new SoundObject_Sfx(ResourceManager.SFX_WARP_IN);
         
@@ -125,7 +136,7 @@ public class TearPortal extends SteerableEntity{
         }
         
         //heal tear if not finished
-        if(!finished && !dead){
+        if(!opened && !dead){
             if(healFC.complete)
                 healTear();
             
@@ -141,13 +152,19 @@ public class TearPortal extends SteerableEntity{
     public void render(SpriteBatch sb){
         super.render(sb);
         
+        if(complete && completeMark != null){
+            sb.draw(completeMark, pos.x - width, pos.y - height, width*2, height*2);
+        }
+        
         if(isprite != null){
             isprite.sprite.setPosition(
                     (body.getPosition().x * PPM - isprite.sprite.getWidth() / 2),
                     (body.getPosition().y * PPM - isprite.sprite.getHeight() / 2));
-            isprite.step();
+            //isprite.step();
             isprite.sprite.draw(sb);
         }
+        
+        
     }
 
     @Override
@@ -171,18 +188,26 @@ public class TearPortal extends SteerableEntity{
         userdata = warpdata;
         body.createFixture(warpfd).setUserData(warpdata);
         
-        //play open sound
+        //knockback player
+        GameScreen.player.getBody().applyForce(
+                GameScreen.player.getCurrentDirection().cpy().nor().scl(800f), 
+                GameScreen.player.getBody().getPosition(), 
+                true);
+        
+        openDelayFC.start(fm);
+        openDelayFC.running = true;
     }
     
     
     @Override
     public void alert(String []string){
         try {
-            if (string[1].contains("warp")) {
+            if (string[0].equals("begin") && string[1].contains("warp")
+                    && !openDelayFC.running) {
                 warp();
             }
 
-            if (finished && string[1].equals("tear_resume")) {
+            if (opened && string[1].equals("tear_resume")) {
                 Array<Fixture> fixtures = body.getFixtureList();
                 for (Fixture f : fixtures) {
                     body.destroyFixture(f);
@@ -195,6 +220,8 @@ public class TearPortal extends SteerableEntity{
                 deadCheck = true;
 
                 isprite = dmgSprite;
+                
+                complete = warpenv.isComplete();
             }
         } catch (IndexOutOfBoundsException ex) {
             ex.printStackTrace();
@@ -204,7 +231,7 @@ public class TearPortal extends SteerableEntity{
     public void warp(){
         GameScreen.player.warp(body.getPosition());
         EnvironmentManager.currentEnv.end(id, endTime);
-        finished = true;
+        opened = true;
         
         //play VOID_WARP sound
         warpSound.play(false);

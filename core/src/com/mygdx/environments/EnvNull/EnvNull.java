@@ -651,38 +651,11 @@ public abstract class EnvNull extends Environment {
             }
     }
     
-    /*
-    private void renderSectionSortSprite(ImageSprite e){
-        
-            Vector2 ep = new Vector2(e.sprite.getX(), e.sprite.getY());
-            for(LayerManager lm : layerManagers){
-                for(NullSection ns : lm.layerSections){
-                    if(ep.x >= ns.getPos().x 
-                            && ep.x < ns.getPos().x + ns.getWidth() 
-                            && ep.y >= ns.getPos().y 
-                            && ep.y < ns.getPos().y + ns.getHeight()
-                            && !lm.layerSprites.contains(e, false)){
-                        
-                        lm.layerSprites.add(e);
-                    }
-                }
-            }
-        
-    }*/
-    
     @Override 
     public Entity spawnEntity(Entity e){
         renderSectionSortEntity(e);
         return super.spawnEntity(e);
     }
-    
-     
-    /*
-    @Override 
-    public ImageSprite spawnSprite(ImageSprite e){
-        renderSectionSortSprite(e);
-        return super.spawnSprite(e);
-    }*/
     
     
     //Set sectionCount based on difficulty
@@ -698,34 +671,34 @@ public abstract class EnvNull extends Environment {
                 break;
                 
             case 1:
-                scount = 4;
+                scount = 3;
                 layers = 2;
                 break;
             
             case 2:
-                scount = 8;
-                layers = 3;
+                scount = 4;
+                layers = 2;
                 break;
                 
             case 3:
-                scount = 10;
+                scount = 5;
+                layers = 3;
+                break;
+                
+            case 4:
+                scount = 5;
                 layers = 4;
                 break;
                 
-            case -1:
-                scount = 50;
-                layers = 6;
-                break;
-                
             default:
-                scount = 4;
+                scount = 2;
                 layers = 1;
                 break;
         }
         
         generateLayer0(scount, false);
         
-        generateLayer(layers-1, scount/2);
+        generateLayer(layers-1, scount-1);
     }
     
     /*******************************
@@ -889,7 +862,7 @@ public abstract class EnvNull extends Environment {
          ******************************************
          */
         //go through sections of prevLayer
-        NullSection prevSection = prevLayer.layerSections.random();
+        NullSection prevSection = prevLayer.layerSections.peek();
 
         //check section for available adjecent sections
         boolean[] sides = prevSection.getAvailableSides();
@@ -1007,9 +980,9 @@ public abstract class EnvNull extends Environment {
         prevSection.childSection = currentLayer.layerSections.peek();
         currentLayer.layerSections.peek().parentSection = prevSection;
 
-        fillLayer(currentLayer, scount / 2, false);
+        fillLayer(currentLayer, scount, false);
 
-        return generateLayer(layers - 1, scount / 2);
+        return generateLayer(layers - 1, scount-1);
     }
     
     

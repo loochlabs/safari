@@ -79,7 +79,7 @@ public class VoidMap {
 
             //tear marks
             for (TearPortal tear : tears) {
-                if (tear.isFinished()) {
+                if (tear.isOpened()) {
                     if (tear.getUserData().toString().contains("bosst_")) {
                         sb.draw(
                                 markerYellow,

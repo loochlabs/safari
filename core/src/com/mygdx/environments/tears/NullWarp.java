@@ -26,7 +26,7 @@ public class NullWarp extends TearPortal{
         
         warpenv = EnvironmentManager.get(linkid);
         this.warpid = linkid;
-        finished = true;
+        opened = true;
         CURRENT_HP = 5;
     }
     
@@ -34,7 +34,7 @@ public class NullWarp extends TearPortal{
     public void warp(){
         GameScreen.player.warp(body.getPosition());
         EnvironmentManager.currentEnv.end(warpid,endTime);
-        finished = true;
+        opened = true;
         isprite = dmgSprite;
         warpSound.play(false);
     }

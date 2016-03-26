@@ -85,10 +85,8 @@ public class Environment {
     protected final Array<Body> bodyToRemove = new Array<Body>();
     protected final Array<Entity> entToAdd = new Array<Entity>();
     
-    //protected final Array<ImageSprite> sprites = new Array<ImageSprite>();
-    //protected final Array<ImageSprite> spriteToRemove = new Array<ImageSprite>();
-    //protected final Array<ImageSprite> spriteToAdd = new Array<ImageSprite>();
-    
+    //env compelted;
+    protected boolean complete = false;
     protected int enemyCount = 0, killCount = 0;
     protected boolean enemiesClear = true;
     
@@ -124,10 +122,11 @@ public class Environment {
     public StateManager getStateManager() { return sm; }
     public FrameManager getFrameManager() { return fm; }
     public float getCameraZoom() { return cameraZoom; }
-    
     public Array<Pickup> getRewardItems() { return rewardItems; }
+    public boolean isComplete() { return complete; }
     
     public void setIdWarp(int id) { this.idwarp = id; }
+    public void setComplete(boolean complete) { this.complete = complete; }
     
     public Environment(int id){
         world = new World(new Vector2(0.0f, 0.0f), true);

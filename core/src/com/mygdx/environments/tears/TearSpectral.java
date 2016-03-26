@@ -53,7 +53,7 @@ public class TearSpectral extends TearPortal{
         
         GameScreen.player.revive();
         EnvironmentManager.currentEnv.end(linkid, endTime);
-        finished = false;
+        opened = false;
         
     }
     

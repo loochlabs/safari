@@ -188,6 +188,7 @@ public class En_EndNullArm extends StaticEntity{
         warpSound.play(false);
         
         EnvNull env = (EnvNull) EnvironmentManager.currentEnv;
+        env.setComplete(true);
         env.end();
     }
     

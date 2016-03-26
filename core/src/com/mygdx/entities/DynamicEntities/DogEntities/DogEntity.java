@@ -256,7 +256,9 @@ public class DogEntity extends SteerableEntity{
         for (Entity e : entities) {
             if (e.getUserData().toString().contains("tear")) {
                 try {
-                    if (PLAYER_RANGE_FOR_TEARS > findClosestBody().getPosition().dst(e.getBody().getPosition())) {
+                    TearPortal tp = (TearPortal)e;
+                    if (PLAYER_RANGE_FOR_TEARS > findClosestBody().getPosition().dst(tp.getBody().getPosition())
+                            && !tp.isCompelte()) {
                         
                         return (TearPortal)e;
                     }
@@ -275,7 +277,7 @@ public class DogEntity extends SteerableEntity{
         if(tp != null && IDLE_AT_TEAR_RANGE > body.getPosition().dst(tp.getBody().getPosition())){
             body.setLinearVelocity(new Vector2(0,0));
             isprite = alertSprite;
-            isprite.sprite.rotate(-0.25f);
+            isprite.sprite.rotate(-0.6f);
         }
     }
 }
