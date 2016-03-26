@@ -85,6 +85,10 @@ public class ResourceManager {
         this.loadAtlas("entities/player/lumen/lumen-side.atlas", "lumen-side", 36);
         this.loadAtlas("entities/player/lumen/lumen-warp.atlas", "lumen-warp", 19);
         
+        //character starts
+        this.loadAtlas("environments/env-start/lumen-start.atlas", "lumen-start", 40);
+        this.loadAtlas("environments/env-start/poe-start.atlas", "poe-start", 40);
+        this.loadAtlas("environments/env-start/woogie-start.atlas", "woogie-start", 40);
         
         //perm sprites
         this.loadAtlas("combat/perm-sprites/perm1.atlas", "perm1", 10);
@@ -231,7 +235,9 @@ public class ResourceManager {
         asm.load(MURPHY_ALERT, Texture.class);
         
         //env-start
-        asm.load(START_BG, Texture.class);
+        asm.load(START_BG_PH, Texture.class);
+        asm.load(START_INTRO_WHITE_BG, Texture.class);
+        asm.load(START_BLACK_BG, Texture.class);
         
         //null
         asm.load(NULL_BG1, Texture.class);
@@ -909,7 +915,11 @@ public class ResourceManager {
     
     
     //env-start 
-    public static String START_BG = "environments/env-start/start-bg.png";
+    public static String START_BG_PH = "environments/env-start/start-bg.png";
+    public static String START_INTRO_WHITE_BG = "environments/env-start/env-start-white.png";
+    public static String START_BLACK_BG = "environments/env-start/env-start-black.png";
+    
+    
     
     //rooms
     public static String ROOM_BG1 = "environments/RoomEnv/room-bg3.png";

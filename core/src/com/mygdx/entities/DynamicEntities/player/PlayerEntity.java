@@ -233,9 +233,14 @@ public class PlayerEntity extends SteerableEntity{
         sm = new StateManager();
         
         //*********     STATS & SKILLS     ******************
-        //DASH_COST = 20.0f;
+        LIFE_STAT_COUNT = 1;
+        ENERGY_STAT_COUNT = 1;
+        DAMAGE_STAT_COUNT = 1;
+        SPEED_STAT_COUNT = 1;
+        SPECIAL_STAT_COUNT = 1;
         
-        //DAMAGE = 5;
+        refreshStats();
+        
         LIGHT_MOD = 1.0f;
         HEAVY_MOD = 1.0f;
         SPECIAL_MOD = 1.0f;
@@ -586,7 +591,7 @@ public class PlayerEntity extends SteerableEntity{
     
     private Vector2 dv = new Vector2(0,0);
     
-    private void moveUpdate() {
+    public void moveUpdate() {
         //applies movement and adjusts sprites
         dv.x = 0;
         dv.y = 0;
@@ -647,7 +652,6 @@ public class PlayerEntity extends SteerableEntity{
                     break;
                 case DOWN:
                     moveDown = true;
-                    //moveUp = false
                     break;
                 case LEFT:
                     moveLeft = true;

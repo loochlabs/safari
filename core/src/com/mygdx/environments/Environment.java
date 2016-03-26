@@ -45,7 +45,7 @@ public class Environment {
     
     protected float width, height;
     protected Texture playTexture, introTexture, outroTexture;
-    protected ImageSprite beginSprite, endSprite, spectralPlayerSprite;
+    protected ImageSprite beginSprite, endSprite;//, spectralPlayerSprite;
     protected Texture bg, fg;
     protected float fgx, fgy, fgw, fgh;
     protected int renderLayers;
@@ -157,8 +157,8 @@ public class Environment {
         
         
         //TODO: needed here?
-        spectralPlayerSprite = new ImageSprite(GameScreen.player.getRecovSprite());
-        spectralPlayerSprite.sprite.setScale(0.65f);
+        //spectralPlayerSprite = new ImageSprite(GameScreen.player.getRecovSprite());
+        //spectralPlayerSprite.sprite.setScale(0.65f);
         
     }
     
@@ -169,12 +169,7 @@ public class Environment {
         if(fg != null){
             sb.draw(fg, fgx, fgy, fgw, fgh);
         }
-
-        //for (ImageSprite e : sprites) {
-            //e.render(sb);
-        //}
-
-        //entities.sort();
+        
         Collections.sort(entities, new EntityComp());
         for (Entity e : entities) {
             e.render(sb);
@@ -196,9 +191,6 @@ public class Environment {
         dmgTextToRemove.clear();
             
            
-        //if(sm.getState() == State.END){
-            //endSpectralAnim(sb);
-        //}
     }
     
     //render parralax layers (0-n, where 0 is the top layer)

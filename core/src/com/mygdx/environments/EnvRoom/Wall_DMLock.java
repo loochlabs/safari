@@ -13,7 +13,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
-import com.mygdx.entities.StaticEntities.NullWall;
+import com.mygdx.entities.StaticEntities.BlankWall;
 import com.mygdx.entities.ImageSprite;
 import com.mygdx.entities.esprites.EntitySprite;
 import com.mygdx.entities.pickups.Pickup;
@@ -30,7 +30,7 @@ import static com.mygdx.utilities.UtilityVars.BIT_WALL;
  *
  * @author saynt
  */
-public class Wall_DMLock extends NullWall{
+public class Wall_DMLock extends BlankWall{
 
     protected FixtureDef sens = new FixtureDef();
     public boolean locked = true;

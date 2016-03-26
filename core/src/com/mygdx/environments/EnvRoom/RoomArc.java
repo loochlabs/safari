@@ -8,7 +8,7 @@ package com.mygdx.environments.EnvRoom;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.entities.StaticEntities.StaticEntity;
-import com.mygdx.entities.StaticEntities.NullWall;
+import com.mygdx.entities.StaticEntities.BlankWall;
 import com.mygdx.environments.EnvironmentManager;
 import com.mygdx.game.MainGame;
 import static com.mygdx.game.MainGame.RATIO;
@@ -21,7 +21,7 @@ import static com.mygdx.utilities.UtilityVars.PPM;
  */
 public class RoomArc extends StaticEntity{
 
-    private NullWall wallWest, wallEast;
+    private BlankWall wallWest, wallEast;
     
     public RoomArc(Vector2 pos, float w, float h) {
         super(pos, w, h);
@@ -34,8 +34,8 @@ public class RoomArc extends StaticEntity{
         
         texture = MainGame.am.get(ResourceManager.ROOM_ARC);
         
-        wallWest = new NullWall(new Vector2(pos.x - width*0.78f, pos.y), 15*RATIO, height*0.9f);
-        wallEast = new NullWall(new Vector2(pos.x + width*0.78f, pos.y), 15*RATIO, height*0.9f);
+        wallWest = new BlankWall(new Vector2(pos.x - width*0.78f, pos.y), 15*RATIO, height*0.9f);
+        wallEast = new BlankWall(new Vector2(pos.x + width*0.78f, pos.y), 15*RATIO, height*0.9f);
     }
     
     @Override

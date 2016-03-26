@@ -12,9 +12,11 @@ import com.mygdx.demo.demo2.EnvVoid_D2_0;
 import com.mygdx.demo.demo2.EnvVoid_D2_1;
 import com.mygdx.demo.demo2.EnvVoid_D2_2;
 import com.mygdx.dev.EnvVoid_Dev0;
-import com.mygdx.entities.DynamicEntities.player.Player_Lumen;
+import com.mygdx.entities.DynamicEntities.player.Player_Poe;
 import com.mygdx.environments.EnvMan.EnvMan_Intro;
 import com.mygdx.environments.EnvStart.EnvStart;
+import com.mygdx.environments.EnvStart.EnvStart_0;
+import com.mygdx.environments.EnvStart.PlayerEntity_Start;
 import com.mygdx.environments.EnvSub.pads.EndPadManager;
 import com.mygdx.environments.EnvVoid.EnvVoid_Showcase;
 import static com.mygdx.game.MainGame.RATIO;
@@ -95,6 +97,12 @@ public class EnvironmentManager {
                 e = new EnvStart(-99,-20);
                 add(new EnvVoid_D2_0(-20));
                 break;
+                
+            case -1:
+                e = new EnvStart_0(-99);
+                //todo: create player in start env
+                player = new PlayerEntity_Start();
+                break;
             default:
                 e = new EnvVoid_D2_0(-20);
                 break;
@@ -103,9 +111,11 @@ public class EnvironmentManager {
         
         //player, initial setup
         if(GameScreen.player == null){
-            player = new Player_Lumen(new Vector2(300 * RATIO , 400 * RATIO));
-            //player = new Player_Poe(new Vector2(300 * RATIO , 400 * RATIO));
+            //player = new Player_Lumen(new Vector2(300 * RATIO , 400 * RATIO));
+            player = new Player_Poe(new Vector2(300 * RATIO , 400 * RATIO));
             //player = new Player_Woogie(new Vector2(300 * RATIO , 400 * RATIO));
+            
+            //player = new PlayerEntity_Start();
         }
         
         //end pad manager

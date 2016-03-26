@@ -11,7 +11,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.entities.DynamicEntities.enemies.EnemyEntity;
 import com.mygdx.entities.StaticEntities.StaticEntity;
-import com.mygdx.entities.StaticEntities.NullWall;
+import com.mygdx.entities.StaticEntities.BlankWall;
 import com.mygdx.entities.ImageSprite;
 import static com.mygdx.environments.EnvNull.NullSection.WallType.WALL;
 import com.mygdx.game.MainGame;
@@ -93,7 +93,7 @@ public class NullSection {
         //north wall
         switch(sideTypes[0]){
             case WALL:
-                env.toAddEntity(new NullWall(new Vector2(pos.x + width/2, pos.y + height - height*0.035f ),  width/2,  height*0.035f));
+                env.toAddEntity(new BlankWall(new Vector2(pos.x + width/2, pos.y + height - height*0.035f ),  width/2,  height*0.035f));
                 break;
             case PIT_HIGHER:
                 
@@ -114,7 +114,7 @@ public class NullSection {
                         new Vector2(pos.x + width/2, pos.y + height - height*0.15f), 
                         parentSection));
             
-                env.toAddEntity(new NullWall(new Vector2(pos.x + width/2, pos.y + height - height*0.035f ),  width/2,  height*0.035f));
+                env.toAddEntity(new BlankWall(new Vector2(pos.x + width/2, pos.y + height - height*0.035f ),  width/2,  height*0.035f));
                 
                 sideTypes[0] = WallType.WALL;
                 
@@ -125,7 +125,7 @@ public class NullSection {
        
         switch(sideTypes[1]){
             case WALL:
-                env.toAddEntity(new NullWall(new Vector2(pos.x + width - width*0.05f, pos.y + height/2), width*0.05f, height/2));
+                env.toAddEntity(new BlankWall(new Vector2(pos.x + width - width*0.05f, pos.y + height/2), width*0.05f, height/2));
                 break;
             case PIT_HIGHER:
                 
@@ -147,7 +147,7 @@ public class NullSection {
                         new Vector2(pos.x + width - width*0.2f, pos.y + height*0.55f), 
                         parentSection));
                 
-                env.toAddEntity(new NullWall(new Vector2(pos.x + width - width*0.05f, pos.y + height/2), width*0.05f, height/2));
+                env.toAddEntity(new BlankWall(new Vector2(pos.x + width - width*0.05f, pos.y + height/2), width*0.05f, height/2));
                 
                 sideTypes[1] = WallType.WALL;
                 
@@ -159,7 +159,7 @@ public class NullSection {
         
         switch (sideTypes[2]) {
             case WALL:
-                env.toAddEntity(new NullWall(new Vector2(pos.x + width / 2, pos.y + height * 0.1f), width / 2, height * 0.1f));
+                env.toAddEntity(new BlankWall(new Vector2(pos.x + width / 2, pos.y + height * 0.1f), width / 2, height * 0.1f));
                 break;
             case PIT_HIGHER:
 
@@ -181,7 +181,7 @@ public class NullSection {
                         parentSection));
                 
                 //env.spawnEntity(new NullWall(new Vector2(pos.x + width / 2, pos.y + height * 0.1f), width / 2, height * 0.1f));
-                env.toAddEntity(new NullWall(new Vector2(pos.x + width / 2, pos.y + height * 0.1f), width / 2, height * 0.1f));
+                env.toAddEntity(new BlankWall(new Vector2(pos.x + width / 2, pos.y + height * 0.1f), width / 2, height * 0.1f));
                 
                 sideTypes[2] = WallType.WALL;
 
@@ -193,7 +193,7 @@ public class NullSection {
         
         switch (sideTypes[3]) {
             case WALL:
-                env.toAddEntity(new NullWall(new Vector2(pos.x + width * 0.05f, pos.y + height / 2), width * 0.05f, height / 2));
+                env.toAddEntity(new BlankWall(new Vector2(pos.x + width * 0.05f, pos.y + height / 2), width * 0.05f, height / 2));
                 break;
             case PIT_HIGHER:
 
@@ -214,7 +214,7 @@ public class NullSection {
                         new Vector2(pos.x + width * 0.2f, pos.y + height*0.55f), 
                         parentSection));
                 
-                env.toAddEntity(new NullWall(new Vector2(pos.x + width * 0.05f, pos.y + height / 2), width * 0.05f, height / 2));
+                env.toAddEntity(new BlankWall(new Vector2(pos.x + width * 0.05f, pos.y + height / 2), width * 0.05f, height / 2));
                 
                 sideTypes[3] = WallType.WALL;
 

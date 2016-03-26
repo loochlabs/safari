@@ -10,7 +10,7 @@ import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.demo.demo2.DemoContScreen;
-import com.mygdx.entities.StaticEntities.NullWall;
+import com.mygdx.entities.StaticEntities.BlankWall;
 import com.mygdx.entities.ImageSprite;
 import com.mygdx.environments.EnvRoom.RoomArc;
 import com.mygdx.environments.Environment;
@@ -69,16 +69,16 @@ public class EnvMan_Intro extends Environment{
 
         float border = 25f;
         
-        spawnEntity(new NullWall(new Vector2( (fgx) + width/2, height*0.0625f),       width/2,  border));//south
+        spawnEntity(new BlankWall(new Vector2( (fgx) + width/2, height*0.0625f),       width/2,  border));//south
         
-        spawnEntity(new NullWall(new Vector2( (fgx) + width*0.92f, height/2),  border, height/2));//east
-        spawnEntity(new NullWall(new Vector2( (fgx) + width*0.08f, height/2),   border, height/2));//west
+        spawnEntity(new BlankWall(new Vector2( (fgx) + width*0.92f, height/2),  border, height/2));//east
+        spawnEntity(new BlankWall(new Vector2( (fgx) + width*0.08f, height/2),   border, height/2));//west
         
         //sensor for ContScreen
         spawnEntity(new ManIntroEndWall(new Vector2( (fgx) + width/2, height*0.95f),  width/2,  border));//north
         
-        spawnEntity(new NullWall(new Vector2( (fgx) + width*0.525f, height*0.325f),   border, height*0.31f));//inside right
-        spawnEntity(new NullWall(new Vector2( (fgx) + width*0.7555f, height*0.62f),   width*0.25f, border));//inside up
+        spawnEntity(new BlankWall(new Vector2( (fgx) + width*0.525f, height*0.325f),   border, height*0.31f));//inside right
+        spawnEntity(new BlankWall(new Vector2( (fgx) + width*0.7555f, height*0.62f),   width*0.25f, border));//inside up
         
         if (wallLocked) {
             spawnEntity(lockWall);
@@ -152,7 +152,7 @@ public class EnvMan_Intro extends Environment{
     }
     
     
-    public class Wall_StartLock extends NullWall {
+    public class Wall_StartLock extends BlankWall {
 
         protected FixtureDef sens = new FixtureDef();
         public boolean locked = true;
@@ -251,7 +251,7 @@ public class EnvMan_Intro extends Environment{
 
     }
     
-    private class ManIntroEndWall extends NullWall{
+    private class ManIntroEndWall extends BlankWall{
         
         public ManIntroEndWall(Vector2 pos, float w, float h) {
             super(pos, w, h);

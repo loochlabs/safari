@@ -8,7 +8,7 @@ package com.mygdx.environments.EnvSpectral;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.mygdx.entities.StaticEntities.NullWall;
+import com.mygdx.entities.StaticEntities.BlankWall;
 import com.mygdx.environments.Environment;
 import com.mygdx.game.MainGame;
 import com.mygdx.managers.ResourceManager;
@@ -24,7 +24,7 @@ public class SpectralPath {
     protected Environment env;
     private Texture bg;
     
-    private NullWall leftWall, rightWall;
+    private BlankWall leftWall, rightWall;
     
     public SpectralPath(Vector2 pos, float width, float height, Environment env) {
         
@@ -35,8 +35,8 @@ public class SpectralPath {
         
         bg = MainGame.am.get(ResourceManager.SP_SECTION_PH);
         
-        leftWall = new NullWall(new Vector2(pos.x + width*0.25f/2, pos.y + height/2), width*0.25f/2, height/2);
-        rightWall = new NullWall(new Vector2(pos.x + width - width*0.25f/2, pos.y + height/2), width*0.25f/2, height/2);
+        leftWall = new BlankWall(new Vector2(pos.x + width*0.25f/2, pos.y + height/2), width*0.25f/2, height/2);
+        rightWall = new BlankWall(new Vector2(pos.x + width - width*0.25f/2, pos.y + height/2), width*0.25f/2, height/2);
     }
     
     public void init(){

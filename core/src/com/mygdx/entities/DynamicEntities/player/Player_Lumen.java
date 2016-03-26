@@ -19,6 +19,7 @@ public class Player_Lumen extends PlayerEntity{
     public Player_Lumen(Vector2 pos) {
         super(pos, 31f*RATIO,31f*RATIO);
         
+        //used for soul piece
         playerName = "Lumen";
         
         

@@ -21,9 +21,9 @@ import static com.mygdx.utilities.UtilityVars.PPM;
  * Class Description:
  *      Bounding wall for Null Environment
  */
-public class NullWall extends StaticEntity{
+public class BlankWall extends StaticEntity{
     
-    public NullWall(Vector2 pos, float w, float h){
+    public BlankWall(Vector2 pos, float w, float h){
         super(pos,w,h);
         
         bd.position.set(pos.x/PPM,pos.y/PPM);

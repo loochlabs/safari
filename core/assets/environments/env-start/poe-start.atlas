@@ -1,0 +1,285 @@
+poe-start.png
+size: 2012, 698
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+poe-start
+  rotate: false
+  xy: 2, 2
+  size: 199, 230
+  orig: 199, 230
+  offset: 0, 0
+  index: 1
+poe-start
+  rotate: false
+  xy: 2, 234
+  size: 199, 230
+  orig: 199, 230
+  offset: 0, 0
+  index: 10
+poe-start
+  rotate: false
+  xy: 2, 466
+  size: 199, 230
+  orig: 199, 230
+  offset: 0, 0
+  index: 11
+poe-start
+  rotate: false
+  xy: 203, 2
+  size: 199, 230
+  orig: 199, 230
+  offset: 0, 0
+  index: 12
+poe-start
+  rotate: false
+  xy: 203, 234
+  size: 199, 230
+  orig: 199, 230
+  offset: 0, 0
+  index: 13
+poe-start
+  rotate: false
+  xy: 203, 466
+  size: 199, 230
+  orig: 199, 230
+  offset: 0, 0
+  index: 14
+poe-start
+  rotate: false
+  xy: 404, 2
+  size: 199, 230
+  orig: 199, 230
+  offset: 0, 0
+  index: 15
+poe-start
+  rotate: false
+  xy: 404, 234
+  size: 199, 230
+  orig: 199, 230
+  offset: 0, 0
+  index: 16
+poe-start
+  rotate: false
+  xy: 404, 466
+  size: 199, 230
+  orig: 199, 230
+  offset: 0, 0
+  index: 17
+poe-start
+  rotate: false
+  xy: 605, 2
+  size: 199, 230
+  orig: 199, 230
+  offset: 0, 0
+  index: 18
+poe-start
+  rotate: false
+  xy: 605, 234
+  size: 199, 230
+  orig: 199, 230
+  offset: 0, 0
+  index: 19
+poe-start
+  rotate: false
+  xy: 605, 466
+  size: 199, 230
+  orig: 199, 230
+  offset: 0, 0
+  index: 2
+poe-start
+  rotate: false
+  xy: 806, 2
+  size: 199, 230
+  orig: 199, 230
+  offset: 0, 0
+  index: 20
+poe-start
+  rotate: false
+  xy: 806, 234
+  size: 199, 230
+  orig: 199, 230
+  offset: 0, 0
+  index: 21
+poe-start
+  rotate: false
+  xy: 806, 466
+  size: 199, 230
+  orig: 199, 230
+  offset: 0, 0
+  index: 22
+poe-start
+  rotate: false
+  xy: 1007, 2
+  size: 199, 230
+  orig: 199, 230
+  offset: 0, 0
+  index: 23
+poe-start
+  rotate: false
+  xy: 1007, 234
+  size: 199, 230
+  orig: 199, 230
+  offset: 0, 0
+  index: 24
+poe-start
+  rotate: false
+  xy: 1007, 466
+  size: 199, 230
+  orig: 199, 230
+  offset: 0, 0
+  index: 25
+poe-start
+  rotate: false
+  xy: 1208, 2
+  size: 199, 230
+  orig: 199, 230
+  offset: 0, 0
+  index: 26
+poe-start
+  rotate: false
+  xy: 1208, 234
+  size: 199, 230
+  orig: 199, 230
+  offset: 0, 0
+  index: 27
+poe-start
+  rotate: false
+  xy: 1208, 466
+  size: 199, 230
+  orig: 199, 230
+  offset: 0, 0
+  index: 28
+poe-start
+  rotate: false
+  xy: 1409, 2
+  size: 199, 230
+  orig: 199, 230
+  offset: 0, 0
+  index: 29
+poe-start
+  rotate: false
+  xy: 1610, 2
+  size: 199, 230
+  orig: 199, 230
+  offset: 0, 0
+  index: 3
+poe-start
+  rotate: false
+  xy: 1811, 2
+  size: 199, 230
+  orig: 199, 230
+  offset: 0, 0
+  index: 30
+poe-start
+  rotate: false
+  xy: 1811, 2
+  size: 199, 230
+  orig: 199, 230
+  offset: 0, 0
+  index: 31
+poe-start
+  rotate: false
+  xy: 1811, 2
+  size: 199, 230
+  orig: 199, 230
+  offset: 0, 0
+  index: 32
+poe-start
+  rotate: false
+  xy: 1811, 2
+  size: 199, 230
+  orig: 199, 230
+  offset: 0, 0
+  index: 33
+poe-start
+  rotate: false
+  xy: 1811, 2
+  size: 199, 230
+  orig: 199, 230
+  offset: 0, 0
+  index: 34
+poe-start
+  rotate: false
+  xy: 1811, 2
+  size: 199, 230
+  orig: 199, 230
+  offset: 0, 0
+  index: 35
+poe-start
+  rotate: false
+  xy: 1811, 2
+  size: 199, 230
+  orig: 199, 230
+  offset: 0, 0
+  index: 36
+poe-start
+  rotate: false
+  xy: 1811, 2
+  size: 199, 230
+  orig: 199, 230
+  offset: 0, 0
+  index: 37
+poe-start
+  rotate: false
+  xy: 1811, 2
+  size: 199, 230
+  orig: 199, 230
+  offset: 0, 0
+  index: 38
+poe-start
+  rotate: false
+  xy: 1811, 2
+  size: 199, 230
+  orig: 199, 230
+  offset: 0, 0
+  index: 39
+poe-start
+  rotate: false
+  xy: 1409, 234
+  size: 199, 230
+  orig: 199, 230
+  offset: 0, 0
+  index: 4
+poe-start
+  rotate: false
+  xy: 1811, 2
+  size: 199, 230
+  orig: 199, 230
+  offset: 0, 0
+  index: 40
+poe-start
+  rotate: false
+  xy: 1409, 466
+  size: 199, 230
+  orig: 199, 230
+  offset: 0, 0
+  index: 5
+poe-start
+  rotate: false
+  xy: 1610, 234
+  size: 199, 230
+  orig: 199, 230
+  offset: 0, 0
+  index: 6
+poe-start
+  rotate: false
+  xy: 1610, 466
+  size: 199, 230
+  orig: 199, 230
+  offset: 0, 0
+  index: 7
+poe-start
+  rotate: false
+  xy: 1811, 234
+  size: 199, 230
+  orig: 199, 230
+  offset: 0, 0
+  index: 8
+poe-start
+  rotate: false
+  xy: 1811, 466
+  size: 199, 230
+  orig: 199, 230
+  offset: 0, 0
+  index: 9

@@ -6,7 +6,7 @@
 package com.mygdx.environments.EnvRoom.binary;
 
 import com.badlogic.gdx.math.Vector2;
-import com.mygdx.entities.StaticEntities.NullWall;
+import com.mygdx.entities.StaticEntities.BlankWall;
 import com.mygdx.entities.ImageSprite;
 import com.mygdx.environments.EnvironmentManager;
 import com.mygdx.game.MainGame;
@@ -16,7 +16,7 @@ import com.mygdx.managers.ResourceManager;
  *
  * @author looch
  */
-public class Wall_Binary extends NullWall{
+public class Wall_Binary extends BlankWall{
 
     private boolean locked = true;
     private final int LOCK_CODE; 

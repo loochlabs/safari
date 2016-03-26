@@ -6,7 +6,7 @@
 package com.mygdx.environments.EnvSpectral;
 
 import com.badlogic.gdx.math.Vector2;
-import com.mygdx.entities.StaticEntities.NullWall;
+import com.mygdx.entities.StaticEntities.BlankWall;
 import com.mygdx.environments.Environment;
 
 /**
@@ -16,13 +16,13 @@ import com.mygdx.environments.Environment;
 public class SpectralPath_Trap extends SpectralPath{
 
     private SpectralTrap trap;
-    private NullWall nwall;
+    private BlankWall nwall;
     
     public SpectralPath_Trap(Vector2 pos, float width, float height, Environment env) {
         super(pos, width, height, env);
         
         trap = new SpectralTrap(new Vector2(pos.x + width/2, pos.y + height/2), width/2);
-        nwall = new NullWall(new Vector2(pos.x + width/2, pos.y + height - height*0.25f/2), width/2, height*0.25f/2);
+        nwall = new BlankWall(new Vector2(pos.x + width/2, pos.y + height - height*0.25f/2), width/2, height*0.25f/2);
     }
     
     @Override
