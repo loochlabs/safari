@@ -8,7 +8,7 @@ package com.mygdx.environments.EnvStart;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.mygdx.demo.demo2.EnvVoid_D2_0;
+import com.mygdx.dev.EnvVoid_Dev0;
 import com.mygdx.entities.DynamicEntities.player.PlayerEntity;
 import com.mygdx.entities.Entity;
 import com.mygdx.entities.StaticEntities.BlankWall;
@@ -232,7 +232,7 @@ public class EnvStart_0 extends Environment{
         
         
         //create new env, add to NullWarp
-        EnvironmentManager.add(new EnvVoid_D2_0(-1));
+        EnvironmentManager.add(new EnvVoid_Dev0(-1));
         spawnEntity(new NullWarp(new Vector2(750f*RATIO, 125f*RATIO), -1));
         
         

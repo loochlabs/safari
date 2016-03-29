@@ -45,7 +45,7 @@ public class DevScreen extends Screen{
     }
     
     public void executeStart(){
-        ScreenManager.setScreen(new GameScreen(-1));
+        ScreenManager.setScreen(new GameScreen(0));
     }
 
     private final String ANYKEY_TEXT = "Press any key to start";

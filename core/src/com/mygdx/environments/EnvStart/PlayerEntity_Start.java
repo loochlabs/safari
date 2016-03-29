@@ -22,7 +22,8 @@ public class PlayerEntity_Start extends PlayerEntity{
     public PlayerEntity_Start() {
         super(new Vector2(0,0), 20f*RATIO, 20f*RATIO);
         
-        moveSprite = new ImageSprite("murphy-move", true);
+        moveSprite = new ImageSprite("start-player", true);
+        moveSprite.sprite.setBounds(pos.x, pos.y, width*2, height*2);
         isprite = moveSprite;
         
         

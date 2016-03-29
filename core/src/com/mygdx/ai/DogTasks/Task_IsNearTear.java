@@ -8,7 +8,7 @@ package com.mygdx.ai.DogTasks;
 import com.badlogic.gdx.ai.btree.LeafTask;
 import com.badlogic.gdx.ai.btree.Task;
 import com.mygdx.entities.DynamicEntities.DogEntities.DogEntity;
-import com.mygdx.environments.tears.TearPortal;
+import com.mygdx.entities.DynamicEntities.SteerableEntity;
 
 /**
  *
@@ -18,8 +18,7 @@ public class Task_IsNearTear extends LeafTask<DogEntity>{
 
     @Override
     public void run(DogEntity dog) {
-        TearPortal tp = dog.isNearTear();
-        if(tp != null){
+        if(dog.isNearTear()){
             success();
         }else
             fail();

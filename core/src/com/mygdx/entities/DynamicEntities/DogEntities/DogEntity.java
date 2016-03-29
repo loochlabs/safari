@@ -66,8 +66,8 @@ public class DogEntity extends SteerableEntity{
     protected final float IDLE_AT_TEAR_RANGE = 0.2f;
     protected final float PLAYER_IDLE_RANGE = 1.5f;   //radius of idling around player
     protected final float PLAYER_RANGE_FOR_TEARS = 5f;        //in range of player
-    
-    
+    protected String tearString = "tear";
+    protected TearTarget tearTarget;
     
     //public float getIdleRange() { return PLAYER_IDLE_RANGE; }
     
@@ -105,13 +105,13 @@ public class DogEntity extends SteerableEntity{
         this.maxAngularAcceleration = 500f;
         
         
-        moveToPlayerSB = new Arrive<Vector2>(this, GameScreen.player)
+        moveToPlayerSB = new Arrive<Vector2>(this, tearTarget)
                 .setTimeToTarget(0.01f)
                 .setArrivalTolerance(2f)
                 .setDecelerationRadius(10);
         
-        moveToTearSB = new Seek<Vector2>(this, GameScreen.player);
         
+        moveToTearSB = new Seek<Vector2>(this, tearTarget);
         
         
     }
@@ -133,6 +133,11 @@ public class DogEntity extends SteerableEntity{
         } finally {
             StreamUtils.closeQuietly(reader);
         }
+        
+        //tear target
+        tearTarget = new TearTarget(new Vector2(0,0));
+        env.spawnEntity(tearTarget);
+        
     }
     
     @Override
@@ -141,6 +146,12 @@ public class DogEntity extends SteerableEntity{
         
         dogUpdate();
         
+    }
+    
+    @Override
+    public void dispose(){
+        super.dispose();
+        env.removeEntity(tearTarget);
     }
     
     public void dogUpdate() {
@@ -194,7 +205,7 @@ public class DogEntity extends SteerableEntity{
     }
     
     public boolean inRange(float range){
-        float dist = body.getPosition().dst(findClosestBody().getPosition());
+        float dist = body.getPosition().dst(findClosestBody(body.getPosition()).getPosition());
         return dist <= range;
     }
     
@@ -204,39 +215,56 @@ public class DogEntity extends SteerableEntity{
     }
     
     public boolean inIdleRange(){
+        System.out.println("@DogEntity"+id+" inIdleRange");
         return inRange(PLAYER_IDLE_RANGE);   
     }
     
     
     public void moveToPlayer(){
-        moveToPlayerSB.setTarget(new SteerableEntity(findClosestBody()));
+        System.out.println("@DogEntity" + id + " moveToPlayer");
+        //moveToPlayerSB.setTarget(new TearTarget(findClosestBody(body.getPosition()).getPosition()));
+        if(GameScreen.player.getBody() == null) return;
+        
+        
+        Body b = findClosestBody(body.getPosition());
+        tearTarget.setWanderPos(b.getPosition().cpy());
+        /*
+        if (b.equals(GameScreen.player.getBody())) {
+            
+        } else {
+            Vector2 dv = b.getPosition().cpy().sub(b.getPosition());
+            tearTarget.setWanderPos(GameScreen.player.getBody().getPosition().cpy().sub(dv));
+        }*/
+        moveToPlayerSB.setTarget(tearTarget);
         behavior = moveToPlayerSB;
         isprite = moveSprite;
     }
     
     
     public void moveToTear(){
+        System.out.println("@DogEntity "+id+"moveToTear");
         isprite = moveSprite;
-        TearPortal tp = isNearTear();
-        moveToTearSB.setTarget(tp);
+        moveToTearSB.setTarget(tearTarget);
         behavior = moveToTearSB;
         
-        idleAtTear(tp);
+        idleAtTear();
     }
     
     public void idle(){
         isprite = idleSprite;
     }
     
-    //Gets closest player body from current EnvVoid playerGhostBodies
-    public Body findClosestBody(){
+    //Gets closest player body from current EnvVoid playerGhostBodies 
+    //
+    //@param : Vector2 point - point to compare to closest player body
+    public Body findClosestBody(Vector2 point){
     
         Array<Body> bodies = env.getPlayerBodies();
         Body closestBody = bodies.peek();
-        float dv = body.getPosition().dst(closestBody.getPosition());
+        float dv = point.dst(closestBody.getPosition());
         
         for(Body pbody: bodies){
-            float dc = body.getPosition().dst(pbody.getPosition());
+            float dc = point.dst(pbody.getPosition());
             if(dc < dv){
                 closestBody = pbody;
                 dv = dc;
@@ -250,17 +278,39 @@ public class DogEntity extends SteerableEntity{
     
     
     
-    public TearPortal isNearTear(){ 
+    public boolean isNearTear(){ 
+        System.out.println("@DogEntity "+id+"isNearTear");
+        //null check to avoid error in tear check below
+        if(GameScreen.player.getBody() == null) return false;
         
         ArrayList<Entity> entities = env.getEntities();
+        float closest_dst = PLAYER_RANGE_FOR_TEARS;
+        tearTarget.active = false;
+        
         for (Entity e : entities) {
-            if (e.getUserData().toString().contains("tear")) {
+            if (e.getUserData().toString().contains(tearString)) {
                 try {
                     TearPortal tp = (TearPortal)e;
-                    if (PLAYER_RANGE_FOR_TEARS > findClosestBody().getPosition().dst(tp.getBody().getPosition())
+                    Body b = findClosestBody(tp.getBody().getPosition());
+                    float dst = b.getPosition().dst(tp.getBody().getPosition());
+                    
+                    if (dst < PLAYER_RANGE_FOR_TEARS 
+                            && dst < closest_dst
                             && !tp.isCompelte()) {
                         
-                        return (TearPortal)e;
+                        
+                        closest_dst = dst;
+                        
+                        if(b.equals(GameScreen.player.getBody())){
+                            tearTarget.setWanderPos(tp.getBody().getPosition().cpy());
+                        }else{
+                            Vector2 dv = b.getPosition().cpy().sub(tp.getBody().getPosition());
+                            tearTarget.setWanderPos(GameScreen.player.getBody().getPosition().cpy().sub(dv));
+                            System.out.println("@DogEntity dv " + dv.x + "," + dv.y);
+                        }
+                        
+                        tearTarget.tp = tp;
+                        tearTarget.active = true;
                     }
                 } catch (Exception ex) {
                     ex.printStackTrace();
@@ -268,16 +318,38 @@ public class DogEntity extends SteerableEntity{
             }
         }
         
-        return null;
+        return tearTarget.active ;
     }
     
     
     
-    public void idleAtTear(TearPortal tp){
-        if(tp != null && IDLE_AT_TEAR_RANGE > body.getPosition().dst(tp.getBody().getPosition())){
+    public void idleAtTear(){
+        if(tearTarget.active && tearTarget.tp != null && IDLE_AT_TEAR_RANGE > body.getPosition().dst(tearTarget.tp.getBody().getPosition())){
+            System.out.println("@DogEntity "+id+"idleAtTear");
             body.setLinearVelocity(new Vector2(0,0));
             isprite = alertSprite;
             isprite.sprite.rotate(-0.6f);
         }
+    }
+    
+    
+    private class TearTarget extends SteerableEntity{
+
+        public boolean active = false;
+        public TearPortal tp = null;
+        
+        public TearTarget(Vector2 pos) {
+            super(pos, 5f, 5f);
+            
+            
+            userdata = "tar_" + id;
+            fd.filter.categoryBits = BIT_EN;
+            fd.filter.maskBits = BIT_WALL;
+        }
+        
+        public void setWanderPos(Vector2 pos){
+            body.setTransform(pos, 0);
+        }
+        
     }
 }

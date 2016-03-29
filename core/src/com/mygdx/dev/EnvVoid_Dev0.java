@@ -40,6 +40,16 @@ public class EnvVoid_Dev0 extends EnvVoid{
         cyst_count = 2;
     }
     
+    public EnvVoid_Dev0(int id){
+        super(id, 2000f*RATIO, 2000f*RATIO, 1, "B");
+        
+        startPos = new Vector2(width*0.5f/PPM, height*0.5f/PPM);
+        this.setPlayerToStart();
+        
+        introDescription = "Dev Hell";
+        cyst_count = 2;
+    }
+    
     @Override
     public void init(){
         super.init();
@@ -67,15 +77,6 @@ public class EnvVoid_Dev0 extends EnvVoid{
         //***************************************************
         
         //bg sprites
-        /*
-        spawnEntity(new EntitySprite(new Vector2(25f, grid.getHeight()*0.9f),
-                        470f,200f,
-                        "decom", 
-                        true, false, false, false, 
-                        1.0f * RATIO,
-                        false, false,
-                        false, false));
-        */
         spawnEntity(new DecomSprite(new Vector2(25f*RATIO, grid.getHeight()*0.9f)));
         
         spawnEntity(new SkillPad_Primary(new Vector2(900f, 1200f)));
@@ -100,12 +101,13 @@ public class EnvVoid_Dev0 extends EnvVoid{
         
         spawnEntity(stella);
         
+        /*
         MurphyEntity murph = 
                 new MurphyEntity(
                         new Vector2(150f*RATIO, 150f*RATIO));
         
         spawnEntity(murph);
-        
+        */
     }
     
     
@@ -118,7 +120,7 @@ public class EnvVoid_Dev0 extends EnvVoid{
         spawnEntity(new Tear_R(550f*RATIO,800f*RATIO, this.id, 3));
         spawnEntity(new Tear_R(300f*RATIO,800f*RATIO, this.id, 4));
         
-        
+        spawnEntity(new Tear_R(25f*RATIO, 25f*RATIO, this.id, 0));
     }
     
     

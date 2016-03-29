@@ -22,7 +22,7 @@ public class SkillPad_Secondary extends SkillPad{
     @Override
     public void setRandomSkill(){
         if(GameStats.skillPool.size != 0){
-            SKILL = GameStats.skillPool_Secondary.get(rng.nextInt(GameStats.skillPool_Secondary.size));
+            SKILL = GameStats.skillPool_Secondary.random();
             
         }else{
             SKILL = new Skill_GhostJab();

@@ -137,6 +137,8 @@ public class ResourceManager {
         this.loadAtlas("combat/proj-death.atlas", "proj-death",12);
         
         //environments
+        //start
+        this.loadAtlas("environments/env-start/start-player.atlas", "start-player",1);
         //null
         this.loadAtlas("environments/NullEnv/impact/player-impact.atlas", "player-impact",14);
         this.loadAtlas("entities/sprites/kill-text.atlas", "kill-text",94);
@@ -154,7 +156,6 @@ public class ResourceManager {
         //void
         this.loadAtlas("environments/EnvVoid/end-void-trans.atlas", "end-void-trans",29);
         //tear
-        //this.loadAtlas("entities/tears/tear-damaged.atlas", "tear-damaged");
         this.loadAtlas("entities/tears/tear-open2.atlas", "tear-open2",39);
         this.loadAtlas("entities/tears/damaged2.atlas", "damaged2",1);
         //EnvSub

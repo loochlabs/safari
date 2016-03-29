@@ -6,15 +6,10 @@
 package com.mygdx.entities.DynamicEntities.DogEntities;
 
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.utils.Array;
-import com.mygdx.entities.Entity;
 import com.mygdx.entities.ImageSprite;
-import com.mygdx.environments.tears.TearPortal;
-import com.mygdx.environments.EnvironmentManager;
 import com.mygdx.game.MainGame;
 import static com.mygdx.game.MainGame.RATIO;
 import com.mygdx.managers.ResourceManager;
-import java.util.ArrayList;
 
 /**
  *
@@ -43,8 +38,11 @@ public class MurphyEntity extends DogEntity{
         idleSprite.sprite.setScale(0.29f * RATIO);
         
         isprite = idleSprite;
+        
+        tearString = "bosst_";
     }
     
+    /*
     @Override
     public TearPortal isNearTear(){
         
@@ -76,7 +74,7 @@ public class MurphyEntity extends DogEntity{
                 
         
         return null;
-    }
+    }*/
     
     
 }

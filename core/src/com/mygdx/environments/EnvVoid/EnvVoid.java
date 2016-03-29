@@ -431,7 +431,7 @@ public class EnvVoid extends Environment{
         super.resume();
         //create att sensors for ghosts
         for(Body pbody: playerBodies){
-            pbody.createFixture(GameScreen.player.getNormAttSensor()).setUserData(GameScreen.player.getNormAttSensor().getData());
+            pbody.createFixture(GameScreen.player.getNormAttSensor()).setUserData(GameScreen.player.getSensorData());
         }
         
         //create player ghost bodies
