@@ -18,7 +18,7 @@ public class Task_IsNearTear extends LeafTask<DogEntity>{
 
     @Override
     public void run(DogEntity dog) {
-        if(dog.isNearTear()){
+        if(dog.isNearTear() != null){
             success();
         }else
             fail();

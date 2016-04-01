@@ -61,7 +61,7 @@ public class TearPortal extends SteerableEntity{
     protected SoundObject_Sfx warpSound;
     
     public boolean isOpened() { return opened; }
-    public boolean isCompelte() { return complete; }
+    public boolean isComplete() { return complete; }
     public void setOpened(boolean opened) { this.opened = opened; }
     public Environment getWarpEnv() { return warpenv; }
     
