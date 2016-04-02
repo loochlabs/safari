@@ -44,7 +44,7 @@ public class Inventory {
         GameScreen.overlay.getSkillHud().addItem(pickup);
         
         
-        itemCollectCheck(pickup);
+        //itemCollectCheck(pickup);
     }
     
     public void subItem(Pickup pickup, int ammount){
@@ -136,6 +136,7 @@ public class Inventory {
         itemsToRemove.clear();
     }
     
+    /*
     private void itemCollectCheck(Pickup p){
         if(p.getName().equals("Green Matter")
                 && this.hasItemAmmount(p, 2)){
@@ -190,6 +191,6 @@ public class Inventory {
                 }
             }
         }*/
-    }
+    //}
     
 }

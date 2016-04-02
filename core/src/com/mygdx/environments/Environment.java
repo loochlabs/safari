@@ -142,10 +142,6 @@ public class Environment {
         dmgFont.setColor(Color.YELLOW);
         dmgFont.setScale(0.55f * RATIO);
         
-        //endSpectralSprite = new EntitySprite("endSpectralSprite", false);
-        //endSpectralSprite.sprite.setScale(1.06f*RATIO);
-        
-        
     }
     
     public void init(){
@@ -155,10 +151,6 @@ public class Environment {
         this.setPlayerToStart();
         entities.add(GameScreen.player);
         
-        
-        //TODO: needed here?
-        //spectralPlayerSprite = new ImageSprite(GameScreen.player.getRecovSprite());
-        //spectralPlayerSprite.sprite.setScale(0.65f);
         
     }
     
@@ -262,8 +254,9 @@ public class Environment {
         }else if(sm.getState() == State.PLAYING 
                 || sm.getState() == State.FALLING){
             
-            cam.setPosition(GameScreen.player.getBody().getPosition().x * PPM, GameScreen.player.getBody().getPosition().y * PPM);
-            
+            if (GameScreen.player != null) {
+                cam.setPosition(GameScreen.player.getPos().x, GameScreen.player.getPos().y);
+            }
         }
     }
     
@@ -273,8 +266,9 @@ public class Environment {
         }else if(sm.getState() == State.PLAYING 
                 || sm.getState() == State.FALLING){
             
-            cam.setPosition(GameScreen.player.getBody().getPosition().x, GameScreen.player.getBody().getPosition().y);
-            
+            if(GameScreen.player.getBody() != null){
+                cam.setPosition(GameScreen.player.getBody().getPosition().x, GameScreen.player.getBody().getPosition().y);
+            }
         }
     }
     
@@ -301,9 +295,12 @@ public class Environment {
         
         if(!sm.isPaused()){
             this.init();
-        }else{
-            GameScreen.player.getBody().setTransform(playerPos.cpy(),0);
-        }
+        }else if(sm.respawn){
+            entities.add(GameScreen.player);
+            sm.respawn = false;
+        }//else{
+            //GameScreen.player.getBody().setTransform(playerPos.cpy(),0);
+        //}
         
         entityCheck();
         
@@ -344,6 +341,8 @@ public class Environment {
     
     //Called after end() has completed
     public void complete(){
+        reset();
+        
         EnvironmentManager.setCurrent(idwarp);
     }
     
@@ -353,25 +352,17 @@ public class Environment {
         
         Vector2 vec = GameScreen.player.getBody().getPosition().cpy();
         playerPos = vec;
-        reset();
+        //reset();
         
     }
     
-    /*
-    public void endSpectralAnim(SpriteBatch sb){
-        
-        if (GameScreen.player.isDead()) {
-            
-            spectralPlayerSprite.sprite.setPosition(
-                    GameScreen.player.getBody().getPosition().x*PPM - spectralPlayerSprite.sprite.getWidth()/2, 
-                    GameScreen.player.getBody().getPosition().y*PPM - spectralPlayerSprite.sprite.getHeight()/2);
-            spectralPlayerSprite.render(sb);
-            spectralPlayerSprite.sprite.scale(0.0055f);
-            
-            //endSpectralSprite.render(sb);
-        }
-        
-    }*/
+    public void respawn(){
+        //reset();
+        sm.setState(3);
+        setPlayerToStart();
+        sm.respawn = true;
+        entities.remove(GameScreen.player);
+    }
     
     public void gameOver(){
         ScreenManager.setScreen(new GameOverScreen());
@@ -383,8 +374,15 @@ public class Environment {
     //Description: clear b2d body after changing environments
     public void reset(){
         
-        if(GameScreen.player.getBody() != null)
+        if(GameScreen.player.getBody() != null){
             world.destroyBody(GameScreen.player.getBody());
+        }
+        
+    }
+    
+    public void playerDeath(){
+        reset();
+        EnvironmentManager.respawn();
     }
     
     public void setPlayerToStart(){
@@ -451,6 +449,10 @@ public class Environment {
             //update entities
             for (Entity e : entities) {
                 e.update();
+            }
+            
+            if(GameScreen.player.isDead()){
+                playerDeath();
             }
     }
     

@@ -36,9 +36,9 @@ public class En_Peeker extends EnemyEntity{
         prepSprite.sprite.setScale(0.55f*RATIO);
      
         
-        MAX_HP = 30f;
+        MAX_HP = 10;
         CURRENT_HP = MAX_HP;
-        DAMAGE = 10f;
+        DAMAGE = 5f;
         
         //combat
         ATTACK_RANGE = 4.5f*RATIO;

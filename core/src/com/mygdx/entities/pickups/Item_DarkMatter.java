@@ -36,9 +36,4 @@ public class Item_DarkMatter extends Pickup_Item{
     public Pickup cpy(){
         return new Item_DarkMatter(pos);
     }
-    
-    @Override 
-    public void death(){
-        super.death();
-    }
 }

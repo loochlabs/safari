@@ -15,8 +15,8 @@ import com.mygdx.environments.tears.TearPortal;
  */
 public class Tear_R extends TearPortal{
     
-    public Tear_R(float x, float y, int linkid, int difficulty){
-        super(new Vector2(x,y),linkid);
+    public Tear_R(Vector2 pos, int linkid, int difficulty){
+        super(pos,linkid);
         
         warpenv = new EnvNull_R(id,linkid, difficulty);
         EnvironmentManager.add(warpenv);

@@ -14,9 +14,7 @@ import com.mygdx.camera.OrthoCamera;
 import com.mygdx.combat.NormAttackSensor;
 import com.mygdx.entities.DynamicEntities.DogEntities.MurphyEntity;
 import com.mygdx.entities.Entity;
-import com.mygdx.entities.ImageSprite;
 import com.mygdx.entities.DynamicEntities.DogEntities.StellaEntity;
-import com.mygdx.environments.EnvNull.Tear_R_One;
 import com.mygdx.environments.tears.TearPortal;
 import com.mygdx.environments.tears.Tear_Room_DMLock;
 import com.mygdx.environments.tears.Tear_Room_EndPiece;
@@ -26,6 +24,7 @@ import com.mygdx.environments.tears.Tear_Room_Statup;
 import com.mygdx.entities.esprites.BgSprite;
 import com.mygdx.entities.pickups.Pickup;
 import com.mygdx.entities.text.TextEntity;
+import com.mygdx.environments.EnvNull.random.Tear_R;
 import com.mygdx.environments.EnvSub.EnvSub;
 import com.mygdx.environments.EnvSub.pads.EndPiece;
 import com.mygdx.environments.EnvSub.pads.EndWarp;
@@ -491,7 +490,7 @@ public class EnvVoid extends Environment{
         for(int i = 0; i < spawnCount; i++){
             
             //spawn tear in given GridCell
-            TearPortal tear = (TearPortal) spawnEntity(new Tear_R_One(createSpawnLocation(), this.id));
+            TearPortal tear = (TearPortal) spawnEntity(new Tear_R(createSpawnLocation(), this.id, 0));
 
             map.getTears().add(tear);
         }

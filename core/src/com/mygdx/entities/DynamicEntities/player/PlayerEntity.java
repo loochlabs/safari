@@ -68,7 +68,7 @@ public class PlayerEntity extends SteerableEntity{
     protected String playerName = "player";
     
     //base values for each stat (count == 1 will equal base value)
-    protected final float BASE_LIFE = 30f;
+    protected final float BASE_LIFE = 5f;
     protected final float BASE_ENERGY = 60f;
     protected final float BASE_DAMAGE = 1.0f;
     protected final float BASE_SPEED = 45f * RATIO;
@@ -82,7 +82,7 @@ public class PlayerEntity extends SteerableEntity{
     protected int SPECIAL_STAT_COUNT = 1;
     
     //values for each stat type, (COUNT * VALUE = ingame number)
-    protected final float LIFE_STAT_VALUE = 10f;
+    protected final float LIFE_STAT_VALUE = 1f;
     protected final float ENERGY_STAT_VALUE = 15f;
     protected final float DAMAGE_STAT_VALUE = 1.0f;
     protected final float SPEED_STAT_VALUE = 3f;
@@ -99,7 +99,7 @@ public class PlayerEntity extends SteerableEntity{
     protected float energy; //current energy, <= CURRENT_ENERGY
     protected float ENERGY_REGEN = 0.01f;
     protected float soulCount = 0;
-    protected final float SOUL_MAX = 100f;
+    protected final int SOUL_MAX = 3;
     
     public String getPlayerName() { return playerName; }
     public float getLife() { return life; }
@@ -136,14 +136,8 @@ public class PlayerEntity extends SteerableEntity{
     private float currentAngle = 0;
 
     //dash
-    //private final FrameCounter_Combo dashFC = new FrameCounter_Combo(0.3f, 0.3f, 0.15f);
-    //private final float DASH_COST;
-    //private float dashSpeed;
-    //private boolean canDash = true;
-    //private float DASHMOD = 1;
     private final Array<Sprite> dashSprites = new Array<Sprite>();
     private final Array<Float> dashAlphas = new Array<Float>();
-    //private boolean isDashSkill = false; //todo: move to Skill(), not here
     
     //player state
     private final StateManager sm;
@@ -554,11 +548,6 @@ public class PlayerEntity extends SteerableEntity{
             //direction
             updateDirection();
 
-            //death
-            //todo: redundant
-            if (!dead && life <= 0) {
-                death();
-            }
         
         }
     }
@@ -570,13 +559,11 @@ public class PlayerEntity extends SteerableEntity{
     
     @Override
     public void death(){
-        
-        if (!dead) {
-            //Edit: 2/10/16
-            ScreenManager.gameOverScreen(1);        //DemoGameOverScreen
-            
-        }
         super.death();
+        
+        //EnvironmentManager.respawn();
+        
+        
     }
     
     public void killSwitch(){
@@ -584,7 +571,6 @@ public class PlayerEntity extends SteerableEntity{
     }
     
     public void revive(){
-        //alive = true;
         dead = false;
         life = CURRENT_LIFE*0.5f;
     }
@@ -1165,7 +1151,7 @@ public class PlayerEntity extends SteerableEntity{
     }
     //*****************************
     
-    public void addSoulPiece(float s){
+    public void addSoulPiece(int s){
         soulCount += s;
         
         if(soulCount >= SOUL_MAX){

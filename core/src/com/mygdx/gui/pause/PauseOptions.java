@@ -5,7 +5,7 @@
  */
 package com.mygdx.gui.pause;
 
-import com.mygdx.demo.demo2.DemoScreen;
+import com.mygdx.demo.DemoScreen;
 import com.mygdx.game.MainGame;
 import com.mygdx.managers.ResourceManager;
 import com.mygdx.screen.ScreenManager;

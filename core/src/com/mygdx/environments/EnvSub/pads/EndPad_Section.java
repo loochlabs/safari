@@ -32,10 +32,11 @@ public class EndPad_Section extends StaticEntity{
     public EndPiece getPiece() { return piece; }
     public boolean isComplete() { return complete; }
     
+    /*
     public void setPos(Vector2 pos){
         this.pos = pos;
         bd.position.set(pos.x/PPM, pos.y/PPM);
-    }
+    }*/
     
     public void setSize(float width, float height){
         this.width = width;

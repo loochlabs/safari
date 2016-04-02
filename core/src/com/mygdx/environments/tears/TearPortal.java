@@ -164,6 +164,16 @@ public class TearPortal extends SteerableEntity{
             isprite.sprite.draw(sb);
         }
         
+    }
+    
+    @Override
+    public void offsetRender(SpriteBatch sb, float x, float y){
+        
+        if(complete && completeMark != null){
+            sb.draw(completeMark, pos.x - width + x, pos.y - height + y, width*2, height*2);
+        }
+        
+        super.offsetRender(sb, x, y);
         
     }
 

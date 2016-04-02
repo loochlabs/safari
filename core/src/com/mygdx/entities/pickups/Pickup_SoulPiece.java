@@ -18,9 +18,7 @@ import com.mygdx.screen.GameScreen;
 public class Pickup_SoulPiece extends Pickup{
 
      private final float BASE_W = 25f, BASE_H = 25f;
-    //private final float SCL_AMNT =  rng.nextFloat();
-    //private final float LIFE_BASE = 2, LIFE_RANGE = 8, LIFE_AMNT;
-    private final float SOUL_AMNT = 10f;
+    private final int SOUL_AMNT = 1;
     
     public Pickup_SoulPiece(Vector2 pos) {
         super(pos, 25f*RATIO, 25f*RATIO);

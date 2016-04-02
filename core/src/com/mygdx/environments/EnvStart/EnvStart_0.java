@@ -8,10 +8,12 @@ package com.mygdx.environments.EnvStart;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.mygdx.dev.EnvVoid_Dev0;
+import com.mygdx.demo.DemoGameOverScreen;
+import com.mygdx.demo.demo3.EnvVoid_D3_0;
 import com.mygdx.entities.DynamicEntities.player.PlayerEntity;
 import com.mygdx.entities.Entity;
 import com.mygdx.entities.StaticEntities.BlankWall;
+import com.mygdx.entities.StaticEntities.SkillPad;
 import com.mygdx.entities.StaticEntities.SkillPad_Primary;
 import com.mygdx.entities.StaticEntities.SkillPad_Secondary;
 import com.mygdx.entities.text.TextEntity;
@@ -27,6 +29,7 @@ import static com.mygdx.game.MainGame.RATIO;
 import com.mygdx.managers.ResourceManager;
 import com.mygdx.managers.StateManager.State;
 import com.mygdx.screen.GameScreen;
+import com.mygdx.screen.ScreenManager;
 import static com.mygdx.utilities.UtilityVars.PPM;
 import java.util.Collections;
 
@@ -42,6 +45,7 @@ public class EnvStart_0 extends Environment{
     private CharacterStart characterStart_lumen;
     private CharacterStart characterStart_woogie;
     private CharacterStart characterStart_poe;
+    private int characterCount = 3;
     
     //intro state
     private enum IntroState { INTRO, POSTINTRO, NONE }
@@ -53,6 +57,9 @@ public class EnvStart_0 extends Environment{
     
     //post intro
     private Texture postIntroBg;
+    
+    private SkillPad skillPad_prim;
+    private SkillPad skillPad_sec;
     
     public EnvStart_0(int id) {
         super(id);
@@ -94,8 +101,7 @@ public class EnvStart_0 extends Environment{
         spawnEntity(new BlankWall(new Vector2(275*RATIO, 1850f*RATIO), 275f*RATIO, 400f*RATIO)); //w-225, h-600, x-225,h-2050
         spawnEntity(new BlankWall(new Vector2(1225*RATIO, 1850f*RATIO), 275f*RATIO, 400f*RATIO)); 
         
-        //south wall
-        southHallwayWall = (BlankWall) spawnEntity(new BlankWall(new Vector2(750f*RATIO, 1500f*RATIO), 200f*RATIO, 10f*RATIO));
+        
         
         //bottom section
         spawnEntity(new BlankWall(new Vector2(325 * RATIO, 125f * RATIO), 225f * RATIO, 125f * RATIO));     //bottom left corner
@@ -114,9 +120,20 @@ public class EnvStart_0 extends Environment{
         
         
         
-        //INTRO STATE
-        introState = IntroState.INTRO;
         
+        //POST INTRO
+        skillPad_prim = (SkillPad) this.spawnEntity( 
+                new SkillPad_Primary(
+                        new Vector2(425f*RATIO, 850f*RATIO)));
+        
+        skillPad_sec = (SkillPad)this.spawnEntity(
+                new SkillPad_Secondary(
+                        new Vector2(1125f*RATIO, 850f*RATIO)));
+        
+        
+        //create new env, add to NullWarp
+        EnvironmentManager.add(new EnvVoid_D3_0(-1));
+        spawnEntity(new NullWarp(new Vector2(750f*RATIO, 125f*RATIO), -1));
         
     }
     
@@ -172,14 +189,45 @@ public class EnvStart_0 extends Environment{
         dmgTextToRemove.clear();
     }
     
+    
     @Override
-    public void update(){
-        super.update();
+    public void begin(){
         
-        if(sm.getState() == State.BEGIN && GameScreen.overlay != null){
-            GameScreen.overlay.enable = false;
+        if(characterCount <= 0){
+            ScreenManager.setScreen(new DemoGameOverScreen());
         }
+        
+        GameScreen.player = new PlayerEntity_Start();
+        
+        if(characterStart_lumen != null)    characterStart_lumen.active = true;
+        if(characterStart_woogie != null)   characterStart_woogie.active = true;
+        if(characterStart_poe != null)      characterStart_poe.active = true;
+        
+        
+        if(skillPad_prim != null){
+            skillPad_prim.reset();
+        }
+        if(skillPad_sec != null){
+            skillPad_sec.reset();
+        }
+        
+        super.begin();
+        
+        
+        startIntro();
     }
+    
+    
+    
+    @Override
+    public void complete(){
+        super.complete();
+        
+        
+        this.setPlayerToStart();
+        
+    }
+    
     
     /************************************
      * 
@@ -206,7 +254,27 @@ public class EnvStart_0 extends Environment{
                 break;
         }
         
+        if(characterStart_lumen != null)    characterStart_lumen.active = false;
+        if(characterStart_woogie != null)   characterStart_woogie.active = false;
+        if(characterStart_poe != null)      characterStart_poe.active = false;
+        
+        
         startPostIntro();
+        
+        characterCount--;
+    }
+    
+    private void startIntro(){
+        
+        introState = IntroState.INTRO;
+
+        if (GameScreen.overlay != null) {
+            GameScreen.overlay.enable = false;
+        }
+        
+        //south wall
+        southHallwayWall = (BlankWall) spawnEntity(new BlankWall(new Vector2(750f*RATIO, 1500f*RATIO), 200f*RATIO, 10f*RATIO));
+        
     }
     
     private void startPostIntro() {
@@ -218,23 +286,6 @@ public class EnvStart_0 extends Environment{
         
         //REMOVE all intro entities
         this.removeEntity(southHallwayWall);
-        
-        //CREATE all POST INTRO entities
-        
-        
-        this.spawnEntity(
-                new SkillPad_Primary(
-                        new Vector2(425f*RATIO, 850f*RATIO)));
-        
-        this.spawnEntity(
-                new SkillPad_Secondary(
-                        new Vector2(1125f*RATIO, 850f*RATIO)));
-        
-        
-        //create new env, add to NullWarp
-        EnvironmentManager.add(new EnvVoid_Dev0(-1));
-        spawnEntity(new NullWarp(new Vector2(750f*RATIO, 125f*RATIO), -1));
-        
         
     }
     

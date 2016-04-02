@@ -17,9 +17,9 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.combat.skills.Skill;
 import com.mygdx.combat.skills.Skill.SkillType;
 import com.mygdx.combat.skills.Skill_GhostJab;
-import com.mygdx.entities.StaticEntities.StaticEntity;
 import com.mygdx.entities.ImageSprite;
 import com.mygdx.game.MainGame;
+import static com.mygdx.game.MainGame.RATIO;
 import com.mygdx.managers.GameStats;
 import com.mygdx.managers.ResourceManager;
 import com.mygdx.screen.GameScreen;
@@ -35,7 +35,7 @@ import java.util.Random;
  */
 public class SkillPad extends StaticEntity{
 
-    private String name;
+    //private String name;
     protected Skill SKILL;
     protected final Random rng = new Random();
     
@@ -91,7 +91,7 @@ public class SkillPad extends StaticEntity{
     }
     
     public SkillPad(Vector2 pos, Skill s){
-        super(pos, 75f, 75f);
+        super(pos, 75f*RATIO, 75f*RATIO);
         
         userdata = "action_" + id;
         bd.position.set(pos.x/PPM,pos.y/PPM);
@@ -142,10 +142,10 @@ public class SkillPad extends StaticEntity{
     @Override
     public void render(SpriteBatch sb){
         
-        sb.draw(blankTexture, body.getPosition().x*PPM - width*0.7f, body.getPosition().y*PPM - height*0.7f, iw*0.7f, ih*0.7f);
+        sb.draw(blankTexture, body.getPosition().x*PPM - width*0.8f, body.getPosition().y*PPM - height*0.8f, iw*0.8f, ih*0.8f);
         
         if(skillTexture != null)
-            sb.draw(skillTexture, body.getPosition().x*PPM - width*0.7f, body.getPosition().y*PPM - height*0.7f, iw*0.7f, ih*0.7f);
+            sb.draw(skillTexture, body.getPosition().x*PPM - width*0.8f, body.getPosition().y*PPM - height*0.8f, iw*0.8f, ih*0.8f);
         
         super.render(sb);
     }
@@ -184,7 +184,7 @@ public class SkillPad extends StaticEntity{
     
     private void confirmSkill(){
         //set skill
-        this.name = SKILL.getName();
+        //this.name = SKILL.getName();
         //skillTexture = SKILL.getItemTexture() != null ? SKILL.getItemTexture() : SKILL.getSkillIcon();
         skillTexture = SKILL.getSkillIcon();
         GameStats.skillPool.removeValue(SKILL, false);
@@ -219,6 +219,11 @@ public class SkillPad extends StaticEntity{
             skillTexture = null;
             isprite = emptySprite;
         }
+    }
+    
+    public void reset(){
+        setRandomSkill();
+        confirmSkill();
     }
     
     @Override

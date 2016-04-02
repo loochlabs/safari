@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mygdx.demo.demo2;
+package com.mygdx.demo;
 
 import com.mygdx.managers.GameInputProcessor;
 import com.mygdx.managers.GameKeyLibrary;

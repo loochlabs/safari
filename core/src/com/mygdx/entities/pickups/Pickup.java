@@ -30,7 +30,6 @@ public abstract class Pickup extends Entity{
     
     protected Object name;
     protected String desc;
-    //protected SkillType type = ITEM;
     protected DescriptionWindow descWindow;
     protected boolean pickupComplete = false;
     
@@ -38,6 +37,7 @@ public abstract class Pickup extends Entity{
     protected CircleShape sensorShape = new CircleShape();
     protected boolean canPickup = false;
     protected FrameCounter pickupFC = new FrameCounter(0.7f);
+    protected boolean pickupInit = true;
     protected boolean flagSpawnForce = false;
     protected final float spawnForceValue = 800f;
     
@@ -46,12 +46,9 @@ public abstract class Pickup extends Entity{
     protected float yfloat = 0;
     protected boolean floatUp = true;
     
-    //protected Skill itemSkill;
-    
     //sound
     protected SoundObject_Sfx pickupSound;
     
-    //public Skill getSkill() { return itemSkill; }
     public Object getName() { return name; }
     public DescriptionWindow getDescWindow() { return descWindow; }
     public boolean getCanPickup() { return canPickup; }
@@ -59,7 +56,8 @@ public abstract class Pickup extends Entity{
     public Pickup(Vector2 pos, float w, float h){
         super(pos,w,h);
         
-        userdata = "fragment" + id;
+        name = "fragment" + id;
+        userdata = name;
         bd.position.set(pos.x/PPM,pos.y/PPM);
         bd.type = BodyDef.BodyType.DynamicBody;
         sensorShape.setRadius(width*1.50f/PPM);
@@ -99,6 +97,7 @@ public abstract class Pickup extends Entity{
             body.setLinearDamping(5.0f);
 
             pickupFC.start(fm);
+            pickupInit = true;
 
             if (flagSpawnForce) {
 
@@ -125,6 +124,11 @@ public abstract class Pickup extends Entity{
             floatUp = true;
         }
         
+        if(pickupFC.complete && pickupInit) {
+            canPickup = true;
+            pickupInit = false;
+        }
+        
     }
     
     @Override
@@ -142,7 +146,7 @@ public abstract class Pickup extends Entity{
             deathAnim();
         }
         
-        if(pickupFC.complete && !canPickup)   canPickup = true;
+        
     }
     
     @Override
@@ -161,25 +165,25 @@ public abstract class Pickup extends Entity{
     }
     
     @Override
-    public void alert(String [] str){
-        if(canPickup)
-            death();
+    public void alert(String[] str) {
+        try {
+            if (str[0].equals("begin") && str[1].equals(userdata.toString()) && canPickup) {
+                System.out.println("@Pickup death alert ");
+                GameScreen.overlay.addAlertText("+" + name + "");
+                canPickup = false;
+                pickupComplete = true;
+
+                //sound
+                pickupSound.play(false);
+                
+                //death();
+                dead = true;
+            }
+        } catch (IndexOutOfBoundsException ex) {
+            ex.printStackTrace();
+        }
     }
     
-    @Override
-    public void death(){
-        super.death();
-        
-        GameScreen.overlay.addAlertText("+" + name + "");
-        canPickup = false;
-        pickupComplete = true;
-        
-        //sound
-        pickupSound.play(false);
-        
-        System.out.println("Pickup death");
-        
-    }
     
     public void deathAnim(){
         

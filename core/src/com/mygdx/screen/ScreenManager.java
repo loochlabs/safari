@@ -5,7 +5,7 @@
  */
 package com.mygdx.screen;
 
-import com.mygdx.demo.demo2.DemoGameOverScreen;
+import com.mygdx.demo.DemoGameOverScreen;
 import com.mygdx.screen.GameOver.GameOverScreen;
 
 /**

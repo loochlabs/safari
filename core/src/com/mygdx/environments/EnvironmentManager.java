@@ -16,14 +16,16 @@ import com.mygdx.entities.DynamicEntities.player.Player_Poe;
 import com.mygdx.environments.EnvMan.EnvMan_Intro;
 import com.mygdx.environments.EnvStart.EnvStart;
 import com.mygdx.environments.EnvStart.EnvStart_0;
-import com.mygdx.environments.EnvStart.PlayerEntity_Start;
 import com.mygdx.environments.EnvSub.pads.EndPadManager;
 import com.mygdx.environments.EnvVoid.EnvVoid_Showcase;
 import static com.mygdx.game.MainGame.RATIO;
 import com.mygdx.managers.GameKeyLibrary;
+import com.mygdx.managers.GameStats;
 import com.mygdx.screen.GameScreen;
 import static com.mygdx.screen.GameScreen.player;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 /**
  *
@@ -31,11 +33,10 @@ import java.util.HashMap;
  */
 public class EnvironmentManager {
     
-    //public final static Array<Environment> START_ENVS = new Array<Environment>();
     public final static HashMap<Integer,Environment> FULL_ENV_MAP = new HashMap<Integer,Environment>();
     public static Environment currentEnv;
     
-    
+    public static int START_ID = -99;
     
     public static void init(Environment e){
         currentEnv = e;
@@ -78,7 +79,7 @@ public class EnvironmentManager {
     
     public static void clearEnvs(){
         FULL_ENV_MAP.clear();
-        //START_ENVS.clear();
+        
         currentEnv = null;
     }
     
@@ -99,9 +100,9 @@ public class EnvironmentManager {
                 break;
                 
             case -1:
-                e = new EnvStart_0(-99);
-                //todo: create player in start env
-                player = new PlayerEntity_Start();
+                
+                e = new EnvStart_0(START_ID);
+                
                 break;
             default:
                 e = new EnvVoid_D2_0(-20);
@@ -125,6 +126,29 @@ public class EnvironmentManager {
         currentEnv.begin();
         
     }
+    
+    
+    public static void respawn(){
+        
+        GameStats.resetSkills();
+        
+        if (currentEnv != null) {
+            for (Environment e : FULL_ENV_MAP.values()) {
+                e.respawn();
+            }
+
+            //GameScreen.player = null;
+            
+            currentEnv.getStateManager().setPaused(true);
+            //currentEnv.getStateManager().setState(3);
+            currentEnv = FULL_ENV_MAP.get(START_ID);
+            currentEnv.begin();
+            
+            System.out.println("@EnvManager: CurrentEnv set, id:" + currentEnv.getId());
+            GameKeyLibrary.clear();
+        }
+    }
+    
     
     public static void createLevel(int n){
         

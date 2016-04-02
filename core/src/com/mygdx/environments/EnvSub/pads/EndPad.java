@@ -5,7 +5,6 @@
  */
 package com.mygdx.environments.EnvSub.pads;
 
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.entities.StaticEntities.StaticEntity;
@@ -32,10 +31,8 @@ public class EndPad extends StaticEntity{
     protected Array<EndPiece> pieces_total = new Array<EndPiece>();//todo:remove
     protected int PIECES_TOTAL, PIECES_HELD;
     protected final int SCOUNT;
-    //protected final float endTime = 1.5f;
     protected int idwarp;
    
-    //protected Texture completeTexture;
     protected ImageSprite completeSprite;
     private boolean complete = false;
     
@@ -52,7 +49,7 @@ public class EndPad extends StaticEntity{
         SCOUNT = scount;
         this.idwarp = idwarp;
         
-        //completeTexture = MainGame.am.get(ResourceManager.ENDPAD_COMPLETE);
+        
         completeSprite = new ImageSprite("end-void-trans", false, true, false, false, 0,0,1.0f, false, true);
         //completeSprite = new EntitySprite("end-void-trans", true);
         completeSprite.sprite.setBounds(pos.x,pos.y, width*2, height*2);
@@ -101,22 +98,13 @@ public class EndPad extends StaticEntity{
         }
     }
     
-    @Override
-    public void render(SpriteBatch sb){
-        super.render(sb);
-        
-        //if(complete && completeSprite.isComplete()){
-            //warpToNextEnv();
-        //
-        
-    }
     
     public void createSections(Environment env){
         
         this.env = env;
         for(int i = 0; i < sections.size; i++){
             env.spawnEntity(sections.get(i));
-            sections.get(i).setPos(createPos());
+            sections.get(i).setPosition(createPos());
             sections.get(i).setSize(width, height);
         }
         PIECES_TOTAL = sections.size;
@@ -137,7 +125,6 @@ public class EndPad extends StaticEntity{
         
     }
     
-    //public void warpToNextEnv(){}
     
     @Override
     public void alert(String []str){

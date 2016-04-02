@@ -13,7 +13,7 @@ import com.mygdx.managers.GameKeyLibrary;
 import com.mygdx.managers.ResourceManager;
 import com.mygdx.managers.SoundManager;
 import com.mygdx.screen.ScreenManager;
-import com.mygdx.demo.demo2.DemoLoadScreen;
+import com.mygdx.demo.DemoLoadScreen;
 import com.mygdx.dev.DevLoadScreen;
 
 public class MainGame extends ApplicationAdapter {

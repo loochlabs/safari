@@ -114,13 +114,13 @@ public class EnvVoid_Dev0 extends EnvVoid{
     @Override
     public void generateTears(){
         
-        spawnEntity(new Tear_R(1300f*RATIO, 800f*RATIO, this.id, 0));
-        spawnEntity(new Tear_R(1000f*RATIO,800f*RATIO, this.id, 1));
-        spawnEntity(new Tear_R(800f*RATIO,800f*RATIO, this.id, 2));
-        spawnEntity(new Tear_R(550f*RATIO,800f*RATIO, this.id, 3));
-        spawnEntity(new Tear_R(300f*RATIO,800f*RATIO, this.id, 4));
+        spawnEntity(new Tear_R(new Vector2(1300f*RATIO, 800f*RATIO), this.id, 0));
+        spawnEntity(new Tear_R(new Vector2(1000f*RATIO,800f*RATIO), this.id, 1));
+        spawnEntity(new Tear_R(new Vector2(800f*RATIO,800f*RATIO), this.id, 2));
+        spawnEntity(new Tear_R(new Vector2(550f*RATIO,800f*RATIO), this.id, 3));
+        spawnEntity(new Tear_R(new Vector2(300f*RATIO,800f*RATIO), this.id, 4));
         
-        spawnEntity(new Tear_R(25f*RATIO, 25f*RATIO, this.id, 0));
+        spawnEntity(new Tear_R(new Vector2(25f*RATIO, 25f*RATIO), this.id, 0));
     }
     
     

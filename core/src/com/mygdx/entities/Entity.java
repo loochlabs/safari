@@ -37,7 +37,7 @@ public abstract class Entity{
     protected int id;
     protected Object userdata = "default";
     protected Object sensordata = null;
-    protected boolean active = true;
+    public boolean active = true;
     
     //animations
     protected Texture texture;
@@ -86,15 +86,10 @@ public abstract class Entity{
     public PolygonShape getShape() {return shape;}
     public CircleShape getCshape() {return cshape;}
     public Body getBody() {return body;}
-    
-    //public FrameCounter_Attack getAttackFC() { return attackFC; }
-   // public boolean isAlive() {return alive;}
-    //public boolean isDead() { return dead; }
     public float getCurrentHp() {return CURRENT_HP;}
     public float getMaxHp() {return MAX_HP;}
-    //public float getDamage() { return DAMAGE; }
     public FrameManager getFrameManager() { return fm; }
-    public boolean isActive() { return active; }
+    //public boolean isActive() { return active; }
     
     
     
@@ -145,7 +140,7 @@ public abstract class Entity{
             death();
         }
         
-        if(isprite != null){
+        if(isprite != null && !isprite.getPause()){
             isprite.step();
         }
     }
@@ -175,9 +170,7 @@ public abstract class Entity{
                     //pos.y - isprite.sprite.getHeight()/2 + y);
         }else if(texture != null){
             sb.draw(
-                    texture, x, y, 
-                    //pos.x - width + x,
-                    //pos.y - height + y,
+                    texture, pos.x -width + x, pos.y -height + y, 
                     iw,ih);
         }
     }
@@ -251,7 +244,7 @@ public abstract class Entity{
     public void fall(){}
     
     public void death(){
-        dead = true;
+        //dead = true;
     }
     
     public void dispose(){

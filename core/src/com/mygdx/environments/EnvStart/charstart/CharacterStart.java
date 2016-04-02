@@ -83,21 +83,25 @@ public abstract class CharacterStart extends StaticEntity{
         
         EnvStart_0 env = (EnvStart_0)EnvironmentManager.currentEnv;
         env.characterSelect(SELECT_POSITION);
+        
+        this.dispose();
     }
     
     @Override
     public void alert(String []str){
-        try {
-            if (str[0].equals("begin") && str[1].contains("action_")) {
-               
-                GameScreen.player.inRangeForAction(this);
-                
+        if (active) {
+            try {
+                if (str[0].equals("begin") && str[1].contains("action_")) {
+
+                    GameScreen.player.inRangeForAction(this);
+
+                }
+                if (str[0].equals("end") && str[1].contains("action_")) {
+                    GameScreen.player.outRangeForAction(this);
+                }
+            } catch (IndexOutOfBoundsException ex) {
+                ex.printStackTrace();
             }
-            if (str[0].equals("end") && str[1].contains("action_")) {
-                GameScreen.player.outRangeForAction(this);
-            }
-        } catch (IndexOutOfBoundsException ex) {
-            ex.printStackTrace();
         }
     }
     

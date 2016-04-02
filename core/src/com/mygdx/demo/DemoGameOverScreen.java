@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mygdx.demo.demo2;
+package com.mygdx.demo;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -24,11 +24,12 @@ import com.mygdx.utilities.FrameCounter;
  *
  * @author saynt
  */
-public class DemoContScreen extends Screen{
+public class DemoGameOverScreen extends Screen{
 
+    private Texture go_text;
     private DemoGoInputManager im;
-    private ImageSprite contSprite;
-    private FrameCounter endFC = new FrameCounter(15f);
+    private ImageSprite deathSprite1, deathSprite2;
+    private FrameCounter deathFC = new FrameCounter(15f);
     private FrameManager fm = new FrameManager();
     
     @Override
@@ -38,18 +39,25 @@ public class DemoContScreen extends Screen{
      
         im = new DemoGoInputManager();
         
+        go_text = MainGame.am.get(ResourceManager.GO_TEXT);
         
         //stop all music
         SoundManager.clear();
         
         //death anim
-        contSprite = new ImageSprite("end-cont", false, true, false, false);
-        contSprite.sprite.setBounds(
-                MainGame.WIDTH/2 - 500f*RATIO, 
-                MainGame.HEIGHT/2 , 
-                990f*RATIO, 136f*RATIO);
+        deathSprite1 = new ImageSprite("poeSpectral", false, true, false, false);
+        deathSprite1.sprite.setBounds(
+                MainGame.WIDTH/2 -160f*RATIO, 
+                MainGame.HEIGHT/2 - 285f*RATIO, 
+                310f*RATIO, 300f*RATIO);
         
-        endFC.start(fm);
+        deathSprite2 = new ImageSprite("poe-death", false, true, false, false);
+        deathSprite2.sprite.setBounds(
+                MainGame.WIDTH/2 - 300f*RATIO, 
+                MainGame.HEIGHT/2 - 250f*RATIO, 
+                600f*RATIO, 500f*RATIO);
+        
+        deathFC.start(fm);
         
         GameKeyLibrary.clear();
     }
@@ -62,15 +70,35 @@ public class DemoContScreen extends Screen{
     public void render(SpriteBatch sb) {
         fm.update();
         sb.begin();
-
-        contSprite.render(sb);
         
         im.update();
         
-        if(endFC.complete){
+        //render poe death anim
+        /*
+        if(!deathSprite1.isComplete()){
+            deathSprite1.render(sb);
+        }
+        else if (!deathSprite2.isComplete() || deathFC.running) {
+            deathSprite2.render(sb);
+        } else {
+            
+            sb.draw(go_text, MainGame.WIDTH / 2 - 150f * RATIO, MainGame.HEIGHT / 2);
+        }
+        */
+        
+        if(!deathSprite1.isComplete()){
+            deathSprite1.render(sb);
+        }
+        else {
+            deathSprite2.render(sb);
+        } 
+        
+        if(deathSprite2.isComplete() && deathFC.complete){
             ScreenManager.setScreen(new DemoScreen());
         }
-
+        
+        
+        
         sb.end();
         
     }
@@ -92,4 +120,5 @@ public class DemoContScreen extends Screen{
     @Override
     public void resume() {
     }
+    
 }

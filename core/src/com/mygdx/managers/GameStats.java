@@ -40,10 +40,6 @@ public class GameStats {
     
     public static void init(){
         
-        //light
-        //skillPool.add(new Skill_OneTwo());
-        //skillPool.add(new Skill_MommasTouch());
-        //skillPool.add(new Skill_LightningRod());
         
         skillPool_Primary.add(new Skill_GhostJab());
         skillPool_Primary.add(new Skill_OneTwo());
@@ -60,7 +56,7 @@ public class GameStats {
         skillPool_Secondary.add(new Skill_WarpIt());
         skillPool_Secondary.add(new Skill_TaintedTorture());
         //passive
-        skillPool_Secondary.add(new Skill_DashBolt());
+        //skillPool_Secondary.add(new Skill_DashBolt());
         skillPool_Secondary.add(new Skill_Nrg());
         skillPool_Secondary.add(new Skill_CantTouchThis());
         skillPool_Secondary.add(new Skill_Prognosis());
@@ -83,6 +79,14 @@ public class GameStats {
     public static void removeSkill(Skill skill){
         if(skillPool.contains(skill, false))
             skillPool.removeValue(skill, false);
+    }
+    
+    public static void resetSkills() { 
+        skillPool_Primary.clear();
+        skillPool_Secondary.clear();
+        skillPool.clear();
+        
+        init();
     }
     
     public static void dispose(){

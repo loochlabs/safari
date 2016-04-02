@@ -53,7 +53,7 @@ public class StellaEntity_Initial extends StellaEntity{
     public StellaEntity_Initial(Vector2 pos) {
         super(pos);
         
-        acshape.setRadius(width*3f / PPM);
+        acshape.setRadius(width*6f / PPM);
         afd.shape = acshape;
         action_data = "action_" + id;
         afd.filter.categoryBits = BIT_EN;

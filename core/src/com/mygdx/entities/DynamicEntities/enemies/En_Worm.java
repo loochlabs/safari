@@ -42,9 +42,9 @@ public class En_Worm extends EnemyEntity{
         
         
         //combat
-        MAX_HP = 25;
+        MAX_HP = 10f;
         CURRENT_HP = MAX_HP;
-        DAMAGE = 15;
+        DAMAGE = 5f;
         
         prepTime = 1.0f;
         attTime = 0.75f;

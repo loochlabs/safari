@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mygdx.demo.demo2;
+package com.mygdx.demo;
 
 import com.mygdx.managers.GameInputProcessor;
 import com.mygdx.managers.GameKeyLibrary;
@@ -26,7 +26,7 @@ public class DemoScreenInputManager {
             //start game
             System.out.println("@DemoScreenInputManager any key pressed");
             GameKeyLibrary.clear();
-            ScreenManager.setScreen(new GameScreen(1));
+            ScreenManager.setScreen(new GameScreen(-1));
         }
 
     }

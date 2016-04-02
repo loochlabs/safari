@@ -89,11 +89,9 @@ public class EnemyEntity extends SteerableEntity{
         attackFC = new FrameCounter_Attack(0,0,0);
         
         //sprites
-        deathSprite = new EntitySprite(pos, width*2, height*2, "en-death2", 
+        deathSprite = new EntitySprite(pos, width*4, height*4, "en-death2", 
                 false, true, false, false, 1f*RATIO, false, false,
                 true, true);
-        //spraySprite = new ImageSprite("spray1", false);
-        //spraySprite.sprite.setScale(6.0f);
         
         //sound
         deathSound = new SoundObject_Sfx(ResourceManager.SFX_DEATH_1);
@@ -114,14 +112,15 @@ public class EnemyEntity extends SteerableEntity{
     public void update(){
         super.update();
         
-        if(bt != null){        
-            bt.step();
+        if (active) {
+            if (bt != null) {
+                bt.step();
+            }
+
+            updateAttack();
+
+            updateSprites();
         }
-        
-        updateAttack();
-        
-        updateSprites();
-        
         
     }
     
@@ -185,6 +184,8 @@ public class EnemyEntity extends SteerableEntity{
     
     
     public boolean inRangeOfPlayer(){
+        if(GameScreen.player.getBody() == null) return false;
+        
         float dist = this.getBody().getPosition().
                 dst(GameScreen.player.getBody().getPosition());
         
@@ -194,6 +195,8 @@ public class EnemyEntity extends SteerableEntity{
     
     
     public boolean inAttackRange(){
+        if(GameScreen.player.getBody() == null) return false;
+        
         float dist = body.getPosition().dst(GameScreen.player.getBody().getPosition());
         return dist < ATTACK_RANGE;
     }
@@ -250,19 +253,23 @@ public class EnemyEntity extends SteerableEntity{
     }
     
     public void damagePlayer(){
-        GameScreen.player.damage(DAMAGE);
+        if (active) {
+            GameScreen.player.damage(DAMAGE);
+        }
     }
     
     @Override
-    public void alert(String []string){
-        try {
-            if (string[0].equals("begin") && string[1].contains(sensordata.toString())) {
-                attSensorStack.push(string[2]);
-            } else if (string[0].equals("end") && string[1].contains(sensordata.toString())) {
-                attSensorStack.pop();
+    public void alert(String[] string) {
+        if (active) {
+            try {
+                if (string[0].equals("begin") && string[1].contains(sensordata.toString())) {
+                    attSensorStack.push(string[2]);
+                } else if (string[0].equals("end") && string[1].contains(sensordata.toString())) {
+                    attSensorStack.pop();
+                }
+            } catch (IndexOutOfBoundsException ex) {
+                ex.printStackTrace();
             }
-        } catch (IndexOutOfBoundsException ex) {
-            ex.printStackTrace();
         }
     }
     

@@ -57,9 +57,9 @@ public class En_Goober extends EnemyEntity{
         bodyDamageSprite = new ImageSprite("goober-dmg", false);
         bodyDamageSprite.sprite.setScale(sscale);
         
-        MAX_HP = 30;
+        MAX_HP = 15;
         CURRENT_HP = MAX_HP;
-        DAMAGE = 15.0f;
+        DAMAGE = 5.0f;
         
         prepTime = 1.0f;
         attTime = 0.3f;

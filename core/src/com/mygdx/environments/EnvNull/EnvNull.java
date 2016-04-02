@@ -61,8 +61,6 @@ public abstract class EnvNull extends Environment {
     
     //new null sections
     protected Array<LayerManager> layerManagers = new Array<LayerManager>();
-    //protected boolean initLayerSort = true; 
-    //protected boolean initLayerBuffer = true;
     
     //change to array of enemies
     //check if empty to finish this null
@@ -107,7 +105,6 @@ public abstract class EnvNull extends Environment {
         
         //todo: adjust position - coordinate with first section
         startPos = new Vector2(MainGame.WIDTH*0.55f/PPM,MainGame.HEIGHT*0.65f/PPM);
-        //startPos = new Vector2(400f*RATIO / PPM,400f*RATIO / PPM);
         this.setPlayerToStart();
         
         playerDiveSprite = GameScreen.player.getDiveSprite();
@@ -159,6 +156,10 @@ public abstract class EnvNull extends Environment {
             fallingBeginUpdate();
         
         super.update();
+        
+        for(LayerManager lm : layerManagers){
+            lm.update();
+        }
         
         
         if(sm.getState() == StateManager.State.FALLING )
@@ -509,10 +510,11 @@ public abstract class EnvNull extends Environment {
         //for beginnign player dive
         beginCheck = false;
         
-        //resetDiveSprite(playerDiveSprite);
         
+        playerDiveSprite = GameScreen.player.getDiveSprite();
         playerDiveSprite.sprite.setScale(1.0f);
-        playerDiveSprite.sprite.setPosition(playerPos.x*PPM - playerDiveSprite.sprite.getWidth()/2, 
+        playerDiveSprite.sprite.setPosition(
+                playerPos.x*PPM - playerDiveSprite.sprite.getWidth()/2, 
                 playerPos.y*PPM - playerDiveSprite.sprite.getHeight()/2);
         
         
@@ -527,25 +529,16 @@ public abstract class EnvNull extends Environment {
     public void play(){
         super.play();
         
-        spawnEntity(impactSprite);
+        //spawnEntity(impactSprite);
         
-        introTextSprite.setPosition(new Vector2(
-                playerPos.x*PPM - introTextSprite.getWidth()/2, 
-                playerPos.y*PPM - introTextSprite.getHeight()*2)); // todo:  *2  why????
-        spawnEntity(introTextSprite);
+        //introTextSprite.setPosition(new Vector2(
+                //playerPos.x*PPM - introTextSprite.getWidth()/2, 
+                //playerPos.y*PPM - introTextSprite.getHeight()*2)); // todo:  *2  why????
+        //spawnEntity(introTextSprite);
         //begin null section
         
         //play impact sound
         impactSound.play(false);
-        
-        
-        //dirty workaround to wait one extra frame to update entities in layerManagers
-        //initial entity layer render sort
-        //if(!initLayerBuffer && initLayerSort && sm.getState() == StateManager.State.BEGIN){
-            
-            //initLayerSort = false;
-        //}
-        //if(initLayerBuffer && sm.getState() == StateManager.State.BEGIN)    initLayerBuffer = false;
         
         entityCheck();
         this.renderSectionSort();
@@ -626,11 +619,6 @@ public abstract class EnvNull extends Environment {
         for(Entity e : entities){
             renderSectionSortEntity(e);
         }
-        //entitySprites
-        /*
-        for(ImageSprite e : sprites){
-            renderSectionSortSprite(e);
-        }*/
     }
     
     private void renderSectionSortEntity(Entity e){
@@ -1101,8 +1089,7 @@ public abstract class EnvNull extends Environment {
         public Array<NullSection> layerSections = new Array<NullSection>();
         public ArrayList<Entity> layerEntities = new ArrayList<Entity>();
         private ArrayList<Entity> layerEntToRemove = new ArrayList<Entity>();
-        //public Array<ImageSprite> layerSprites = new Array<ImageSprite>();
-        //private Array<ImageSprite> layerSpriteToRemove = new Array<ImageSprite>();
+        
         public int depth = 0;
         private final float BASE_ZOOM = 1.0f;
         private final float BEGIN_ZOOM_BASE = 10.f;
@@ -1129,6 +1116,11 @@ public abstract class EnvNull extends Environment {
             }
         }
         
+        public void update(){
+            for(Entity e : layerEntities){
+                e.active = currentDepth == depth;
+            }
+        }
         
         public boolean isComplete(){
             return layerEntities.isEmpty();
@@ -1140,13 +1132,6 @@ public abstract class EnvNull extends Environment {
             for (NullSection s : layerSections) {
                 s.render(sb);
             }
-
-            
-            /*
-            for (ImageSprite e : layerSprites) {
-                e.step();
-                e.sprite.draw(sb);
-            }*/
 
             Collections.sort(layerEntities, new Entity.EntityComp());
 
@@ -1176,17 +1161,6 @@ public abstract class EnvNull extends Environment {
             }
             layerEntToRemove.clear();
             
-            /*
-            for(ImageSprite e : layerSprites){
-                if(!sprites.contains(e, false) && !spriteToAdd.contains(e, false)){
-                    layerSpriteToRemove.add(e);
-                }
-            }
-            for(ImageSprite e : layerSpriteToRemove){
-                layerSprites.removeValue(e, false);
-            }
-            layerSpriteToRemove.clear();
-            */
         }
         
         public void setBeginZoom(){
@@ -1224,7 +1198,7 @@ public abstract class EnvNull extends Environment {
         
     public void spawnEnemyGroup(NullSection sec){
         //TODO: temp difficulty until enemy rewrite
-        Array<Entity> ent = EnemyManager.getGroup(0, sec);
+        Array<Entity> ent = EnemyManager.getGroup(DIFFICULTY, sec);
         for(Entity e : ent){
             this.toAddEntity(e);
             

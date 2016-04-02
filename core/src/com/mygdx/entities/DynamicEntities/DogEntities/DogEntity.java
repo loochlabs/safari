@@ -8,8 +8,6 @@ package com.mygdx.entities.DynamicEntities.DogEntities;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ai.btree.BehaviorTree;
 import com.badlogic.gdx.ai.btree.utils.BehaviorTreeParser;
-import com.badlogic.gdx.ai.steer.behaviors.Arrive;
-import com.badlogic.gdx.ai.steer.behaviors.Seek;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -231,7 +229,6 @@ public class DogEntity extends SteerableEntity{
     
     
     public void moveToTear(){
-        System.out.println("@DogEntity "+id+"moveToTear");
         isprite = moveSprite;
         Vector2 tv = isNearTear();
         

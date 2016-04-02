@@ -16,6 +16,7 @@ public class StateManager {
     
     private State state;
     private boolean paused = false;
+    public boolean respawn = false;
     
     public State getState() { return state; }
     public boolean isPaused() { return paused; }

@@ -23,6 +23,7 @@ public class Pickup_Statup_Damage extends Pickup_Statup{
         super(pos);
         
         name = "Damage Orb";
+        
         texture = MainGame.am.get(ResourceManager.STAT_ITEM_DMG);
     }
     

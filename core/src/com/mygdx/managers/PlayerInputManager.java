@@ -5,7 +5,7 @@
  */
 package com.mygdx.managers;
 
-import com.mygdx.demo.demo2.DemoScreen;
+import com.mygdx.demo.DemoScreen;
 import com.mygdx.environments.EnvironmentManager;
 import com.mygdx.managers.StateManager.State;
 import com.mygdx.screen.GameScreen;
