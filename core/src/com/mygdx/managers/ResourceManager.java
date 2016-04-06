@@ -122,6 +122,12 @@ public class ResourceManager {
         this.loadAtlas("entities/enemies/sloober-att.atlas", "sloober-att",1);
         this.loadAtlas("entities/enemies/sloober-dmg.atlas", "sloober-dmg",1);
         
+        //traps
+        this.loadAtlas("entities/enemies/void-trap/void-trap-idle.atlas", "void-trap-idle",21);
+        this.loadAtlas("entities/enemies/void-trap/void-trap-prep.atlas", "void-trap-prep",1);
+        this.loadAtlas("entities/enemies/void-trap/void-trap-arm.atlas", "void-trap-arm",7);
+        this.loadAtlas("entities/enemies/void-trap/void-trap-spawn.atlas", "void-trap-spawn",12);
+        
         //goober
         this.loadAtlas("entities/enemies/goober/goober_move.atlas", "goober_move", 26);
         this.loadAtlas("entities/enemies/goober/goober_prep.atlas", "goober_prep", 16);
@@ -444,6 +450,7 @@ public class ResourceManager {
         //asm.load(SKILL_PH, Texture.class);
         asm.load(SKILL_RED, Texture.class);
         asm.load(SKILL_BLANK, Texture.class);
+        asm.load(SKILL_DASH, Texture.class);
         asm.load(SKILL_GHOSTJAB, Texture.class);
         asm.load(SKILL_POWERPLEASE, Texture.class);
         asm.load(SKILL_NRG, Texture.class);
@@ -1027,6 +1034,7 @@ public class ResourceManager {
     
     public static String SKILL_BLANK = "gui/skills/2/skill-blank.png";
     public static String SKILL_RED = "gui/skills/2/skill-red2.png";
+    public static String SKILL_DASH = "gui/skills/2/skill-Dash.png";
     public static String SKILL_GHOSTJAB = "gui/skills/2/skill-GhostJab2.png";
     public static String SKILL_POWERPLEASE = "gui/skills/2/skill-PowerPlease2.png";
     public static String SKILL_NRG = "gui/skills/2/skill-Nrg2.png";

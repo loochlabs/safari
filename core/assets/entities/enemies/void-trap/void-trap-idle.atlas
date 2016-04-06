@@ -1,0 +1,152 @@
+void-trap-idle.png
+size: 1407, 345
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+void-trap-idle
+  rotate: false
+  xy: 2, 2
+  size: 279, 341
+  orig: 279, 341
+  offset: 0, 0
+  index: 1
+void-trap-idle
+  rotate: false
+  xy: 283, 2
+  size: 279, 341
+  orig: 279, 341
+  offset: 0, 0
+  index: 10
+void-trap-idle
+  rotate: false
+  xy: 283, 2
+  size: 279, 341
+  orig: 279, 341
+  offset: 0, 0
+  index: 11
+void-trap-idle
+  rotate: false
+  xy: 2, 2
+  size: 279, 341
+  orig: 279, 341
+  offset: 0, 0
+  index: 12
+void-trap-idle
+  rotate: false
+  xy: 2, 2
+  size: 279, 341
+  orig: 279, 341
+  offset: 0, 0
+  index: 13
+void-trap-idle
+  rotate: false
+  xy: 2, 2
+  size: 279, 341
+  orig: 279, 341
+  offset: 0, 0
+  index: 14
+void-trap-idle
+  rotate: false
+  xy: 2, 2
+  size: 279, 341
+  orig: 279, 341
+  offset: 0, 0
+  index: 15
+void-trap-idle
+  rotate: false
+  xy: 564, 2
+  size: 279, 341
+  orig: 279, 341
+  offset: 0, 0
+  index: 16
+void-trap-idle
+  rotate: false
+  xy: 564, 2
+  size: 279, 341
+  orig: 279, 341
+  offset: 0, 0
+  index: 17
+void-trap-idle
+  rotate: false
+  xy: 564, 2
+  size: 279, 341
+  orig: 279, 341
+  offset: 0, 0
+  index: 18
+void-trap-idle
+  rotate: false
+  xy: 845, 2
+  size: 279, 341
+  orig: 279, 341
+  offset: 0, 0
+  index: 19
+void-trap-idle
+  rotate: false
+  xy: 2, 2
+  size: 279, 341
+  orig: 279, 341
+  offset: 0, 0
+  index: 2
+void-trap-idle
+  rotate: false
+  xy: 845, 2
+  size: 279, 341
+  orig: 279, 341
+  offset: 0, 0
+  index: 20
+void-trap-idle
+  rotate: false
+  xy: 845, 2
+  size: 279, 341
+  orig: 279, 341
+  offset: 0, 0
+  index: 21
+void-trap-idle
+  rotate: false
+  xy: 283, 2
+  size: 279, 341
+  orig: 279, 341
+  offset: 0, 0
+  index: 3
+void-trap-idle
+  rotate: false
+  xy: 283, 2
+  size: 279, 341
+  orig: 279, 341
+  offset: 0, 0
+  index: 4
+void-trap-idle
+  rotate: false
+  xy: 283, 2
+  size: 279, 341
+  orig: 279, 341
+  offset: 0, 0
+  index: 5
+void-trap-idle
+  rotate: false
+  xy: 1126, 2
+  size: 279, 341
+  orig: 279, 341
+  offset: 0, 0
+  index: 6
+void-trap-idle
+  rotate: false
+  xy: 1126, 2
+  size: 279, 341
+  orig: 279, 341
+  offset: 0, 0
+  index: 7
+void-trap-idle
+  rotate: false
+  xy: 1126, 2
+  size: 279, 341
+  orig: 279, 341
+  offset: 0, 0
+  index: 8
+void-trap-idle
+  rotate: false
+  xy: 283, 2
+  size: 279, 341
+  orig: 279, 341
+  offset: 0, 0
+  index: 9

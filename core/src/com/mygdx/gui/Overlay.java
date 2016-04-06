@@ -26,7 +26,7 @@ import com.mygdx.utilities.FrameCounter;
  */
 public class Overlay {
     
-    public boolean enable = true;
+    public static boolean enable = true;
     
     //todo: get rid of width, height
     private float width, height;

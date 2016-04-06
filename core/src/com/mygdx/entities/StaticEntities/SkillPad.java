@@ -182,7 +182,7 @@ public class SkillPad extends StaticEntity{
         
     }
     
-    private void confirmSkill(){
+    public void confirmSkill(){
         //set skill
         //this.name = SKILL.getName();
         //skillTexture = SKILL.getItemTexture() != null ? SKILL.getItemTexture() : SKILL.getSkillIcon();

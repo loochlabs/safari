@@ -7,6 +7,9 @@ package com.mygdx.combat.skills.defense;
 
 import com.mygdx.combat.skills.Skill;
 import static com.mygdx.combat.skills.Skill.SkillType.DEFENSE;
+import com.mygdx.game.MainGame;
+import com.mygdx.gui.descriptions.DescriptionWindow;
+import com.mygdx.managers.ResourceManager;
 import com.mygdx.screen.GameScreen;
 
 /**
@@ -23,9 +26,14 @@ public class DefenseSkill extends Skill{
     private final float DASHMOD = 2.6f;
     
     public DefenseSkill(){
+        name = "Dash";
+        desc = "A hastey retreat";
         type = DEFENSE;
         COST = 20.0f;
         attribute = SkillAttribute.NONE;
+        descWindow = new DescriptionWindow(name, desc, type);
+        
+        skillIcon = MainGame.am.get(ResourceManager.SKILL_DASH);
         
     }
     

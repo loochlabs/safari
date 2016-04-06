@@ -6,7 +6,7 @@
 package com.mygdx.demo.demo1;
 
 import com.badlogic.gdx.math.Vector2;
-import com.mygdx.environments.EnvSub.pads.EndPad;
+import com.mygdx.environments.EnvVoid.pads.EndPad;
 import com.mygdx.environments.EnvironmentManager;
 import com.mygdx.screen.GameScreen;
 import com.mygdx.screen.ScreenManager;

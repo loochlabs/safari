@@ -7,12 +7,12 @@ package com.mygdx.demo.demo3;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
-import com.mygdx.demo.demo2.EnvVoid_D2_1;
 import com.mygdx.entities.DynamicEntities.DogEntities.StellaEntity_Initial;
+import com.mygdx.entities.StaticEntities.trap.En_VoidTrap;
 import com.mygdx.entities.esprites.DecomSprite;
 import com.mygdx.environments.EnvNull.random.Tear_R;
-import com.mygdx.environments.EnvSub.pads.EndPad;
-import com.mygdx.environments.EnvSub.pads.EndPiece;
+import com.mygdx.environments.EnvVoid.pads.EndPad;
+import com.mygdx.environments.EnvVoid.pads.EndPiece;
 import com.mygdx.environments.EnvVoid.GridCell;
 import com.mygdx.environments.EnvironmentManager;
 import com.mygdx.environments.tears.TearPortal;
@@ -117,6 +117,8 @@ public class EnvVoid_D3_0 extends EnvVoid_D3{
 
         //decom sprite
         spawnEntity(new DecomSprite(new Vector2(grid.getWidth()*0.1f, grid.getHeight()*0.9f)));
+        
+        spawnEntity(new En_VoidTrap(createSpawnLocation()));
     }
     
     @Override

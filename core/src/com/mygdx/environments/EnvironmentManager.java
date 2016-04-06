@@ -16,7 +16,7 @@ import com.mygdx.entities.DynamicEntities.player.Player_Poe;
 import com.mygdx.environments.EnvMan.EnvMan_Intro;
 import com.mygdx.environments.EnvStart.EnvStart;
 import com.mygdx.environments.EnvStart.EnvStart_0;
-import com.mygdx.environments.EnvSub.pads.EndPadManager;
+import com.mygdx.environments.EnvVoid.pads.EndPadManager;
 import com.mygdx.environments.EnvVoid.EnvVoid_Showcase;
 import static com.mygdx.game.MainGame.RATIO;
 import com.mygdx.managers.GameKeyLibrary;

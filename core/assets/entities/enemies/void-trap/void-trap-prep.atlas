@@ -1,0 +1,12 @@
+void-trap-prep.png
+size: 255, 345
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+void-trap-prep
+  rotate: false
+  xy: 2, 2
+  size: 251, 341
+  orig: 251, 341
+  offset: 0, 0
+  index: 1

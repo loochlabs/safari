@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mygdx.environments.EnvSub.pads.test;
+package com.mygdx.environments.EnvVoid.pads.test;
 
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.environments.EnvSub.EnvSub;
-import com.mygdx.environments.EnvSub.pads.EndWarp;
+import com.mygdx.environments.EnvVoid.pads.EndWarp;
 import com.mygdx.environments.EnvironmentManager;
 import com.mygdx.managers.GameStats;
 

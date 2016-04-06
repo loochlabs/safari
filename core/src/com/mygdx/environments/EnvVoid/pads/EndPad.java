@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mygdx.environments.EnvSub.pads;
+package com.mygdx.environments.EnvVoid.pads;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
@@ -51,9 +51,7 @@ public class EndPad extends StaticEntity{
         
         
         completeSprite = new ImageSprite("end-void-trans", false, true, false, false, 0,0,1.0f, false, true);
-        //completeSprite = new EntitySprite("end-void-trans", true);
         completeSprite.sprite.setBounds(pos.x,pos.y, width*2, height*2);
-        //completeSprite.setComplete(true);
         
         
         bd.position.set(pos.x/PPM,pos.y/PPM);
@@ -112,13 +110,12 @@ public class EndPad extends StaticEntity{
     
     public void complete(){
         complete = true;
-        //texture = completeTexture;
         isprite = completeSprite;
         completeSprite.reset();
         
-        for(EndPad_Section s : sections){
-            env.removeEntity(s);
-        }
+        //for(EndPad_Section s : sections){
+            //env.removeEntity(s);
+        //}
         
         //play complete sound
         completeSound.play(false);

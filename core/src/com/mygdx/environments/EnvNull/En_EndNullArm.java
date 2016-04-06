@@ -64,7 +64,7 @@ public class En_EndNullArm extends StaticEntity{
         endShape.setRadius(150f/PPM);
         sensFd.shape = endShape;
         
-        MAX_HP = 35;
+        MAX_HP = 20;
         CURRENT_HP = MAX_HP;
         
         this.linkid = linkid;

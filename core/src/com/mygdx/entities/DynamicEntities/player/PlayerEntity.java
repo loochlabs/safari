@@ -68,7 +68,7 @@ public class PlayerEntity extends SteerableEntity{
     protected String playerName = "player";
     
     //base values for each stat (count == 1 will equal base value)
-    protected final float BASE_LIFE = 5f;
+    protected final float BASE_LIFE = 30f;
     protected final float BASE_ENERGY = 60f;
     protected final float BASE_DAMAGE = 1.0f;
     protected final float BASE_SPEED = 45f * RATIO;
@@ -82,7 +82,7 @@ public class PlayerEntity extends SteerableEntity{
     protected int SPECIAL_STAT_COUNT = 1;
     
     //values for each stat type, (COUNT * VALUE = ingame number)
-    protected final float LIFE_STAT_VALUE = 1f;
+    protected final float LIFE_STAT_VALUE = 10f;
     protected final float ENERGY_STAT_VALUE = 15f;
     protected final float DAMAGE_STAT_VALUE = 1.0f;
     protected final float SPEED_STAT_VALUE = 3f;
@@ -242,11 +242,12 @@ public class PlayerEntity extends SteerableEntity{
         
         life = CURRENT_LIFE;
         
+        /*
         try {
             skillSet[4] = new DefenseSkill();
         } catch (IndexOutOfBoundsException ex) {
             ex.printStackTrace();
-        }
+        }*/
         //***************************************************
         
         
@@ -883,6 +884,12 @@ public class PlayerEntity extends SteerableEntity{
                         skillSet[3].deactivate();
                     }
                     skillSet[3] = skill;
+                    break;
+                case DEFENSE:
+                    if(skillSet[4] != null){
+                        skillSet[4].deactivate();
+                    }
+                    skillSet[4] = skill;
                     break;
                 default:
                     return;

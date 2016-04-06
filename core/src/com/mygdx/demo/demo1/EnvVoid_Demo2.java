@@ -14,7 +14,7 @@ import com.mygdx.environments.tears.Tear_Room_Simple;
 import com.mygdx.entities.pickups.Pickup;
 import com.mygdx.environments.EnvRoom.EnvRoom_Glyph1;
 import com.mygdx.environments.EnvSub.EnvSub;
-import com.mygdx.environments.EnvSub.pads.EndWarp;
+import com.mygdx.environments.EnvVoid.pads.EndWarp;
 import com.mygdx.environments.EnvVoid.EnvVoid;
 import com.mygdx.environments.EnvVoid.GridCell;
 import static com.mygdx.game.MainGame.RATIO;

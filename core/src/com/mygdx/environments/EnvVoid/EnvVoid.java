@@ -26,9 +26,9 @@ import com.mygdx.entities.pickups.Pickup;
 import com.mygdx.entities.text.TextEntity;
 import com.mygdx.environments.EnvNull.random.Tear_R;
 import com.mygdx.environments.EnvSub.EnvSub;
-import com.mygdx.environments.EnvSub.pads.EndPiece;
-import com.mygdx.environments.EnvSub.pads.EndWarp;
-import com.mygdx.environments.EnvSub.pads.test.EndWarp_Test;
+import com.mygdx.environments.EnvVoid.pads.EndPiece;
+import com.mygdx.environments.EnvVoid.pads.EndWarp;
+import com.mygdx.environments.EnvVoid.pads.test.EndWarp_Test;
 import com.mygdx.environments.Environment;
 import com.mygdx.environments.RngRoomManager;
 import com.mygdx.environments.tears.Tear_Room_Glyph1.EnvRoom_Glyph1_TEST;
@@ -652,6 +652,7 @@ public class EnvVoid extends Environment{
         GridCell gc = createGridLocation();
         
         do{
+            locClear = true;
             v = new Vector2(
                         gc.getX() + (float) (rng.nextFloat() * gc.getWidth())*0.9f,
                         gc.getY() + (float) (rng.nextFloat() * gc.getHeight()*0.9f));
@@ -664,5 +665,34 @@ public class EnvVoid extends Environment{
         }while(!locClear);
         
         return v;
+    }
+    
+    public Vector2 createEntitySpawnLocation(){
+        System.out.println("@EnvVoid createLoc ");
+        Vector2 v;
+        boolean locClear = true;
+        GridCell gc = createGridLocation();
+        
+        do{
+            locClear = true;
+            System.out.println("@EnvVoid loop ");
+            v = new Vector2(
+                        gc.getX() + (float) (rng.nextFloat() * gc.getWidth())*0.9f,
+                        gc.getY() + (float) (rng.nextFloat() * gc.getHeight()*0.9f));
+            
+            for(Entity e : entities){
+                if(e.getPos().dst(v) < SPAWN_PADDING){
+                    locClear = false;
+                }
+            }
+        }while(!locClear);
+        System.out.println("@EnvVoid loop end");
+        return v;
+    }
+    
+    public Vector2 createRandomLocation(){
+        return new Vector2(
+            grid.getX() + (float) (rng.nextFloat() * grid.getWidth())*0.9f, 
+            grid.getY() + (float) (rng.nextFloat() * grid.getHeight())*0.9f);
     }
 }

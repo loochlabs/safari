@@ -11,10 +11,11 @@ import com.mygdx.demo.demo2.EnvVoid_D2;
 import com.mygdx.demo.demo2.EnvVoid_D2_2;
 import com.mygdx.entities.DynamicEntities.DogEntities.MurphyEntity_Initial;
 import com.mygdx.entities.DynamicEntities.DogEntities.StellaEntity;
+import com.mygdx.entities.StaticEntities.trap.En_VoidTrap;
 import com.mygdx.entities.esprites.EntitySprite;
 import com.mygdx.environments.EnvNull.random.Tear_R;
-import com.mygdx.environments.EnvSub.pads.EndPad;
-import com.mygdx.environments.EnvSub.pads.EndPiece;
+import com.mygdx.environments.EnvVoid.pads.EndPad;
+import com.mygdx.environments.EnvVoid.pads.EndPiece;
 import com.mygdx.environments.EnvVoid.GridCell;
 import com.mygdx.environments.EnvironmentManager;
 import com.mygdx.environments.tears.TearPortal;
@@ -128,6 +129,9 @@ public class EnvVoid_D3_1 extends EnvVoid_D3{
                         1.0f * RATIO,
                         false, false,
                         false, false));
+        
+        
+        spawnEntity(new En_VoidTrap(createSpawnLocation()));
     }
     
     

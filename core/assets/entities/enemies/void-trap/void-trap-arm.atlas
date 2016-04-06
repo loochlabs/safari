@@ -1,0 +1,54 @@
+void-trap-arm.png
+size: 62, 2109
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+void-trap-arm
+  rotate: false
+  xy: 2, 2
+  size: 58, 299
+  orig: 58, 299
+  offset: 0, 0
+  index: 1
+void-trap-arm
+  rotate: false
+  xy: 2, 303
+  size: 58, 299
+  orig: 58, 299
+  offset: 0, 0
+  index: 2
+void-trap-arm
+  rotate: false
+  xy: 2, 604
+  size: 58, 299
+  orig: 58, 299
+  offset: 0, 0
+  index: 3
+void-trap-arm
+  rotate: false
+  xy: 2, 905
+  size: 58, 299
+  orig: 58, 299
+  offset: 0, 0
+  index: 4
+void-trap-arm
+  rotate: false
+  xy: 2, 1206
+  size: 58, 299
+  orig: 58, 299
+  offset: 0, 0
+  index: 5
+void-trap-arm
+  rotate: false
+  xy: 2, 1507
+  size: 58, 299
+  orig: 58, 299
+  offset: 0, 0
+  index: 6
+void-trap-arm
+  rotate: false
+  xy: 2, 1808
+  size: 58, 299
+  orig: 58, 299
+  offset: 0, 0
+  index: 7

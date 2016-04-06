@@ -7,7 +7,7 @@ package com.mygdx.demo.demo3;
 
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.entities.StaticEntities.breakable.Cyst_Blue;
-import com.mygdx.environments.EnvSub.pads.EndPad;
+import com.mygdx.environments.EnvVoid.pads.EndPad;
 import com.mygdx.environments.EnvVoid.EnvVoid;
 import static com.mygdx.utilities.UtilityVars.PPM;
 

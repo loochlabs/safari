@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mygdx.environments.EnvSub.pads;
+package com.mygdx.environments.EnvVoid.pads;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
-import com.mygdx.environments.EnvSub.pads.A.EndPad_Section_A1;
-import com.mygdx.environments.EnvSub.pads.A.EndPad_Section_A2;
-import com.mygdx.environments.EnvSub.pads.A.EndPad_Section_A3;
-import com.mygdx.environments.EnvSub.pads.A.EndPad_Section_A4;
-import com.mygdx.environments.EnvSub.pads.A.EndPad_Section_C1;
+import com.mygdx.environments.EnvVoid.pads.A.EndPad_Section_A1;
+import com.mygdx.environments.EnvVoid.pads.A.EndPad_Section_A2;
+import com.mygdx.environments.EnvVoid.pads.A.EndPad_Section_A3;
+import com.mygdx.environments.EnvVoid.pads.A.EndPad_Section_A4;
+import com.mygdx.environments.EnvVoid.pads.A.EndPad_Section_C1;
 
 /**
  *

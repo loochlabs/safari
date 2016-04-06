@@ -13,8 +13,8 @@ import com.mygdx.environments.tears.Tear_Room_Glyph1;
 import com.mygdx.entities.pickups.Pickup;
 import com.mygdx.environments.EnvRoom.EnvRoom_Glyph1;
 import com.mygdx.environments.EnvSub.EnvSub;
-import com.mygdx.environments.EnvSub.pads.A.EndWarp_A;
-import com.mygdx.environments.EnvSub.pads.EndWarp;
+import com.mygdx.environments.EnvVoid.pads.A.EndWarp_A;
+import com.mygdx.environments.EnvVoid.pads.EndWarp;
 import static com.mygdx.utilities.UtilityVars.PPM;
 
 /**

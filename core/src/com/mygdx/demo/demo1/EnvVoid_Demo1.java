@@ -9,7 +9,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.mygdx.entities.StaticEntities.breakable.Cyst_Blue;
 import com.mygdx.environments.tears.Tear_Room_Simple;
 import com.mygdx.environments.EnvSub.EnvSub;
-import com.mygdx.environments.EnvSub.pads.EndWarp;
+import com.mygdx.environments.EnvVoid.pads.EndWarp;
 import com.mygdx.environments.EnvVoid.EnvVoid;
 import com.mygdx.environments.EnvVoid.GridCell;
 import static com.mygdx.game.MainGame.RATIO;

@@ -39,7 +39,7 @@ public class BreakableObject extends StaticEntity{
         fd.filter.maskBits = BIT_PLAYER | BIT_WALL | BIT_ATT | BIT_EN;
         fd.shape = cshape;
         
-        MAX_HP = 20;
+        MAX_HP = 10;
         CURRENT_HP = MAX_HP;
         
     }

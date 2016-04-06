@@ -9,13 +9,13 @@ import com.mygdx.environments.EnvNull.random.Tear_R;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.combat.skills.Skill_HauntHaste;
 import com.mygdx.demo.demo2.EnvVoid_D2_1;
-import com.mygdx.entities.DynamicEntities.DogEntities.MurphyEntity;
 import com.mygdx.entities.DynamicEntities.DogEntities.StellaEntity;
+import com.mygdx.entities.StaticEntities.trap.En_VoidTrap;
 import com.mygdx.entities.StaticEntities.SkillPad;
 import com.mygdx.entities.StaticEntities.SkillPad_Primary;
 import com.mygdx.entities.StaticEntities.breakable.Cyst_Blue;
 import com.mygdx.entities.esprites.DecomSprite;
-import com.mygdx.environments.EnvSub.pads.EndPad;
+import com.mygdx.environments.EnvVoid.pads.EndPad;
 import com.mygdx.environments.EnvVoid.EnvVoid;
 import com.mygdx.environments.EnvironmentManager;
 import static com.mygdx.game.MainGame.RATIO;
@@ -81,6 +81,11 @@ public class EnvVoid_Dev0 extends EnvVoid{
         
         spawnEntity(new SkillPad_Primary(new Vector2(900f, 1200f)));
         spawnEntity(new SkillPad(new Vector2(1100f, 1200f), new Skill_HauntHaste()));
+        
+        
+        
+        //void trap
+        spawnEntity(new En_VoidTrap(new Vector2(800f*RATIO, 1100f*RATIO)));
     }
     
     

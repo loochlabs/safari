@@ -7,7 +7,7 @@ package com.mygdx.demo.demo1;
 
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.environments.EnvSub.EnvSub;
-import com.mygdx.environments.EnvSub.pads.EndWarp;
+import com.mygdx.environments.EnvVoid.pads.EndWarp;
 import static com.mygdx.utilities.UtilityVars.PPM;
 
 /**

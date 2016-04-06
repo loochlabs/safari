@@ -14,6 +14,7 @@ import com.mygdx.entities.DynamicEntities.player.PlayerEntity;
 import com.mygdx.entities.Entity;
 import com.mygdx.entities.StaticEntities.BlankWall;
 import com.mygdx.entities.StaticEntities.SkillPad;
+import com.mygdx.entities.StaticEntities.SkillPad_Defense;
 import com.mygdx.entities.StaticEntities.SkillPad_Primary;
 import com.mygdx.entities.StaticEntities.SkillPad_Secondary;
 import com.mygdx.entities.text.TextEntity;
@@ -26,8 +27,8 @@ import com.mygdx.environments.EnvironmentManager;
 import com.mygdx.environments.tears.NullWarp;
 import com.mygdx.game.MainGame;
 import static com.mygdx.game.MainGame.RATIO;
+import com.mygdx.gui.Overlay;
 import com.mygdx.managers.ResourceManager;
-import com.mygdx.managers.StateManager.State;
 import com.mygdx.screen.GameScreen;
 import com.mygdx.screen.ScreenManager;
 import static com.mygdx.utilities.UtilityVars.PPM;
@@ -60,6 +61,7 @@ public class EnvStart_0 extends Environment{
     
     private SkillPad skillPad_prim;
     private SkillPad skillPad_sec;
+    private SkillPad skillPad_def;
     
     public EnvStart_0(int id) {
         super(id);
@@ -73,6 +75,9 @@ public class EnvStart_0 extends Environment{
         y = 0;
         
         startPos = new Vector2((width / 2)/PPM, (1600f*RATIO)/PPM);
+        
+        //render
+        this.renderLayers = 2;
         
         //black bg
         bg = MainGame.am.get(ResourceManager.START_BLACK_BG);
@@ -121,14 +126,6 @@ public class EnvStart_0 extends Environment{
         
         
         
-        //POST INTRO
-        skillPad_prim = (SkillPad) this.spawnEntity( 
-                new SkillPad_Primary(
-                        new Vector2(425f*RATIO, 850f*RATIO)));
-        
-        skillPad_sec = (SkillPad)this.spawnEntity(
-                new SkillPad_Secondary(
-                        new Vector2(1125f*RATIO, 850f*RATIO)));
         
         
         //create new env, add to NullWarp
@@ -189,9 +186,66 @@ public class EnvStart_0 extends Environment{
         dmgTextToRemove.clear();
     }
     
+    @Override 
+    public void render(SpriteBatch sb, int layer){
+        if (0 == layer) {
+            
+            switch (introState) {
+                case INTRO:
+
+                    if (introBg != null) {
+                        sb.draw(introBg, x, y, width, height);
+                    }
+
+                    break;
+                case POSTINTRO:
+
+                    if (postIntroBg != null) {
+                        sb.draw(postIntroBg, x, y, width, height);
+                    }
+
+                    break;
+                default:
+                    break;
+            }
+
+            Collections.sort(entities, new Entity.EntityComp());
+            for (Entity e : entities) {
+                e.render(sb);
+            }
+
+            //floating dmg text
+            for (TextEntity text : dmgTexts) {
+                text.render(dmgFont, sb);
+
+                if (text.flagForDelete) {
+                    dmgTextToRemove.add(text);
+                }
+            }
+
+            for (TextEntity text : dmgTextToRemove) {
+                dmgTexts.removeValue(text, false);
+            }
+
+            dmgTextToRemove.clear();
+        } else if (1 == layer) {
+            if (bg != null) {
+                sb.draw(bg, -MainGame.WIDTH/2, -MainGame.HEIGHT/2, MainGame.WIDTH, MainGame.HEIGHT);
+            }
+
+            //need to set camera zoom one iteration before next render call
+            //pit zoom
+            //this.fgParallaxX = 0.05f;
+            //this.fgParallaxY = 0.025f;
+        }
+    }
+    
+    
     
     @Override
     public void begin(){
+        
+        Overlay.enable = false;
         
         if(characterCount <= 0){
             ScreenManager.setScreen(new DemoGameOverScreen());
@@ -204,19 +258,20 @@ public class EnvStart_0 extends Environment{
         if(characterStart_poe != null)      characterStart_poe.active = true;
         
         
-        if(skillPad_prim != null){
-            skillPad_prim.reset();
-        }
-        if(skillPad_sec != null){
-            skillPad_sec.reset();
-        }
+        
         
         super.begin();
         
         
-        startIntro();
+        
     }
     
+    @Override
+    public void play(){
+        super.play();
+        
+        startIntro();
+    }
     
     
     @Override
@@ -268,9 +323,8 @@ public class EnvStart_0 extends Environment{
         
         introState = IntroState.INTRO;
 
-        if (GameScreen.overlay != null) {
-            GameScreen.overlay.enable = false;
-        }
+        Overlay.enable = false;
+        
         
         //south wall
         southHallwayWall = (BlankWall) spawnEntity(new BlankWall(new Vector2(750f*RATIO, 1500f*RATIO), 200f*RATIO, 10f*RATIO));
@@ -280,12 +334,47 @@ public class EnvStart_0 extends Environment{
     private void startPostIntro() {
         introState = IntroState.POSTINTRO;
 
-        if (GameScreen.overlay != null) {
-            GameScreen.overlay.enable = true;
-        }
+        Overlay.enable = true;
+        
         
         //REMOVE all intro entities
         this.removeEntity(southHallwayWall);
+        
+        //POST INTRO
+        
+        //PRIMARY SKILL PAD
+        if(skillPad_prim != null){
+            skillPad_prim.reset();
+        }else{
+             skillPad_prim = (SkillPad) this.spawnEntity( 
+                new SkillPad_Primary(
+                        new Vector2(425f*RATIO, 850f*RATIO)));
+        }
+        
+        //SECONDARY SKILL PAD
+        if(skillPad_sec != null){
+            skillPad_sec.reset();
+        }else{
+            skillPad_sec = (SkillPad)this.spawnEntity(
+                new SkillPad_Secondary(
+                        new Vector2(1125f*RATIO, 850f*RATIO)));
+        }
+        
+        
+        //DEFENSE SKILL PAD
+        if(skillPad_def != null){
+            skillPad_def.reset();
+        }else{
+            skillPad_def = (SkillPad)this.spawnEntity(
+                new SkillPad_Defense(
+                        new Vector2(750f*RATIO, 1800f*RATIO)));
+        }
+        
+       
+        
+        
+        
+        
         
     }
     
