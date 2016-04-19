@@ -5,17 +5,14 @@
  */
 package com.mygdx.combat.skills;
 
-import com.badlogic.gdx.math.Vector2;
-import com.mygdx.combat.PlayerProjectile;
+import static com.mygdx.combat.skills.Skill.SkillType.HEAVY;
+import static com.mygdx.combat.skills.Skill.SkillType.LIGHT;
 import com.mygdx.entities.ImageSprite;
-import com.mygdx.environments.EnvironmentManager;
 import com.mygdx.game.MainGame;
 import static com.mygdx.game.MainGame.RATIO;
 import com.mygdx.gui.descriptions.DescriptionWindow;
 import com.mygdx.managers.ResourceManager;
-import com.mygdx.screen.GameScreen;
 import com.mygdx.utilities.SoundObject_Sfx;
-import static com.mygdx.utilities.UtilityVars.PPM;
 
 /**
  *
@@ -32,8 +29,10 @@ public class Skill_Haymaker extends HeavySkill{
         damageMod = 1.55f;
         FORCE = 1400.0f;
         
+        comboChain = new SkillType[] { HEAVY, LIGHT, HEAVY };
+        
         desc = "More KNOCKBACK";
-        descWindow = new DescriptionWindow(name, desc, type);
+        descWindow = new DescriptionWindow(name, desc, comboChain);
         skillIcon = MainGame.am.get(ResourceManager.SKILL_ONETWO);
         
         
@@ -49,11 +48,7 @@ public class Skill_Haymaker extends HeavySkill{
         impactSound = new SoundObject_Sfx(ResourceManager.SFX_IMPACT_2);
     }
     
-    @Override
-    public void activate(){}
-    @Override
-    public void deactivate(){}
-    
+    /*
     
     @Override 
     public void comboChainEffect(Skill prevSkill){
@@ -99,7 +94,7 @@ public class Skill_Haymaker extends HeavySkill{
     
     @Override
     public void removeComboChainEffect(){
-        comboChain = false;
+        comboChainCheck = false;
     }
     
     private class PlayerProjectile_Haymaker extends PlayerProjectile{
@@ -112,5 +107,5 @@ public class Skill_Haymaker extends HeavySkill{
         
     }
     
-    
+    */
 }

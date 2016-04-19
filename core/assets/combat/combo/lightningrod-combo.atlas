@@ -1,0 +1,418 @@
+lightningrod-combo.png
+size: 1618, 1012
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+lightningrod-combo
+  rotate: false
+  xy: 2, 2
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 1
+lightningrod-combo
+  rotate: false
+  xy: 2, 204
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 10
+lightningrod-combo
+  rotate: false
+  xy: 2, 406
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 11
+lightningrod-combo
+  rotate: false
+  xy: 2, 608
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 12
+lightningrod-combo
+  rotate: false
+  xy: 2, 810
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 13
+lightningrod-combo
+  rotate: false
+  xy: 204, 2
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 14
+lightningrod-combo
+  rotate: false
+  xy: 204, 204
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 15
+lightningrod-combo
+  rotate: false
+  xy: 204, 406
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 16
+lightningrod-combo
+  rotate: false
+  xy: 204, 608
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 17
+lightningrod-combo
+  rotate: false
+  xy: 204, 810
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 18
+lightningrod-combo
+  rotate: false
+  xy: 406, 2
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 19
+lightningrod-combo
+  rotate: false
+  xy: 406, 204
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 2
+lightningrod-combo
+  rotate: false
+  xy: 406, 406
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 20
+lightningrod-combo
+  rotate: false
+  xy: 406, 608
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 21
+lightningrod-combo
+  rotate: false
+  xy: 406, 810
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 22
+lightningrod-combo
+  rotate: false
+  xy: 608, 2
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 23
+lightningrod-combo
+  rotate: false
+  xy: 608, 204
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 24
+lightningrod-combo
+  rotate: false
+  xy: 608, 406
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 25
+lightningrod-combo
+  rotate: false
+  xy: 608, 608
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 26
+lightningrod-combo
+  rotate: false
+  xy: 608, 810
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 27
+lightningrod-combo
+  rotate: false
+  xy: 810, 2
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 28
+lightningrod-combo
+  rotate: false
+  xy: 1012, 2
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 29
+lightningrod-combo
+  rotate: false
+  xy: 1214, 2
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 3
+lightningrod-combo
+  rotate: false
+  xy: 1416, 2
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 30
+lightningrod-combo
+  rotate: false
+  xy: 810, 204
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 31
+lightningrod-combo
+  rotate: false
+  xy: 810, 406
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 32
+lightningrod-combo
+  rotate: false
+  xy: 810, 608
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 33
+lightningrod-combo
+  rotate: false
+  xy: 810, 810
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 34
+lightningrod-combo
+  rotate: false
+  xy: 1012, 204
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 35
+lightningrod-combo
+  rotate: false
+  xy: 1012, 204
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 36
+lightningrod-combo
+  rotate: false
+  xy: 1012, 204
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 37
+lightningrod-combo
+  rotate: false
+  xy: 1012, 204
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 38
+lightningrod-combo
+  rotate: false
+  xy: 1012, 204
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 39
+lightningrod-combo
+  rotate: false
+  xy: 1214, 204
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 4
+lightningrod-combo
+  rotate: false
+  xy: 1012, 204
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 40
+lightningrod-combo
+  rotate: false
+  xy: 1012, 204
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 41
+lightningrod-combo
+  rotate: false
+  xy: 1012, 204
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 42
+lightningrod-combo
+  rotate: false
+  xy: 1012, 204
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 43
+lightningrod-combo
+  rotate: false
+  xy: 1012, 204
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 44
+lightningrod-combo
+  rotate: false
+  xy: 1012, 204
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 45
+lightningrod-combo
+  rotate: false
+  xy: 1012, 204
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 46
+lightningrod-combo
+  rotate: false
+  xy: 1012, 204
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 47
+lightningrod-combo
+  rotate: false
+  xy: 1012, 204
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 48
+lightningrod-combo
+  rotate: false
+  xy: 1012, 204
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 49
+lightningrod-combo
+  rotate: false
+  xy: 1416, 204
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 5
+lightningrod-combo
+  rotate: false
+  xy: 1012, 204
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 50
+lightningrod-combo
+  rotate: false
+  xy: 1012, 204
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 51
+lightningrod-combo
+  rotate: false
+  xy: 1012, 204
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 52
+lightningrod-combo
+  rotate: false
+  xy: 1012, 204
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 53
+lightningrod-combo
+  rotate: false
+  xy: 1012, 204
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 54
+lightningrod-combo
+  rotate: false
+  xy: 1012, 406
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 55
+lightningrod-combo
+  rotate: false
+  xy: 1012, 608
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 56
+lightningrod-combo
+  rotate: false
+  xy: 1012, 810
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 57
+lightningrod-combo
+  rotate: false
+  xy: 1214, 406
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 58
+lightningrod-combo
+  rotate: false
+  xy: 1416, 406
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 59
+lightningrod-combo
+  rotate: false
+  xy: 1214, 608
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 6
+lightningrod-combo
+  rotate: false
+  xy: 1214, 810
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 7
+lightningrod-combo
+  rotate: false
+  xy: 1416, 608
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 8
+lightningrod-combo
+  rotate: false
+  xy: 1416, 810
+  size: 200, 200
+  orig: 200, 200
+  offset: 0, 0
+  index: 9

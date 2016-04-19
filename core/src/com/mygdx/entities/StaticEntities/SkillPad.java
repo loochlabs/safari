@@ -184,8 +184,7 @@ public class SkillPad extends StaticEntity{
     
     public void confirmSkill(){
         //set skill
-        //this.name = SKILL.getName();
-        //skillTexture = SKILL.getItemTexture() != null ? SKILL.getItemTexture() : SKILL.getSkillIcon();
+        
         skillTexture = SKILL.getSkillIcon();
         GameStats.skillPool.removeValue(SKILL, false);
         
@@ -194,6 +193,9 @@ public class SkillPad extends StaticEntity{
                 SKILL.getType() == SkillType.SPECIAL ? specialSprite :
                 passiveSprite;
         
+        
+        
+        
     }
     
     //Description - Swap skills on player contact
@@ -201,12 +203,60 @@ public class SkillPad extends StaticEntity{
         if(SKILL != null){
             SkillType type = SKILL.getType();
             Skill ts = SKILL;
-            SKILL = GameScreen.player.getCurrentSkill(type);
+            
+            int index = 0;
+            
+            switch(type){
+                case LIGHT:
+                    index = 0;
+                    break;
+                case HEAVY:
+                    index = 1;
+                    break;
+                case SPECIAL:
+                    index = 2;
+                    break;
+                case PASSIVE:
+                    index = 3;
+                    break;
+                case DEFENSE:
+                    index = 4;
+                    break;
+                default:
+                    break;
+            }
+            
+            SKILL = GameScreen.player.getSkillSet()[index];
+
             GameScreen.player.setCurrentSkill(ts);
             GameScreen.overlay.addDescAlert(ts);
-            
+
+            //refresh skill hud
+            int si = 0;
+
+            switch (ts.getType()) {
+                case LIGHT:
+                    si = 0;
+                    break;
+                case HEAVY:
+                    si = 1;
+                    break;
+                case SPECIAL:
+                    si = 2;
+                    break;
+                case PASSIVE:
+                    si = 3;
+                    break;
+                case DEFENSE:
+                    si = 4;
+                    break;
+                default:
+                    break;
+            }
+            GameScreen.overlay.enableSkillHud(si);
+
             renew();
-            
+
             pickupSound.play(false);
         }
     }
@@ -232,14 +282,39 @@ public class SkillPad extends StaticEntity{
             if (!str[1].contains("action_")) {
                 return;
             }
+            
+            int index = -1;
+            if (SKILL != null) {
+                switch (SKILL.getType()) {
+                    case LIGHT:
+                        index = 0;
+                        break;
+                    case HEAVY:
+                        index = 1;
+                        break;
+                    case SPECIAL:
+                        index = 2;
+                        break;
+                    case PASSIVE:
+                        index = 3;
+                        break;
+                    case DEFENSE:
+                        index = 4;
+                        break;
+                    default:
+                        break;
+                }
+            }
 
             super.alert(str);
             if (str[0].equals("begin")) {
                 if (SKILL != null) {
+                    GameScreen.overlay.enableSkillHud(index);
                     GameScreen.player.inRangeForAction(this);
                 }
             }
             if (str[0].equals("end")) {
+                GameScreen.overlay.disableSkillHud();
                 GameScreen.player.outRangeForAction(this);
             }
         } catch (IndexOutOfBoundsException ex) {

@@ -1,0 +1,103 @@
+ghostjab-combo.png
+size: 1752, 1052
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ghostjab-combo
+  rotate: false
+  xy: 2, 2
+  size: 348, 348
+  orig: 348, 348
+  offset: 0, 0
+  index: 1
+ghostjab-combo
+  rotate: false
+  xy: 2, 352
+  size: 348, 348
+  orig: 348, 348
+  offset: 0, 0
+  index: 10
+ghostjab-combo
+  rotate: false
+  xy: 2, 702
+  size: 348, 348
+  orig: 348, 348
+  offset: 0, 0
+  index: 11
+ghostjab-combo
+  rotate: false
+  xy: 352, 2
+  size: 348, 348
+  orig: 348, 348
+  offset: 0, 0
+  index: 12
+ghostjab-combo
+  rotate: false
+  xy: 352, 352
+  size: 348, 348
+  orig: 348, 348
+  offset: 0, 0
+  index: 13
+ghostjab-combo
+  rotate: false
+  xy: 352, 702
+  size: 348, 348
+  orig: 348, 348
+  offset: 0, 0
+  index: 14
+ghostjab-combo
+  rotate: false
+  xy: 702, 2
+  size: 348, 348
+  orig: 348, 348
+  offset: 0, 0
+  index: 2
+ghostjab-combo
+  rotate: false
+  xy: 702, 352
+  size: 348, 348
+  orig: 348, 348
+  offset: 0, 0
+  index: 3
+ghostjab-combo
+  rotate: false
+  xy: 702, 702
+  size: 348, 348
+  orig: 348, 348
+  offset: 0, 0
+  index: 4
+ghostjab-combo
+  rotate: false
+  xy: 1052, 2
+  size: 348, 348
+  orig: 348, 348
+  offset: 0, 0
+  index: 5
+ghostjab-combo
+  rotate: false
+  xy: 1402, 2
+  size: 348, 348
+  orig: 348, 348
+  offset: 0, 0
+  index: 6
+ghostjab-combo
+  rotate: false
+  xy: 1052, 352
+  size: 348, 348
+  orig: 348, 348
+  offset: 0, 0
+  index: 7
+ghostjab-combo
+  rotate: false
+  xy: 1052, 702
+  size: 348, 348
+  orig: 348, 348
+  offset: 0, 0
+  index: 8
+ghostjab-combo
+  rotate: false
+  xy: 1402, 352
+  size: 348, 348
+  orig: 348, 348
+  offset: 0, 0
+  index: 9

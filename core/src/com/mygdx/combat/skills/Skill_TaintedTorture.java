@@ -26,6 +26,7 @@ import static com.mygdx.utilities.UtilityVars.PPM;
 public class Skill_TaintedTorture extends SpecialSkill{
 
     private AoeCircle_Dot aoeCircle;
+    
     public Skill_TaintedTorture(){
         name = "Tainted Torture";
         attribute = SkillAttribute.SPECIAL;
@@ -34,7 +35,16 @@ public class Skill_TaintedTorture extends SpecialSkill{
         
         
     }
+
+    @Override
+    public void activate() {
+    }
+
+    @Override
+    public void deactivate() {
+    }
     
+    /*
     @Override
     public void effect(boolean isCombo, Skill prevSkill, boolean isComboChain) {
         
@@ -54,14 +64,7 @@ public class Skill_TaintedTorture extends SpecialSkill{
         impactSound.play(false);
     }
 
-    @Override
-    public void activate() {
-    }
-
-    @Override
-    public void deactivate() {
-    }
-    
+    */
     private class AoeCircle_Dot extends AoeCircle {
         
         //private FrameCounter damageTickFC = new FrameCounter(0.5f);
@@ -148,7 +151,7 @@ public class Skill_TaintedTorture extends SpecialSkill{
                 //dmg enemies in circle
                 try {
                     if (targets.get(i).getBody() != null) {
-                        targets.get(i).damage(dmgAmmount * comboBonus, true);
+                        //targets.get(i).damage(dmgAmmount * comboBonus, true);
                     }
 
                 } catch (IndexOutOfBoundsException ex) {

@@ -59,6 +59,7 @@ public class ResourceManager {
         this.loadAtlas("entities/player/poe/poe-death.atlas", "poe-death", 324);
         this.loadAtlas("entities/player/poe/poe-attack3.atlas", "poe-attack3",1);
         this.loadAtlas("entities/player/poe/poe-attack4.atlas", "poe-attack4",1);
+        this.loadAtlas("entities/player/poe/poe-attack-side.atlas", "poe-attack-side",10);
         
         
         //woogie
@@ -106,6 +107,12 @@ public class ResourceManager {
         this.loadAtlas("combat/skill-attacks/heavy-att-red.atlas", "heavy-att-red", 27);
         this.loadAtlas("combat/skill-attacks/light-att-yellow.atlas", "light-att-yellow", 28);
         this.loadAtlas("combat/skill-attacks/heavy-att-yellow.atlas", "heavy-att-yellow", 27);
+        
+        //combos
+        this.loadAtlas("combat/combo/ghostjab-combo.atlas", "ghostjab-combo", 14);
+        this.loadAtlas("combat/combo/haunt-combo.atlas", "haunt-combo", 17);
+        this.loadAtlas("combat/combo/lightningrod-combo.atlas", "lightningrod-combo", 59);
+        this.loadAtlas("combat/combo/lightningbolt.atlas", "lightningbolt", 15);
         
         //EnvNull
         this.loadAtlas("entities/enemies/EndNull/null_end_spawn.atlas", "null_end_spawn",21);
@@ -203,6 +210,9 @@ public class ResourceManager {
         this.loadAtlas("gui/hud1/hud-skills/passive-rotSlow.atlas", "passive-rotSlow",30);
         this.loadAtlas("gui/hud1/hud-skills/skill-empty.atlas", "skill-empty",1);
         this.loadAtlas("gui/hud1/hud-dm-idle.atlas", "hud-dm-idle",20);
+        
+        //skill-overlay
+        this.loadAtlas("gui/hud2/skill-overlay-cursor.atlas", "skill-overlay-cursor",1);
         
         
         //**********************************
@@ -414,9 +424,17 @@ public class ResourceManager {
         asm.load(OVERLAY_GRID, Texture.class);
         asm.load(ICON_HP, Texture.class);
         asm.load(ICON_ENERGY, Texture.class);
-        asm.load(HUD_SOUL_BG_POE, Texture.class);
-        asm.load(HUD_SOUL_FG_POE, Texture.class);
-        asm.load(HUD_SOUL_METER_POE, Texture.class);
+        //asm.load(HUD_SOUL_BG_POE, Texture.class);
+        //asm.load(HUD_SOUL_FG_POE, Texture.class);
+        //asm.load(HUD_SOUL_METER_POE, Texture.class);
+        asm.load(HUD_ENERGY_FILL, Texture.class);
+        asm.load(HUD_ENERGY_EMPTY, Texture.class);
+        
+        //skill hud
+        asm.load(HUD_SKILL_OVERLAY, Texture.class);
+        
+        //soul hud
+        asm.load(SOUL_LOGO_POE, Texture.class);
         
         //pad icons
         asm.load(GUI_PAD_A, Texture.class);
@@ -995,6 +1013,17 @@ public class ResourceManager {
     public static String OVERLAY_GRID = "gui/hud1/overlay-grid.png"; 
     public static String ICON_HP = "gui/hud1/hp-icon2.png"; 
     public static String ICON_ENERGY = "gui/hud1/energy-icon.png"; 
+    public static String HUD_ENERGY_FILL = "gui/hud2/energy-slot-fill.png"; 
+    public static String HUD_ENERGY_EMPTY = "gui/hud2/energy-slot-empty.png"; 
+    
+    //skill overlay
+    public static String HUD_SKILL_OVERLAY = "gui/hud2/skill-overlay.png";
+    
+    
+    
+    //soul hud
+    public static String SOUL_LOGO_POE = "gui/hud2/poe-name.png"; 
+    
     //pad icons
     public static String GUI_PAD_A = "gui/padIcon-A2.png";
     public static String GUI_PAD_B = "gui/padIcon-B2.png";
@@ -1010,9 +1039,9 @@ public class ResourceManager {
     //descriptions
     public static String DESC_BG = "gui/descriptions/desc-bg3.png";
     //soul
-    public static String HUD_SOUL_BG_POE = "gui/soul/soul-poe-bg.png";
-    public static String HUD_SOUL_FG_POE = "gui/soul/soul-poe-fg.png";
-    public static String HUD_SOUL_METER_POE = "gui/soul/soul-meter-poe.png";
+    //public static String HUD_SOUL_BG_POE = "gui/soul/soul-poe-bg.png";
+    //public static String HUD_SOUL_FG_POE = "gui/soul/soul-poe-fg.png";
+    //public static String HUD_SOUL_METER_POE = "gui/soul/soul-meter-poe.png";
     
     
     //GAME OVER SCREEN

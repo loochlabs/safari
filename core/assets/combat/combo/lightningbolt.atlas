@@ -1,0 +1,110 @@
+lightningbolt.png
+size: 1538, 754
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+lightningbolt
+  rotate: false
+  xy: 2, 2
+  size: 190, 374
+  orig: 190, 374
+  offset: 0, 0
+  index: 1
+lightningbolt
+  rotate: false
+  xy: 2, 378
+  size: 190, 374
+  orig: 190, 374
+  offset: 0, 0
+  index: 10
+lightningbolt
+  rotate: false
+  xy: 194, 2
+  size: 190, 374
+  orig: 190, 374
+  offset: 0, 0
+  index: 11
+lightningbolt
+  rotate: false
+  xy: 194, 378
+  size: 190, 374
+  orig: 190, 374
+  offset: 0, 0
+  index: 12
+lightningbolt
+  rotate: false
+  xy: 386, 2
+  size: 190, 374
+  orig: 190, 374
+  offset: 0, 0
+  index: 13
+lightningbolt
+  rotate: false
+  xy: 386, 378
+  size: 190, 374
+  orig: 190, 374
+  offset: 0, 0
+  index: 14
+lightningbolt
+  rotate: false
+  xy: 578, 2
+  size: 190, 374
+  orig: 190, 374
+  offset: 0, 0
+  index: 15
+lightningbolt
+  rotate: false
+  xy: 578, 378
+  size: 190, 374
+  orig: 190, 374
+  offset: 0, 0
+  index: 2
+lightningbolt
+  rotate: false
+  xy: 770, 2
+  size: 190, 374
+  orig: 190, 374
+  offset: 0, 0
+  index: 3
+lightningbolt
+  rotate: false
+  xy: 770, 378
+  size: 190, 374
+  orig: 190, 374
+  offset: 0, 0
+  index: 4
+lightningbolt
+  rotate: false
+  xy: 962, 2
+  size: 190, 374
+  orig: 190, 374
+  offset: 0, 0
+  index: 5
+lightningbolt
+  rotate: false
+  xy: 962, 378
+  size: 190, 374
+  orig: 190, 374
+  offset: 0, 0
+  index: 6
+lightningbolt
+  rotate: false
+  xy: 1154, 2
+  size: 190, 374
+  orig: 190, 374
+  offset: 0, 0
+  index: 7
+lightningbolt
+  rotate: false
+  xy: 1154, 378
+  size: 190, 374
+  orig: 190, 374
+  offset: 0, 0
+  index: 8
+lightningbolt
+  rotate: false
+  xy: 1346, 2
+  size: 190, 374
+  orig: 190, 374
+  offset: 0, 0
+  index: 9

@@ -22,20 +22,29 @@ public abstract class HeavySkill extends Skill{
 
     public HeavySkill(){
         type = HEAVY;
-        COST = 40.0f;
-        
-        //attackTime = 0;
-        //comboTime = 0.85f;
-        //recovTime = 0.2f;
+        //COST = 40.0f;
         
         FORCE = 250.0f;
+        
+        
         
         skillSprite = new ImageSprite("poe-attack-heavy",false);
         skillSprite.sprite.setScale(0.35f*RATIO);
     }
     
     @Override
-    public void effect(boolean isCombo, Skill prevSkill, boolean isComboChain){
+    public void activate(){
+        GameScreen.player.addComboChain(comboChain);
+    }
+    
+    @Override
+    public void deactivate(){
+        GameScreen.player.removeComboChain(comboChain);
+    }
+    
+    
+    @Override
+    public void effect(){
         reset();
         
         boolean playSound = false;
@@ -43,17 +52,16 @@ public abstract class HeavySkill extends Skill{
         //screen shake
         screenShake();
         
-        if(isComboChain){
-            comboChain = true;
-            comboChainEffect(prevSkill);
-            
-        }
+        
+        //if(isCombo){
+            //comboEffect();
+        //}
         
         
         for(Entity ent: GameScreen.player.getAttTargets()){
             
             //damage enemy
-            damageEnemy(ent, isCombo, prevSkill);
+            damageEnemy(ent);
             
             
             //force
@@ -92,8 +100,8 @@ public abstract class HeavySkill extends Skill{
             GameScreen.camera.shake(6, 0.55f);
     }
 
-    public void damageEnemy(Entity e, boolean combo, Skill prevSkill) {
-        if (combo) {
+    public void damageEnemy(Entity e) {
+        /*if (combo) {
             
             comboEffect(prevSkill);
             
@@ -101,29 +109,29 @@ public abstract class HeavySkill extends Skill{
                     GameScreen.player.getCurrentDamage() * GameScreen.player.getHeavyMod() * damageMod * comboBonus,
                     true);
         } else {
+            */
             e.damage(GameScreen.player.getCurrentDamage() * GameScreen.player.getHeavyMod() * damageMod);
-        }
+        //}
     }
     
-    public void comboEffect(Skill prevSkill){}
     
-    
+    /*
     public void comboChainEffect(Skill prevSkill){
         damageMod *= 2;
     }
 
     public void removeComboChainEffect(){
         damageMod /= 2;
-        comboChain = false;
+        comboChainCheck = false;
     }
     
     @Override
     public void reset(){
         super.reset();
-        if(comboChain){
+        if(comboChainCheck){
             removeComboChainEffect();
         }
-    }
+    }*/
 
     public void knockbackEnemy(Entity e) {
         Vector2 dv = e.getBody().getPosition().sub(GameScreen.player.getBody().getPosition()).cpy().nor();

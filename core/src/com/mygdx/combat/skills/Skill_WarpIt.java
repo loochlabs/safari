@@ -31,7 +31,7 @@ public class Skill_WarpIt extends Skill{
         name = "Warp It";
         type = SPECIAL;
         desc = "Warp here, then warp there...";
-        COST = 60f;
+        //COST = 60f;
         skillIcon = MainGame.am.get(ResourceManager.SKILL_WARPIT);
         
         comboFC = new FrameCounter_Combo(0.3f, 0, 0);
@@ -42,7 +42,7 @@ public class Skill_WarpIt extends Skill{
         impactSound = new SoundObject_Sfx(ResourceManager.SFX_POWER_1);
         
     }
-    
+    /*
     @Override
     public void effect(boolean isCombo, Skill prevSkill, boolean isComboChain) {
          if(!EnvironmentManager.currentEnv.equals(env)){
@@ -66,7 +66,7 @@ public class Skill_WarpIt extends Skill{
             permSprite.sprite.setPosition(
                     permSprite.x, permSprite.y);
             env.spawnEntity(permSprite);
-            */
+            
         }else{
             posSet = false;
             GameScreen.player.getBody().setTransform(pos, 0);
@@ -77,7 +77,7 @@ public class Skill_WarpIt extends Skill{
         
         reset();
         impactSound.play(false);
-    }
+    }*/
 
     @Override
     public void activate() {

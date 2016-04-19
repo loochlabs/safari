@@ -26,9 +26,8 @@ public class Skill_CantTouchThis extends Skill{
         skillIcon = MainGame.am.get(ResourceManager.SKILL_CANTTOUCH);
         buff = new PassiveBuff_CantTouch();
         desc = "More speed";
-        descWindow = new DescriptionWindow(name, desc, type);
+        descWindow = new DescriptionWindow(name, desc, comboChain);
         
-        //desc = new Desc_Nrg();
     }
     
     @Override 

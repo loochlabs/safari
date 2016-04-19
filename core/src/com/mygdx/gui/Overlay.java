@@ -28,13 +28,13 @@ public class Overlay {
     
     public static boolean enable = true;
     
-    //todo: get rid of width, height
     private float width, height;
     
-    //componenets
+    
     private final BarHud barHud;
+    
     private final SkillHud skillHud;
-    //private ComboBar comboBar;
+    private boolean skillHudEnable = false;
     
     private Texture debugGrid;
     
@@ -62,15 +62,18 @@ public class Overlay {
     private final ImageSprite transBeginSprite;
     private boolean beginEndTransState = true, transitioning = false;
     
-    public SkillHud getSkillHud() { return skillHud; }
+    public BarHud getBarHud() { return barHud; }
     
-    public Overlay(float width, float height){
+    public Overlay(){
         
-        this.width = width;
-        this.height = height;
+        this.width = MainGame.WIDTH;
+        this.height = MainGame.HEIGHT;
         
-        barHud = new BarHud(MainGame.WIDTH/2, 100f*RATIO, width * 0.25f, height * 0.04f);
-        skillHud = new SkillHud(MainGame.WIDTH/2, 0 , 388 * RATIO, 83 * RATIO);
+        
+        //skillHud = new SkillHud(width/2, 0 , 388 * RATIO, 83 * RATIO);
+        barHud = new BarHud(0, height , 388f * RATIO, 83f * RATIO);
+        
+        skillHud = new SkillHud();
         
         debugGrid = MainGame.am.get(ResourceManager.OVERLAY_GRID);
         
@@ -101,7 +104,10 @@ public class Overlay {
     
     public void update(){
         barHud.update();
-        skillHud.update();
+        
+        if(skillHudEnable){
+            skillHud.update();
+        }
         
         /*
         if(comboBar != null){
@@ -117,8 +123,8 @@ public class Overlay {
     
     public void render(SpriteBatch sb){
         if(enable){
+            
             barHud.render(sb);
-            skillHud.render(sb);
             
             /*
             if(comboBar != null){
@@ -142,6 +148,13 @@ public class Overlay {
             }
             
             renderTitleAlert(sb);
+            
+            
+            //Skill HUd
+            if(skillHudEnable){
+                skillHud.render(sb);
+            }
+            
             
             renderTransion(sb);
         }
@@ -199,26 +212,28 @@ public class Overlay {
         }
     }
     
-    public void resetSkillSlot(int n){
-        skillHud.resetSlot(n);
+    //public void resetSkillSlot(int n){
+        //barHud.resetSlot(n);
+    //}
+    
+    public void enableSkillHud(int index){
+        skillHud.enable();
+        skillHud.rotateCursor(index);
+        skillHudEnable = true;
     }
     
-    public void addItemArm(){
-        //skillHud.addItemArm();
+    public void disableSkillHud(){
+        skillHudEnable = false;
     }
+    
+    
+    
     
     public void addDescAlert(Skill skill){
-        skillHud.addDescAlert(skill);
+        barHud.addDescAlert(skill);
     }
     
-    /*
-    public void addComboBar(FrameCounter_Combo comboFC){
-        comboBar = new ComboBar(MainGame.WIDTH/2, MainGame.HEIGHT*0.25f, comboFC);
-    }
     
-    public void removeComboBar(){
-        comboBar = null;
-    }*/
     
     //handle transSprite during trasition 
     //@param - transState

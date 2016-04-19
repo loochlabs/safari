@@ -17,7 +17,7 @@ import static com.mygdx.game.MainGame.RATIO;
 public class Player_Poe extends PlayerEntity{
 
     public Player_Poe(Vector2 pos) {
-        super(pos, 22f*RATIO, 31*RATIO);
+        super(pos, 22f*RATIO, 22*RATIO);
         
         playerName = "Poe";
         
@@ -30,7 +30,7 @@ public class Player_Poe extends PlayerEntity{
         SPEED_STAT_COUNT = 2;
         SPECIAL_STAT_COUNT = 2;
         
-        //todo: move to init
+        
         refreshStats();
         life = CURRENT_LIFE;
         
@@ -68,6 +68,11 @@ public class Player_Poe extends PlayerEntity{
         attackHeavySprite.sprite.setScale(spriteScale*1.30f);
         recovSprite = new ImageSprite("poe-recov", false);
         recovSprite.sprite.setScale(spriteScale);
+        attackLeftSprite = new MirrorSprite("poe-attack-side", false);
+        attackLeftSprite.sprite.setScale(spriteScale*1.30f);
+        attackRightSprite = new MirrorSprite("poe-attack-side", false, true, true, false);
+        attackRightSprite.sprite.setScale(spriteScale*1.30f);
+        attackRightSprite.sprite.setOrigin(-attackRightSprite.sprite.getWidth(), attackRightSprite.sprite.getHeight()/2);
         
     }
     

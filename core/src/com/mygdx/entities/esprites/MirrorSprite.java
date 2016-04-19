@@ -17,6 +17,10 @@ public class MirrorSprite extends ImageSprite{
         super(key, loop);
     }
     
+    public MirrorSprite(String key, boolean loop, boolean flagForComplete, boolean xflip, boolean yflip){
+        super(key, loop, flagForComplete, xflip, yflip);
+    }
+    
     @Override
     public void step(){
         if(reverse){

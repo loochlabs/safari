@@ -22,8 +22,6 @@ public abstract class LightSkill extends Skill{
  
     public LightSkill(){
         type = LIGHT;
-        COST = 20.0f;
-        
         FORCE = 250.0f;
         damageMod = 1.0f;
         
@@ -33,7 +31,17 @@ public abstract class LightSkill extends Skill{
     }
     
     @Override
-    public void effect(boolean isCombo, Skill prevSkill, boolean isComboChain){
+    public void activate(){
+        GameScreen.player.addComboChain(comboChain);
+    }
+    
+    @Override
+    public void deactivate(){
+        GameScreen.player.removeComboChain(comboChain);
+    }
+    
+    @Override
+    public void effect(){
         //screen shake
         screenShake();
         
@@ -41,16 +49,17 @@ public abstract class LightSkill extends Skill{
         //sound
         boolean playSound = false;
         
-        //combo chain effect
-        if(isComboChain){
-            comboChain = true;
-            comboChainEffect(prevSkill);
-        }
+        //combo effect
+        //if(isCombo){
+            //comboEffect();
+        //}
+        
         
         //effected enemies
         for(Entity ent: GameScreen.player.getAttTargets()){
             //damage enemy
-            damageEnemy(ent, isCombo, prevSkill);
+            System.out.println("@LightSkill effect");
+            damageEnemy(ent);
             
             
             //knockback force
@@ -97,7 +106,8 @@ public abstract class LightSkill extends Skill{
             GameScreen.camera.shake(3, 0.35f);
     }
 
-    public void damageEnemy(Entity e, boolean combo, Skill prevSkill) {
+    public void damageEnemy(Entity e) {
+        /*
         if (combo) {
             
            comboEffect(prevSkill);
@@ -106,27 +116,9 @@ public abstract class LightSkill extends Skill{
                     GameScreen.player.getCurrentDamage() * GameScreen.player.getLightMod() * damageMod * comboBonus,
                     true);
         } else {
+*/
             e.damage(GameScreen.player.getCurrentDamage() * GameScreen.player.getLightMod() * damageMod);
-        }
-    }
-    
-    public void comboEffect(Skill prevSkill){}
-    
-    public void comboChainEffect(Skill prevSkill){
-        damageMod *= 2;
-    }
-
-    public void removeComboChainEffect(){
-        damageMod /= 2;
-        comboChain = false;
-    }
-    
-    @Override
-    public void reset(){
-        super.reset();
-        if(comboChain){
-            removeComboChainEffect();
-        }
+        //}
     }
     
     public void knockbackEnemy(Entity e) {

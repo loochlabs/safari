@@ -19,9 +19,14 @@ import com.mygdx.entities.DynamicEntities.SteerableEntity;
 public class NormAttackSensor extends AttackSensor{
     
     private final CircleShape cshape = new CircleShape();
+    //private final PolygonShape pshape = new PolygonShape();
     
     public NormAttackSensor(SteerableEntity parent){
         super(parent);
+        
+        
+        //pshape.setAsBox(parent.getRange(), parent.getRange(), new Vector2(0,parent.getRange()), 0);
+        //this.shape = pshape;
         
         cshape.setRadius(parent.getRange());
         cshape.setPosition(new Vector2(0,0));

@@ -6,6 +6,8 @@
 package com.mygdx.combat.skills;
 
 import static com.mygdx.combat.skills.Skill.SkillAttribute.LIFE;
+import static com.mygdx.combat.skills.Skill.SkillType.HEAVY;
+import static com.mygdx.combat.skills.Skill.SkillType.LIGHT;
 import com.mygdx.entities.Entity;
 import com.mygdx.entities.ImageSprite;
 import com.mygdx.game.MainGame;
@@ -29,8 +31,8 @@ public class Skill_MommasTouch extends LightSkill{
         attribute = LIFE;
         damageMod = 1.0f;
         desc = "Little bit of love";
-        descWindow = new DescriptionWindow(name, desc, type);
-        
+        comboChain = new SkillType[] { LIGHT, LIGHT, HEAVY };
+        descWindow = new DescriptionWindow(name, desc, comboChain);
         
         skillIcon = MainGame.am.get(ResourceManager.SKILL_MOMMASTOUCH);
         
@@ -47,7 +49,7 @@ public class Skill_MommasTouch extends LightSkill{
         skillSprite.sprite.setScale(0.35f*RATIO);
         
     }
-    
+    /*
     @Override
     public void damageEnemy(Entity e, boolean combo, Skill prevSkill) {
         super.damageEnemy(e, combo, prevSkill);
@@ -64,16 +66,6 @@ public class Skill_MommasTouch extends LightSkill{
     
     @Override
     public void comboEffect(Skill prevSkill){}
-
-    @Override
-    public void activate() {
-        //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void deactivate() {
-         //To change body of generated methods, choose Tools | Templates.
-    }
-     
+*/
     
 }

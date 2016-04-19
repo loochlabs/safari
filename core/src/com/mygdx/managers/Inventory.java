@@ -41,7 +41,7 @@ public class Inventory {
             }
         }
         
-        GameScreen.overlay.getSkillHud().addItem(pickup);
+        GameScreen.overlay.getBarHud().addItem(pickup);
         
         
         //itemCollectCheck(pickup);
@@ -65,7 +65,7 @@ public class Inventory {
         }
         
         for(int i = 0; i < ammount; i++){
-            GameScreen.overlay.getSkillHud().removeItem(pickup);
+            GameScreen.overlay.getBarHud().removeItem(pickup);
         }
     }
     
@@ -86,7 +86,7 @@ public class Inventory {
         }
         
         for(int i = 0; i < count; i++){
-            GameScreen.overlay.getSkillHud().removeItem(pickup);
+            GameScreen.overlay.getBarHud().removeItem(pickup);
         }
         
         return count;

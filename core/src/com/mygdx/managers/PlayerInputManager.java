@@ -5,7 +5,6 @@
  */
 package com.mygdx.managers;
 
-import com.mygdx.demo.DemoScreen;
 import com.mygdx.environments.EnvironmentManager;
 import com.mygdx.managers.StateManager.State;
 import com.mygdx.screen.GameScreen;
@@ -14,7 +13,6 @@ import static com.mygdx.utilities.Direction.DOWN;
 import static com.mygdx.utilities.Direction.LEFT;
 import static com.mygdx.utilities.Direction.RIGHT;
 import static com.mygdx.utilities.Direction.UP;
-import com.mygdx.utilities.FrameCounter;
 
 /**
  *
@@ -23,7 +21,7 @@ import com.mygdx.utilities.FrameCounter;
 public class PlayerInputManager {
     
     
-    public void update(){
+    public void update() throws InterruptedException{
         if(EnvironmentManager.currentEnv.getStateManager().getState() == State.PLAYING){
         
             if (GameKeyLibrary.isPressed(GameKeyLibrary.MOVE_UP)) {
@@ -51,13 +49,13 @@ public class PlayerInputManager {
             }
 
             if (GameKeyLibrary.isPressed(GameKeyLibrary.ATT_ONE)) {
-                GameScreen.player.attack(1);
+                GameScreen.player.attack(0);
             }
             if (GameKeyLibrary.isPressed(GameKeyLibrary.ATT_TWO)) {
-                GameScreen.player.attack(2);
+                GameScreen.player.attack(1);
             }
             if (GameKeyLibrary.isPressed(GameKeyLibrary.ATT_THREE)) {
-                GameScreen.player.attack(3);
+                GameScreen.player.attack(2);
             }
             if (GameKeyLibrary.isPressed(GameKeyLibrary.ATT_FOUR)) {
                 GameScreen.player.beginAction();
@@ -69,8 +67,7 @@ public class PlayerInputManager {
             
             
             if(GameKeyLibrary.isPressed(GameKeyLibrary.DASH)){
-                //GameScreen.player.dash();
-                GameScreen.player.attack(5);
+                GameScreen.player.attack(4);
             } 
         
         }

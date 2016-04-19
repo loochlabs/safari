@@ -26,7 +26,7 @@ public class Skill_Prognosis extends Skill{
         skillIcon = MainGame.am.get(ResourceManager.SKILL_PROGNOSIS);
         buff = new PassiveBuff_Prognosis();
         desc = "Time to recover";
-        descWindow = new DescriptionWindow(name, desc, type);
+        descWindow = new DescriptionWindow(name, desc, comboChain);
         
     }
     

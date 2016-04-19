@@ -89,13 +89,15 @@ public abstract class Entity{
     public float getCurrentHp() {return CURRENT_HP;}
     public float getMaxHp() {return MAX_HP;}
     public FrameManager getFrameManager() { return fm; }
+    public boolean getFlaggedForRenderSort() { return flaggedForRenderSort; }
+    public boolean getFlaggedForRenderTop() { return flaggedForRenderTop; }
     //public boolean isActive() { return active; }
     
     
     
     public void setPosition(Vector2 pos) {
         if(body != null){
-            body.setTransform(new Vector2(pos.x/PPM, pos.y/PPM), 0);
+            body.setTransform(new Vector2(pos.x/PPM, pos.y/PPM), body.getAngle());
         }
         this.pos = pos; 
         bd.position.set(pos.x/PPM, pos.y/PPM);

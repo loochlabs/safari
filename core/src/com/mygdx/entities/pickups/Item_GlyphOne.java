@@ -6,10 +6,8 @@
 package com.mygdx.entities.pickups;
 
 import com.badlogic.gdx.math.Vector2;
-import static com.mygdx.combat.skills.Skill.SkillType.NONE;
 import com.mygdx.environments.EnvRoom.Wall_Lock;
 import com.mygdx.game.MainGame;
-import com.mygdx.gui.descriptions.DescriptionWindow;
 import com.mygdx.managers.ResourceManager;
 
 /**
@@ -23,10 +21,6 @@ public class Item_GlyphOne extends Pickup_Key{
         
         name = "Strange Glyph";
         texture = MainGame.am.get(ResourceManager.GLYPH_ONE);
-        desc = "\"This seems to belong somewhere.\"";
-        descWindow = new DescriptionWindow(""+name+"", desc, NONE, true);
-        
-        
     }
     
     @Override

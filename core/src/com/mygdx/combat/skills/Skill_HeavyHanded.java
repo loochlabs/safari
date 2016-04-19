@@ -26,7 +26,7 @@ public class Skill_HeavyHanded extends Skill{
         skillIcon = MainGame.am.get(ResourceManager.SKILL_HEAVYHANDED);
         buff = new PassiveBuff_HeavyHanded();
         desc = "South paws hit harder";
-        descWindow = new DescriptionWindow(name, desc, type);
+        descWindow = new DescriptionWindow(name, desc, comboChain);
         
     }
     

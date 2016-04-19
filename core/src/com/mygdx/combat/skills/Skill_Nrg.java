@@ -26,8 +26,7 @@ public class Skill_Nrg extends Skill {
         skillIcon = MainGame.am.get(ResourceManager.SKILL_NRG);
         buff = new PassiveBuff_Nrg();
         desc = "More energy";
-        descWindow = new DescriptionWindow(name, desc, type);
-        //desc = new Desc_Nrg();
+        descWindow = new DescriptionWindow(name, desc, comboChain);
     }
     
     @Override

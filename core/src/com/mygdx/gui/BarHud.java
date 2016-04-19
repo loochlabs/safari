@@ -6,187 +6,536 @@
 package com.mygdx.gui;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.Array;
+import com.mygdx.combat.skills.Skill;
+import com.mygdx.entities.pickups.Pickup;
 import com.mygdx.game.MainGame;
+import static com.mygdx.game.MainGame.RATIO;
+import com.mygdx.managers.FrameManager;
+import com.mygdx.managers.GameInputProcessor;
 import com.mygdx.managers.ResourceManager;
 import com.mygdx.screen.GameScreen;
+import java.util.Stack;
 
 /**
  *
  * @author looch
  */
+@SuppressWarnings("FieldMayBeFinal")
 public class BarHud extends OverlayComponent{
+
+    //SOUL HUD
+    private SoulHud soulHud;
     
-    private HpBarBg hpbg;
-    private HpBarFg hpfg;
-    private EnergyBarFg energyfg;
-    private EnergyBarBg energybg;
+    /********************
+        HP BAR HUD
+    ***********************/
+    private final HpBarHud hpBarHud;
+    
+    
+    //private SkillType [] types = { LIGHT, HEAVY, SPECIAL, PASSIVE, DEFENSE };
+    //private final Texture redTexture;
+    private final float slotWidth, slotHeight, skillOffsetX, skillOffsetY, slotOffset;
+    
+    //skill hud (8/8/15)
+    //private final ImageSprite 
+            //skillHud_light, skillHud_heavy, skillHud_special, skillHud_passive, 
+            //skillHud_empty0, skillHud_empty1, skillHud_empty2, skillHud_empty3, skillHud_empty4;
+    //private final ImageSprite skillHud_def;
+    //private ImageSprite skillSprite0, skillSprite1, skillSprite2, skillSprite3, skillSprite4;
+    //private Array<ImageSprite> sprites = new Array<ImageSprite>();
+    
+    
+    //key bindings
+    private BitmapFont uifont;
+    private String KEY_ACT1, KEY_ACT2, KEY_ACT3, KEY_ACT4, NEW_ALERT_STR;
+    private Array<String> keyStrings = new Array<String>();
+    private boolean padEnabled = false;
+    private Texture PAD_A, PAD_B, PAD_X, PAD_LB;//, PAD_Y;
+    
+    //dm ui
+    private InventoryUi dmui;
+    
+    //desc window
+    /*
+    private DescriptionWindow descWindow;
+    private final float desc_x, desc_y;
+    private final float desc_time = 10f;
+    private final FrameCounter descFC = new FrameCounter(desc_time);
+    */
+    private final FrameManager fm = new FrameManager();
     
     
     
-    //private final Texture hpicon, energyicon;
-    //private final BitmapFont font;
+    
     
     public BarHud(float x, float y, float width, float height){
         super(x,y,width,height);
         
+        //soul hud
+        //soulHud = new SoulHud(
+                //x + skillOffsetX - slotOffset*1.25f, y+0.05f,
+                //slotWidth,slotWidth);
+        soulHud = new SoulHud(x,y, 150f*RATIO, 110f*RATIO);
         
-        //hpbg = new HpBarBg(x + width*0.05f, y + height *0.55f, width * 0.5f, height);
-        //hpfg = new HpBarFg(x + width*0.1f,  y + height *0.55f, width * 0.4f, height, hpbg);
-        hpbg = new HpBarBg(x, y , width * 0.5f, height);
-        hpfg = new HpBarFg(x, y + height * 0.05f, width * 0.5f, height*0.95f, hpbg);
+        //hp bar hud
+        hpBarHud = new HpBarHud(x + soulHud.getWidth(), y, 1000f*RATIO, 30f*RATIO);
         
-        //energybg = new EnergyBarBg(x + width*0.60f, y + height *0.55f, width * 0.5f, height);
-        //energyfg = new EnergyBarFg(x + width*0.65f, y + height *0.55f, width * 0.4f, height, energybg);
-        energybg = new EnergyBarBg(x , y , width * 0.5f, height);
-        energyfg = new EnergyBarFg(x , y + height*0.05f, width * 0.5f, height*0.95f, energybg);
+        /***************
+            SKILLS
+        ****************/
+        
+        //redTexture = MainGame.am.get(ResourceManager.SKILL_RED);
+        
+        skillOffsetX = 10f*RATIO;
+        skillOffsetY = soulHud.getY() - soulHud.getHeight();
+        slotWidth = width * 0.25f; 
+        slotHeight = slotWidth;
+        slotOffset = slotWidth;
+        
+        /*
+        skillHud_def = new ImageSprite("skill-empty", true);
+        skillHud_def.sprite.setBounds(x, skillOffsetY, slotWidth, slotHeight);
+        sprites.add(skillHud_def);
+        
+        skillHud_light = new ImageSprite("light-rot", false);
+        skillHud_light.sprite.setBounds(x, skillOffsetY - slotOffset, slotWidth, slotHeight);
+        sprites.add(skillHud_light);
+        
+        skillHud_heavy = new ImageSprite("heavy-rot", false);
+        skillHud_heavy.sprite.setBounds(x, skillOffsetY - slotOffset*2, slotWidth, slotHeight);
+        sprites.add(skillHud_heavy);
+        
+        skillHud_special = new ImageSprite("special-rot", false);
+        skillHud_special.sprite.setBounds(x, skillOffsetY - slotOffset*3, slotWidth, slotHeight);
+        sprites.add(skillHud_special);
+        
+        skillHud_passive = new ImageSprite("passive-rotSlow", true);
+        skillHud_passive.sprite.setBounds(x, skillOffsetY - slotOffset*4, slotWidth, slotHeight);
+        sprites.add(skillHud_passive);
+        skillHud_passive.setComplete(true);
+        
+        skillHud_empty0 = new ImageSprite("skill-empty", true);
+        skillHud_empty0.sprite.setBounds(x, skillOffsetY, slotWidth, slotHeight);
+        sprites.add(skillHud_empty0);
+        skillHud_empty1 = new ImageSprite("skill-empty", true);
+        skillHud_empty1.sprite.setBounds(x, skillOffsetY - slotOffset, slotWidth, slotHeight);
+        sprites.add(skillHud_empty1);
+        skillHud_empty2 = new ImageSprite("skill-empty", true);
+        skillHud_empty2.sprite.setBounds(x, skillOffsetY - slotOffset*2, slotWidth, slotHeight);
+        sprites.add(skillHud_empty2);
+        skillHud_empty3 = new ImageSprite("skill-empty", true);
+        skillHud_empty3.sprite.setBounds(x, skillOffsetY - slotOffset*3, slotWidth, slotHeight);
+        sprites.add(skillHud_empty3);
+        skillHud_empty4 = new ImageSprite("skill-empty", true);
+        skillHud_empty4.sprite.setBounds(x, skillOffsetY - slotOffset*4, slotWidth, slotHeight);
+        sprites.add(skillHud_empty4);
+        
+        */
         
         
-        //hpicon = MainGame.am.get(ResourceManager.ICON_HP);
-        //energyicon = MainGame.am.get(ResourceManager.ICON_ENERGY);
-        
-        //font = new BitmapFont(Gdx.files.internal("fonts/nav-impact.fnt"));
-    }
-
-    @Override
-    public void update() {
-        
-        hpfg.update();
-        hpbg.update();
-        energyfg.update();
-        energybg.update();
-        
-    }
-
-    @Override 
-    public void render(SpriteBatch sb){
-        super.render(sb);
-        hpbg.render(sb);
-        hpfg.render(sb);
-        energybg.render(sb);
-        energyfg.render(sb);
+        dmui = new InventoryUi(x + skillOffsetX + slotOffset*5, y, slotWidth * 1.5f, slotWidth);
         
         
-        //sb.draw(hpicon, x + width*0.05f, y + height *0.55f, width * 0.4f, width * 0.4f);
-       // sb.draw(energyicon, energybg.getX() + width*0.125f, y+ height *0.55f, width * 0.25f, width * 0.5f);
+        //key bindings
+        if(GameInputProcessor.controller)   padEnabled = true;
         
-        //font.draw(sb, "" + GameScreen.player.getSoulCount() + "", 5f*RATIO, font.getCapHeight());
+        if(!padEnabled){
+            uifont = new BitmapFont(Gdx.files.internal("fonts/nav-impact.fnt"));
+            uifont.setScale(0.525f * RATIO);
+            keyStrings.add(Keys.toString(GameInputProcessor.KEY_ACTION_1));
+            keyStrings.add(Keys.toString(GameInputProcessor.KEY_ACTION_2));
+            keyStrings.add(Keys.toString(GameInputProcessor.KEY_ACTION_3));
+            keyStrings.add(Keys.toString(GameInputProcessor.KEY_DASH));
+            
+            NEW_ALERT_STR = Keys.toString(GameInputProcessor.KEY_SKILL_SELECT);
+        }else{
+            PAD_A = MainGame.am.get(ResourceManager.GUI_PAD_A);
+            PAD_B = MainGame.am.get(ResourceManager.GUI_PAD_B);
+            PAD_X = MainGame.am.get(ResourceManager.GUI_PAD_X);
+            PAD_LB = MainGame.am.get(ResourceManager.GUI_PAD_RB);
+        }
+       
+        
+        //desc window
+        //desc_x = x - 400f*RATIO;
+        //desc_y = y + 150f*RATIO;
+        
+        
+        
+        
     }
     
-    private class EnergyBarFg extends OverlayComponent {
+    
+    @Override
+    public void update(){
+        fm.update();
+        dmui.update();
+        soulHud.update();
+        hpBarHud.update();
+        
+        //for(ImageSprite i : sprites){
+            //i.step();
+        //}
+    }
+    
+    @Override
+    public void render(SpriteBatch sb){
+        
+        //*******************************
+        //      SKILL ICONS
+        
+        //todo: dirty workaround (def skill is skill[4] in PlayerEntity)
+        /*
+        for(int i = 0; i < types.length-1; i++){
+            Skill s = GameScreen.player.getCurrentSkill(types[i]);
+            if (s != null) {
+                sb.draw(s.getSkillIcon(), x + skillOffsetX, skillOffsetY - (slotOffset * (i+1)) + slotWidth*0.1f , slotWidth*0.8f, slotHeight*0.8f);
 
-        private BitmapFont font = new BitmapFont();
-        private OverlayComponent bg;
+            }
+        }
+        
+        Skill s = GameScreen.player.getCurrentSkill(types[4]);
+        if (s != null) {
+            sb.draw(s.getSkillIcon(), x + skillOffsetX, skillOffsetY + slotWidth * 0.1f, slotWidth * 0.8f, slotHeight * 0.8f);
+        }
+        //*******************************
+        
+        
+        skillSprite0 = GameScreen.player.getCurrentSkill(types[4]) == null ? skillHud_empty0 : skillHud_def;
+        skillSprite1 = GameScreen.player.getCurrentSkill(types[0]) == null ? skillHud_empty1 : skillHud_light;
+        skillSprite2 = GameScreen.player.getCurrentSkill(types[1]) == null ? skillHud_empty2 : skillHud_heavy;
+        skillSprite3 = GameScreen.player.getCurrentSkill(types[2]) == null ? skillHud_empty3 : skillHud_special;
+        skillSprite4 = GameScreen.player.getCurrentSkill(types[3]) == null ? skillHud_empty4 : skillHud_passive;
+        
+        skillSprite0.render(sb);
+        skillSprite1.render(sb);
+        skillSprite2.render(sb);
+        skillSprite3.render(sb);
+        skillSprite4.render(sb);
+        
+        skillHud_passive.setComplete(GameScreen.player.getCurrentSkill(PASSIVE) == null);
+        */
+        
+        dmui.render(sb);
+        
+        
+        //key bindings
+        /*
+        if(!padEnabled){
+            for (int i = 0; i < 3; i++) {
+                if (GameScreen.player.getCurrentSkill(types[i]) != null) {
+                    uifont.draw(sb,
+                            keyStrings.get(i), x + skillOffsetX + (slotOffset*0.15f) + slotOffset * i,
+                            y + uifont.getCapHeight()*1.2f);
+                }
+            }
+            //dash
+            uifont.draw(sb,
+                            keyStrings.peek(), x + skillOffsetX + (slotOffset*0.15f) + slotOffset * 4,
+                            y + uifont.getCapHeight()*1.2f);
+        }else{
+            if(GameScreen.player.getCurrentSkill(types[0]) != null)
+                sb.draw(PAD_A, x + skillOffsetX , y + 5f*RATIO, 28f*RATIO, 28f*RATIO);
+            
+            if(GameScreen.player.getCurrentSkill(types[1]) != null)
+                sb.draw(PAD_B, x + skillOffsetX + slotOffset, y + 5f*RATIO, 28f*RATIO, 28f*RATIO);
+            
+            if(GameScreen.player.getCurrentSkill(types[2]) != null)
+                sb.draw(PAD_X, x + skillOffsetX + slotOffset*2, y + 5f*RATIO, 28f*RATIO, 28f*RATIO);
+            
+            sb.draw(PAD_LB, x + skillOffsetX + slotOffset*4, y + 5f*RATIO, 38f*RATIO, 28f*RATIO);
+        }
+        
+        */
+        
+        //descWindow
+        /* Edited: 2/10/2016
+        //Check DescriptionWindow for setSize() method
+        //
+        //Adding enlarge shrink graphic to descWindow on spawn
+        //Start large (7 seconds) 
+        //Then skrink (over final 3 secs)
+        */
+        /*
+        if(descWindow != null){
+            descWindow.render(sb, desc_x - descWindow.getWidth()/2, desc_y);
+               
+                
+            if(descFC.complete)
+                descWindow = null;
+        }*/
+        
+        //soul hud
+        soulHud.render(sb);
+        
+        //hp bar
+        hpBarHud.render(sb);
+        
+        super.render(sb);
+        
+    }
+    /*
+    public void resetSlot(int n){
+        
+        switch(n){
+            case 0:
+                skillHud_light.reset();
+                break;
+            case 1:
+                skillHud_heavy.reset();
+                break;
+            case 2:
+                skillHud_special.reset();
+                break;
+            default:
+                break;
+        }
+    }
+    */
+    
+    //public boolean availableEnergy(float cost){
+        //return GameScreen.player.getEnergy() >= cost;
+    //}
+    
+    //todo: old
+    public void addItem(Pickup p){
+        //invenui.addItem(p);
+    }
+    
+    public void removeItem(Pickup p){
+        //invenui.removeItem(p);
+    }
+    
+    
+    public void addDescAlert(Skill s){
+        //descWindow = new DescriptionWindow(s.getName(),s.getDesc(), s.getType());
+        //descFC.start(fm);
+    }
+    
+    
+    
+    /***********************************
+    
+        CONTAINS PLAYER NAME LOGO
+        -3 SLOTS FOR SOUL UP
+    
+    ************************************/
+    private class SoulHud extends OverlayComponent {
 
-        public EnergyBarFg(float x, float y, float width, float height, OverlayComponent bg) {
-            super(x, y, width, height);
+        private Texture logo;
+        
+        public SoulHud(float x, float y, float width, float height) {
+            super(x, y-height, width, height);
 
-            texture = MainGame.am.get(ResourceManager.HUD1_EXP_FG);
-            font.setColor(Color.BLACK);
-            this.bg = bg;
+            logo = MainGame.am.get(ResourceManager.SOUL_LOGO_POE);
 
         }
 
         @Override
         public void update() {
-            width = (float) (GameScreen.player.getEnergy())
-                    / (float) GameScreen.player.getCurrentEnergy()
-                    * bg.getWidth();
+            //soulHudMeter.update();
+        }
+        
+        @Override
+        public void render(SpriteBatch sb){
+            
+            sb.draw(logo, x, y, width, height);
+        }
+        
+    }
+    
+    
+    /**
+     * **********************************************
+     *          HP BAR HUD
+     *
+     * -Handles the HP bar 
+     * -Also handles the Energy slots (empty/filled)
+     *
+     ***********************************************
+     */
+    
+    private class HpBarHud extends OverlayComponent {
+
+        private HpBarBg hpbg;
+        private HpBarFg hpfg;
+        
+        //energy slots
+        private EnergyHud energyHud;
+
+        public HpBarHud(float x, float y, float width, float height) {
+            super(x, y-height, width, height);
+
+            //hpbg = new HpBarBg(x + width*0.05f, y + height *0.55f, width * 0.5f, height);
+            //hpfg = new HpBarFg(x + width*0.1f,  y + height *0.55f, width * 0.4f, height, hpbg);
+            //hpbg = new HpBarBg(x, y , width * 0.5f, height);
+            //hpfg = new HpBarFg(x, y + height * 0.05f, width * 0.5f, height*0.95f, hpbg);
+            hpbg = new HpBarBg(x, this.y, width * 0.5f, height);
+            hpfg = new HpBarFg(x, this.y + height * 0.05f, width * 0.5f, height * 0.95f, hpbg);
+
+            energyHud = new EnergyHud(x, hpbg.getY() - 35f*RATIO, 35f*RATIO, 35f*RATIO);
+            
+        }
+
+        @Override
+        public void update() {
+
+            hpfg.update();
+            hpbg.update();
+            
+            energyHud.update();
+
         }
 
         @Override
         public void render(SpriteBatch sb) {
             super.render(sb);
 
-            if (MainGame.debugmode) {
-                font.draw(sb, "" + (int) GameScreen.player.getEnergy()
-                        + "/" + (int) GameScreen.player.getCurrentEnergy(),
-                        x, y + font.getCapHeight() * 1.25f);
+            hpbg.render(sb);
+            hpfg.render(sb);
+            
+            energyHud.render(sb);
+
+        }
+        
+        
+
+        private class HpBarFg extends OverlayComponent {
+
+            private OverlayComponent bg;
+
+            public HpBarFg(float x, float y, float width, float height, OverlayComponent bg) {
+                super(x, y, width, height);
+
+                texture = MainGame.am.get(ResourceManager.HUD1_HP_FG);
+
+                this.bg = bg;
+
             }
-        }
 
-    }
+            @Override
+            public void update() {
 
-    
-    private class EnergyBarBg extends OverlayComponent {
+                width = (float) (GameScreen.player.getLife())
+                        / (float) GameScreen.player.getCurrentLife()
+                        * bg.getWidth();
 
-        private final float widthUnit;
-
-        public EnergyBarBg(float x, float y, float width, float height) {
-            super(x, y, width, height);
-
-            texture = MainGame.am.get(ResourceManager.HUD1_HP_BG);
-
-            widthUnit = width * 0.01f;
-            //this.height = heightUnit * GameScreen.player.getMaxEnergy();
-            this.width = widthUnit * GameScreen.player.getCurrentEnergy();
-
-        }
-
-        @Override
-        public void update() {
-
-            //height = heightUnit * GameScreen.player.getMaxEnergy();
-            width = widthUnit * GameScreen.player.getCurrentEnergy();
-
-        }
-
-    }
-
-
-    private class HpBarFg extends OverlayComponent {
-
-        private OverlayComponent bg;
-
-        public HpBarFg(float x, float y, float width, float height, OverlayComponent bg) {
-            super(x, y, width, height);
-
-            texture = MainGame.am.get(ResourceManager.HUD1_HP_FG);
-
-            this.bg = bg;
-        }
-
-        @Override
-        public void update() {
-
-            width = (float) (GameScreen.player.getLife()
-                    / GameScreen.player.getCurrentLife())
-                    * bg.getWidth();
-
-            //needs to be > 0 because negative width
-            width = width > 0 ? 0 : width;
-
-        }
-
-    }
-
-    private class HpBarBg extends OverlayComponent {
-
-        private final float widthUnit;
-
-        public HpBarBg(float x, float y, float width, float height) {
-            super(x, y, width, height);
-
-            texture = MainGame.am.get(ResourceManager.HUD1_HP_BG);
-
-            widthUnit = -width * 0.025f;
-            //this.height = heightUnit * GameScreen.player.getMaxHp();
-            this.width = widthUnit * GameScreen.player.getCurrentLife();
-
-        }
-
-        @Override
-        public void update() {
-
-            if (width != widthUnit * GameScreen.player.getCurrentLife()) {
-                width = widthUnit * GameScreen.player.getCurrentLife();
+                //needs to be > 0 because negative width
+                //width = width > 0 ? 0 : width;
             }
+
+        }
+
+        private class HpBarBg extends OverlayComponent {
+
+            private final float widthUnit;
+
+            public HpBarBg(float x, float y, float width, float height) {
+                super(x, y, width, height);
+
+                texture = MainGame.am.get(ResourceManager.HUD1_HP_BG);
+
+                widthUnit = width * 0.01f;
+                this.width = widthUnit * GameScreen.player.getCurrentLife();
+
+            }
+
+            @Override
+            public void update() {
+
+                if (width != widthUnit * GameScreen.player.getCurrentLife()) {
+                    width = widthUnit * GameScreen.player.getCurrentLife();
+                }
+            }
+
+        }
+        
+        private class EnergyHud extends OverlayComponent{
+            
+            //energy count = #Energy slots
+            private int energyCount_max = 0;
+            
+            private Array<EnergySlot> energySlots = new Array<EnergySlot>();
+            
+            public EnergyHud(float x, float y, float width, float height){
+                super(x,y,width,height);
+            }
+            
+            @Override
+            public void render(SpriteBatch sb){
+                for(EnergySlot s : energySlots){
+                    s.render(sb);
+                }
+            }
+
+            @Override
+            public void update() {
+                
+                energyCount_max = GameScreen.player.getCurrentEnergyMax();
+                
+                updateSlots();
+                
+            }
+            
+            private void updateSlots(){
+                
+                //Adjust number of slots if needed
+                while(energySlots.size != energyCount_max){
+                    
+                    if(energyCount_max > energySlots.size){
+                        int s = energySlots.size;
+                        energySlots.add(new EnergySlot(x + width*s, y, width,height));
+                    }else{
+                        energySlots.pop();
+                    }
+                    
+                }
+                
+                //Adjust slots' fill
+                //int ecount = 0;
+                //for(EnergySlot s : energySlots){
+                    //if(s.filled)    ecount++;
+                //}
+                
+                //if(ecount != GameScreen.player.getEnergy()){
+                    for(int i = 0; i < energySlots.size; i++){
+                        energySlots.get(i).filled = i < GameScreen.player.getEnergy();
+                    }
+                //}
+                
+                
+            }
+            
+        }
+        
+        private class EnergySlot extends OverlayComponent{
+            
+            private final Texture fillTexture, emptyTexture;
+            
+            public boolean filled = true;
+            
+            public EnergySlot(float x, float y, float width, float height){
+                super(x,y,width,height);
+                
+                fillTexture = MainGame.am.get(ResourceManager.HUD_ENERGY_FILL);
+                emptyTexture = MainGame.am.get(ResourceManager.HUD_ENERGY_EMPTY);
+            }
+
+            @Override
+            public void update() {
+            }
+            
+            @Override
+            public void render(SpriteBatch sb){
+                sb.draw(filled ? fillTexture : emptyTexture, x, y, width, height);
+            }
+            
         }
 
     }
-
-    
 }

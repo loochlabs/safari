@@ -1,0 +1,12 @@
+skill-overlay-cursor.png
+size: 635, 644
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+skill-overlay-cursor
+  rotate: false
+  xy: 2, 2
+  size: 631, 640
+  orig: 631, 640
+  offset: 0, 0
+  index: 1

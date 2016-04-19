@@ -8,6 +8,8 @@ package com.mygdx.combat.skills;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import static com.mygdx.combat.skills.Skill.SkillAttribute.LIFE;
+import static com.mygdx.combat.skills.Skill.SkillType.HEAVY;
+import static com.mygdx.combat.skills.Skill.SkillType.LIGHT;
 import com.mygdx.entities.Entity;
 import com.mygdx.entities.StaticEntities.AoeCircle;
 import com.mygdx.entities.ImageSprite;
@@ -35,9 +37,11 @@ public class Skill_MommasFury extends HeavySkill {
         name = "Momma's Fury";
         damageMod = 1.50f;
         attribute = LIFE;
+        
+        comboChain = new SkillType[] { HEAVY, HEAVY, LIGHT };
 
         desc = "Momma wants ta keep ya healthy";
-        descWindow = new DescriptionWindow(name, desc, type);
+        descWindow = new DescriptionWindow(name, desc, comboChain);
         skillIcon = MainGame.am.get(ResourceManager.SKILL_MOMMASFURY);
 
         impactTemplates.add(new ImageSprite("impact1", false));
@@ -51,12 +55,14 @@ public class Skill_MommasFury extends HeavySkill {
         skillSprite.sprite.setScale(0.5f*RATIO);
     }
 
+    /*
     @Override
     public void damageEnemy(Entity e, boolean combo, Skill prevSkill) {
         super.damageEnemy(e, combo, prevSkill);
 
         chanceToHeal();
     }
+    */
 
     private void chanceToHeal() {
         //on 5% chance, heal on hit
@@ -65,6 +71,7 @@ public class Skill_MommasFury extends HeavySkill {
         }
     }
 
+    /*
     @Override
     public void comboEffect(Skill prevSkill) {
 
@@ -82,14 +89,7 @@ public class Skill_MommasFury extends HeavySkill {
             }
         }
     }
-
-    @Override
-    public void activate() {
-    }
-
-    @Override
-    public void deactivate() {
-    }
+*/
 
     private class AoeCircle_Heal extends AoeCircle {
         

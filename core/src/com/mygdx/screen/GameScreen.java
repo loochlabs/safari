@@ -34,6 +34,8 @@ import com.mygdx.managers.StateManager.State;
 import com.mygdx.utilities.FrameCounter;
 import com.mygdx.utilities.ShaderUtil;
 import static com.mygdx.utilities.UtilityVars.PPM;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -106,7 +108,7 @@ public class GameScreen extends Screen{
         
         
         //gui
-        overlay = new Overlay(MainGame.WIDTH, MainGame.HEIGHT);
+        overlay = new Overlay();
         overlayCam = new OrthoCamera();
         overlayCam.viewportHeight = MainGame.HEIGHT;
         overlayCam.viewportWidth = MainGame.WIDTH;
@@ -160,10 +162,14 @@ public class GameScreen extends Screen{
         
         }
         
-        //****************************************************
-        
-        //input
-        pim.update();
+        try {
+            //****************************************************
+            
+            //input
+            pim.update();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(GameScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         
         //*************************

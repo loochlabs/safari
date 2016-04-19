@@ -22,16 +22,12 @@ public class Skill_MuchHaste extends Skill{
     
     public Skill_MuchHaste(){
         name = "Much Haste";
-        COST = 60.0f;
         skillIcon = MainGame.am.get(ResourceManager.SKILL_MUCHHASTE);
         type = SkillType.SPECIAL;
         desc = "More speed";
-        descWindow = new DescriptionWindow(name, desc, type);
+        descWindow = new DescriptionWindow(name, desc, comboChain);
         
         comboFC = new FrameCounter_Combo(0.3f, 0,0);
-        //attackTime = 0;
-        //comboTime = 0.3f;
-        //recovTime = 0;
         
     }
     

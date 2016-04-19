@@ -299,22 +299,6 @@ public class MainContactListener implements ContactListener{
         
         try{
             
-            /*
-            if (fa.getUserData().toString().contains("att_norm")) {
-                for (Entity e : entities) {
-                    if (e.getUserData() != null && e.getUserData().equals(fb.getUserData())) {
-                        GameScreen.player.removeTarget(e);
-                    }
-                }
-            }
-
-            if (fb.getUserData().toString().contains("att_norm")) {
-                for (Entity e : entities) {
-                    if (e.getUserData() != null && e.getUserData().equals(fa.getUserData())) {
-                        GameScreen.player.removeTarget(e);
-                    }
-                }
-            }*/
 
             
             for(Entity e : entities){

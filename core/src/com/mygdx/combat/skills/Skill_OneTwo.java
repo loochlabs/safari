@@ -7,6 +7,8 @@ package com.mygdx.combat.skills;
 
 import com.mygdx.combat.Buff;
 import com.mygdx.combat.PassiveBuff;
+import static com.mygdx.combat.skills.Skill.SkillType.HEAVY;
+import static com.mygdx.combat.skills.Skill.SkillType.LIGHT;
 import com.mygdx.entities.ImageSprite;
 import com.mygdx.game.MainGame;
 import static com.mygdx.game.MainGame.RATIO;
@@ -32,13 +34,8 @@ public class Skill_OneTwo extends LightSkill{
         damageMod = 1.0f;
         BUFF_MOD = 0.05f;
         desc = "More heavy damage";
-        descWindow = new DescriptionWindow(name, desc, type);
-        
-        //prepTime = 0;
-        //attTime = 0.4f;
-        //recovTime = 0;
-        
-        //FORCE = 250.0f;
+        comboChain = new SkillType[] { LIGHT, HEAVY, HEAVY };
+        descWindow = new DescriptionWindow(name, desc, comboChain);
         
         PBUFF = new PassiveBuff_OneTwo();
         
@@ -62,10 +59,12 @@ public class Skill_OneTwo extends LightSkill{
     
     @Override
     public void activate(){
+        super.activate();
         GameScreen.player.addBuff(PBUFF);
     }
     @Override
     public void deactivate(){
+        super.deactivate();
         GameScreen.player.removeBuff(PBUFF);
     }
     

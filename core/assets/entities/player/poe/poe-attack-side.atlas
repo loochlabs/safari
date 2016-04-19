@@ -1,0 +1,75 @@
+poe-attack-side.png
+size: 1562, 231
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+poe-attack-side
+  rotate: false
+  xy: 2, 2
+  size: 258, 227
+  orig: 258, 227
+  offset: 0, 0
+  index: 1
+poe-attack-side
+  rotate: false
+  xy: 262, 2
+  size: 258, 227
+  orig: 258, 227
+  offset: 0, 0
+  index: 10
+poe-attack-side
+  rotate: false
+  xy: 522, 2
+  size: 258, 227
+  orig: 258, 227
+  offset: 0, 0
+  index: 2
+poe-attack-side
+  rotate: false
+  xy: 782, 2
+  size: 258, 227
+  orig: 258, 227
+  offset: 0, 0
+  index: 3
+poe-attack-side
+  rotate: false
+  xy: 782, 2
+  size: 258, 227
+  orig: 258, 227
+  offset: 0, 0
+  index: 4
+poe-attack-side
+  rotate: false
+  xy: 1042, 2
+  size: 258, 227
+  orig: 258, 227
+  offset: 0, 0
+  index: 5
+poe-attack-side
+  rotate: false
+  xy: 1042, 2
+  size: 258, 227
+  orig: 258, 227
+  offset: 0, 0
+  index: 6
+poe-attack-side
+  rotate: false
+  xy: 1302, 2
+  size: 258, 227
+  orig: 258, 227
+  offset: 0, 0
+  index: 7
+poe-attack-side
+  rotate: false
+  xy: 262, 2
+  size: 258, 227
+  orig: 258, 227
+  offset: 0, 0
+  index: 8
+poe-attack-side
+  rotate: false
+  xy: 262, 2
+  size: 258, 227
+  orig: 258, 227
+  offset: 0, 0
+  index: 9

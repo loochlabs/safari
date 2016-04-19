@@ -29,9 +29,8 @@ public class DefenseSkill extends Skill{
         name = "Dash";
         desc = "A hastey retreat";
         type = DEFENSE;
-        COST = 20.0f;
         attribute = SkillAttribute.NONE;
-        descWindow = new DescriptionWindow(name, desc, type);
+        descWindow = new DescriptionWindow(name, desc, comboChain);
         
         skillIcon = MainGame.am.get(ResourceManager.SKILL_DASH);
         

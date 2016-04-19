@@ -45,6 +45,13 @@ public class EntitySprite extends Entity {
         
     }
     
+    public EntitySprite(EntitySprite esprite, Vector2 pos){
+        this(pos, esprite.getWidth(), esprite.getHeight(), esprite.isprite.getKey(), esprite.isprite.getLoop(), 
+                esprite.isprite.getFlagForComplete(), esprite.isprite.getXFlip(),
+                esprite.isprite.getYFlip(), 1.0f, false, false,
+                esprite.getFlaggedForRenderSort(), esprite.getFlaggedForRenderTop());
+    }
+    
     @Override
     public void setPosition(Vector2 pos){
         super.setPosition(pos);

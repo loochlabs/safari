@@ -27,9 +27,6 @@ public class Item_DarkMatter extends Pickup_Item{
         
         texture = MainGame.am.get(ResourceManager.ITEM_DM1);
         name = "Dark Matter";
-        desc = "\"It binds the universe together.\"";
-        
-        descWindow = new DescriptionWindow("" + name + "", desc, NONE, true);
     }
     
     @Override

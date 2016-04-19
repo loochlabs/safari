@@ -33,9 +33,7 @@ public class Skill_PowerPlease extends SpecialSkill{
         skillIcon = MainGame.am.get(ResourceManager.SKILL_POWERPLEASE);
         type = SkillType.SPECIAL;
         desc = "More damage";
-        descWindow = new DescriptionWindow(name, desc, type);
-        
-        
+        descWindow = new DescriptionWindow(name, desc, comboChain);
         
         activate_effect = new ParticleEffect();
         activate_effect.load(Gdx.files.internal("effects/yellow-power.p"), Gdx.files.internal("effects"));
@@ -48,7 +46,7 @@ public class Skill_PowerPlease extends SpecialSkill{
     public void deactivate(){}
     
     @Override
-    public void effect(boolean isCombo, Skill prevSkill, boolean isComboChain) {
+    public void effect() {
         
         if(!GameScreen.player.hasBuff(buff))
             buff = GameScreen.player.addBuff(new Buff_PowerPlease(30));
