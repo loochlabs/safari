@@ -105,8 +105,9 @@ public class PlayerEntity extends SteerableEntity{
     //ingame stats
     protected float life; //current life, <= CURRENT_LIFE
     protected int energy; //current energy, <= CURRENT_ENERGY
-    protected float soulCount = 0;
-    protected final int SOUL_MAX = 3;
+    protected int soulCount = 0;
+    protected int SOUL_MAX = 3;
+    protected Texture soulTexture;
     
     public String getPlayerName() { return playerName; }
     public float getLife() { return life; }
@@ -123,7 +124,7 @@ public class PlayerEntity extends SteerableEntity{
     public int getSpeedStatCount() { return SPEED_STAT_COUNT; }
     public int getSpecialStatCount() { return SPECIAL_STAT_COUNT; }
     public float getBaseSpeed() { return BASE_SPEED; }
-    public float getSoulCount() { return soulCount; }
+    public int getSoulCount() { return soulCount; }
     
     
     public void setCurrentDamage(float dmg) { this.CURRENT_DAMAGE = dmg; }
@@ -193,9 +194,9 @@ public class PlayerEntity extends SteerableEntity{
     public ImageSprite getRecovSprite() { return recovSprite; }
     public ImageSprite getDiveSprite() { return diveSprite; }
     public ImageSprite getBuffSprite() { return playerBuffSprite; }
+    public Texture getSoulTexture() { return soulTexture; }
     public ArrayList<Entity> getAttTargets() { return attTargets; }
     public Skill[] getSkillSet() { return skillSet; }
-    //public Skill getPreviousSkill() { return previousSkill; }
     public StateManager getStateManager() { return sm; }
     public float getSpriteScale() { return spriteScale; }
     public float getLightMod() { return LIGHT_MOD; }
@@ -249,6 +250,9 @@ public class PlayerEntity extends SteerableEntity{
         skillSet[0] = new LightBasic();
         skillSet[1] = new HeavyBasic();
         
+        
+        //soul - default texture
+        soulTexture = MainGame.am.get(ResourceManager.SKILL_RED);
         
         //***************************************************
         
@@ -1380,8 +1384,12 @@ public class PlayerEntity extends SteerableEntity{
     public void addSoulPiece(int s){
         soulCount += s;
         
+        //alert SoulHud
+        GameScreen.overlay.addSoul(soulCount, SOUL_MAX);
+        
         if(soulCount >= SOUL_MAX){
-            soulCount -= SOUL_MAX;
+            soulCount = 0;
+            SOUL_MAX++;
             System.out.println("@PlayereEntity soul up!");
             soulUp();
             soulSound.play(false);

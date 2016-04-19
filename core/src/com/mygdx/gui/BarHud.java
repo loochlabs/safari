@@ -59,7 +59,7 @@ public class BarHud extends OverlayComponent{
     //private Texture PAD_A, PAD_B, PAD_X, PAD_LB;//, PAD_Y;
     
     //dm ui
-    private InventoryUi dmui;
+    private InventoryUi invui;
     
     //desc window
     /*
@@ -140,7 +140,7 @@ public class BarHud extends OverlayComponent{
         
         */
         
-        
+        invui = new InventoryUi(x, y + logoHud.getHeight() + 50f*RATIO);
         //dmui = new InventoryUi(x + skillOffsetX + slotOffset*5, y, slotWidth * 1.5f, slotWidth);
         
         
@@ -173,7 +173,7 @@ public class BarHud extends OverlayComponent{
     @Override
     public void update(){
         fm.update();
-        //dmui.update();
+        invui.update();
         logoHud.update();
         hpBarHud.update();
         
@@ -271,6 +271,9 @@ public class BarHud extends OverlayComponent{
         
         //hp bar
         hpBarHud.render(sb);
+        
+        //inventory
+        invui.render(sb);
         
         super.render(sb);
         

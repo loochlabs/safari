@@ -36,6 +36,8 @@ public class GameStats {
     public static Array<Skill> skillPool_Primary = new Array<Skill>();
     public static Array<Skill> skillPool_Secondary = new Array<Skill>();    //contains all skills, except lights
     public static Array<Skill> skillPool = new Array<Skill>();
+    
+    //inventory
     public static Inventory inventory = new Inventory();
     
     public static void init(){

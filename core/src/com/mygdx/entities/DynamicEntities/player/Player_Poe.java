@@ -8,7 +8,9 @@ package com.mygdx.entities.DynamicEntities.player;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.entities.ImageSprite;
 import com.mygdx.entities.esprites.MirrorSprite;
+import com.mygdx.game.MainGame;
 import static com.mygdx.game.MainGame.RATIO;
+import com.mygdx.managers.ResourceManager;
 
 /**
  *
@@ -74,6 +76,9 @@ public class Player_Poe extends PlayerEntity{
         attackRightSprite.sprite.setScale(spriteScale*1.30f);
         attackRightSprite.sprite.setOrigin(-attackRightSprite.sprite.getWidth(), attackRightSprite.sprite.getHeight()/2);
         
+        
+        //soul 
+        soulTexture = MainGame.am.get(ResourceManager.ITEM_SOUL_POE);
     }
     
     @Override

@@ -169,7 +169,7 @@ public abstract class Pickup extends Entity{
         try {
             if (str[0].equals("begin") && str[1].equals(userdata.toString()) && canPickup) {
                 System.out.println("@Pickup death alert ");
-                GameScreen.overlay.addAlertText("+" + name + "");
+                //GameScreen.overlay.addAlertText("+" + name + "");
                 canPickup = false;
                 pickupComplete = true;
 

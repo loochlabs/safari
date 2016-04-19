@@ -6,10 +6,8 @@
 package com.mygdx.entities.pickups;
 
 import com.badlogic.gdx.math.Vector2;
-import static com.mygdx.combat.skills.Skill.SkillType.NONE;
 import com.mygdx.game.MainGame;
 import static com.mygdx.game.MainGame.RATIO;
-import com.mygdx.gui.descriptions.DescriptionWindow;
 import com.mygdx.managers.ResourceManager;
 
 /**

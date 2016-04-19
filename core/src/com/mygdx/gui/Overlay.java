@@ -18,6 +18,7 @@ import com.mygdx.game.MainGame;
 import static com.mygdx.game.MainGame.RATIO;
 import com.mygdx.managers.FrameManager;
 import com.mygdx.managers.ResourceManager;
+import com.mygdx.screen.GameScreen;
 import com.mygdx.utilities.FrameCounter;
 
 /**
@@ -36,9 +37,12 @@ public class Overlay {
     private final SkillHud skillHud;
     public boolean skillHudEnable = false;
     
+    private final SoulHud soulHud = new SoulHud(MainGame.WIDTH/2, MainGame.HEIGHT*0.2f);
+    
     private Texture debugGrid;
     
     //alerts on bottom of hud
+    /*
     private final BitmapFont alertFont;
     private final Array<String> alertTexts = new Array<String>();
     private final Array<Long> alertTextTimes = new Array<Long>();
@@ -46,8 +50,9 @@ public class Overlay {
     private final Array<Vector2> alertPoses = new Array<Vector2>();
     private final Vector2 alertPos;
     private final long ALERT_TIME = 60;//counted by # of frames, todo: use frameCounter
+    */
     
-    //title alter for environment
+    //title alter for environment name
     private String titleText = "";
     private final BitmapFont titleFont;
     private final FrameManager fm = new FrameManager();
@@ -77,11 +82,12 @@ public class Overlay {
         
         debugGrid = MainGame.am.get(ResourceManager.OVERLAY_GRID);
         
+        /*
         alertFont = new BitmapFont(Gdx.files.internal("fonts/nav-impact.fnt"));
         alertFont.setColor(Color.WHITE);
         alertFont.setScale(0.65f);
-        //alertPos = new Vector2(MainGame.WIDTH * 0.99f, MainGame.HEIGHT * 0.01f + 50f*RATIO);
         alertPos = new Vector2(MainGame.WIDTH * 0.01f, MainGame.HEIGHT * 0.99f - 50f*RATIO);
+        */
         
         //title alert fonts
         titleFont = new BitmapFont(Gdx.files.internal("fonts/nav-impact.fnt"));
@@ -109,6 +115,8 @@ public class Overlay {
             skillHud.update();
         }
         
+        soulHud.update();
+        
         /*
         if(comboBar != null){
             comboBar.update();
@@ -126,12 +134,8 @@ public class Overlay {
             
             barHud.render(sb);
             
+            soulHud.render(sb);
             /*
-            if(comboBar != null){
-                comboBar.render(sb);
-            }*/
-            
-            
             for (int i = 0; i < alertTexts.size; i++) {
                 alertFont.draw(sb, alertTexts.get(i), alertPoses.get(i).x, alertPoses.get(i).y + alertFont.getCapHeight());
                 alertTextTimes.set(i, alertTextTimes.get(i) - 1);
@@ -142,7 +146,8 @@ public class Overlay {
             }
 
             clearAlerts();
-
+            */
+            
             if (MainGame.debugmode) {
                 sb.draw(debugGrid, 0, 0, MainGame.WIDTH, MainGame.HEIGHT);
             }
@@ -160,6 +165,7 @@ public class Overlay {
         }
     }
         
+    /*
     public void addAlertText(String string){
         alertTexts.add(string);
         alertTextTimes.add(ALERT_TIME);
@@ -172,8 +178,9 @@ public class Overlay {
         //float len = alertFont.getBounds(string).width;
         //alertPoses.add(alertPos.cpy().sub(len, 0));
         alertPoses.add(alertPos.cpy());
-    }
+    }*/
     
+    /*
     public void clearAlerts(){
         for (String text : alertTextToRemove) {
             alertTexts.removeValue(text, false);
@@ -182,6 +189,7 @@ public class Overlay {
         }
         alertTextToRemove.clear();
     }
+    */
     
     public void addTitleAlert(String str){
         titleText = str;
@@ -234,6 +242,10 @@ public class Overlay {
     }
     
     
+    public void addSoul(int count, int max){
+        soulHud.set(count, max);
+    }
+    
     
     //handle transSprite during trasition 
     //@param - transState
@@ -277,6 +289,89 @@ public class Overlay {
                 transEndSprite.render(sb);
             }
         }
+    }
+    
+    
+    
+    private class SoulHud{
+        
+        //int current count
+        //int max count
+        
+        private float x, y;
+        public boolean soulEnabled = false;
+        
+        private final FrameCounter durationFC = new FrameCounter(3f);
+        private final FrameManager fm = new FrameManager();
+        
+        private Array<SoulSlot> soulSlots = new Array<SoulSlot>();
+        
+        public SoulHud(float x, float y){
+            this.x = x;
+            this.y = y;
+        }
+        
+        public void update(){
+            if(soulEnabled){
+                fm.update();
+                
+                if(durationFC.complete){
+                    soulEnabled = false;
+                }
+                
+            }
+        }
+        
+        public void set(int count, int max){
+            //get player soul counts
+            //called on soul pickup
+            //call from PlayerEntity.addSoulPiece()
+            
+            soulEnabled = true;
+            durationFC.start(fm);
+            
+            soulSlots.clear();
+            for(int i = 0 ; i < max; i++){
+                soulSlots.add(new SoulSlot());
+            }
+            
+            for(int i = 0; i < count && i < soulSlots.size; i++){
+                soulSlots.get(i).filled = true;
+            }
+            
+            System.out.println("@SoulHud count: " + count + " max: " + max);
+        }
+        
+        public void render(SpriteBatch sb){
+            if(soulEnabled){
+                for(int i = 0; i < soulSlots.size; i++){
+                    soulSlots.get(i).render(sb, x + i*60f*RATIO, y);
+                }
+            }
+            
+        }
+        
+        private class SoulSlot{
+            
+            public float width, height;
+            
+            public boolean filled = false;
+            public Texture fillTexture, emptyTexture;
+            
+            public SoulSlot(){
+                width = 50f*RATIO;
+                height = 50f*RATIO;
+                
+                fillTexture = GameScreen.player.getSoulTexture();
+                emptyTexture = MainGame.am.get(ResourceManager.HUD_ENERGY_EMPTY);
+            }
+            
+            public void render(SpriteBatch sb, float x, float y){
+                sb.draw(filled ? fillTexture : emptyTexture, x, y, width, height);
+            }
+            
+        }
+        
     }
     
 }

@@ -16,6 +16,7 @@ import com.mygdx.entities.StaticEntities.SkillPad;
 import com.mygdx.entities.StaticEntities.SkillPad_Defense;
 import com.mygdx.entities.StaticEntities.breakable.Cyst_Blue;
 import com.mygdx.entities.esprites.DecomSprite;
+import com.mygdx.entities.pickups.Pickup_SoulPiece;
 import com.mygdx.environments.EnvVoid.pads.EndPad;
 import com.mygdx.environments.EnvVoid.EnvVoid;
 import com.mygdx.environments.EnvironmentManager;
@@ -88,6 +89,18 @@ public class EnvVoid_Dev0 extends EnvVoid{
         
         //void trap
         //spawnEntity(new En_VoidTrap(new Vector2(800f*RATIO, 1100f*RATIO)));
+        
+        //dev soul
+        spawnEntity(new Pickup_SoulPiece(new Vector2(1000f*RATIO, 1400f*RATIO)));
+        spawnEntity(new Pickup_SoulPiece(new Vector2(1000f*RATIO, 1420f*RATIO)));
+        spawnEntity(new Pickup_SoulPiece(new Vector2(1000f*RATIO, 1440f*RATIO)));
+        spawnEntity(new Pickup_SoulPiece(new Vector2(1000f*RATIO, 1460f*RATIO)));
+        spawnEntity(new Pickup_SoulPiece(new Vector2(1000f*RATIO, 1480f*RATIO)));
+        spawnEntity(new Pickup_SoulPiece(new Vector2(1000f*RATIO, 1500f*RATIO)));
+        spawnEntity(new Pickup_SoulPiece(new Vector2(1000f*RATIO, 1520f*RATIO)));
+        spawnEntity(new Pickup_SoulPiece(new Vector2(1000f*RATIO, 1540f*RATIO)));
+        spawnEntity(new Pickup_SoulPiece(new Vector2(1000f*RATIO, 1560f*RATIO)));
+        
     }
     
     

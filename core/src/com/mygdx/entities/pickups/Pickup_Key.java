@@ -22,7 +22,6 @@ public class Pickup_Key extends Pickup_Item{
         super(pos, w, h);
         
         this.lock = lock;
-        flagForHud = true;
     }
     
     @Override

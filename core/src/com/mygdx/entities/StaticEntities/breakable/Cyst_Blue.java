@@ -10,6 +10,7 @@ import com.mygdx.entities.ImageSprite;
 import com.mygdx.entities.pickups.Pickup_Life;
 import com.mygdx.entities.pickups.Pickup_SoulPiece;
 import com.mygdx.entities.pickups.Item_DarkMatter;
+import com.mygdx.entities.pickups.Pickup_Energy;
 import static com.mygdx.game.MainGame.RATIO;
 
 /**
@@ -28,9 +29,9 @@ public class Cyst_Blue extends BreakableObject{
         itemRewardPool.add(new Pickup_SoulPiece());
         itemRewardPool.add(new Item_DarkMatter());
         itemRewardPool.add(new Item_DarkMatter());
-        //itemRewardPool.add(new Item_DarkMatter());
+        itemRewardPool.add(new Item_DarkMatter());
         itemRewardPool.add(new Pickup_Life());
-        //itemRewardPool.add(new Pickup_Life());
+        itemRewardPool.add(new Pickup_Energy());
         //itemRewardPool.add(new Pickup_Life());
     }
     

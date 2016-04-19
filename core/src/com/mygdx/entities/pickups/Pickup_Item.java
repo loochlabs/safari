@@ -19,10 +19,16 @@ public class Pickup_Item extends Pickup {
     
     public Pickup_Item(Vector2 pos, float w, float h) {
         super(pos, w, h);
+        
+        
+        flagForHud = true;
     }
     
     public Pickup_Item(Pickup pickup){
         super(pickup);
+        
+        
+        flagForHud = true;
     }
     
     @Override

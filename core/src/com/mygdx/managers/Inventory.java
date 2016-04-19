@@ -21,9 +21,6 @@ public class Inventory {
 
     public Array<ItemContainer> getItems() { return items; }
     
-    //public Inventory(){}
-    
-    
     public void addItem(Pickup pickup, int ammount, boolean flagForHud){
         boolean duplicate = false;
         for(ItemContainer item: items){
@@ -43,8 +40,6 @@ public class Inventory {
         
         GameScreen.overlay.getBarHud().addItem(pickup);
         
-        
-        //itemCollectCheck(pickup);
     }
     
     public void subItem(Pickup pickup, int ammount){
@@ -136,61 +131,5 @@ public class Inventory {
         itemsToRemove.clear();
     }
     
-    /*
-    private void itemCollectCheck(Pickup p){
-        if(p.getName().equals("Green Matter")
-                && this.hasItemAmmount(p, 2)){
-            GameScreen.player.addStatPoints(1, 0, 0, 0, 0);
-                    this.subItem(p, 2);
-        }
-        
-        if(p.getName().equals("Red Matter")
-                && this.hasItemAmmount(p, 2)){
-            GameScreen.player.addStatPoints(0, 0, 1, 0, 0);
-                    this.subItem(p, 2);
-        }
-        
-        if(p.getName().equals("White Matter")
-                && this.hasItemAmmount(p, 2)){
-            GameScreen.player.addStatPoints(0, 0, 0, 1, 0);
-                    this.subItem(p, 2);
-        }
-        
-        if(p.getName().equals("Yellow Matter")
-                && this.hasItemAmmount(p, 2)){
-            GameScreen.player.addStatPoints(0, 1, 0, 0, 0);
-                    this.subItem(p, 2);
-        }
-        
-        /*
-        for(ItemContainer item : items){
-            if(item.data.toString().equals("Green Matter")){
-                if (this.hasItemAmmount(item.pickup, 2)) {
-                    
-                }
-            }
-            
-            if(item.data.toString().equals("Yellow Matter")){
-                if (this.hasItemAmmount(item.pickup, 2)) {
-                    GameScreen.player.adjustStats(0, 1, 0, 0, 0);
-                    this.subItem(item.pickup, 2);
-                }
-            }
-            
-            if(item.data.toString().equals("Red Matter")){
-                if (this.hasItemAmmount(item.pickup, 2)) {
-                    GameScreen.player.adjustStats(0, 0, 1, 0, 0);
-                    this.subItem(item.pickup, 2);
-                }
-            }
-            
-            if(item.data.toString().equals("White Matter")){
-                if (this.hasItemAmmount(item.pickup, 2)) {
-                    GameScreen.player.adjustStats(0, 0, 0, 1, 0);
-                    this.subItem(item.pickup, 2);
-                }
-            }
-        }*/
-    //}
     
 }

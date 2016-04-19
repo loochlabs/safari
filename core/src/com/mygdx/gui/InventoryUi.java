@@ -6,16 +6,11 @@
 package com.mygdx.gui;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.utils.Array;
-import com.mygdx.entities.ImageSprite;
-import com.mygdx.entities.pickups.Pickup;
-import com.mygdx.game.MainGame;
 import static com.mygdx.game.MainGame.RATIO;
 import com.mygdx.managers.GameStats;
-import com.mygdx.managers.ResourceManager;
 import com.mygdx.utilities.ItemContainer;
 
 /**
@@ -24,43 +19,32 @@ import com.mygdx.utilities.ItemContainer;
  */
 public class InventoryUi extends OverlayComponent{
 
-    private ImageSprite dmIdleSprite;
-    private Texture dmTexture;
-    private int dm_count;
     private BitmapFont font;
     
-    private Array<Pickup> pickups = new Array<Pickup>();
-    private Array<Pickup> pickupsToRemove = new Array<Pickup>();
+    private Array<ItemContainer> pickups = new Array<ItemContainer>();
+    private Array<ItemContainer> pickupsToRemove = new Array<ItemContainer>();
     
-    public InventoryUi(float x, float y, float width, float height) {
-        super(x, y, width, height);
+    public InventoryUi(float x, float y) {
+        super(x + 10f*RATIO, y + 10f*RATIO, 25f*RATIO, 25f*RATIO);
         
-        
-        dmIdleSprite = new ImageSprite("hud-dm-idle", true);
-        dmIdleSprite.sprite.setBounds(x, y, width, height);
-        dmTexture = MainGame.am.get(ResourceManager.ITEM_DM1);
         font = new BitmapFont(Gdx.files.internal("fonts/nav-impact.fnt"));
-        font.setScale(0.7f * RATIO);
+        font.setScale(0.55f * RATIO);
     }
 
     @Override
     public void update() {
         
-        dm_count = 
-                GameStats.inventory.getItemByName("Dark Matter") == null ? 0 : 
-                GameStats.inventory.getItemByName("Dark Matter").count;
-        
         for(ItemContainer item : GameStats.inventory.getItems()){
-            if(item.flagForHud && !pickups.contains(item.pickup, false))
-                pickups.add(item.pickup);
+            if(item.flagForHud && !pickups.contains(item, false))
+                pickups.add(item);
         }
         
-        for(Pickup p : pickups){
-            if(!GameStats.inventory.hasItem(p))
+        for(ItemContainer p : pickups){
+            if(!GameStats.inventory.hasItem(p.pickup))
                 pickupsToRemove.add(p);
         }
         
-        for(Pickup pi : pickupsToRemove){
+        for(ItemContainer pi : pickupsToRemove){
             pickups.removeValue(pi, false);
         }
         
@@ -69,12 +53,13 @@ public class InventoryUi extends OverlayComponent{
     
     @Override
     public void render(SpriteBatch sb){
-        if (dm_count > 0) {
-            dmIdleSprite.render(sb);
-            font.draw(sb, "" + dm_count + "", x + width / 2 - font.getBounds("" + dm_count + "").width / 2, y + height * 0.25f + font.getCapHeight());
-        }
+        
+        //render pickup textre and count(use BitmapFont font)
         for(int i = 0; i < pickups.size; i++){
-            sb.draw(pickups.get(i).getTexture(), x + width + 50f*RATIO*i, y, 50f*RATIO, 50f*RATIO);
+            sb.draw(pickups.get(i).pickup.getTexture(), x, y + i*35f*RATIO , 35f*RATIO, 35f*RATIO);
+            font.draw(sb, " x " + pickups.get(i).count , 
+                    x + 35f*RATIO + 10f*RATIO, 
+                    y + i*35f*RATIO + 10f*RATIO + font.getCapHeight());
         }
     }
     
