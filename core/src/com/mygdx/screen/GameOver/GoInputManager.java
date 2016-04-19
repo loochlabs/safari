@@ -20,11 +20,11 @@ public class GoInputManager {
     public void update(){
     
         if (!GameInputProcessor.controller) {
-            if (GameKeyLibrary.isPressed(GameKeyLibrary.DASH)) {
+            if (GameKeyLibrary.isPressed(GameKeyLibrary.ATT_FOUR)) {
                 ScreenManager.setScreen(new MainMenuScreen());
             }
         }else{
-            if (GameKeyLibrary.isPressed(GameKeyLibrary.ATT_ONE)
+            if (GameKeyLibrary.isPressed(GameKeyLibrary.ATT_ZERO)
                     || GameKeyLibrary.isPressed(GameKeyLibrary.MAIN_ESC)) {
                 ScreenManager.setScreen(new MainMenuScreen());
             }

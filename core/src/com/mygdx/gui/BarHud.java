@@ -6,6 +6,7 @@
 package com.mygdx.gui;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -29,7 +30,7 @@ import java.util.Stack;
 public class BarHud extends OverlayComponent{
 
     //SOUL HUD
-    private SoulHud soulHud;
+    private LogoHud logoHud;
     
     /********************
         HP BAR HUD
@@ -39,7 +40,7 @@ public class BarHud extends OverlayComponent{
     
     //private SkillType [] types = { LIGHT, HEAVY, SPECIAL, PASSIVE, DEFENSE };
     //private final Texture redTexture;
-    private final float slotWidth, slotHeight, skillOffsetX, skillOffsetY, slotOffset;
+   // private final float slotWidth, slotHeight, skillOffsetX, skillOffsetY, slotOffset;
     
     //skill hud (8/8/15)
     //private final ImageSprite 
@@ -52,10 +53,10 @@ public class BarHud extends OverlayComponent{
     
     //key bindings
     private BitmapFont uifont;
-    private String KEY_ACT1, KEY_ACT2, KEY_ACT3, KEY_ACT4, NEW_ALERT_STR;
-    private Array<String> keyStrings = new Array<String>();
+    private String KEY_SKILLS;  //, KEY_ACT1, KEY_ACT2, KEY_ACT4;
+    //private Array<String> keyStrings = new Array<String>();
     private boolean padEnabled = false;
-    private Texture PAD_A, PAD_B, PAD_X, PAD_LB;//, PAD_Y;
+    //private Texture PAD_A, PAD_B, PAD_X, PAD_LB;//, PAD_Y;
     
     //dm ui
     private InventoryUi dmui;
@@ -80,10 +81,10 @@ public class BarHud extends OverlayComponent{
         //soulHud = new SoulHud(
                 //x + skillOffsetX - slotOffset*1.25f, y+0.05f,
                 //slotWidth,slotWidth);
-        soulHud = new SoulHud(x,y, 150f*RATIO, 110f*RATIO);
+        logoHud = new LogoHud(x,y, 150f*RATIO, 110f*RATIO);
         
         //hp bar hud
-        hpBarHud = new HpBarHud(x + soulHud.getWidth(), y, 1000f*RATIO, 30f*RATIO);
+        hpBarHud = new HpBarHud(x + logoHud.getWidth(), y, 1000f*RATIO, 30f*RATIO);
         
         /***************
             SKILLS
@@ -91,11 +92,13 @@ public class BarHud extends OverlayComponent{
         
         //redTexture = MainGame.am.get(ResourceManager.SKILL_RED);
         
+        /*
         skillOffsetX = 10f*RATIO;
-        skillOffsetY = soulHud.getY() - soulHud.getHeight();
+        skillOffsetY = logoHud.getY() - logoHud.getHeight();
         slotWidth = width * 0.25f; 
         slotHeight = slotWidth;
         slotOffset = slotWidth;
+        */
         
         /*
         skillHud_def = new ImageSprite("skill-empty", true);
@@ -138,7 +141,7 @@ public class BarHud extends OverlayComponent{
         */
         
         
-        dmui = new InventoryUi(x + skillOffsetX + slotOffset*5, y, slotWidth * 1.5f, slotWidth);
+        //dmui = new InventoryUi(x + skillOffsetX + slotOffset*5, y, slotWidth * 1.5f, slotWidth);
         
         
         //key bindings
@@ -147,17 +150,13 @@ public class BarHud extends OverlayComponent{
         if(!padEnabled){
             uifont = new BitmapFont(Gdx.files.internal("fonts/nav-impact.fnt"));
             uifont.setScale(0.525f * RATIO);
-            keyStrings.add(Keys.toString(GameInputProcessor.KEY_ACTION_1));
-            keyStrings.add(Keys.toString(GameInputProcessor.KEY_ACTION_2));
-            keyStrings.add(Keys.toString(GameInputProcessor.KEY_ACTION_3));
-            keyStrings.add(Keys.toString(GameInputProcessor.KEY_DASH));
-            
-            NEW_ALERT_STR = Keys.toString(GameInputProcessor.KEY_SKILL_SELECT);
-        }else{
+            KEY_SKILLS = Input.Keys.toString(GameInputProcessor.KEY_SKILL_SELECT);
+        }else{/*
             PAD_A = MainGame.am.get(ResourceManager.GUI_PAD_A);
             PAD_B = MainGame.am.get(ResourceManager.GUI_PAD_B);
             PAD_X = MainGame.am.get(ResourceManager.GUI_PAD_X);
-            PAD_LB = MainGame.am.get(ResourceManager.GUI_PAD_RB);
+            PAD_LB = MainGame.am.get(ResourceManager.GUI_PAD_RB);   //todo: change to LB
+                */
         }
        
         
@@ -174,13 +173,10 @@ public class BarHud extends OverlayComponent{
     @Override
     public void update(){
         fm.update();
-        dmui.update();
-        soulHud.update();
+        //dmui.update();
+        logoHud.update();
         hpBarHud.update();
         
-        //for(ImageSprite i : sprites){
-            //i.step();
-        //}
     }
     
     @Override
@@ -221,7 +217,7 @@ public class BarHud extends OverlayComponent{
         skillHud_passive.setComplete(GameScreen.player.getCurrentSkill(PASSIVE) == null);
         */
         
-        dmui.render(sb);
+        //dmui.render(sb);
         
         
         //key bindings
@@ -271,7 +267,7 @@ public class BarHud extends OverlayComponent{
         }*/
         
         //soul hud
-        soulHud.render(sb);
+        logoHud.render(sb);
         
         //hp bar
         hpBarHud.render(sb);
@@ -311,7 +307,7 @@ public class BarHud extends OverlayComponent{
         //invenui.removeItem(p);
     }
     
-    
+    //TODO: remove
     public void addDescAlert(Skill s){
         //descWindow = new DescriptionWindow(s.getName(),s.getDesc(), s.getType());
         //descFC.start(fm);
@@ -322,15 +318,16 @@ public class BarHud extends OverlayComponent{
     /***********************************
     
         CONTAINS PLAYER NAME LOGO
-        -3 SLOTS FOR SOUL UP
+        -also renders "[Q] skills" message
     
     ************************************/
-    private class SoulHud extends OverlayComponent {
+    private class LogoHud extends OverlayComponent {
 
         private Texture logo;
+        private final float PADDING = 11f*RATIO;
         
-        public SoulHud(float x, float y, float width, float height) {
-            super(x, y-height, width, height);
+        public LogoHud(float x, float y, float width, float height) {
+            super(x, y, width, height);
 
             logo = MainGame.am.get(ResourceManager.SOUL_LOGO_POE);
 
@@ -345,6 +342,8 @@ public class BarHud extends OverlayComponent{
         public void render(SpriteBatch sb){
             
             sb.draw(logo, x, y, width, height);
+            
+            uifont.draw(sb, KEY_SKILLS + " - SKILLS", x + PADDING, y + height + uifont.getCapHeight() + PADDING);
         }
         
     }
@@ -369,16 +368,16 @@ public class BarHud extends OverlayComponent{
         private EnergyHud energyHud;
 
         public HpBarHud(float x, float y, float width, float height) {
-            super(x, y-height, width, height);
+            super(x + 10f*RATIO, y + 10f*RATIO, width, height);
 
             //hpbg = new HpBarBg(x + width*0.05f, y + height *0.55f, width * 0.5f, height);
             //hpfg = new HpBarFg(x + width*0.1f,  y + height *0.55f, width * 0.4f, height, hpbg);
             //hpbg = new HpBarBg(x, y , width * 0.5f, height);
             //hpfg = new HpBarFg(x, y + height * 0.05f, width * 0.5f, height*0.95f, hpbg);
-            hpbg = new HpBarBg(x, this.y, width * 0.5f, height);
-            hpfg = new HpBarFg(x, this.y + height * 0.05f, width * 0.5f, height * 0.95f, hpbg);
+            hpbg = new HpBarBg(this.x, this.y, width * 0.5f, height);
+            hpfg = new HpBarFg(this.x, this.y + height * 0.05f, width * 0.5f, height * 0.95f, hpbg);
 
-            energyHud = new EnergyHud(x, hpbg.getY() - 35f*RATIO, 35f*RATIO, 35f*RATIO);
+            energyHud = new EnergyHud(this.x, hpbg.getY() + hpbg.getHeight() + 10f*RATIO, 55f*RATIO, 55f*RATIO);
             
         }
 

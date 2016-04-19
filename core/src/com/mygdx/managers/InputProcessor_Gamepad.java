@@ -30,10 +30,10 @@ public class InputProcessor_Gamepad extends InputAdapter implements ControllerLi
     public InputProcessor_Gamepad(){
         GameInputProcessor.controller = true;
         
-        GameInputProcessor.KEY_ACTION_1 = XBox360Pad.BUTTON_A;
-        GameInputProcessor.KEY_ACTION_2 = XBox360Pad.BUTTON_B;
-        GameInputProcessor.KEY_ACTION_3 = XBox360Pad.BUTTON_X;
-        GameInputProcessor.KEY_ACTION_4 = XBox360Pad.BUTTON_Y;
+        GameInputProcessor.KEY_ACTION_0 = XBox360Pad.BUTTON_A;
+        GameInputProcessor.KEY_ACTION_1 = XBox360Pad.BUTTON_B;
+        GameInputProcessor.KEY_ACTION_2 = XBox360Pad.BUTTON_X;
+        GameInputProcessor.KEY_ACTION_ACTION = XBox360Pad.BUTTON_Y;
         GameInputProcessor.MAIN_ESC = XBox360Pad.BUTTON_START;
     }
     
@@ -112,20 +112,20 @@ public class InputProcessor_Gamepad extends InputAdapter implements ControllerLi
     public boolean buttonDown(Controller controller, int buttonCode) {
         
         if(buttonCode == XBox360Pad.BUTTON_A){
-            GameKeyLibrary.setKey(GameKeyLibrary.ATT_ONE, true);
+            GameKeyLibrary.setKey(GameKeyLibrary.ATT_ZERO, true);
         }
         if(buttonCode == XBox360Pad.BUTTON_B){
-            GameKeyLibrary.setKey(GameKeyLibrary.ATT_TWO, true);
+            GameKeyLibrary.setKey(GameKeyLibrary.ATT_ONE, true);
         }
         if(buttonCode == XBox360Pad.BUTTON_X){
-            GameKeyLibrary.setKey(GameKeyLibrary.ATT_THREE, true);
+            GameKeyLibrary.setKey(GameKeyLibrary.ATT_TWO, true);
         }
         if(buttonCode == XBox360Pad.BUTTON_Y){
-            GameKeyLibrary.setKey(GameKeyLibrary.ATT_FOUR, true);
+            GameKeyLibrary.setKey(GameKeyLibrary.ACTION, true);
         }
 
         if(buttonCode == XBox360Pad.BUTTON_LB){
-            GameKeyLibrary.setKey(GameKeyLibrary.DASH, true);
+            GameKeyLibrary.setKey(GameKeyLibrary.ATT_FOUR, true);
         }
         if(buttonCode == XBox360Pad.BUTTON_RB){
             GameKeyLibrary.setKey(GameKeyLibrary.SKILL_SELECT, true);
@@ -142,20 +142,20 @@ public class InputProcessor_Gamepad extends InputAdapter implements ControllerLi
     public boolean buttonUp(Controller controller, int buttonCode) {
         
         if(buttonCode == XBox360Pad.BUTTON_A){
-            GameKeyLibrary.setKey(GameKeyLibrary.ATT_ONE, false);
+            GameKeyLibrary.setKey(GameKeyLibrary.ATT_ZERO, false);
         }
         if(buttonCode == XBox360Pad.BUTTON_B){
-            GameKeyLibrary.setKey(GameKeyLibrary.ATT_TWO, false);
+            GameKeyLibrary.setKey(GameKeyLibrary.ATT_ONE, false);
         }
         if(buttonCode == XBox360Pad.BUTTON_X){
-            GameKeyLibrary.setKey(GameKeyLibrary.ATT_THREE, false);
+            GameKeyLibrary.setKey(GameKeyLibrary.ATT_TWO, false);
         }
         if(buttonCode == XBox360Pad.BUTTON_Y){
-            GameKeyLibrary.setKey(GameKeyLibrary.ATT_FOUR, false);
+            GameKeyLibrary.setKey(GameKeyLibrary.ACTION, false);
         }
 
         if(buttonCode == XBox360Pad.BUTTON_LB){
-            GameKeyLibrary.setKey(GameKeyLibrary.DASH, false);
+            GameKeyLibrary.setKey(GameKeyLibrary.ATT_FOUR, false);
         }
         if(buttonCode == XBox360Pad.BUTTON_RB){
             GameKeyLibrary.setKey(GameKeyLibrary.SKILL_SELECT, false);

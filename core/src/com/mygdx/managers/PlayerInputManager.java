@@ -48,17 +48,28 @@ public class PlayerInputManager {
                 GameScreen.player.moveStop(LEFT);
             }
 
-            if (GameKeyLibrary.isPressed(GameKeyLibrary.ATT_ONE)) {
+            if (GameKeyLibrary.isPressed(GameKeyLibrary.ATT_ZERO)) {
                 GameScreen.player.attack(0);
             }
-            if (GameKeyLibrary.isPressed(GameKeyLibrary.ATT_TWO)) {
+            if (GameKeyLibrary.isPressed(GameKeyLibrary.ATT_ONE)) {
                 GameScreen.player.attack(1);
             }
-            if (GameKeyLibrary.isPressed(GameKeyLibrary.ATT_THREE)) {
+            if (GameKeyLibrary.isPressed(GameKeyLibrary.ATT_TWO)) {
                 GameScreen.player.attack(2);
             }
-            if (GameKeyLibrary.isPressed(GameKeyLibrary.ATT_FOUR)) {
+            if(GameKeyLibrary.isPressed(GameKeyLibrary.ATT_FOUR)){
+                GameScreen.player.attack(4);
+            } 
+            if (GameKeyLibrary.isPressed(GameKeyLibrary.ACTION)) {
                 GameScreen.player.beginAction();
+            }
+            
+            if(GameKeyLibrary.isPressed(GameKeyLibrary.SKILL_SELECT)){
+                if(GameScreen.overlay.skillHudEnable){
+                    GameScreen.overlay.disableSkillHud();
+                }else{
+                    GameScreen.overlay.enableSkillHud(-1);
+                }
             }
             
             if(GameKeyLibrary.isPressed(GameKeyLibrary.DEV_CMD)){
@@ -66,9 +77,7 @@ public class PlayerInputManager {
             } 
             
             
-            if(GameKeyLibrary.isPressed(GameKeyLibrary.DASH)){
-                GameScreen.player.attack(4);
-            } 
+            
         
         }
         
@@ -80,7 +89,7 @@ public class PlayerInputManager {
             ScreenManager.getCurrentScreen().pause();
         }
         
-        if (GameKeyLibrary.isPressed(GameKeyLibrary.DASH)
+        if (GameKeyLibrary.isPressed(GameKeyLibrary.ATT_FOUR)
                 && GameScreen.sm.getState() == State.PAUSED) {
             
             GameScreen.pauseOverlay.confirmSelect();

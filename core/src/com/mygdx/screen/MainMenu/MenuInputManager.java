@@ -34,7 +34,7 @@ public class MenuInputManager {
                 menu.updateSelection(Direction.DOWN);
             }
 
-            if (GameKeyLibrary.isPressed(GameKeyLibrary.DASH)) {
+            if (GameKeyLibrary.isPressed(GameKeyLibrary.ATT_FOUR)) {
                 //menu select
                 menu.confirmSelection();
                 System.out.println("@MenuInputManager confirm");
@@ -50,7 +50,7 @@ public class MenuInputManager {
                 menu.updateSelection(Direction.DOWN);
             }
 
-            if (GameKeyLibrary.isPressed(GameKeyLibrary.ATT_ONE)) {
+            if (GameKeyLibrary.isPressed(GameKeyLibrary.ATT_ZERO)) {
                 //menu select
                 menu.confirmSelection();
                 System.out.println("@MenuInputManager confirm");

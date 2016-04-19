@@ -44,12 +44,13 @@ public class EquipDescription extends OverlayComponent{
         //key bindings
         if(Gdx.input.getInputProcessor() == MainGame.cip)   padEnabled = true;
         
+        /*
         if(!padEnabled){
             message += 
                     Input.Keys.toString(GameInputProcessor.KEY_ACTION_1) + " / " + 
                     Input.Keys.toString(GameInputProcessor.KEY_ACTION_2) + " / " + 
                     Input.Keys.toString(GameInputProcessor.KEY_ACTION_3) + " / " +
-                    Input.Keys.toString(GameInputProcessor.KEY_ACTION_4) + " ";
+                    //Input.Keys.toString(GameInputProcessor.KEY_ACTION_4) + " ";
             
             this.width = uifont.getBounds(message).width;
         }else{
@@ -62,7 +63,7 @@ public class EquipDescription extends OverlayComponent{
             this.width = uifont.getBounds(message).width + (tw+padding) * 4;
             
         }
-        
+        */
     }
 
     

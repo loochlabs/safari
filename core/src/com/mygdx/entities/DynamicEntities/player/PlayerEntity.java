@@ -398,7 +398,7 @@ public class PlayerEntity extends SteerableEntity{
         if(actionEntities.size > 0){
             if (!GameInputProcessor.controller) {
                 font.draw(sb,
-                        Keys.toString(GameInputProcessor.KEY_ACTION_4),
+                        Keys.toString(GameInputProcessor.KEY_ACTION_ACTION),
                         pos.x - width,
                         pos.y + height * 2.5f + font.getCapHeight());
             } else {

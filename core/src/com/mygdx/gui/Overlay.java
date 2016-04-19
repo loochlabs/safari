@@ -34,7 +34,7 @@ public class Overlay {
     private final BarHud barHud;
     
     private final SkillHud skillHud;
-    private boolean skillHudEnable = false;
+    public boolean skillHudEnable = false;
     
     private Texture debugGrid;
     
@@ -71,7 +71,7 @@ public class Overlay {
         
         
         //skillHud = new SkillHud(width/2, 0 , 388 * RATIO, 83 * RATIO);
-        barHud = new BarHud(0, height , 388f * RATIO, 83f * RATIO);
+        barHud = new BarHud(0, 0 , 388f * RATIO, 83f * RATIO);
         
         skillHud = new SkillHud();
         

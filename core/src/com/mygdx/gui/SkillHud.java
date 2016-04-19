@@ -5,13 +5,18 @@
  */
 package com.mygdx.gui;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.Array;
 import com.mygdx.combat.skills.Skill;
 import com.mygdx.entities.ImageSprite;
 import com.mygdx.game.MainGame;
 import static com.mygdx.game.MainGame.RATIO;
 import com.mygdx.gui.descriptions.DescriptionWindow;
+import com.mygdx.managers.GameInputProcessor;
 import com.mygdx.managers.ResourceManager;
 import com.mygdx.screen.GameScreen;
 
@@ -41,6 +46,13 @@ public class SkillHud {
     private DescriptionWindow lightDesc, heavyDesc, specialDesc, defDesc, passiveDesc;
     
     //skill key bindings
+    //key bindings
+    private BitmapFont uifont;
+    private String KEY_ACT0, KEY_ACT1, KEY_ACT2, KEY_ACT3, KEY_ACT4, NEW_ALERT_STR;
+    private Array<String> keyStrings = new Array<String>();
+    private boolean padEnabled = false;
+    private Texture PAD_A, PAD_B, PAD_X, PAD_LB;//, PAD_Y;
+    
     
     public SkillHud(){
         
@@ -87,7 +99,23 @@ public class SkillHud {
         skillHud_empty4.sprite.setBounds(width*0.35f - slotWidth/2, height*0.60f - slotHeight/2, slotWidth, slotHeight);
         
         
+        //key bindings
+        if(GameInputProcessor.controller)   padEnabled = true;
         
+        if(!padEnabled){
+            uifont = new BitmapFont(Gdx.files.internal("fonts/nav-impact.fnt"));
+            uifont.setScale(0.75f * RATIO);
+            keyStrings.add(Input.Keys.toString(GameInputProcessor.KEY_ACTION_0));
+            keyStrings.add(Input.Keys.toString(GameInputProcessor.KEY_ACTION_1));
+            keyStrings.add(Input.Keys.toString(GameInputProcessor.KEY_ACTION_2));
+            keyStrings.add(Input.Keys.toString(GameInputProcessor.KEY_ACTION_4));
+            
+        }else{
+            PAD_A = MainGame.am.get(ResourceManager.GUI_PAD_A);
+            PAD_B = MainGame.am.get(ResourceManager.GUI_PAD_B);
+            PAD_X = MainGame.am.get(ResourceManager.GUI_PAD_X);
+            PAD_LB = MainGame.am.get(ResourceManager.GUI_PAD_RB);
+        }
     }
     
     
@@ -110,8 +138,6 @@ public class SkillHud {
         //      SKILL ICONS
         
         //todo: dirty workaround (def skill is skill[4] in PlayerEntity)
-        
-        
         
         for(int i = 0; i < GameScreen.player.getSkillSet().length; i++){
             
@@ -174,6 +200,67 @@ public class SkillHud {
         skillSprite2.render(sb);
         skillSprite3.render(sb);
         skillSprite4.render(sb);
+        
+        if (!padEnabled) {
+            if (skillSprite0.equals(skillHud_light)) {
+                    uifont.draw(sb,
+                            keyStrings.get(0), 
+                            width*0.42f - uifont.getBounds(keyStrings.get(0)).width/2, 
+                            height*0.25f + slotHeight/2 + uifont.getCapHeight()/2);
+            }
+            
+            if(skillSprite1.equals(skillHud_heavy)){
+                uifont.draw(sb,
+                            keyStrings.get(1), 
+                            width*0.58f - uifont.getBounds(keyStrings.get(1)).width/2, 
+                            height*0.25f + slotHeight/2 + uifont.getCapHeight()/2);
+            }
+            
+            if(skillSprite2.equals(skillHud_special)){
+                uifont.draw(sb,
+                            keyStrings.get(2), 
+                            width*0.65f - uifont.getBounds(keyStrings.get(2)).width/2, 
+                            height*0.6f + slotHeight/2 + uifont.getCapHeight()/2);
+            }
+            
+            if(skillSprite4.equals(skillHud_def)){
+                uifont.draw(sb,
+                            keyStrings.get(3), 
+                            width*0.35f - uifont.getBounds(keyStrings.get(3)).width/2, 
+                            height*0.60f + slotHeight/2 + uifont.getCapHeight()/2);
+            }
+            
+        }else{
+            
+        }
+        
+        //key bindings
+        /*
+        if(!padEnabled){
+            for (int i = 0; i < 3; i++) {
+                if (GameScreen.player.getCurrentSkill(types[i]) != null) {
+                    uifont.draw(sb,
+                            keyStrings.get(i), x + skillOffsetX + (slotOffset*0.15f) + slotOffset * i,
+                            y + uifont.getCapHeight()*1.2f);
+                }
+            }
+            //dash
+            uifont.draw(sb,
+                            keyStrings.peek(), x + skillOffsetX + (slotOffset*0.15f) + slotOffset * 4,
+                            y + uifont.getCapHeight()*1.2f);
+        }else{
+            if(GameScreen.player.getCurrentSkill(types[0]) != null)
+                sb.draw(PAD_A, x + skillOffsetX , y + 5f*RATIO, 28f*RATIO, 28f*RATIO);
+            
+            if(GameScreen.player.getCurrentSkill(types[1]) != null)
+                sb.draw(PAD_B, x + skillOffsetX + slotOffset, y + 5f*RATIO, 28f*RATIO, 28f*RATIO);
+            
+            if(GameScreen.player.getCurrentSkill(types[2]) != null)
+                sb.draw(PAD_X, x + skillOffsetX + slotOffset*2, y + 5f*RATIO, 28f*RATIO, 28f*RATIO);
+            
+            sb.draw(PAD_LB, x + skillOffsetX + slotOffset*4, y + 5f*RATIO, 38f*RATIO, 28f*RATIO);
+        }*/
+        
         
         
         //descriptions

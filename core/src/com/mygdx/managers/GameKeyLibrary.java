@@ -19,11 +19,11 @@ public class GameKeyLibrary {
     public static final int MOVE_DOWN =     1;
     public static final int MOVE_RIGHT =    2;
     public static final int MOVE_LEFT =     3;
-    public static final int ATT_ONE =       4;
-    public static final int ATT_TWO =       5;
-    public static final int ATT_THREE =     6;
-    public static final int ATT_FOUR =      7;
-    public static final int DASH =          8;
+    public static final int ATT_ZERO =       4;
+    public static final int ATT_ONE =       5;
+    public static final int ATT_TWO =     6;
+    public static final int ATT_FOUR =          7;
+    public static final int ACTION =          8;
     public static final int SKILL_SELECT =  9;
     public static final int DEV_CMD =       10;
     public static final int MAIN_ESC =      11;

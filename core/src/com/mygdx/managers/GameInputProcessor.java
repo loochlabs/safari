@@ -17,11 +17,11 @@ public abstract class GameInputProcessor{
     public static int KEY_DOWN;
     public static int KEY_RIGHT;
     public static int KEY_LEFT;
+    public static int KEY_ACTION_0;
     public static int KEY_ACTION_1;
     public static int KEY_ACTION_2;
-    public static int KEY_ACTION_3;
     public static int KEY_ACTION_4;
-    public static int KEY_DASH;
+    public static int KEY_ACTION_ACTION;
     public static int KEY_SKILL_SELECT;
     public static int DEV_CMD;
     public static int MAIN_ESC;

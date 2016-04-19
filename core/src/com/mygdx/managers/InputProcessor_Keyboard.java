@@ -18,12 +18,12 @@ public class InputProcessor_Keyboard extends InputAdapter{
     private final int KEY_DOWN =        Keys.S;
     private final int KEY_RIGHT =       Keys.D;
     private final int KEY_LEFT =        Keys.A;
-    private final int KEY_ATT_ONE =     Keys.U;
-    private final int KEY_ATT_TWO =     Keys.I;
-    private final int KEY_ATT_THREE =   Keys.O;
-    private final int KEY_ATT_FOUR =    Keys.E;
-    private final int KEY_DASH =        Keys.SPACE;
-    private final int KEY_SKILL_SELECT =    Keys.TAB;
+    private final int KEY_ATT_ZERO =     Keys.U;
+    private final int KEY_ATT_ONE =     Keys.I;
+    private final int KEY_ATT_TWO =     Keys.O;
+    private final int KEY_ATT_FOUR =     Keys.SPACE;
+    private final int KEY_ATT_ACTION =    Keys.E;
+    private final int KEY_SKILL_SELECT =    Keys.Q;
     private final int DEV_CMD =         Keys.DEL;
     private final int MAIN_ESC =        Keys.ESCAPE;
     private final int MUTE =            Keys.M;
@@ -36,11 +36,11 @@ public class InputProcessor_Keyboard extends InputAdapter{
         GameInputProcessor.KEY_DOWN = KEY_DOWN;
         GameInputProcessor.KEY_RIGHT = KEY_RIGHT;
         GameInputProcessor.KEY_LEFT = KEY_LEFT;
+        GameInputProcessor.KEY_ACTION_0 = KEY_ATT_ZERO;
         GameInputProcessor.KEY_ACTION_1 = KEY_ATT_ONE;
         GameInputProcessor.KEY_ACTION_2 = KEY_ATT_TWO;
-        GameInputProcessor.KEY_ACTION_3 = KEY_ATT_THREE;
         GameInputProcessor.KEY_ACTION_4 = KEY_ATT_FOUR;
-        GameInputProcessor.KEY_DASH = KEY_DASH;
+        GameInputProcessor.KEY_ACTION_ACTION = KEY_ATT_ACTION;
         GameInputProcessor.KEY_SKILL_SELECT = KEY_SKILL_SELECT;
         GameInputProcessor.DEV_CMD = DEV_CMD;
         GameInputProcessor.MAIN_ESC = MAIN_ESC;
@@ -62,20 +62,20 @@ public class InputProcessor_Keyboard extends InputAdapter{
         if(k == KEY_RIGHT){
             GameKeyLibrary.setKey(GameKeyLibrary.MOVE_RIGHT, true);
         }
+        if(k == KEY_ATT_ZERO){
+            GameKeyLibrary.setKey(GameKeyLibrary.ATT_ZERO, true);
+        }
         if(k == KEY_ATT_ONE){
             GameKeyLibrary.setKey(GameKeyLibrary.ATT_ONE, true);
         }
         if(k == KEY_ATT_TWO){
             GameKeyLibrary.setKey(GameKeyLibrary.ATT_TWO, true);
         }
-        if(k == KEY_ATT_THREE){
-            GameKeyLibrary.setKey(GameKeyLibrary.ATT_THREE, true);
-        }
         if(k == KEY_ATT_FOUR){
             GameKeyLibrary.setKey(GameKeyLibrary.ATT_FOUR, true);
         }
-        if(k == KEY_DASH){
-            GameKeyLibrary.setKey(GameKeyLibrary.DASH, true);
+        if(k == KEY_ATT_ACTION){
+            GameKeyLibrary.setKey(GameKeyLibrary.ACTION, true);
         }
         if(k == KEY_SKILL_SELECT){
             GameKeyLibrary.setKey(GameKeyLibrary.SKILL_SELECT, true);
@@ -106,20 +106,20 @@ public class InputProcessor_Keyboard extends InputAdapter{
         if(k == KEY_RIGHT){
             GameKeyLibrary.setKey(GameKeyLibrary.MOVE_RIGHT, false);
         }
+        if(k == KEY_ATT_ZERO){
+            GameKeyLibrary.setKey(GameKeyLibrary.ATT_ZERO, false);
+        }
         if(k == KEY_ATT_ONE){
             GameKeyLibrary.setKey(GameKeyLibrary.ATT_ONE, false);
         }
         if(k == KEY_ATT_TWO){
             GameKeyLibrary.setKey(GameKeyLibrary.ATT_TWO, false);
         }
-        if(k == KEY_ATT_THREE){
-            GameKeyLibrary.setKey(GameKeyLibrary.ATT_THREE, false);
-        }
         if(k == KEY_ATT_FOUR){
             GameKeyLibrary.setKey(GameKeyLibrary.ATT_FOUR, false);
         }
-        if(k == KEY_DASH){
-            GameKeyLibrary.setKey(GameKeyLibrary.DASH, false);
+        if(k == KEY_ATT_ACTION){
+            GameKeyLibrary.setKey(GameKeyLibrary.ACTION, false);
         }
         if(k == KEY_SKILL_SELECT){
             GameKeyLibrary.setKey(GameKeyLibrary.SKILL_SELECT, false);
