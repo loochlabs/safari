@@ -8,15 +8,17 @@ package com.mygdx.dev;
 import com.mygdx.environments.EnvNull.random.Tear_R;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.combat.skills.Skill_CrackOfThunder;
+import com.mygdx.combat.skills.Skill_GhostJab;
+import com.mygdx.combat.skills.Skill_HauntHaste;
 import com.mygdx.combat.skills.Skill_LightningRod;
 import com.mygdx.combat.skills.Skill_PowerPlease;
 import com.mygdx.demo.demo2.EnvVoid_D2_1;
 import com.mygdx.entities.DynamicEntities.DogEntities.StellaEntity;
 import com.mygdx.entities.StaticEntities.SkillPad;
 import com.mygdx.entities.StaticEntities.SkillPad_Defense;
+import com.mygdx.entities.StaticEntities.SkillPad_DmLock;
 import com.mygdx.entities.StaticEntities.breakable.Cyst_Blue;
 import com.mygdx.entities.esprites.DecomSprite;
-import com.mygdx.entities.pickups.Pickup_SoulPiece;
 import com.mygdx.environments.EnvVoid.pads.EndPad;
 import com.mygdx.environments.EnvVoid.EnvVoid;
 import com.mygdx.environments.EnvironmentManager;
@@ -91,16 +93,8 @@ public class EnvVoid_Dev0 extends EnvVoid{
         //spawnEntity(new En_VoidTrap(new Vector2(800f*RATIO, 1100f*RATIO)));
         
         //dev soul
-        spawnEntity(new Pickup_SoulPiece(new Vector2(1000f*RATIO, 1400f*RATIO)));
-        spawnEntity(new Pickup_SoulPiece(new Vector2(1000f*RATIO, 1420f*RATIO)));
-        spawnEntity(new Pickup_SoulPiece(new Vector2(1000f*RATIO, 1440f*RATIO)));
-        spawnEntity(new Pickup_SoulPiece(new Vector2(1000f*RATIO, 1460f*RATIO)));
-        spawnEntity(new Pickup_SoulPiece(new Vector2(1000f*RATIO, 1480f*RATIO)));
-        spawnEntity(new Pickup_SoulPiece(new Vector2(1000f*RATIO, 1500f*RATIO)));
-        spawnEntity(new Pickup_SoulPiece(new Vector2(1000f*RATIO, 1520f*RATIO)));
-        spawnEntity(new Pickup_SoulPiece(new Vector2(1000f*RATIO, 1540f*RATIO)));
-        spawnEntity(new Pickup_SoulPiece(new Vector2(1000f*RATIO, 1560f*RATIO)));
-        
+        spawnEntity(new SkillPad_DmLock(new Vector2(1000f*RATIO, 1400f*RATIO), new Skill_GhostJab(), 1));
+        spawnEntity(new SkillPad_DmLock(new Vector2(750f*RATIO, 1400f*RATIO), new Skill_HauntHaste(), 1));
     }
     
     

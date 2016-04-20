@@ -15,6 +15,7 @@ import com.mygdx.entities.Entity;
 import com.mygdx.entities.StaticEntities.BlankWall;
 import com.mygdx.entities.StaticEntities.SkillPad;
 import com.mygdx.entities.StaticEntities.SkillPad_Defense;
+import com.mygdx.entities.StaticEntities.SkillPad_DmLock_Secondary;
 import com.mygdx.entities.StaticEntities.SkillPad_Primary;
 import com.mygdx.entities.StaticEntities.SkillPad_Secondary;
 import com.mygdx.entities.text.TextEntity;
@@ -372,9 +373,16 @@ public class EnvStart_0 extends Environment{
         
        
         
+        //dm lock skill pads
+        
+        //5
+        spawnEntity(new SkillPad_DmLock_Secondary(new Vector2(1125f*RATIO, 650f*RATIO), 5));
+        spawnEntity(new SkillPad_DmLock_Secondary(new Vector2(425f*RATIO, 650f*RATIO), 5));
         
         
-        
+        //10
+        spawnEntity(new SkillPad_DmLock_Secondary(new Vector2(1125f*RATIO, 350f*RATIO), 10));
+        spawnEntity(new SkillPad_DmLock_Secondary(new Vector2(425f*RATIO, 350f*RATIO), 10));
         
     }
     
