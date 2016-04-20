@@ -23,7 +23,7 @@ public class Pickup_Energy extends Pickup{
         
         bd.linearDamping = 5.0f;
         
-        texture = MainGame.am.get(ResourceManager.ICON_ENERGY);
+        texture = MainGame.am.get(ResourceManager.HUD_ENERGY_FILL);
         
         iw = width*2;
         ih = height*2;

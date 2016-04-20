@@ -213,6 +213,11 @@ public class ResourceManager {
         
         //skill-overlay
         this.loadAtlas("gui/hud2/skill-overlay-cursor.atlas", "skill-overlay-cursor",1);
+        this.loadAtlas("gui/hud2/hud-skill-light.atlas", "hud-skill-light",1);
+        this.loadAtlas("gui/hud2/hud-skill-heavy.atlas", "hud-skill-heavy",1);
+        this.loadAtlas("gui/hud2/hud-skill-special.atlas", "hud-skill-special",1);
+        this.loadAtlas("gui/hud2/hud-skill-passive.atlas", "hud-skill-passive",1);
+        this.loadAtlas("gui/hud2/hud-skill-defense.atlas", "hud-skill-defense",1);
         
         
         //**********************************
@@ -424,9 +429,6 @@ public class ResourceManager {
         asm.load(OVERLAY_GRID, Texture.class);
         asm.load(ICON_HP, Texture.class);
         asm.load(ICON_ENERGY, Texture.class);
-        //asm.load(HUD_SOUL_BG_POE, Texture.class);
-        //asm.load(HUD_SOUL_FG_POE, Texture.class);
-        //asm.load(HUD_SOUL_METER_POE, Texture.class);
         asm.load(HUD_ENERGY_FILL, Texture.class);
         asm.load(HUD_ENERGY_EMPTY, Texture.class);
         
@@ -435,6 +437,8 @@ public class ResourceManager {
         
         //soul hud
         asm.load(SOUL_LOGO_POE, Texture.class);
+        asm.load(HUD_SOUL_EMPTY, Texture.class);
+        
         
         //pad icons
         asm.load(GUI_PAD_A, Texture.class);
@@ -452,12 +456,20 @@ public class ResourceManager {
         asm.load(DESC_BG, Texture.class);
         
         //combo
+        /*
         asm.load(COMBO_BASE, Texture.class);
         asm.load(COMBO_CENTER, Texture.class);
         asm.load(COMBO_CURSOR, Texture.class);
         asm.load(COMBO_YELLOW, Texture.class);
         asm.load(COMBO_ORANGE, Texture.class);
         asm.load(COMBO_RED, Texture.class);
+        */
+        
+        //COMBO
+        asm.load(COMBO_ICON_LIGHT, Texture.class);
+        asm.load(COMBO_ICON_HEAVY, Texture.class);
+        asm.load(COMBO_ICON_SPECIAL, Texture.class);
+        
         
         //skills
         asm.load(SKILL_PAD_LIGHT, Texture.class);
@@ -465,7 +477,7 @@ public class ResourceManager {
         asm.load(SKILL_PAD_SPECIAL, Texture.class);
         asm.load(SKILL_PAD_PASSIVE, Texture.class);
         
-        //asm.load(SKILL_PH, Texture.class);
+        
         asm.load(SKILL_RED, Texture.class);
         asm.load(SKILL_BLANK, Texture.class);
         asm.load(SKILL_DASH, Texture.class);
@@ -998,8 +1010,7 @@ public class ResourceManager {
     public static String ITEM_MATTER_YELLOW = "entities/pickups/matter-yellow1.png";
     public static String ITEM_PED = "entities/pickups/item-ped1.png";
     public static String ITEM_LIFE = "entities/pickups/life-pickup1.png";
-    //soul
-    public static String ITEM_SOUL_POE = "entities/pickups/soul/soul-poe.png";
+    
     
     public static String STAT_ITEM_LIFE = "entities/pickups/items/orb-life1.png";
     public static String STAT_ITEM_ENERGY = "entities/pickups/items/orb-energy1.png";
@@ -1017,8 +1028,9 @@ public class ResourceManager {
     public static String HUD_ENERGY_EMPTY = "gui/hud2/energy-slot-empty.png"; 
     
     //skill overlay
+    public static String HUD_SOUL_EMPTY = "gui/hud2/soul-slot-empty.png";
     public static String HUD_SKILL_OVERLAY = "gui/hud2/skill-overlay.png";
-    
+    public static String ITEM_SOUL_POE = "entities/pickups/soul/soul-poe.png";
     
     
     //soul hud
@@ -1038,22 +1050,27 @@ public class ResourceManager {
     public static String PAUSE_SOUND= "gui/pause/pause-sound1.png";
     //descriptions
     public static String DESC_BG = "gui/descriptions/desc-bg3.png";
-    //soul
-    //public static String HUD_SOUL_BG_POE = "gui/soul/soul-poe-bg.png";
-    //public static String HUD_SOUL_FG_POE = "gui/soul/soul-poe-fg.png";
-    //public static String HUD_SOUL_METER_POE = "gui/soul/soul-meter-poe.png";
     
     
     //GAME OVER SCREEN
     public static String GO_TEXT = "screens/GameOver/gameOver-text.png";
     
-    //COMBO
+    //TODO: old comob circle stuff
+    /*
     public static String COMBO_BASE = "combat/combo/combo-base.png";
     public static String COMBO_CENTER = "combat/combo/combo-center.png";
     public static String COMBO_CURSOR = "combat/combo/combo-cursor.png";
     public static String COMBO_YELLOW = "combat/combo/combo2-yellow.png";
     public static String COMBO_ORANGE = "combat/combo/combo2-orange.png";
     public static String COMBO_RED = "combat/combo/combo2-red.png";
+    */
+    
+    
+    //combo icons
+    public static String COMBO_ICON_LIGHT = "gui/hud2/combo-icon-light.png";
+    public static String COMBO_ICON_HEAVY = "gui/hud2/combo-icon-heavy.png";
+    public static String COMBO_ICON_SPECIAL = "gui/hud2/combo-icon-special.png";
+    
     
     //SKILLS
     public static String SKILL_PAD_LIGHT = "entities/pickups/pad-light.png";

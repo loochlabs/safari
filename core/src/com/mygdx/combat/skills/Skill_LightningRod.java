@@ -40,12 +40,11 @@ public class Skill_LightningRod extends LightSkill{
         name = "Lightning Rod";
         attribute = ENERGY;
         damageMod = 0.5f;
-        desc = "Chance to resore energy";
-        descWindow = new DescriptionWindow(name, desc, comboChain);
-        
+        desc = "Effect: Chance to resore energy";
         skillIcon = MainGame.am.get(ResourceManager.SKILL_CRACKOFLIGHTNING);
         
         comboChain = new SkillType[] { LIGHT, HEAVY, LIGHT };
+        descWindow = new DescriptionWindow(name, desc, comboChain);
         
         
         impactTemplates.add(new ImageSprite("poe-attack4", false));

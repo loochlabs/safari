@@ -199,10 +199,12 @@ public class TearPortal extends SteerableEntity{
         body.createFixture(warpfd).setUserData(warpdata);
         
         //knockback player
+        /*
         GameScreen.player.getBody().applyForce(
                 GameScreen.player.getCurrentDirection().cpy().nor().scl(800f), 
                 GameScreen.player.getBody().getPosition(), 
                 true);
+        */
         
         openDelayFC.start(fm);
         openDelayFC.running = true;

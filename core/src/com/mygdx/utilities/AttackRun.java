@@ -11,6 +11,7 @@ import com.mygdx.utilities.UtilityVars.AttackState;
  *
  * @author looch
  */
+@Deprecated
 public class AttackRun extends UtilityRun{
 
     private long prepTime, attTime, recovTime;

@@ -12,6 +12,7 @@ import com.mygdx.entities.ImageSprite;
 import com.mygdx.entities.esprites.PermSprite;
 import static com.mygdx.game.MainGame.RATIO;
 import com.mygdx.screen.GameScreen;
+import com.mygdx.utilities.FrameCounter_Combo;
 import static com.mygdx.utilities.UtilityVars.PPM;
 
 /**
@@ -22,11 +23,9 @@ public abstract class HeavySkill extends Skill{
 
     public HeavySkill(){
         type = HEAVY;
-        //COST = 40.0f;
-        
         FORCE = 250.0f;
         
-        
+        comboFC = new FrameCounter_Combo(0.3f, 0.3f, 0.2f, 0.2f);
         
         skillSprite = new ImageSprite("poe-attack-heavy",false);
         skillSprite.sprite.setScale(0.35f*RATIO);
@@ -76,6 +75,8 @@ public abstract class HeavySkill extends Skill{
             playSound = true;
             
         }
+        
+        GameScreen.player.addSkillSprite(skillSprite);
         
         addBuff();
         

@@ -24,14 +24,15 @@ public class DescriptionWindow {
     private float width,height;
     private Texture texture; //iconTexture;
     private final BitmapFont font, effectFont;
+    private final Texture cTexture_light, cTexture_heavy, cTexture_special;
     
     private String name, desc;
     private SkillType[] combo;
     
     private float 
-            name_x, name_y, name_w, name_h,
-            desc_x, desc_y, desc_w, desc_h,
-            combo_x, combo_y, combo_w, combo_h;
+            name_x, name_w,
+            desc_x, desc_w,
+            combo_x, combo_w;
     private float PADDING;
     
     public float getWidth() { return width; }
@@ -52,17 +53,11 @@ public class DescriptionWindow {
         
         setSize(0,0);
         
-    }
-    
-    /*
-    public DescriptionWindow(String name, String desc, SkillType type, boolean yel){
-        this(name,desc,type);
+        cTexture_light = MainGame.am.get(ResourceManager.COMBO_ICON_LIGHT);
+        cTexture_heavy = MainGame.am.get(ResourceManager.COMBO_ICON_HEAVY);
+        cTexture_special = MainGame.am.get(ResourceManager.COMBO_ICON_SPECIAL);
         
-        if(yel){
-            effectFont.setColor(1, 1, 0.6f, 1.0f);//pale yellow
-            equipable = false;
-        }
-    }*/
+    }
     
     public void setSize(float x, float y){
         height = (font.getCapHeight()*3.5f) * RATIO;
@@ -89,8 +84,32 @@ public class DescriptionWindow {
     public void render(SpriteBatch sb, float x, float y){
         sb.draw(texture, x, y, width, height);
         font.draw(sb,       name,               x + name_x + PADDING,   y + font.getCapHeight()*3 + PADDING*2);
-        effectFont.draw(sb, "\""+ desc+"\"",    x + desc_x + PADDING,   y + font.getCapHeight()*2  + PADDING);
-        effectFont.draw(sb, "Combo: ",          x + combo_x + PADDING,  y + font.getCapHeight() + PADDING);
+        effectFont.draw(sb,  desc,    x + desc_x + PADDING,   y + font.getCapHeight()*2  + PADDING);
+        
+        //combo render
+        effectFont.draw(sb, "Combo: ",          x + desc_x + PADDING,  y + font.getCapHeight() + PADDING);
+        for(int i = 0 ; i < combo.length; i++){
+            Texture t = null;
+            switch(combo[i]){
+                case LIGHT:
+                    t = cTexture_light;
+                    break;
+                case HEAVY:
+                    t = cTexture_heavy;
+                    break;
+                case SPECIAL:
+                    t = cTexture_special;
+                    break;
+                case DEFENSE:
+                    break;
+                default:
+                    break;
+            }
+            
+            if(t != null){
+                sb.draw(t,x + desc_x + PADDING + effectFont.getBounds("Combo: ").width + i*42f*RATIO, y + PADDING*0.75f, 35f*RATIO, 35f*RATIO);
+            }
+        }
     }
     
 }

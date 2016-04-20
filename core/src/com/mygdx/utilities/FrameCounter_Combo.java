@@ -13,12 +13,14 @@ import com.mygdx.game.MainGame;
  */
 public class FrameCounter_Combo extends FrameCounter{
 
-    public int attTime, comboTime, recovTime;
+    public int prepTime, attTime, comboTime, recovTime;
+    public float prepTime_real, attTime_real, comboTime_real, recovTime_real;   //time in seconds
     public UtilityVars.AttackState state;
     
     
-    public void setTime(float attack, float combo, float recov){
-        attTime = (int)(attack * Math.pow(MainGame.STEP,-1));
+    public void setTime(float prep, float attack, float combo, float recov){
+        prepTime = (int)(prep * Math.pow(MainGame.STEP, -1));
+        attTime = prepTime + (int)(attack * Math.pow(MainGame.STEP,-1));
         comboTime = attTime + (int)(combo * Math.pow(MainGame.STEP,-1));
         recovTime = comboTime + (int)(recov * Math.pow(MainGame.STEP,-1));
         
@@ -31,10 +33,15 @@ public class FrameCounter_Combo extends FrameCounter{
         super(time);
     }
     
-    public FrameCounter_Combo(float attack, float combo, float recov){
+    public FrameCounter_Combo(float prep, float attack, float combo, float recov){
         super(attack+combo+recov);
         
-        setTime(attack, combo, recov);
+        this.prepTime_real = prep;
+        this.attTime_real = attack;
+        this.comboTime_real = combo;
+        this.recovTime_real = recov;
+        
+        setTime(prep, attack, combo, recov);
         
         state = UtilityVars.AttackState.NONE;
     }
@@ -46,7 +53,10 @@ public class FrameCounter_Combo extends FrameCounter{
         CURRENT_FRAME++;
         running = true;
         
-        if(CURRENT_FRAME <= attTime && CURRENT_FRAME > 0){
+        if(CURRENT_FRAME <= prepTime && CURRENT_FRAME > 0){
+            state = state != UtilityVars.AttackState.RECOVERING ? UtilityVars.AttackState.PREPPING : UtilityVars.AttackState.RECOVERING;
+        }
+        else if(CURRENT_FRAME <= attTime){
             state = state != UtilityVars.AttackState.RECOVERING ? UtilityVars.AttackState.ATTACKING : UtilityVars.AttackState.RECOVERING;
         }else if(CURRENT_FRAME <= comboTime) {
             state = state != UtilityVars.AttackState.RECOVERING ? UtilityVars.AttackState.COMBO : UtilityVars.AttackState.RECOVERING;

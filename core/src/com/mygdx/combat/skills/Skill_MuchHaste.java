@@ -27,7 +27,6 @@ public class Skill_MuchHaste extends Skill{
         desc = "More speed";
         descWindow = new DescriptionWindow(name, desc, comboChain);
         
-        comboFC = new FrameCounter_Combo(0.3f, 0,0);
         
     }
     

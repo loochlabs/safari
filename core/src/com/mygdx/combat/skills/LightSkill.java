@@ -49,11 +49,6 @@ public abstract class LightSkill extends Skill{
         //sound
         boolean playSound = false;
         
-        //combo effect
-        //if(isCombo){
-            //comboEffect();
-        //}
-        
         
         //effected enemies
         for(Entity ent: GameScreen.player.getAttTargets()){
@@ -79,6 +74,8 @@ public abstract class LightSkill extends Skill{
         //sound
         if(playSound) impactSound.play(false);
         
+        //skill sprite
+        GameScreen.player.addSkillSprite(skillSprite);
         
         //buff
         addBuff();

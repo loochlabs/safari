@@ -70,32 +70,32 @@ public class SkillHud {
         slotHeight = 130f*RATIO;
         
         
-        skillHud_light = new ImageSprite("light-rot", false);
+        skillHud_light = new ImageSprite("hud-skill-light", false);
         skillHud_light.sprite.setBounds(width*0.42f - slotWidth/2, height*0.25f - slotHeight/2, slotWidth, slotHeight);
-        skillHud_empty0 = new ImageSprite("skill-empty", true);
+        skillHud_empty0 = new ImageSprite("skill-empty", false);
         skillHud_empty0.sprite.setBounds(width*0.42f - slotWidth/2, height*0.25f - slotHeight/2, slotWidth, slotHeight);
         
         
-        skillHud_heavy = new ImageSprite("heavy-rot", false);
+        skillHud_heavy = new ImageSprite("hud-skill-heavy", false);
         skillHud_heavy.sprite.setBounds(width*0.58f - slotWidth/2, height*0.25f - slotHeight/2, slotWidth, slotHeight);
-        skillHud_empty1 = new ImageSprite("skill-empty", true);
+        skillHud_empty1 = new ImageSprite("skill-empty", false);
         skillHud_empty1.sprite.setBounds(width*0.58f - slotWidth/2, height*0.25f - slotHeight/2, slotWidth, slotHeight);
         
-        skillHud_special = new ImageSprite("special-rot", false);
+        skillHud_special = new ImageSprite("hud-skill-special", false);
         skillHud_special.sprite.setBounds(width*0.65f - slotWidth/2, height*0.6f - slotHeight/2, slotWidth, slotHeight);
-        skillHud_empty2 = new ImageSprite("skill-empty", true);
+        skillHud_empty2 = new ImageSprite("skill-empty", false);
         skillHud_empty2.sprite.setBounds(width*0.65f - slotWidth/2, height*0.6f - slotHeight/2, slotWidth, slotHeight);
         
         
-        skillHud_passive = new ImageSprite("passive-rotSlow", true);
+        skillHud_passive = new ImageSprite("hud-skill-passive", false);
         skillHud_passive.sprite.setBounds(width*0.5f - slotWidth/2, height*0.78f - slotHeight/2, slotWidth, slotHeight);
         skillHud_passive.setComplete(true);
-        skillHud_empty3 = new ImageSprite("skill-empty", true);
+        skillHud_empty3 = new ImageSprite("skill-empty", false);
         skillHud_empty3.sprite.setBounds(width*0.50f - slotWidth/2, height*0.78f - slotHeight/2, slotWidth, slotHeight);
         
-        skillHud_def = new ImageSprite("skill-empty", true);
+        skillHud_def = new ImageSprite("hud-skill-defense", false);
         skillHud_def.sprite.setBounds(width*0.35f - slotWidth/2, height*0.60f - slotHeight/2, slotWidth, slotHeight);
-        skillHud_empty4 = new ImageSprite("skill-empty", true);
+        skillHud_empty4 = new ImageSprite("skill-empty", false);
         skillHud_empty4.sprite.setBounds(width*0.35f - slotWidth/2, height*0.60f - slotHeight/2, slotWidth, slotHeight);
         
         

@@ -363,7 +363,7 @@ public class Overlay {
                 height = 50f*RATIO;
                 
                 fillTexture = GameScreen.player.getSoulTexture();
-                emptyTexture = MainGame.am.get(ResourceManager.HUD_ENERGY_EMPTY);
+                emptyTexture = MainGame.am.get(ResourceManager.HUD_SOUL_EMPTY);
             }
             
             public void render(SpriteBatch sb, float x, float y){

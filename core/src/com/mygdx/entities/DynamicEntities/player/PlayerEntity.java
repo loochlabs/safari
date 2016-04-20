@@ -129,7 +129,6 @@ public class PlayerEntity extends SteerableEntity{
     
     public void setCurrentDamage(float dmg) { this.CURRENT_DAMAGE = dmg; }
     public void setCurrentSpeed(float speed) { this.CURRENT_SPEED = speed; }
-    //public void setEnergyRegen(float reg) { this.ENERGY_REGEN = reg; }
     
    
     //***********************************************
@@ -153,11 +152,10 @@ public class PlayerEntity extends SteerableEntity{
     private LinkedBlockingQueue<Integer> attackQueue = new LinkedBlockingQueue<Integer>();
     private Array<SkillType []> comboChains = new Array<SkillType []>();
     
-    private FrameCounter_Combo attackFC = new FrameCounter_Combo(0,0,0);
+    private FrameCounter_Combo attackFC = new FrameCounter_Combo(0, 0,0,0);
     
     protected final Skill[] skillSet = {null,null,null,null, null};
     private Skill currentSkill;     //SKILL_LIGHT, SKILL_HEAVY, SKILL_SPEC, SKILL_PASSIVE;
-    //private Skill previousSkill;
     private float LIGHT_MOD, HEAVY_MOD, SPECIAL_MOD;
     
     
@@ -212,8 +210,6 @@ public class PlayerEntity extends SteerableEntity{
     public void setSpecialMod(float special) { this.SPECIAL_MOD = special; }
     
     
-    //public void setCurrentEnergy(float energy) { this.energy = energy; }
-    
     public PlayerEntity(Vector2 pos, float w, float h){
         super(pos,w,h);
         
@@ -241,7 +237,6 @@ public class PlayerEntity extends SteerableEntity{
         HEAVY_MOD = 1.0f;
         SPECIAL_MOD = 1.0f;
         RANGE = 1.3f*RATIO;     //needed for NormalAttackSensor size, radius
-        //RANGE = 0.8f*RATIO;
         
         life = CURRENT_LIFE;
         
@@ -291,7 +286,7 @@ public class PlayerEntity extends SteerableEntity{
         
         //combat
         //todo: might not need initial init
-        attackFC = new FrameCounter_Combo(0,0,0);
+        attackFC = new FrameCounter_Combo(0,0,0,0);
         
         //combat
         normAttSensor = new NormAttackSensor(this);
@@ -811,7 +806,6 @@ public class PlayerEntity extends SteerableEntity{
         if (sm.getState() == State.PLAYING
                 && skillSet[index] != null
                 && !dmgFC.running){                               //while not being damaged
-                //&& energy >= skillSet[index - 1].getCost() ) {   
 
             //CHECK TO RECIEVE INPUT FOR attackQueue
             if(!attackFC.running && attackBlocked){
@@ -825,99 +819,11 @@ public class PlayerEntity extends SteerableEntity{
             }
             
             
-            //if(!attackFC.running){
-                /*
-                START NEW COMBO CHAIN
-                */
-                
-                
-                
-                
-               //isCombo = false;
-               //currentAttackFail = false;
-               //comboChain = 1;
-            //}else{
-                //Poll player inputs
-                //attackQueue.put(index);
-                
-                //check for combo
-                
-            //}
-            
-            /*
-            UPDATE ATTACK QUEUE
-            */
-            
-            
-            /*else if (attackFC.state == AttackState.COMBO
-                        && !currentAttackFail) {   //combo
-                initNewSkill(index);
-                isCombo = true;
-                comboChain++;
-            } else{
-                attackFail();
-                comboChain = 0;
-            }*/
-            
         }
     }
     
     
-    //todo: change to actual index (not index-1)
-    private void initNewSkill(int index){
-        
-        currentSkill = null;
-        
-        //return if not enough energy
-        if(skillSet[index].getCost() > 0 && energy < skillSet[index].getCost()){
-            return;
-        }else{
-            this.removeEnergy(skillSet[index].getCost());
-        }
-        
-        
-        //previousSkill = currentSkill;
-        currentSkill = skillSet[index];
-
-        
-        attackFC = currentSkill.getComboFC();
-        attackFC.start(fm);
-
-        //execute background effects of skills (buffs, etc)
-        //not the actual damage attack on enemy
-        currentSkill.active();
-
-        //todo: adjust position to align with attackSensor
-        if(currentSkill.getSkillSprite() != null){
-            ImageSprite ss = currentSkill.getSkillSprite();
-            skillSprites.add(new ImageSprite(ss,
-                    body.getPosition().x * PPM - ss.sprite.getWidth() / 2, 
-                    body.getPosition().y * PPM - ss.sprite.getHeight() / 2,
-                    0.75f));
-        }
-        
-        //reset appropriate player attack sprite
-        switch(currentSkill.getType()){
-            case LIGHT:
-                attackSprite.reset();
-                attackLeftSprite.reset();
-                attackRightSprite.reset();
-            case HEAVY:
-                attackHeavySprite.reset();
-                break;
-            case SPECIAL:
-                playerBuffSprite.reset();
-                break;
-            default:
-                attackSprite.reset();
-                break;
-        }
-        
-        //sound
-        SFX_YELLS.random().play(false);
-
-        
-    }
+   
     
     //keep track of count in current combo chain
     protected Array<SkillType> currentComboChain = new Array<SkillType>();
@@ -937,7 +843,7 @@ public class PlayerEntity extends SteerableEntity{
             if(!attackFC.running){
                 //start new combo chain
                 
-                initNewSkill(attackQueue.poll());
+                initNewSkill(attackQueue.poll(), false);
                 currentComboChain.clear();
                 if(currentSkill != null){
                     currentComboChain.add(currentSkill.getType());
@@ -1004,7 +910,7 @@ public class PlayerEntity extends SteerableEntity{
                         //if continuing on this combo chain
                         if (comboClear) {
                             //continue combo
-                            initNewSkill(pollIndex);
+                            initNewSkill(pollIndex, true);
                             currentComboChain.add(currentSkill.getType());
                             
                             //if end of this comboChain, enable comboEffect
@@ -1071,11 +977,11 @@ public class PlayerEntity extends SteerableEntity{
 
                 if (currentSkill != null && currentSkill.isActive()) {
                     currentSkill.effect();
-
                 }
             }
 
             //combo effect
+            //todo: old
             if (comboSkill != null) {
                 comboSkill.comboEffect();
                 comboSkill = null;
@@ -1094,6 +1000,7 @@ public class PlayerEntity extends SteerableEntity{
                     break;
                 case HEAVY:
                     isprite = attackHeavySprite;
+                    isprite.setPause(attackFC.state == AttackState.PREPPING);
                     break;
                 case SPECIAL:
                     isprite = playerBuffSprite;
@@ -1108,6 +1015,66 @@ public class PlayerEntity extends SteerableEntity{
         
     }
     
+    
+    private void initNewSkill(int index, boolean combo){
+        
+        currentSkill = null;
+        
+        //return if not enough energy
+        if(skillSet[index].getCost() > 0 && energy < skillSet[index].getCost()){
+            return;
+        }else{
+            this.removeEnergy(skillSet[index].getCost());
+        }
+        
+        
+        //previousSkill = currentSkill;
+        currentSkill = skillSet[index];
+
+        //If combo, skill PREP
+        FrameCounter_Combo tf = currentSkill.getComboFC();
+        attackFC = combo ? new FrameCounter_Combo(0,tf.attTime_real, tf.comboTime_real,tf.recovTime_real) : tf;
+        //attackFC = currentSkill.getComboFC();
+        
+        attackFC.start(fm);
+
+        //execute background effects of skills (buffs, etc)
+        //not the actual damage attack on enemy
+        currentSkill.active();
+
+        
+        
+        //reset appropriate player attack sprite
+        switch(currentSkill.getType()){
+            case LIGHT:
+                attackSprite.reset();
+                attackLeftSprite.reset();
+                attackRightSprite.reset();
+            case HEAVY:
+                attackHeavySprite.reset();
+                break;
+            case SPECIAL:
+                playerBuffSprite.reset();
+                break;
+            default:
+                attackSprite.reset();
+                break;
+        }
+        
+        //sound
+        SFX_YELLS.random().play(false);
+
+        
+    }
+    
+    public void addSkillSprite(ImageSprite s){
+        if(s != null){
+            skillSprites.add(new ImageSprite(s,
+                    body.getPosition().x * PPM - s.sprite.getWidth() / 2, 
+                    body.getPosition().y * PPM - s.sprite.getHeight() / 2,
+                    0.75f));
+        }
+    }
     
     public void setCurrentSkill(Skill skill){
        
@@ -1164,53 +1131,6 @@ public class PlayerEntity extends SteerableEntity{
         comboChains.removeValue(cc, true);
     }
     
-    //TODO: change to index value, cleaner than passing type
-    /*
-    public Skill getCurrentSkill(SkillType type){
-        switch (type){
-            case LIGHT:
-                return skillSet[0];
-            case HEAVY:
-                return skillSet[1];
-            case SPECIAL:
-                return skillSet[2];
-            case PASSIVE:
-                return skillSet[3];
-            case DEFENSE:
-                return skillSet[4];
-            default:
-                return null;
-        }
-    }*/
-    
-    /*
-    private void updateEnergy(){
-        if (energy < CURRENT_ENERGY && !attackFC.running) {
-            regenEnergy();
-        } else if (energy > CURRENT_ENERGY) {
-            energy = CURRENT_ENERGY;
-        }
-    }
-    
-    public void regenEnergy(){
-        energy += CURRENT_ENERGY * ENERGY_REGEN;
-        if(energy > CURRENT_ENERGY){
-            energy = CURRENT_ENERGY;
-        }
-    }
-    
-    public void addEnergy(float e){
-        energy += e;
-        if(energy > CURRENT_ENERGY){
-            energy = CURRENT_ENERGY;
-        }
-    }
-    
-    public void useEnergy(float cost){
-        if(energy >= cost){
-            energy -= cost;
-        }
-    }*/
     
     public void restoreHp(float l){
         

@@ -34,7 +34,7 @@ public class Skill_WarpIt extends Skill{
         //COST = 60f;
         skillIcon = MainGame.am.get(ResourceManager.SKILL_WARPIT);
         
-        comboFC = new FrameCounter_Combo(0.3f, 0, 0);
+        comboFC = new FrameCounter_Combo(0, 0.3f, 0, 0);
         //attackTime = 0;
         //comboTime = 0.3f;
         //recovTime = 0;

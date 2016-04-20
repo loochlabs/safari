@@ -1,0 +1,12 @@
+hud-skill-heavy.png
+size: 263, 263
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hud-skill-heavy
+  rotate: false
+  xy: 2, 2
+  size: 259, 259
+  orig: 259, 259
+  offset: 0, 0
+  index: 1

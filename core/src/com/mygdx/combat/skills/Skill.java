@@ -30,8 +30,8 @@ public abstract class Skill {
     protected int COST = 0;   //(4/16/16) new cost system for energy, only used for specials
     protected float damageMod;
     protected boolean isCombo = false;
-    protected ImageSprite esprite;
-    protected FrameCounter_Combo comboFC = new FrameCounter_Combo(0.3f, 0.3f, 0.15f);
+    protected ImageSprite esprite;//todo: old, never used
+    protected FrameCounter_Combo comboFC = new FrameCounter_Combo(0, 0.3f, 0.3f, 0.15f);
     protected float FORCE;
     protected final Random rng = new Random();
     protected final Array<ImageSprite> impactTemplates = new Array<ImageSprite>();
