@@ -23,7 +23,6 @@ public class Pickup_Statup_Life extends Pickup_Statup{
         super(pos);
         
         name = "Life Orb";
-        texture = MainGame.am.get(ResourceManager.STAT_ITEM_LIFE);
     }
     
     public Pickup_Statup_Life(){

@@ -8,21 +8,16 @@ package com.mygdx.environments.EnvStart;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.mygdx.demo.DemoGameOverScreen;
 import com.mygdx.demo.demo3.EnvVoid_D3_0;
-import com.mygdx.entities.DynamicEntities.player.PlayerEntity;
 import com.mygdx.entities.Entity;
 import com.mygdx.entities.StaticEntities.BlankWall;
 import com.mygdx.entities.StaticEntities.SkillPad;
+import com.mygdx.entities.StaticEntities.SkillPad_Default;
 import com.mygdx.entities.StaticEntities.SkillPad_Defense;
 import com.mygdx.entities.StaticEntities.SkillPad_DmLock_Secondary;
-import com.mygdx.entities.StaticEntities.SkillPad_Primary;
-import com.mygdx.entities.StaticEntities.SkillPad_Secondary;
+import com.mygdx.entities.StaticEntities.breakable.Cyst_Small;
 import com.mygdx.entities.text.TextEntity;
-import com.mygdx.environments.EnvStart.charstart.CharacterStart;
-import com.mygdx.environments.EnvStart.charstart.CharacterStart_Lumen;
-import com.mygdx.environments.EnvStart.charstart.CharacterStart_Poe;
-import com.mygdx.environments.EnvStart.charstart.CharacterStart_Woogie;
+import com.mygdx.environments.BlackFaceBg;
 import com.mygdx.environments.Environment;
 import com.mygdx.environments.EnvironmentManager;
 import com.mygdx.environments.tears.NullWarp;
@@ -30,8 +25,7 @@ import com.mygdx.game.MainGame;
 import static com.mygdx.game.MainGame.RATIO;
 import com.mygdx.gui.Overlay;
 import com.mygdx.managers.ResourceManager;
-import com.mygdx.screen.GameScreen;
-import com.mygdx.screen.ScreenManager;
+import com.mygdx.utilities.SoundObject_Bgm;
 import static com.mygdx.utilities.UtilityVars.PPM;
 import java.util.Collections;
 
@@ -43,31 +37,29 @@ public class EnvStart_0 extends Environment{
     
     private float x, y;
     
-    //character select
-    private CharacterStart characterStart_lumen;
-    private CharacterStart characterStart_woogie;
-    private CharacterStart characterStart_poe;
-    private int characterCount = 3;
-    
-    //intro state
-    private enum IntroState { INTRO, POSTINTRO, NONE }
-    private IntroState introState = IntroState.NONE; 
-    
-    //intro
-    private Texture introBg;
-    private BlankWall southHallwayWall;
+    private final BlackFaceBg blackFaceBg;
     
     //post intro
     private Texture postIntroBg;
     
-    private SkillPad skillPad_prim;
-    private SkillPad skillPad_sec;
-    private SkillPad skillPad_def;
+    //private SkillPad skillPad_prim;
+    //private SkillPad skillPad_sec;
+    private SkillPad skillPad_defense;
+    private SkillPad skillPad_default;
+    
+    private boolean firstEnable = true;
+    
+    private Entity_VomitNpc vomitNpc;
+    
+    
+    //sound
+    private SoundObject_Bgm bgm1, bgm2;
+    
     
     public EnvStart_0(int id) {
         super(id);
         
-        this.linkid = linkid;
+        //this.linkid = linkid;
         
         width = 1500f*RATIO;
         height = 3250f*RATIO;
@@ -75,19 +67,23 @@ public class EnvStart_0 extends Environment{
         x = 0;
         y = 0;
         
-        startPos = new Vector2((width / 2)/PPM, (1600f*RATIO)/PPM);
+        startPos = new Vector2((width / 2)/PPM, (2750f*RATIO)/PPM);
         
         //render
         this.renderLayers = 2;
         
         //black bg
-        bg = MainGame.am.get(ResourceManager.START_BLACK_BG);
+        blackFaceBg = new BlackFaceBg();
         
-        //intro
-        introBg = MainGame.am.get(ResourceManager.START_INTRO_WHITE_BG);
+        
         
         //post intro
         postIntroBg = MainGame.am.get(ResourceManager.START_BG_PH);
+        
+        
+        //sound
+        bgm1 = new SoundObject_Bgm(ResourceManager.BGM_INTRO_1);
+        bgm2 = new SoundObject_Bgm(ResourceManager.BGM_INTRO_2);
         
     }
     
@@ -116,52 +112,89 @@ public class EnvStart_0 extends Environment{
         spawnEntity(new BlankWall(new Vector2(1400 * RATIO, 725f * RATIO), border, 725f * RATIO));         //right wall 
         
         
-        
-        /**************************
-            CHARACTER STARTS
-        *************************/
-        characterStart_lumen = (CharacterStart)spawnEntity(new CharacterStart_Lumen(new Vector2(450f*RATIO , 2750f*RATIO),     0) );
-        characterStart_poe = (CharacterStart)spawnEntity(new CharacterStart_Poe(new Vector2(750f*RATIO , 2750f*RATIO),       1) );
-        characterStart_woogie = (CharacterStart)spawnEntity(new CharacterStart_Woogie(new Vector2(1050f*RATIO , 2750f*RATIO),   2) );
-        
-        
-        
-        
-        
-        
         //create new env, add to NullWarp
         EnvironmentManager.add(new EnvVoid_D3_0(-1));
         spawnEntity(new NullWarp(new Vector2(750f*RATIO, 125f*RATIO), -1));
         
+        
+        
+        Overlay.enable = true;
+        
+        
+        /*******************
+            TOP SECTION
+        *******************/
+        
+        //DEFAULT
+        if(skillPad_default != null){
+            skillPad_default.reset();
+        }else{
+            skillPad_default = (SkillPad)this.spawnEntity(
+                    new SkillPad_Default(new Vector2(375f*RATIO, 2450f*RATIO)));
+        }
+        
+        //DEFENSE SKILL PAD
+        if(skillPad_defense != null){
+            skillPad_defense.reset();
+        }else{
+            skillPad_defense = (SkillPad)this.spawnEntity(
+                new SkillPad_Defense(
+                        new Vector2(1125f*RATIO, 2450f*RATIO)));
+        }
+        
+        
+        /*******************
+            HALLWAY
+        *******************/
+        if(firstEnable){
+            this.spawnEntity(new Cyst_Small(new Vector2(750f*RATIO, 1800f*RATIO)));
+            this.spawnEntity(new Cyst_Small(new Vector2(585f*RATIO, 1775f*RATIO)));
+            this.spawnEntity(new Cyst_Small(new Vector2(625f*RATIO, 1790f*RATIO)));
+            this.spawnEntity(new Cyst_Small(new Vector2(900f*RATIO, 1775f*RATIO)));
+            this.spawnEntity(new Cyst_Small(new Vector2(880f*RATIO, 1790f*RATIO)));
+            this.spawnEntity(new Cyst_Small(new Vector2(830f*RATIO, 1790f*RATIO)));
+            this.spawnEntity(new Cyst_Small(new Vector2(685f*RATIO, 1765f*RATIO)));
+            firstEnable = false;
+        }
+        
+        /*******************
+            BOTTOM SECTION
+        *******************/
+        
+        //dm lock skill pads
+        
+        spawnEntity(new SkillPad_DmLock_Secondary(new Vector2(375f*RATIO, 1150f*RATIO), 5));
+        spawnEntity(new SkillPad_DmLock_Secondary(new Vector2(1125f*RATIO, 1150f*RATIO), 10));
+        
+        spawnEntity(new SkillPad_DmLock_Secondary(new Vector2(375f*RATIO, 850f*RATIO), 15));
+        spawnEntity(new SkillPad_DmLock_Secondary(new Vector2(1125f*RATIO, 850f*RATIO), 20));
+        
+        spawnEntity(new SkillPad_DmLock_Secondary(new Vector2(375f*RATIO, 550f*RATIO), 25));
+        spawnEntity(new SkillPad_DmLock_Secondary(new Vector2(1125f*RATIO, 550f*RATIO), 30));
+        
+        
+        //vomit npc
+        vomitNpc = (Entity_VomitNpc)spawnEntity(new Entity_VomitNpc(new Vector2(1125f*RATIO, 1430f*RATIO)));
+    }
+    
+    
+    @Override
+    public void update(){
+        super.update();
+        
+        blackFaceBg.update();
     }
     
     @Override
-    public void render(SpriteBatch sb){
-        
-        if(bg != null)
-            sb.draw(bg, 0,0,width,height);
-        
-        
-        
-        switch(introState){
-            case INTRO:
-                
-                if(introBg != null){
-                    sb.draw(introBg, x, y, width,height);
-                }
-                
-                break;
-            case POSTINTRO:
-                
-                if(postIntroBg != null){
-                    sb.draw(postIntroBg, x, y, width, height);
-                }
-                
-                break;
-            default:
-                break;
+    public void render(SpriteBatch sb) {
+
+        if (blackFaceBg != null) {
+            blackFaceBg.render(sb);
         }
-        
+
+        if (postIntroBg != null) {
+            sb.draw(postIntroBg, x, y, width, height);
+        }
         
         
         
@@ -191,23 +224,9 @@ public class EnvStart_0 extends Environment{
     public void render(SpriteBatch sb, int layer){
         if (0 == layer) {
             
-            switch (introState) {
-                case INTRO:
-
-                    if (introBg != null) {
-                        sb.draw(introBg, x, y, width, height);
-                    }
-
-                    break;
-                case POSTINTRO:
-
-                    if (postIntroBg != null) {
-                        sb.draw(postIntroBg, x, y, width, height);
-                    }
-
-                    break;
-                default:
-                    break;
+            
+            if (postIntroBg != null) {
+                sb.draw(postIntroBg, x, y, width, height);
             }
 
             Collections.sort(entities, new Entity.EntityComp());
@@ -230,14 +249,10 @@ public class EnvStart_0 extends Environment{
 
             dmgTextToRemove.clear();
         } else if (1 == layer) {
-            if (bg != null) {
-                sb.draw(bg, -MainGame.WIDTH/2, -MainGame.HEIGHT/2, MainGame.WIDTH, MainGame.HEIGHT);
+            if (blackFaceBg != null) {
+                blackFaceBg.render(sb);
             }
 
-            //need to set camera zoom one iteration before next render call
-            //pit zoom
-            //this.fgParallaxX = 0.05f;
-            //this.fgParallaxY = 0.025f;
         }
     }
     
@@ -246,19 +261,11 @@ public class EnvStart_0 extends Environment{
     @Override
     public void begin(){
         
-        Overlay.enable = false;
+        Overlay.enable = true;
         
-        if(characterCount <= 0){
-            ScreenManager.setScreen(new DemoGameOverScreen());
-        }
-        
-        GameScreen.player = new PlayerEntity_Start();
-        
-        if(characterStart_lumen != null)    characterStart_lumen.active = true;
-        if(characterStart_woogie != null)   characterStart_woogie.active = true;
-        if(characterStart_poe != null)      characterStart_poe.active = true;
-        
-        
+        //sound
+        bgm1.play();
+        bgm2.play();
         
         
         super.begin();
@@ -268,12 +275,12 @@ public class EnvStart_0 extends Environment{
     }
     
     @Override
-    public void play(){
-        super.play();
+    public void end(int id, float time){
+        bgm1.stop();
+        bgm2.stop();
         
-        startIntro();
+        super.end(id, time);
     }
-    
     
     @Override
     public void complete(){
@@ -282,44 +289,12 @@ public class EnvStart_0 extends Environment{
         
         this.setPlayerToStart();
         
+        vomitNpc.respawn();
     }
     
     
-    /************************************
-     * 
-     * Spawn new Character
-     * Left to right character select
-     * 
-    *************************************/
-    public void characterSelect(int n){
-        GameScreen.player.dispose();
-        switch(n){
-            case 0:
-                //lumen
-                GameScreen.player = (PlayerEntity) spawnEntity(characterStart_lumen.createPlayer());
-                break;
-            case 1:
-                //poe
-                GameScreen.player = (PlayerEntity) spawnEntity(characterStart_poe.createPlayer());
-                break;
-            case 2:
-                //woogie
-                GameScreen.player = (PlayerEntity) spawnEntity(characterStart_woogie.createPlayer());
-                break;
-            default:
-                break;
-        }
-        
-        if(characterStart_lumen != null)    characterStart_lumen.active = false;
-        if(characterStart_woogie != null)   characterStart_woogie.active = false;
-        if(characterStart_poe != null)      characterStart_poe.active = false;
-        
-        
-        startPostIntro();
-        
-        characterCount--;
-    }
     
+    /*
     private void startIntro(){
         
         introState = IntroState.INTRO;
@@ -330,60 +305,76 @@ public class EnvStart_0 extends Environment{
         //south wall
         southHallwayWall = (BlankWall) spawnEntity(new BlankWall(new Vector2(750f*RATIO, 1500f*RATIO), 200f*RATIO, 10f*RATIO));
         
-    }
+    }*/
     
+    
+    /*
     private void startPostIntro() {
-        introState = IntroState.POSTINTRO;
+        //introState = IntroState.POSTINTRO;
 
         Overlay.enable = true;
         
         
         //REMOVE all intro entities
-        this.removeEntity(southHallwayWall);
+        //this.removeEntity(southHallwayWall);
+        //this.removeEntity(introControls);  //does not need to respawn 
         
-        //POST INTRO
+        /*******************
+            TOP SECTION
+        *******************
         
-        //PRIMARY SKILL PAD
-        if(skillPad_prim != null){
-            skillPad_prim.reset();
+        //DEFAULT
+        if(skillPad_default != null){
+            skillPad_default.reset();
         }else{
-             skillPad_prim = (SkillPad) this.spawnEntity( 
-                new SkillPad_Primary(
-                        new Vector2(425f*RATIO, 850f*RATIO)));
+            skillPad_default = (SkillPad)this.spawnEntity(
+                    new SkillPad_Default(new Vector2(375f*RATIO, 2450f*RATIO)));
         }
-        
-        //SECONDARY SKILL PAD
-        if(skillPad_sec != null){
-            skillPad_sec.reset();
-        }else{
-            skillPad_sec = (SkillPad)this.spawnEntity(
-                new SkillPad_Secondary(
-                        new Vector2(1125f*RATIO, 850f*RATIO)));
-        }
-        
         
         //DEFENSE SKILL PAD
-        if(skillPad_def != null){
-            skillPad_def.reset();
+        if(skillPad_defense != null){
+            skillPad_defense.reset();
         }else{
-            skillPad_def = (SkillPad)this.spawnEntity(
+            skillPad_defense = (SkillPad)this.spawnEntity(
                 new SkillPad_Defense(
-                        new Vector2(750f*RATIO, 1800f*RATIO)));
+                        new Vector2(1125f*RATIO, 2450f*RATIO)));
         }
         
-       
+        
+        /*******************
+            HALLWAY
+        *******************
+        if(firstEnable){
+            this.spawnEntity(new Cyst_Small(new Vector2(750f*RATIO, 1800f*RATIO)));
+            this.spawnEntity(new Cyst_Small(new Vector2(585f*RATIO, 1775f*RATIO)));
+            this.spawnEntity(new Cyst_Small(new Vector2(625f*RATIO, 1790f*RATIO)));
+            this.spawnEntity(new Cyst_Small(new Vector2(900f*RATIO, 1775f*RATIO)));
+            this.spawnEntity(new Cyst_Small(new Vector2(880f*RATIO, 1790f*RATIO)));
+            this.spawnEntity(new Cyst_Small(new Vector2(830f*RATIO, 1790f*RATIO)));
+            this.spawnEntity(new Cyst_Small(new Vector2(685f*RATIO, 1765f*RATIO)));
+            firstEnable = false;
+        }
+        
+        /*******************
+            BOTTOM SECTION
+        *******************
         
         //dm lock skill pads
         
-        //5
-        spawnEntity(new SkillPad_DmLock_Secondary(new Vector2(1125f*RATIO, 650f*RATIO), 5));
-        spawnEntity(new SkillPad_DmLock_Secondary(new Vector2(425f*RATIO, 650f*RATIO), 5));
+        spawnEntity(new SkillPad_DmLock_Secondary(new Vector2(375f*RATIO, 1150f*RATIO), 5));
+        spawnEntity(new SkillPad_DmLock_Secondary(new Vector2(1125f*RATIO, 1150f*RATIO), 10));
+        
+        spawnEntity(new SkillPad_DmLock_Secondary(new Vector2(375f*RATIO, 850f*RATIO), 15));
+        spawnEntity(new SkillPad_DmLock_Secondary(new Vector2(1125f*RATIO, 850f*RATIO), 20));
+        
+        spawnEntity(new SkillPad_DmLock_Secondary(new Vector2(375f*RATIO, 550f*RATIO), 25));
+        spawnEntity(new SkillPad_DmLock_Secondary(new Vector2(1125f*RATIO, 550f*RATIO), 30));
         
         
-        //10
-        spawnEntity(new SkillPad_DmLock_Secondary(new Vector2(1125f*RATIO, 350f*RATIO), 10));
-        spawnEntity(new SkillPad_DmLock_Secondary(new Vector2(425f*RATIO, 350f*RATIO), 10));
         
     }
+    
+    */
+    
     
 }

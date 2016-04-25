@@ -11,8 +11,10 @@ import com.mygdx.entities.Entity;
 import com.mygdx.entities.ImageSprite;
 import com.mygdx.entities.esprites.PermSprite;
 import static com.mygdx.game.MainGame.RATIO;
+import com.mygdx.managers.ResourceManager;
 import com.mygdx.screen.GameScreen;
 import com.mygdx.utilities.FrameCounter_Combo;
+import com.mygdx.utilities.SoundObject_Sfx;
 import static com.mygdx.utilities.UtilityVars.PPM;
 
 /**
@@ -29,6 +31,19 @@ public abstract class HeavySkill extends Skill{
         
         skillSprite = new ImageSprite("poe-attack-heavy",false);
         skillSprite.sprite.setScale(0.35f*RATIO);
+        
+        impactTemplates.add(new ImageSprite("impact-white", false));
+        impactTemplates.get(0).sprite.setBounds(0, 0, 600f*RATIO, 300f*RATIO);
+        impactTemplates.peek().sprite.setRotation(360*rng.nextFloat() * (float)(Math.PI/180));
+        
+        
+        
+        //SOUND
+        SFX_SWING.add(new SoundObject_Sfx(ResourceManager.POE_YELL_1));
+        SFX_SWING.add(new SoundObject_Sfx(ResourceManager.POE_YELL_2));
+        SFX_SWING.add(new SoundObject_Sfx(ResourceManager.POE_YELL_3));
+        
+        impactSound = new SoundObject_Sfx(ResourceManager.SFX_IMPACT_2);
     }
     
     @Override
@@ -50,11 +65,6 @@ public abstract class HeavySkill extends Skill{
         
         //screen shake
         screenShake();
-        
-        
-        //if(isCombo){
-            //comboEffect();
-        //}
         
         
         for(Entity ent: GameScreen.player.getAttTargets()){
@@ -80,7 +90,11 @@ public abstract class HeavySkill extends Skill{
         
         addBuff();
         
-        if(playSound) impactSound.play(false);
+        if(playSound) {
+            impactSound.play(false);
+        }else{
+            SFX_SWING.random().play(false);
+        }
         
         attackForce();
         
@@ -101,18 +115,9 @@ public abstract class HeavySkill extends Skill{
             GameScreen.camera.shake(6, 0.55f);
     }
 
-    public void damageEnemy(Entity e) {
-        /*if (combo) {
-            
-            comboEffect(prevSkill);
-            
-            e.damage(
-                    GameScreen.player.getCurrentDamage() * GameScreen.player.getHeavyMod() * damageMod * comboBonus,
-                    true);
-        } else {
-            */
-            e.damage(GameScreen.player.getCurrentDamage() * GameScreen.player.getHeavyMod() * damageMod);
-        //}
+    public float damageEnemy(Entity e) {
+        e.damage(GameScreen.player.getCurrentDamage() * GameScreen.player.getHeavyMod() * damageMod);
+        return GameScreen.player.getCurrentDamage() * GameScreen.player.getHeavyMod() * damageMod;
     }
     
     

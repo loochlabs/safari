@@ -42,8 +42,8 @@ public class PanelNumber extends StaticEntity{
         
         this.flaggedForRenderSort = false;
         
-        texture0 = MainGame.am.get(ResourceManager.ROOM_CODEPANEL0);
-        texture1 = MainGame.am.get(ResourceManager.ROOM_CODEPANEL1);
+        //texture0 = MainGame.am.get(ResourceManager.ROOM_CODEPANEL0);
+        //texture1 = MainGame.am.get(ResourceManager.ROOM_CODEPANEL1);
         
         this.setOn(panel.isOn());
     }

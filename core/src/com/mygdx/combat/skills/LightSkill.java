@@ -11,7 +11,9 @@ import com.mygdx.entities.Entity;
 import com.mygdx.entities.ImageSprite;
 import com.mygdx.entities.esprites.PermSprite;
 import static com.mygdx.game.MainGame.RATIO;
+import com.mygdx.managers.ResourceManager;
 import com.mygdx.screen.GameScreen;
+import com.mygdx.utilities.SoundObject_Sfx;
 import static com.mygdx.utilities.UtilityVars.PPM;
 
 /**
@@ -27,6 +29,18 @@ public abstract class LightSkill extends Skill{
         
         skillSprite = new ImageSprite("poe-attack-light",false);
         skillSprite.sprite.setScale(0.35f*RATIO);
+        
+        impactTemplates.add(new ImageSprite("impact-white", false));
+        impactTemplates.get(0).sprite.setBounds(0, 0, 600f*RATIO, 300f*RATIO);
+        impactTemplates.peek().sprite.setRotation(360*rng.nextFloat() * (float)(Math.PI/180));
+        
+        
+        //SOUND
+        SFX_SWING.add(new SoundObject_Sfx(ResourceManager.POE_YELL_1));
+        SFX_SWING.add(new SoundObject_Sfx(ResourceManager.POE_YELL_2));
+        SFX_SWING.add(new SoundObject_Sfx(ResourceManager.POE_YELL_3));
+        
+        impactSound = new SoundObject_Sfx(ResourceManager.SFX_IMPACT_1);
         
     }
     
@@ -72,7 +86,11 @@ public abstract class LightSkill extends Skill{
         }
         
         //sound
-        if(playSound) impactSound.play(false);
+        if(playSound) {
+            impactSound.play(false);
+        }else{
+            SFX_SWING.random().play(false);
+        }
         
         //skill sprite
         GameScreen.player.addSkillSprite(skillSprite);
@@ -103,19 +121,9 @@ public abstract class LightSkill extends Skill{
             GameScreen.camera.shake(3, 0.35f);
     }
 
-    public void damageEnemy(Entity e) {
-        /*
-        if (combo) {
-            
-           comboEffect(prevSkill);
-            
-            e.damage(
-                    GameScreen.player.getCurrentDamage() * GameScreen.player.getLightMod() * damageMod * comboBonus,
-                    true);
-        } else {
-*/
-            e.damage(GameScreen.player.getCurrentDamage() * GameScreen.player.getLightMod() * damageMod);
-        //}
+    public float damageEnemy(Entity e) {
+        e.damage(GameScreen.player.getCurrentDamage() * GameScreen.player.getLightMod() * damageMod);
+        return GameScreen.player.getCurrentDamage() * GameScreen.player.getLightMod() * damageMod;
     }
     
     public void knockbackEnemy(Entity e) {

@@ -49,12 +49,16 @@ public class Skill_HauntHaste extends HeavySkill{
         descWindow = new DescriptionWindow(name, desc, comboChain);
         skillIcon = MainGame.am.get(ResourceManager.SKILL_HAUNTHASTE);
         
+        /*
         impactTemplates.add(new ImageSprite("impact1", false));
         impactTemplates.get(0).sprite.setScale(1.4f*RATIO);
         impactTemplates.add(new ImageSprite("impact2", false));
         impactTemplates.get(1).sprite.setScale(1.4f*RATIO);
+        */
         
-        impactSound = new SoundObject_Sfx(ResourceManager.SFX_IMPACT_2);
+        
+        //sound
+        comboSound = new SoundObject_Sfx(ResourceManager.SFX_SKILL_HAUNT_1);
     }
     
     
@@ -93,7 +97,8 @@ public class Skill_HauntHaste extends HeavySkill{
         //spawn GhostDashSensor
         EnvironmentManager.currentEnv.spawnEntity(new HauntTrailSensor(GameScreen.player.getPos().cpy()));
         
-        
+        //sound
+        comboSound.play(false);
     }
     
     private class HauntTrailSensor extends Entity{

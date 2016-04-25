@@ -16,7 +16,6 @@ import com.mygdx.combat.PassiveBuff;
 import static com.mygdx.combat.skills.Skill.SkillAttribute.SPEED;
 import static com.mygdx.combat.skills.Skill.SkillType.LIGHT;
 import com.mygdx.entities.Entity;
-import com.mygdx.entities.ImageSprite;
 import com.mygdx.entities.esprites.EntitySprite;
 import com.mygdx.environments.EnvironmentManager;
 import com.mygdx.game.MainGame;
@@ -37,45 +36,19 @@ import static com.mygdx.utilities.UtilityVars.PPM;
  */
 public class Skill_GhostJab extends LightSkill{
     
-    private final float BUFF_MOD;
-    private final PassiveBuff pbuff;
-    
     public Skill_GhostJab(){
         name = "Ghost Jab";
         attribute = SPEED;
         damageMod = 1.0f;
-        BUFF_MOD = 1.025f;
         desc = "The need for speed";
         comboChain = new SkillType[] { LIGHT, LIGHT, LIGHT };
         descWindow = new DescriptionWindow(name, desc, comboChain);
         
-        pbuff = new PassiveBuff_GhostJab();
-        
         skillIcon = MainGame.am.get(ResourceManager.SKILL_GHOSTJAB);
-        
-        
-        impactTemplates.add(new ImageSprite("poe-attack4", false));
-        impactTemplates.get(0).sprite.setScale(1.4f*RATIO);
-        impactTemplates.add(new ImageSprite("poe-attack3", false));
-        impactTemplates.get(1).sprite.setScale(1.4f*RATIO);
-        
-        
-        impactSound = new SoundObject_Sfx(ResourceManager.SFX_IMPACT_1);
-        
+      
+        comboSound = new SoundObject_Sfx(ResourceManager.SFX_SKILL_GHOST_1);
     }
     
-    
-    
-    @Override 
-    public void activate(){
-        super.activate();
-        GameScreen.player.addBuff(pbuff);
-    }
-    @Override
-    public void deactivate(){
-        super.deactivate();
-        GameScreen.player.removeBuff(pbuff);
-    }  
     
     /***************************
         COMBO EFFECT
@@ -99,7 +72,8 @@ public class Skill_GhostJab extends LightSkill{
         //spawn GhostDashSensor
         EnvironmentManager.currentEnv.spawnEntity(new GhostDashSensor(GameScreen.player.getPos().cpy()));
         
-        
+        //sound
+        comboSound.play(false);
     }
     
     private class GhostDashSensor extends Entity{
@@ -200,79 +174,6 @@ public class Skill_GhostJab extends LightSkill{
     
     
     
-    
-    /**************
-        BUFFS
-    **************/
-    
-    @Override
-    public void addBuff() {
-        GameScreen.player.addBuff(new Buff_GhostJab(5, BUFF_MOD));
-    }
-    
-    private class Buff_GhostJab extends Buff {
-
-        private float modifier, buffValue;
-
-        private ParticleEffect buff_effect;
-        private ParticleEffectPool effectPool;
-        private ParticleEffectPool.PooledEffect effect;
-
-        public Buff_GhostJab(long duration, float mod) {
-            super(duration);
-            modifier = mod;
-
-            //particle effect
-            buff_effect = new ParticleEffect();
-            buff_effect.load(Gdx.files.internal("effects/blue-buff.p"), Gdx.files.internal("effects"));
-            effectPool = new ParticleEffectPool(buff_effect, 0, 200);
-        }
-
-        @Override
-        public void applyBuff() {
-            buffValue = modifier * GameScreen.player.getCurrentSpeed() - GameScreen.player.getCurrentSpeed();
-            GameScreen.player.setCurrentSpeed(GameScreen.player.getCurrentSpeed() + buffValue);
-
-            //impact effect
-            effect = effectPool.obtain();
-            GameScreen.player.addEffect(effect);
-        }
-
-        @Override
-        public void removeBuff() {
-            GameScreen.player.setCurrentSpeed(GameScreen.player.getCurrentSpeed() - buffValue);
-
-            GameScreen.player.removeEffect(effect);
-        }
-    }
-
-    
-    private class PassiveBuff_GhostJab extends PassiveBuff {
-
-        private final int modifier;
-
-        public PassiveBuff_GhostJab() {
-            super();
-
-            modifier = 1;
-        }
-
-        @Override
-        public void applyBuff() {
-            super.applyBuff();
-
-            GameScreen.player.addStatPoints(0, 0, 0, modifier, 0);
-
-        }
-
-        @Override
-        public void removeBuff() {
-            super.removeBuff();
-
-            GameScreen.player.addStatPoints(0, 0, 0, -modifier, 0);
-        }
-
-    }
 }
     
 

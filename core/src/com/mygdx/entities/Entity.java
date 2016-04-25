@@ -127,8 +127,6 @@ public abstract class Entity{
     public abstract void init(World world);
     
     public void update(){
-        //if(!alive && !dead)
-            //death();
         
         fm.update();
             
@@ -168,8 +166,6 @@ public abstract class Entity{
     public void offsetRender(SpriteBatch sb, float x, float y){
         if(isprite != null){
             isprite.drawOffset(sb, x, y);
-                    //pos.x - isprite.sprite.getWidth()/2 + x,
-                    //pos.y - isprite.sprite.getHeight()/2 + y);
         }else if(texture != null){
             sb.draw(
                     texture, pos.x -width + x, pos.y -height + y, 
@@ -191,7 +187,6 @@ public abstract class Entity{
     }
     
     public void addEffect(PooledEffect e){
-        //e.setPosition(body.getPosition().x*PPM - e.getEmitters().peek().getXOffsetValue().getLowMax(), body.getPosition().y*PPM);
         e.setPosition(pos.x - e.getEmitters().peek().getXOffsetValue().getLowMax(), pos.y);
         effects.add(e);
     }

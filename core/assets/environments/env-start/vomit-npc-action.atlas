@@ -1,0 +1,635 @@
+vomit-npc-action.png
+size: 3432, 1670
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+vomit-npc-action
+  rotate: false
+  xy: 2, 2
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 1
+vomit-npc-action
+  rotate: false
+  xy: 2, 558
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 10
+vomit-npc-action
+  rotate: false
+  xy: 2, 1114
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 11
+vomit-npc-action
+  rotate: false
+  xy: 2, 1114
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 12
+vomit-npc-action
+  rotate: false
+  xy: 2, 1114
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 13
+vomit-npc-action
+  rotate: false
+  xy: 2, 1114
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 14
+vomit-npc-action
+  rotate: false
+  xy: 2, 1114
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 15
+vomit-npc-action
+  rotate: false
+  xy: 492, 2
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 16
+vomit-npc-action
+  rotate: false
+  xy: 492, 2
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 17
+vomit-npc-action
+  rotate: false
+  xy: 492, 2
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 18
+vomit-npc-action
+  rotate: false
+  xy: 492, 2
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 19
+vomit-npc-action
+  rotate: false
+  xy: 2, 2
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 2
+vomit-npc-action
+  rotate: false
+  xy: 492, 2
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 20
+vomit-npc-action
+  rotate: false
+  xy: 492, 558
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 21
+vomit-npc-action
+  rotate: false
+  xy: 492, 558
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 22
+vomit-npc-action
+  rotate: false
+  xy: 492, 558
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 23
+vomit-npc-action
+  rotate: false
+  xy: 492, 558
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 24
+vomit-npc-action
+  rotate: false
+  xy: 492, 558
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 25
+vomit-npc-action
+  rotate: false
+  xy: 492, 1114
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 26
+vomit-npc-action
+  rotate: false
+  xy: 492, 1114
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 27
+vomit-npc-action
+  rotate: false
+  xy: 492, 1114
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 28
+vomit-npc-action
+  rotate: false
+  xy: 492, 1114
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 29
+vomit-npc-action
+  rotate: false
+  xy: 2, 2
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 3
+vomit-npc-action
+  rotate: false
+  xy: 492, 1114
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 30
+vomit-npc-action
+  rotate: false
+  xy: 492, 1114
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 31
+vomit-npc-action
+  rotate: false
+  xy: 492, 1114
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 32
+vomit-npc-action
+  rotate: false
+  xy: 982, 2
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 33
+vomit-npc-action
+  rotate: false
+  xy: 982, 2
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 34
+vomit-npc-action
+  rotate: false
+  xy: 982, 2
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 35
+vomit-npc-action
+  rotate: false
+  xy: 982, 558
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 36
+vomit-npc-action
+  rotate: false
+  xy: 982, 558
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 37
+vomit-npc-action
+  rotate: false
+  xy: 982, 1114
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 38
+vomit-npc-action
+  rotate: false
+  xy: 982, 1114
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 39
+vomit-npc-action
+  rotate: false
+  xy: 2, 2
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 4
+vomit-npc-action
+  rotate: false
+  xy: 982, 1114
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 40
+vomit-npc-action
+  rotate: false
+  xy: 982, 1114
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 41
+vomit-npc-action
+  rotate: false
+  xy: 982, 1114
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 42
+vomit-npc-action
+  rotate: false
+  xy: 982, 1114
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 43
+vomit-npc-action
+  rotate: false
+  xy: 1472, 2
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 44
+vomit-npc-action
+  rotate: false
+  xy: 1472, 2
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 45
+vomit-npc-action
+  rotate: false
+  xy: 1472, 2
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 46
+vomit-npc-action
+  rotate: false
+  xy: 1472, 2
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 47
+vomit-npc-action
+  rotate: false
+  xy: 1472, 2
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 48
+vomit-npc-action
+  rotate: false
+  xy: 1472, 2
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 49
+vomit-npc-action
+  rotate: false
+  xy: 2, 2
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 5
+vomit-npc-action
+  rotate: false
+  xy: 1472, 558
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 50
+vomit-npc-action
+  rotate: false
+  xy: 1472, 558
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 51
+vomit-npc-action
+  rotate: false
+  xy: 1472, 558
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 52
+vomit-npc-action
+  rotate: false
+  xy: 1472, 558
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 53
+vomit-npc-action
+  rotate: false
+  xy: 1472, 558
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 54
+vomit-npc-action
+  rotate: false
+  xy: 1472, 558
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 55
+vomit-npc-action
+  rotate: false
+  xy: 1472, 1114
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 56
+vomit-npc-action
+  rotate: false
+  xy: 1472, 1114
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 57
+vomit-npc-action
+  rotate: false
+  xy: 1472, 1114
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 58
+vomit-npc-action
+  rotate: false
+  xy: 1472, 1114
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 59
+vomit-npc-action
+  rotate: false
+  xy: 2, 558
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 6
+vomit-npc-action
+  rotate: false
+  xy: 1472, 1114
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 60
+vomit-npc-action
+  rotate: false
+  xy: 1472, 1114
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 61
+vomit-npc-action
+  rotate: false
+  xy: 1962, 2
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 62
+vomit-npc-action
+  rotate: false
+  xy: 1962, 2
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 63
+vomit-npc-action
+  rotate: false
+  xy: 1962, 2
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 64
+vomit-npc-action
+  rotate: false
+  xy: 1962, 2
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 65
+vomit-npc-action
+  rotate: false
+  xy: 2452, 2
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 66
+vomit-npc-action
+  rotate: false
+  xy: 2452, 2
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 67
+vomit-npc-action
+  rotate: false
+  xy: 2452, 2
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 68
+vomit-npc-action
+  rotate: false
+  xy: 2452, 2
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 69
+vomit-npc-action
+  rotate: false
+  xy: 2, 558
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 7
+vomit-npc-action
+  rotate: false
+  xy: 2942, 2
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 70
+vomit-npc-action
+  rotate: false
+  xy: 2942, 2
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 71
+vomit-npc-action
+  rotate: false
+  xy: 2942, 2
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 72
+vomit-npc-action
+  rotate: false
+  xy: 1962, 558
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 73
+vomit-npc-action
+  rotate: false
+  xy: 1962, 558
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 74
+vomit-npc-action
+  rotate: false
+  xy: 1962, 558
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 75
+vomit-npc-action
+  rotate: false
+  xy: 1962, 1114
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 76
+vomit-npc-action
+  rotate: false
+  xy: 1962, 1114
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 77
+vomit-npc-action
+  rotate: false
+  xy: 1962, 1114
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 78
+vomit-npc-action
+  rotate: false
+  xy: 2452, 558
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 79
+vomit-npc-action
+  rotate: false
+  xy: 2, 558
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 8
+vomit-npc-action
+  rotate: false
+  xy: 2452, 558
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 80
+vomit-npc-action
+  rotate: false
+  xy: 2452, 558
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 81
+vomit-npc-action
+  rotate: false
+  xy: 2452, 1114
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 82
+vomit-npc-action
+  rotate: false
+  xy: 2452, 1114
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 83
+vomit-npc-action
+  rotate: false
+  xy: 2452, 1114
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 84
+vomit-npc-action
+  rotate: false
+  xy: 2942, 558
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 85
+vomit-npc-action
+  rotate: false
+  xy: 2942, 558
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 86
+vomit-npc-action
+  rotate: false
+  xy: 2942, 558
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 87
+vomit-npc-action
+  rotate: false
+  xy: 2942, 1114
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 88
+vomit-npc-action
+  rotate: false
+  xy: 2942, 1114
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 89
+vomit-npc-action
+  rotate: false
+  xy: 2, 558
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 9
+vomit-npc-action
+  rotate: false
+  xy: 2942, 1114
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 90

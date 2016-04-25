@@ -129,6 +129,7 @@ public class CodePad extends StaticEntity{
             this.height = height;
             this.flip = flip;
             
+            /*
             bg = MainGame.am.get(ResourceManager.ROOM_CODEMON);
             numTex_0 = MainGame.am.get(ResourceManager.ROOM_CODENUM_0);
             numTex_1 = MainGame.am.get(ResourceManager.ROOM_CODENUM_1);
@@ -141,7 +142,9 @@ public class CodePad extends StaticEntity{
             numTex_8 = MainGame.am.get(ResourceManager.ROOM_CODENUM_8);
             numTex_9 = MainGame.am.get(ResourceManager.ROOM_CODENUM_9);
             numTex_blank = MainGame.am.get(ResourceManager.ROOM_CODENUM_BLANK);
-
+            */
+            
+            
             num_width = width*0.1732f;
             num_height = height * 0.4f;
             num_y = pos.y + height *0.335f;

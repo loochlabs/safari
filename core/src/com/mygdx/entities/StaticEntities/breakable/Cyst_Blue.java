@@ -20,7 +20,7 @@ import static com.mygdx.game.MainGame.RATIO;
 public class Cyst_Blue extends BreakableObject{
 
     public Cyst_Blue(Vector2 pos) {
-        super(pos);
+        super(pos, 40f*RATIO, 40f*RATIO);
         
         idleSprite = new ImageSprite("cyst-idle", true);
         idleSprite.sprite.setScale(0.7f * RATIO);

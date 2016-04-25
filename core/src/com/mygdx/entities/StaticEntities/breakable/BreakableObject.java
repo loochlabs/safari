@@ -28,8 +28,8 @@ public class BreakableObject extends StaticEntity{
     protected final Array<Pickup> itemRewardPool = new Array<Pickup>();
   
     
-    public BreakableObject(Vector2 pos) {
-        super(pos, 40f, 40f);
+    public BreakableObject(Vector2 pos, float w, float h) {
+        super(pos, w, h);
         
         userdata = "en_" + id;
         bd.position.set(pos.x/PPM, pos.y/PPM);
@@ -54,21 +54,6 @@ public class BreakableObject extends StaticEntity{
     
     public void spawnReward(){
         //spawn reward items
-        
-        /*
-        for(int i = rng.nextInt((int)(itemRewardPool.size*0.5f))+(int)(itemRewardPool.size*0.5f); 
-                i < itemRewardPool.size; i++){
-            Vector2 iv = new Vector2(
-                    body.getPosition().x*PPM + 25*rng.nextFloat()*rngNegSet.random(),
-                    body.getPosition().y*PPM + 25*rng.nextFloat()*rngNegSet.random());
-            Pickup item = itemRewardPool.random().cpy();
-            item.setPosition(iv);
-            Pickup p = (Pickup)EnvironmentManager.currentEnv.spawnEntity(item);
-            p.spawnForce();
-            
-        }*/
-        
-        
         for(Pickup item: itemRewardPool){
             Vector2 iv = new Vector2(
                     body.getPosition().x*PPM + 25*rng.nextFloat()*rngNegSet.random(),

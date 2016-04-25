@@ -131,7 +131,7 @@ public class EnvVoid_D3_1 extends EnvVoid_D3{
                         false, false));
         
         
-        spawnEntity(new En_VoidTrap(createSpawnLocation()));
+        //spawnEntity(new En_VoidTrap(createSpawnLocation()));
     }
     
     

@@ -7,10 +7,10 @@ package com.mygdx.dev;
 
 import com.mygdx.environments.EnvNull.random.Tear_R;
 import com.badlogic.gdx.math.Vector2;
-import com.mygdx.combat.skills.Skill_CrackOfThunder;
 import com.mygdx.combat.skills.Skill_GhostJab;
+import com.mygdx.combat.skills.Skill_HasteLaysWaste;
 import com.mygdx.combat.skills.Skill_HauntHaste;
-import com.mygdx.combat.skills.Skill_OneTwo;
+import com.mygdx.combat.skills.Skill_LightningRod;
 import com.mygdx.combat.skills.Skill_PowerPlease;
 import com.mygdx.demo.demo2.EnvVoid_D2_1;
 import com.mygdx.entities.DynamicEntities.DogEntities.StellaEntity;
@@ -22,6 +22,7 @@ import com.mygdx.entities.esprites.DecomSprite;
 import com.mygdx.environments.EnvVoid.pads.EndPad;
 import com.mygdx.environments.EnvVoid.EnvVoid;
 import com.mygdx.environments.EnvironmentManager;
+import com.mygdx.environments.tears.Tear_Room_Simple;
 import static com.mygdx.game.MainGame.RATIO;
 import static com.mygdx.utilities.UtilityVars.PPM;
 
@@ -83,8 +84,8 @@ public class EnvVoid_Dev0 extends EnvVoid{
         //bg sprites
         spawnEntity(new DecomSprite(new Vector2(25f*RATIO, grid.getHeight()*0.9f)));
         
-        spawnEntity(new SkillPad(new Vector2(900f, 1200f), new Skill_OneTwo()));
-        spawnEntity(new SkillPad(new Vector2(1200f, 1200f), new Skill_CrackOfThunder()));
+        spawnEntity(new SkillPad(new Vector2(900f, 1200f), new Skill_LightningRod()));
+        spawnEntity(new SkillPad(new Vector2(1200f, 1200f), new Skill_HasteLaysWaste()));
         spawnEntity(new SkillPad_Defense(new Vector2(600f, 1200f)));
         spawnEntity(new SkillPad(new Vector2(1500f, 1200f), new Skill_PowerPlease()));
         
@@ -134,7 +135,7 @@ public class EnvVoid_Dev0 extends EnvVoid{
         spawnEntity(new Tear_R(new Vector2(550f*RATIO,800f*RATIO), this.id, 3));
         spawnEntity(new Tear_R(new Vector2(300f*RATIO,800f*RATIO), this.id, 4));
         
-        spawnEntity(new Tear_R(new Vector2(25f*RATIO, 25f*RATIO), this.id, 0));
+        spawnEntity(new Tear_Room_Simple(new Vector2(1000f*RATIO, 650f*RATIO), this.id));
     }
     
     

@@ -7,8 +7,6 @@ package com.mygdx.entities.pickups.statups;
 
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.environments.EnvironmentManager;
-import com.mygdx.game.MainGame;
-import com.mygdx.managers.ResourceManager;
 import com.mygdx.screen.GameScreen;
 import static com.mygdx.utilities.UtilityVars.PPM;
 
@@ -23,7 +21,6 @@ public class Pickup_Statup_Energy extends Pickup_Statup{
         super(pos);
         
         name = "Energy Orb";
-        texture = MainGame.am.get(ResourceManager.STAT_ITEM_ENERGY);
     }
     
     public Pickup_Statup_Energy(){

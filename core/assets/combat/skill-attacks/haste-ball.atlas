@@ -1,0 +1,12 @@
+haste-ball.png
+size: 104, 284
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+haste-ball
+  rotate: false
+  xy: 2, 2
+  size: 100, 280
+  orig: 100, 280
+  offset: 0, 0
+  index: 1

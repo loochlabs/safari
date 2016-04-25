@@ -24,11 +24,12 @@ public class Player_Lumen extends PlayerEntity{
         
         
         
-        LIFE_STAT_COUNT = 3;
-        ENERGY_STAT_COUNT = 7;
-        DAMAGE_STAT_COUNT = 6;
+        LIFE_STAT_COUNT = 2;
+        ENERGY_STAT_COUNT = 4;
+        DAMAGE_STAT_COUNT = 1;
         SPEED_STAT_COUNT = 3;
-        SPECIAL_STAT_COUNT = 4;
+        
+        SPECIAL_STAT_COUNT = 4;//todo: old
         
         refreshStats();
         life = CURRENT_LIFE;
@@ -63,10 +64,5 @@ public class Player_Lumen extends PlayerEntity{
         
     }
     
-    @Override
-    public void soulUp(){
-        super.soulUp();
-        this.addStatPoints(0, 1, 0, 0, 0);
-    }
     
 }

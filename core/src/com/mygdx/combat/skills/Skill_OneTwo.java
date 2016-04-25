@@ -31,9 +31,7 @@ import static com.mygdx.utilities.UtilityVars.PPM;
  */
 public class Skill_OneTwo extends LightSkill{
     
-    //private final float BUFF_MOD;
-    //private final float FORCE;
-    //private final PassiveBuff PBUFF;
+    
     
     public Skill_OneTwo(){
         name = "One Two";
@@ -44,19 +42,18 @@ public class Skill_OneTwo extends LightSkill{
         
         skillIcon = MainGame.am.get(ResourceManager.SKILL_ONETWO);
         
-        
+        /*
         impactTemplates.add(new ImageSprite("poe-attack4", false));
         impactTemplates.get(0).sprite.setScale(1.4f*RATIO);
         impactTemplates.add(new ImageSprite("poe-attack3", false));
         impactTemplates.get(1).sprite.setScale(1.4f*RATIO);
-        
+        */
         
         skillSprite = new ImageSprite("light-att-red",false);
         skillSprite.sprite.setScale(0.5f*RATIO);
         
-        //sound
-        impactSound = new SoundObject_Sfx(ResourceManager.SFX_IMPACT_1);
         
+        comboSound = new SoundObject_Sfx(ResourceManager.SFX_SKILL_ONETWO_1);
     }
     
     
@@ -68,17 +65,7 @@ public class Skill_OneTwo extends LightSkill{
     @Override
     public void comboEffect(){
         super.comboEffect();
-        //dash attack
-        System.out.println("@OneTwo Combo effect!");
         
-        //apply OneTwo sensor in player direction
-        /*
-        if (GameScreen.player.isUserMoving()) {
-            Vector2 dir = GameScreen.player.getCurrentDirection().cpy();
-            GameScreen.player.getBody().applyForce(dir, GameScreen.player.getBody().getPosition(), true);
-        }*/
-        
-        //spawn GhostDashSensor
         EnvironmentManager.currentEnv.spawnEntity(new OneTwoSensor(GameScreen.player.getPos().cpy()));
         
         
@@ -88,17 +75,9 @@ public class Skill_OneTwo extends LightSkill{
     private class OneTwoSensor extends Entity{
 
         private final FrameCounter durationFC = new FrameCounter(0.65f);
-        //private final FrameCounter damageTick = new FrameCounter(0.1f);
-        //private EntitySprite ghostSprite;
         
-        /*
-        private final FixtureDef northfd = new FixtureDef();
-        private final FixtureDef southfd = new FixtureDef();
-        private final FixtureDef eastfd = new FixtureDef();
-        private final FixtureDef westfd = new FixtureDef();
-        */
         private Vector2 direction;
-        private final float speed = 1000f;
+        private final float speed = 1500f;
         
         public OneTwoSensor(Vector2 pos) {
             super(pos, 50f*RATIO,200f*RATIO);
@@ -114,13 +93,8 @@ public class Skill_OneTwo extends LightSkill{
             
             bd.linearDamping = 9.0f;
             
-            
-
-            
-            texture = MainGame.am.get(ResourceManager.ROOM_BG1);
-            //ghost sprite template
-            //ghostSprite = new EntitySprite(pos, 300f*RATIO, 300f*RATIO, "haunt-combo", 
-                    //false, true, false, false, 1.0f, false, false, false, false);
+            isprite = new ImageSprite("onetwo-combo", false);
+            isprite.sprite.setSize(height*2, width*2);
             
         }
 
@@ -135,7 +109,6 @@ public class Skill_OneTwo extends LightSkill{
 
                 //get player direction of movement 
                 //set rotation
-                //set rotaion
                 float ang = GameScreen.player.getCurrentAngle();
                 float degree_ang = ang * (float) (180/Math.PI) + 180;
                 
@@ -147,25 +120,31 @@ public class Skill_OneTwo extends LightSkill{
                     //rotate north
                     body.setTransform(body.getPosition(), 0);
                     direction = new Vector2(0, 1);
+                    isprite.sprite.setRotation(90);
                 } else if (degree_ang >= 135 && degree_ang < 225) {
                     //rotate east
                     body.setTransform(body.getPosition(), 90 * (float) (Math.PI / 180)); 
                     direction = new Vector2(1,0);
+                    isprite.sprite.setRotation(0);
                 } else if (degree_ang >= 45 && degree_ang < 135) {
                     //south
-                    body.setTransform(body.getPosition(), 270 * (float) (Math.PI / 180)); 
+                    body.setTransform(body.getPosition(), 180 * (float) (Math.PI / 180)); 
                     direction = new Vector2(0,-1);
+                    isprite.sprite.setRotation(270);
                 } else {
                     //west
-                    body.setTransform(body.getPosition(), 180 * (float) (Math.PI / 180)); 
+                    body.setTransform(body.getPosition(), 270 * (float) (Math.PI / 180)); 
                     direction = new Vector2(-1, 0);
+                    isprite.sprite.setRotation(180);
                 }
-
-                direction.scl(speed);
                 
+                direction.scl(speed);
                 body.applyForce(direction, body.getPosition(), true);
 
-                //EnvironmentManager.currentEnv.spawnEntity(new GhostSprite(ghostSprite, pos.cpy()));
+                
+                //sound 
+                comboSound.play(false);
+                
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -204,77 +183,5 @@ public class Skill_OneTwo extends LightSkill{
     }
     
     
-    /*
-    @Override
-    public void activate(){
-        super.activate();
-        GameScreen.player.addBuff(PBUFF);
-    }
-    @Override
-    public void deactivate(){
-        super.deactivate();
-        GameScreen.player.removeBuff(PBUFF);
-    }
-    
-    @Override
-    public void addBuff(){
-        GameScreen.player.addBuff(new Buff_OneTwo(5, BUFF_MOD));
-    }*/
-
-    /*
-    private class Buff_OneTwo extends Buff {
-
-        private float modifier, buffValue;
-
-        public Buff_OneTwo(long duration, float mod) {
-            super(duration);
-
-            modifier = mod;
-        }
-
-        @Override
-        public void applyBuff() {
-            buffValue = modifier * GameScreen.player.getHeavyMod();
-            GameScreen.player.setHeavyMod(GameScreen.player.getHeavyMod() + buffValue);
-
-        }
-
-        @Override
-        public void removeBuff() {
-            GameScreen.player.setHeavyMod(GameScreen.player.getHeavyMod() - buffValue);
-
-        }
-
-    }
-    
-    private class PassiveBuff_OneTwo extends PassiveBuff {
-
-        private final float modifier;
-        private float buffValue;
-
-        public PassiveBuff_OneTwo() {
-            super();
-
-            modifier = 0.2f;
-        }
-
-        @Override
-        public void applyBuff() {
-            super.applyBuff();
-
-            buffValue = modifier * GameScreen.player.getHeavyMod();
-            GameScreen.player.setHeavyMod(GameScreen.player.getHeavyMod() + buffValue);
-
-        }
-
-        @Override
-        public void removeBuff() {
-            super.removeBuff();
-
-            GameScreen.player.setHeavyMod(GameScreen.player.getHeavyMod() - buffValue);
-        }
-
-    }
-*/
     
 }

@@ -5,14 +5,25 @@
  */
 package com.mygdx.combat.skills;
 
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.World;
 import static com.mygdx.combat.skills.Skill.SkillType.HEAVY;
 import static com.mygdx.combat.skills.Skill.SkillType.LIGHT;
+import com.mygdx.entities.Entity;
 import com.mygdx.entities.ImageSprite;
+import com.mygdx.environments.EnvironmentManager;
 import com.mygdx.game.MainGame;
 import static com.mygdx.game.MainGame.RATIO;
 import com.mygdx.gui.descriptions.DescriptionWindow;
 import com.mygdx.managers.ResourceManager;
+import com.mygdx.screen.GameScreen;
+import com.mygdx.utilities.FrameCounter;
 import com.mygdx.utilities.SoundObject_Sfx;
+import static com.mygdx.utilities.UtilityVars.BIT_ATT;
+import static com.mygdx.utilities.UtilityVars.BIT_EN;
+import static com.mygdx.utilities.UtilityVars.BIT_TEAR;
+import static com.mygdx.utilities.UtilityVars.PPM;
 
 /**
  *
@@ -20,92 +31,200 @@ import com.mygdx.utilities.SoundObject_Sfx;
  */
 public class Skill_Haymaker extends HeavySkill{
 
-    //private final float FORCE;
+    //private final SoundObject_Sfx comboSound;
     
     public Skill_Haymaker(){
         name = "Haymaker";
-        //type = HEAVY;
-        //COST = 40.0f;
         damageMod = 1.55f;
-        FORCE = 1400.0f;
         
         comboChain = new SkillType[] { HEAVY, LIGHT, HEAVY };
         
-        desc = "More KNOCKBACK";
+        desc = "Throwin' down";
         descWindow = new DescriptionWindow(name, desc, comboChain);
         skillIcon = MainGame.am.get(ResourceManager.SKILL_ONETWO);
         
-        
+        /*
         impactTemplates.add(new ImageSprite("impact1", false));
         impactTemplates.get(0).sprite.setScale(1.4f*RATIO);
         impactTemplates.add(new ImageSprite("impact2", false));
         impactTemplates.get(1).sprite.setScale(1.4f*RATIO);
-        
+        */
         
         skillSprite = new ImageSprite("heavy-att-red",false);
         skillSprite.sprite.setScale(0.5f*RATIO);
         
-        impactSound = new SoundObject_Sfx(ResourceManager.SFX_IMPACT_2);
+        comboSound = new SoundObject_Sfx(ResourceManager.SFX_SKILL_HAYMAKER_1);
     }
     
-    /*
+    /***************************
+        COMBO EFFECT
+    ***************************/
     
-    @Override 
-    public void comboChainEffect(Skill prevSkill){
-        
-        float projDamage = GameScreen.player.getCurrentDamage() * GameScreen.player.getLightMod();
-        float projSpeed = 3f;
-        
-        //if(prevSkill.getType() != type && prevSkill.getAttribute() == attribute){
-            EnvironmentManager.currentEnv.spawnEntity(
-                new PlayerProjectile_Haymaker(
-                        new Vector2(
-                                GameScreen.player.getBody().getPosition().x * PPM, 
-                                GameScreen.player.getBody().getPosition().y * PPM),
-                        30f*RATIO, 30f*RATIO,
-                        new Vector2(1,1).scl(projSpeed),
-                        projDamage));
-            EnvironmentManager.currentEnv.spawnEntity(
-                new PlayerProjectile_Haymaker(
-                        new Vector2(
-                                GameScreen.player.getBody().getPosition().x * PPM, 
-                                GameScreen.player.getBody().getPosition().y * PPM),
-                        30f*RATIO, 30f*RATIO,
-                        new Vector2(1,-1).scl(projSpeed),
-                        projDamage));
-            EnvironmentManager.currentEnv.spawnEntity(
-                new PlayerProjectile_Haymaker(
-                        new Vector2(
-                                GameScreen.player.getBody().getPosition().x * PPM, 
-                                GameScreen.player.getBody().getPosition().y * PPM),
-                        30f*RATIO, 30f*RATIO,
-                        new Vector2(-1,1).scl(projSpeed),
-                        projDamage));
-            EnvironmentManager.currentEnv.spawnEntity(
-                new PlayerProjectile_Haymaker(
-                        new Vector2(
-                                GameScreen.player.getBody().getPosition().x * PPM, 
-                                GameScreen.player.getBody().getPosition().y * PPM),
-                        30f*RATIO, 30f*RATIO,
-                        new Vector2(-1,-1).scl(projSpeed),
-                        projDamage));
-        //}
-    }
     
     @Override
-    public void removeComboChainEffect(){
-        comboChainCheck = false;
+    public void comboEffect(){
+        super.comboEffect();
+        
+        Entity mainSensor = EnvironmentManager.currentEnv.spawnEntity(new HaymakerSensor(GameScreen.player.getPos().cpy()));
+            
+            //get player direction
+            //set 2 side positions based on direction
+            Vector2 left_v, right_v;
+            float ang = GameScreen.player.getCurrentAngle();
+            float degree_ang = ang * (float) (180 / Math.PI) + 180;
+            //degree adjustment to make it easier to work with
+            if (degree_ang >= 360) {
+                degree_ang -= 360;
+            }
+
+            if (degree_ang >= 225 && degree_ang < 315) {
+                //north
+                left_v = new Vector2(GameScreen.player.getPos().x - mainSensor.getWidth()*2, GameScreen.player.getPos().y - mainSensor.getWidth()*2);
+                right_v = new Vector2(GameScreen.player.getPos().x + mainSensor.getWidth()*2, GameScreen.player.getPos().y - mainSensor.getWidth()*2);
+                
+            } else if (degree_ang >= 135 && degree_ang < 225) {
+                //rotate east
+                left_v = new Vector2(GameScreen.player.getPos().x - mainSensor.getWidth()*2, GameScreen.player.getPos().y + mainSensor.getWidth()*2);
+                right_v = new Vector2(GameScreen.player.getPos().x - mainSensor.getWidth()*2, GameScreen.player.getPos().y - mainSensor.getWidth()*2);
+
+            } else if (degree_ang >= 45 && degree_ang < 135) {
+                //south
+                left_v = new Vector2(GameScreen.player.getPos().x + mainSensor.getWidth()*2, GameScreen.player.getPos().y + mainSensor.getWidth()*2);
+                right_v = new Vector2(GameScreen.player.getPos().x - mainSensor.getWidth()*2, GameScreen.player.getPos().y + mainSensor.getWidth()*2);
+
+            } else {
+                //west
+                left_v = new Vector2(GameScreen.player.getPos().x + mainSensor.getWidth()*2, GameScreen.player.getPos().y - mainSensor.getWidth()*2);
+                right_v = new Vector2(GameScreen.player.getPos().x + mainSensor.getWidth()*2, GameScreen.player.getPos().y + mainSensor.getWidth()*2);
+
+            }
+            
+            EnvironmentManager.currentEnv.spawnEntity(new HaymakerSensor(left_v));
+            EnvironmentManager.currentEnv.spawnEntity(new HaymakerSensor(right_v));
+        
+        //EnvironmentManager.currentEnv.spawnEntity(new HaymakerSensor(GameScreen.player.getPos().cpy()));
+        
     }
     
-    private class PlayerProjectile_Haymaker extends PlayerProjectile{
+    
+    
+    private class HaymakerSensor extends Entity{
+
+        //create 3 sensors, spaced by width, ends also offset by width
         
-        public PlayerProjectile_Haymaker(Vector2 pos, float width, float height, Vector2 dir, float dmg) {
-            super(pos, width, height, dir, dmg);
+        private final FrameCounter durationFC = new FrameCounter(0.65f);
+        
+        private Vector2 direction;
+        private final float speed = 1500f;
+        
+        
+        public HaymakerSensor(Vector2 pos) {
+            super(pos, 50f*RATIO,200f*RATIO);
+
+            bd.position.set(pos.x / PPM, pos.y / PPM);
+            bd.type = BodyDef.BodyType.DynamicBody;
+            shape.setAsBox(width/PPM, height/PPM);
+            fd.shape = shape;
+            userdata = "bullet_" + id;
+            fd.filter.categoryBits = BIT_ATT;
+            fd.filter.maskBits = BIT_EN | BIT_TEAR;
+            fd.isSensor = true;
+            bd.linearDamping = 9.0f;
             
-            texture = MainGame.am.get(ResourceManager.SKILL_ONETWO);
+            
+            //center
+            isprite = new ImageSprite("onetwo-combo", false);
+            isprite.sprite.setSize(height*2, width*2);
+            
+        }
+
+        @Override
+        public void init(World world) {
+            try {
+                body = world.createBody(bd);
+                body.createFixture(fd).setUserData(userdata);
+                body.setUserData(userdata);
+
+                durationFC.start(fm);
+
+                //get player direction of movement 
+                //set rotation
+                float ang = GameScreen.player.getCurrentAngle();
+                float degree_ang = ang * (float) (180/Math.PI) + 180;
+                float sprite_ang = 0;
+                //degree adjustment to make it easier to work with
+                if(degree_ang >= 360)   degree_ang -= 360;
+                
+                
+                if (degree_ang >= 225 && degree_ang < 315) {
+                    //rotate north
+                    body.setTransform(body.getPosition(), 0);
+                    direction = new Vector2(0, 1);
+                    sprite_ang = 90;
+                    
+                } else if (degree_ang >= 135 && degree_ang < 225) {
+                    //rotate east
+                    body.setTransform(body.getPosition(), 270 * (float) (Math.PI / 180)); 
+                    direction = new Vector2(1,0);
+                    sprite_ang = 0;
+                    
+                } else if (degree_ang >= 45 && degree_ang < 135) {
+                    //south
+                    body.setTransform(body.getPosition(), 180 * (float) (Math.PI / 180)); 
+                    direction = new Vector2(0,-1);
+                    sprite_ang = 270;
+                    
+                } else {
+                    //west
+                    body.setTransform(body.getPosition(), 90 * (float) (Math.PI / 180)); 
+                    direction = new Vector2(-1, 0);
+                    sprite_ang = 180;
+                    
+                }
+                
+                
+              
+                isprite.sprite.setRotation(sprite_ang);
+
+                direction.scl(speed);
+                body.applyForce(direction, body.getPosition(), true);
+                
+                //sound
+                comboSound.play(false);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         
+        @Override
+        public void update() {
+
+            if (durationFC.complete) {
+                dispose();
+            }
+            
+            super.update();
+        }
+        
+        @Override
+        public void alert(String[] str) {
+            try {
+                if (str[0].equals("begin") && str[1].contains(userdata.toString())) {
+                    for (Entity e : EnvironmentManager.currentEnv.getEntities()) {
+                        if (e.getUserData() != null
+                                && e.getUserData().equals(str[2])) {
+
+                            damageEnemy(e);
+                        }
+                    }
+                } 
+            } catch (IndexOutOfBoundsException ex) {
+                ex.printStackTrace();
+            }
+        }
+
+
     }
     
-    */
 }

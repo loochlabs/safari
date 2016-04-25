@@ -113,8 +113,8 @@ public class EnvVoid_D3_2 extends EnvVoid_D3{
         
         this.spawnEntity(new ManSprite(new Vector2(0,0)));
         
-        spawnEntity(new En_VoidTrap(createSpawnLocation()));
-        spawnEntity(new En_VoidTrap(createSpawnLocation()));
+        //spawnEntity(new En_VoidTrap(createSpawnLocation()));
+        //spawnEntity(new En_VoidTrap(createSpawnLocation()));
     }
     
     

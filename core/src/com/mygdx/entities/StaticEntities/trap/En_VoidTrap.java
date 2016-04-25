@@ -16,7 +16,6 @@ import com.mygdx.entities.ImageSprite;
 import com.mygdx.environments.EnvVoid.EnvVoid;
 import com.mygdx.environments.EnvironmentManager;
 import static com.mygdx.game.MainGame.RATIO;
-import com.mygdx.managers.StateManager;
 import com.mygdx.screen.GameScreen;
 import com.mygdx.utilities.FrameCounter;
 import com.mygdx.utilities.FrameCounter_Attack;

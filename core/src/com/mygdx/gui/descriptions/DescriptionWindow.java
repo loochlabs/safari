@@ -46,9 +46,9 @@ public class DescriptionWindow {
         this.combo = combo;
         
         font = new BitmapFont(Gdx.files.internal("fonts/nav-impact.fnt"));
-        font.setScale(0.6f * RATIO);
+        font.setScale(0.475f * RATIO);
         effectFont = new BitmapFont(Gdx.files.internal("fonts/nav-impact.fnt"));
-        effectFont.setScale(0.5f * RATIO);
+        effectFont.setScale(0.375f * RATIO);
         
         
         setSize(0,0);
@@ -107,7 +107,12 @@ public class DescriptionWindow {
             }
             
             if(t != null){
-                sb.draw(t,x + desc_x + PADDING + effectFont.getBounds("Combo: ").width + i*42f*RATIO, y + PADDING*0.75f, 35f*RATIO, 35f*RATIO);
+                float tempx = x + desc_x + PADDING + effectFont.getBounds("Combo: ").width + i*48f*RATIO;
+                sb.draw(t, tempx, y + PADDING*0.75f, 35f*RATIO, 35f*RATIO);
+                
+                if(i != combo.length-1){
+                    effectFont.draw(sb, " +", tempx + 31f*RATIO, y + PADDING*0.75f + 35f*RATIO - effectFont.getBounds("+").height/2);
+                }
             }
         }
     }

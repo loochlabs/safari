@@ -17,8 +17,8 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.combat.NormAttackSensor;
 import com.mygdx.combat.Buff;
-import com.mygdx.combat.skills.HeavyBasic;
-import com.mygdx.combat.skills.LightBasic;
+import com.mygdx.combat.skills.Skill_HeavyBasic;
+import com.mygdx.combat.skills.Skill_LightBasic;
 import com.mygdx.combat.skills.Skill;
 import com.mygdx.combat.skills.Skill.SkillType;
 import static com.mygdx.combat.skills.Skill.SkillType.DEFENSE;
@@ -62,7 +62,7 @@ public class PlayerEntity extends SteerableEntity{
     protected ImageSprite frontSprite,backSprite, rightSprite, leftSprite;
     protected ImageSprite idleSprite, diveSprite, warpSprite, recovSprite;
     protected ImageSprite attackSprite, attackHeavySprite, playerBuffSprite;//player body animations
-    protected ImageSprite attackLeftSprite, attackRightSprite;
+    //protected ImageSprite attackLeftSprite, attackRightSprite;
     protected ImageSprite beginSpectralSprite, deathSprite;
     
     protected float spriteScale = 1.0f;
@@ -76,10 +76,10 @@ public class PlayerEntity extends SteerableEntity{
     protected String playerName = "player";
     
     //base values for each stat (count == 1 will equal base value)
-    protected final float BASE_LIFE = 30f;
+    protected final float BASE_LIFE = 15f;
     protected final int BASE_ENERGY = 1;
     protected final float BASE_DAMAGE = 1.0f;
-    protected final float BASE_SPEED = 45f * RATIO;
+    protected final float BASE_SPEED = 35f * RATIO;
     protected final float BASE_SPECIAL = 1.0f;
     
     //stat points
@@ -91,9 +91,9 @@ public class PlayerEntity extends SteerableEntity{
     
     //values for each stat type, (COUNT * VALUE = ingame number)
     protected final float LIFE_STAT_VALUE = 10f;
-    protected final int ENERGY_STAT_VALUE = 1;  //todo: change value
+    protected final int ENERGY_STAT_VALUE = 1;  
     protected final float DAMAGE_STAT_VALUE = 1.0f;
-    protected final float SPEED_STAT_VALUE = 3f;
+    protected final float SPEED_STAT_VALUE = 2f;
     protected final float SPECIAL_STAT_VALUE = 0.2f;
     
     protected float CURRENT_LIFE;
@@ -180,7 +180,7 @@ public class PlayerEntity extends SteerableEntity{
     
     //***************
     //SOUND
-    private SoundObject_Sfx SFX_YELL1, SFX_YELL2, SFX_YELL3, SFX_DASH, SFX_DMG;
+    private SoundObject_Sfx SFX_YELL1, SFX_YELL2, SFX_YELL3, SFX_DMG;
     private Array<SoundObject_Sfx> SFX_YELLS = new Array<SoundObject_Sfx>();
     private SoundObject_Sfx soulSound;
     
@@ -242,8 +242,8 @@ public class PlayerEntity extends SteerableEntity{
         
         
         //Default Light and Heavy skills
-        skillSet[0] = new LightBasic();
-        skillSet[1] = new HeavyBasic();
+        //skillSet[0] = new Skill_LightBasic();
+        //skillSet[1] = new Skill_HeavyBasic();
         
         
         //soul - default texture
@@ -257,16 +257,9 @@ public class PlayerEntity extends SteerableEntity{
         deathSprite = new ImageSprite("poe-death", false);
         
         
-        //SOUND
-        SFX_YELL1 = new SoundObject_Sfx(ResourceManager.POE_YELL_1);
-        SFX_YELL2 = new SoundObject_Sfx(ResourceManager.POE_YELL_2);
-        SFX_YELL3 = new SoundObject_Sfx(ResourceManager.POE_YELL_3);
         
-        SFX_YELLS.add(SFX_YELL1);
-        SFX_YELLS.add(SFX_YELL2);
-        SFX_YELLS.add(SFX_YELL3);
         
-        SFX_DASH = new SoundObject_Sfx(ResourceManager.SFX_DASH);
+        
         SFX_DMG = new SoundObject_Sfx(ResourceManager.SFX_POE_DMG);
         
         soulSound = new SoundObject_Sfx(ResourceManager.SFX_PICKUP_SKILL);
@@ -283,7 +276,7 @@ public class PlayerEntity extends SteerableEntity{
     @Override
     public void init(World world) {
         super.init(world);
-        
+        System.out.println("@PlayerEntity init");
         //combat
         //todo: might not need initial init
         attackFC = new FrameCounter_Combo(0,0,0,0);
@@ -294,16 +287,14 @@ public class PlayerEntity extends SteerableEntity{
         body.resetMassData();   //needed for setting density
         
         
-        
-        
         //activate passive skills
         for(Skill skill: skillSet){
-            if(skill != null && skill.getType() == SkillType.PASSIVE && !skill.isActive()){
-                skill.effect();
-            }
-            
             if(skill != null){
-                skill.activate();
+                if(skill.getType() == SkillType.PASSIVE && !skill.isActive()){
+                    skill.effect();
+                }else{
+                    skill.activate();
+                }
             }
         }
         
@@ -325,8 +316,6 @@ public class PlayerEntity extends SteerableEntity{
                 skillsToRemove.add(e);
             }
         }
-        
-        renderComboCircle(sb);
         
         
         if(isprite != null){
@@ -372,12 +361,6 @@ public class PlayerEntity extends SteerableEntity{
         renderEffects(sb);
         
         renderActionKey(sb);
-    }
-    
-    private void renderComboCircle(SpriteBatch sb){
-        //if(comboCircle != null){
-            //comboCircle.render(sb);
-        //}
     }
     
     
@@ -529,15 +512,12 @@ public class PlayerEntity extends SteerableEntity{
         super.update();
         
         //todo: have this check in env.update(), not here
-        if(EnvironmentManager.currentEnv.getStateManager().getState() == State.PLAYING){
+        //if(EnvironmentManager.currentEnv.getStateManager().getState() == State.PLAYING){
         
             
+        
             moveUpdate();
             
-
-            //reset dash
-            //dashUpdate();
-
             //combat
             updateSkill();
             
@@ -546,10 +526,6 @@ public class PlayerEntity extends SteerableEntity{
             updateSprites();
 
             
-            //energy regen
-            //updateEnergy();
-            
-
             //buffs
             updateBuffs();
             
@@ -558,13 +534,9 @@ public class PlayerEntity extends SteerableEntity{
             updateDirection();
 
         
-        }
+        //}
     }
     
-    /*
-    EDIT FOR DEMO (2/10/16):
-    REMOVE SPECTRAL MODE > SWITCH TO GameOverScreen
-    */
     
     @Override
     public void death(){
@@ -587,6 +559,9 @@ public class PlayerEntity extends SteerableEntity{
     private Vector2 dv = new Vector2(0,0);
     
     public void moveUpdate() {
+        
+        if(body == null) return;
+        
         //applies movement and adjusts sprites
         dv.x = 0;
         dv.y = 0;
@@ -646,7 +621,7 @@ public class PlayerEntity extends SteerableEntity{
             }
             
             if(body.getAngle() != ang){
-                body.setTransform(body.getPosition(), ang);
+                //body.setTransform(body.getPosition(), ang);
             }
         }
     }
@@ -699,6 +674,9 @@ public class PlayerEntity extends SteerableEntity{
     }
     
     private void updateDirection(){
+        
+        if(body == null) return;
+        
         currentDirection = body.getPosition().cpy().sub(prevLocation.cpy()).nor();
         prevLocation = body.getPosition().cpy();
         
@@ -708,62 +686,12 @@ public class PlayerEntity extends SteerableEntity{
     
     public boolean isUserMoving() { return moveUp || moveRight || moveLeft || moveDown; }
     
-    /*
-    public  void dash(){
-        if(canDash && energy >= DASH_COST){
-            
-            if(attackFC.running){
-                if(attackFC.state != AttackState.COMBO){
-                    attackFail();
-                    return;
-                }else{  //combo with dash
-                    comboCircle = null;
-                }
-            }
-            
-            
-            //energy -= DASH_COST;
-            //canDash = false;
-            DASHMOD *= 2.6;
-            dashSpeed = CURRENT_SPEED * DASHMOD;
-            
-            dashFC.start(fm);
-            
-            //dash skill effects
-            /*
-            for(Skill skill: skillSet){
-                if(skill != null && skill.isDashSkill()){
-                    skill.effect();
-                }
-            }*/
-            
-            //sound
-            //SFX_DASH.play(false);
-        //}
-    //}
-    
-    
-    /*
-    private void dashUpdate() {
-        
-        if (dashFC.running) {
-            if (dashFC.state == AttackState.ATTACKING
-                    && dashSpeed > body.getLinearVelocity().x) {
-                //edit: (2/17/16) 
-                //apply persistent force on player, based on current direction
-                body.applyForce(currentDirection.cpy().scl(dashSpeed), body.getPosition(), true);
-
-            } else {
-                isprite = recovSprite;
-            }
-        }
-        
-        if (!dashFC.running && !canDash) {
-            canDash = true;
-            DASHMOD /= DASHMOD;
-        }
+    public void clearMovement(){
+        moveUp = false;
+        moveDown = false;
+        moveRight = false;
+        moveLeft = false;
     }
-    */
     
     @Override
     public void damage(float damage){
@@ -990,13 +918,15 @@ public class PlayerEntity extends SteerableEntity{
             //update player attack sprite
             switch (currentSkill.getType()) {
                 case LIGHT:
+                    /*
                     if(moveLeft){
                         isprite = attackLeftSprite;
                     }else if(moveRight){
                         isprite = attackRightSprite;
                     }else{
                         isprite = attackSprite;
-                    }
+                    }*/
+                    isprite = attackSprite;
                     break;
                 case HEAVY:
                     isprite = attackHeavySprite;
@@ -1028,13 +958,11 @@ public class PlayerEntity extends SteerableEntity{
         }
         
         
-        //previousSkill = currentSkill;
         currentSkill = skillSet[index];
 
         //If combo, skill PREP
         FrameCounter_Combo tf = currentSkill.getComboFC();
         attackFC = combo ? new FrameCounter_Combo(0,tf.attTime_real, tf.comboTime_real,tf.recovTime_real) : tf;
-        //attackFC = currentSkill.getComboFC();
         
         attackFC.start(fm);
 
@@ -1048,8 +976,8 @@ public class PlayerEntity extends SteerableEntity{
         switch(currentSkill.getType()){
             case LIGHT:
                 attackSprite.reset();
-                attackLeftSprite.reset();
-                attackRightSprite.reset();
+                //attackLeftSprite.reset();
+                //attackRightSprite.reset();
             case HEAVY:
                 attackHeavySprite.reset();
                 break;
@@ -1062,7 +990,7 @@ public class PlayerEntity extends SteerableEntity{
         }
         
         //sound
-        SFX_YELLS.random().play(false);
+        //SFX_YELLS.random().play(false);
 
         
     }
@@ -1269,6 +1197,8 @@ public class PlayerEntity extends SteerableEntity{
     public void fall(){
         diveSprite.sprite.setPosition(pos.x - diveSprite.sprite.getWidth()/2, pos.y - diveSprite.sprite.getHeight()/2);
         isprite = diveSprite;
+        
+        clearMovement();
     }
     
     //*****************************
@@ -1355,88 +1285,5 @@ public class PlayerEntity extends SteerableEntity{
         CURRENT_SPECIAL +=      SPECIAL_STAT_VALUE * special;
     }
 
-    /*
-    private class ComboCircle{
-        
-        private final Texture base, center, cursor, red, yellow, orange;
-        private final float Y_OFFSET = 50f*RATIO;
-        public float base_x, base_y, cursor_x, cursor_y, center_x, center_y, red_x, red_y;
-        private float base_w, base_h, cursor_w, cursor_h, center_w, center_h, red_w, red_h;
-        
-        private final FrameCounter_Combo fc;
-        public boolean complete;
-        
-        public ComboCircle(FrameCounter_Combo fc) {
-
-            this.fc = fc;
-
-            base = MainGame.am.get(ResourceManager.COMBO_BASE);
-            center = MainGame.am.get(ResourceManager.COMBO_CENTER);
-            cursor = MainGame.am.get(ResourceManager.COMBO_CURSOR);
-            yellow = MainGame.am.get(ResourceManager.COMBO_YELLOW);
-            orange = MainGame.am.get(ResourceManager.COMBO_ORANGE);
-            red = MainGame.am.get(ResourceManager.COMBO_RED);
-
-            base_w = 400f*RATIO;
-            base_h = base_w;
-            red_w = base_w - base_w * ((float)fc.attTime/(float)fc.MAX_FRAME);
-            red_h = red_w;
-            center_w = base_w - (base_w * ((float)fc.comboTime/(float)fc.MAX_FRAME));
-            center_h = center_w;
-
-            setPosition();
-            setCursor();
-
-        }
-        
-        private void setPosition(){
-            base_x = pos.x - base_w/2;
-            base_y = pos.y - base_h/2 - Y_OFFSET;
-            red_x = base_x +  (base_w/2) * ((float)fc.attTime/(float)fc.MAX_FRAME);
-            red_y = base_y +  (base_h/2) * ((float)fc.attTime/(float)fc.MAX_FRAME);
-            center_x = base_x + (base_w/2) * ((float)fc.comboTime/(float)fc.MAX_FRAME);
-            center_y = base_y + (base_h/2) * ((float)fc.comboTime/(float)fc.MAX_FRAME);
-        }
-        
-        private void setCursor(){
-            cursor_w = base_w - base_w * ((float)fc.CURRENT_FRAME/(float)fc.MAX_FRAME);
-            cursor_h = cursor_w;
-            cursor_x = base_x + (base_w/2) * ((float)fc.CURRENT_FRAME/(float)fc.MAX_FRAME);
-            cursor_y = base_y + (base_h/2) * ((float)fc.CURRENT_FRAME/(float)fc.MAX_FRAME);
-        }
-
-        public void update() {
-            setPosition();
-            setCursor();
-            
-            complete = fc.complete;
-        }
-        
-
-        public void render(SpriteBatch sb) {
-            //sb.draw(base, base_x, base_y, base_w, base_h);
-            
-            switch(comboChain){
-                case 1:
-                    sb.draw(yellow, red_x, red_y, red_w, red_h);
-                    break;
-                case 2:
-                    sb.draw(orange, red_x, red_y, red_w, red_h);
-                    break;
-                case 3:
-                    sb.draw(red, red_x, red_y, red_w, red_h);
-                    break;
-                default:
-                    sb.draw(red, red_x, red_y, red_w, red_h);
-                    break;
-            }
-            
-            
-            sb.draw(center, center_x, center_y, center_w, center_h);
-            sb.draw(cursor, cursor_x, cursor_y, cursor_w, cursor_h);
-        }
-
-        
-    }*/
     
 }

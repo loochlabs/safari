@@ -33,8 +33,8 @@ import java.util.Collections;
  */
 public abstract class EnvNull extends Environment {
     
-    protected EntitySprite impactSprite, introTextSprite;
-    protected ImageSprite playerDiveSprite, bgRockSprite;
+    protected EntitySprite impactSprite;//, introTextSprite;
+    protected ImageSprite playerDiveSprite;//, bgRockSprite;
     protected final float PLAYER_DIVE_SCALE;
     protected final Vector2 PLAYER_DIVE_POS;
     protected long diveTime;
@@ -119,14 +119,18 @@ public abstract class EnvNull extends Environment {
         impactSprite.setPosition(new Vector2(playerPos.x*PPM - impactSprite.getWidth()/2, 
                 playerPos.y*PPM - impactSprite.getHeight()*0.175f));
         
+        /*
         introTextSprite = new EntitySprite(new Vector2(0,0), 350f*RATIO,100f*RATIO, "kill-text",  
                 false, true, false, false, 1.0f, false, false, false, false);
         
+        /*
         bgRockSprite = new ImageSprite("null-bg-rocks", false);
         bgRockSprite.sprite.setScale(1.0f * RATIO);
         bgRockSprite.sprite.setPosition(
                  - width/2 + 150f*RATIO, 
                  - height/2 + 75*RATIO);
+        */
+        
         
         //end
         endFC.setTime(4.0f);
@@ -162,8 +166,10 @@ public abstract class EnvNull extends Environment {
         }
         
         
-        if(sm.getState() == StateManager.State.FALLING )
+        if(sm.getState() == StateManager.State.FALLING ){
+            GameScreen.player.update();
             fallingUpdate();
+        }
             
         
         
@@ -223,7 +229,12 @@ public abstract class EnvNull extends Environment {
     //fall camera zoom during State.FALLING
     public void fallingUpdate(){
         if (diveFC.complete) {
-
+            
+            /************************
+                COMPLETE THE DIVE
+            ************************/
+            
+            //set player to center of section
             GameScreen.player.getBody().setTransform(
                     new Vector2(
                             (currentSection.getPos().x + currentSection.getWidth() / 2) / PPM,
@@ -243,6 +254,9 @@ public abstract class EnvNull extends Environment {
             //complete current fall, resume play
             if (currentPlayerZoom == PLAYER_LAYER_ZOOM) {
 
+                //BUG FIX (4/22/16) Player body movement on dive complete
+                GameScreen.player.getBody().setLinearVelocity(new Vector2(0,0));
+                
                 sm.setState(1);
 
                 currentTopZoom = TOP_LAYER_ZOOM;
@@ -251,24 +265,15 @@ public abstract class EnvNull extends Environment {
                 diveIn = false;
                 diveMovement = 0.1f;
 
-                /*
-                if (fallDown) {
-                    this.spawnEntity(new EntitySprite(
-                            impactSprite,
-                            GameScreen.player.getPos().x - impactSprite.getWidth() / 2,
-                            GameScreen.player.getPos().y - impactSprite.getHeight() * 0.175f,
-                            impactSprite.getWidth(),
-                            impactSprite.getHeight(),
-                            true, false));
-                }*/
-
                 //play impact sound
                 impactSound.play(false);
             }
 
         } else {
-            //fall zoom into current section
-            //currentSectionZoom = currentSectionZoom <= 1.0f ? 1.0f : currentSectionZoom - 0.0678f;
+            /***************************************
+                FALL ZOOM INTO CURRENT SECTION
+            ***************************************/
+            
             for (LayerManager lm : layerManagers) {
                 lm.updatePitZoom(fallDown);
             }
@@ -470,7 +475,7 @@ public abstract class EnvNull extends Environment {
         
         
         else if (bottom0 == layer) {
-            bgRockSprite.render(sb);
+            //bgRockSprite.render(sb);
 
             this.fgParallaxX = 1.0f;
             this.fgParallaxY = 1.0f;
@@ -529,12 +534,6 @@ public abstract class EnvNull extends Environment {
     public void play(){
         super.play();
         
-        //spawnEntity(impactSprite);
-        
-        //introTextSprite.setPosition(new Vector2(
-                //playerPos.x*PPM - introTextSprite.getWidth()/2, 
-                //playerPos.y*PPM - introTextSprite.getHeight()*2)); // todo:  *2  why????
-        //spawnEntity(introTextSprite);
         //begin null section
         
         //play impact sound
@@ -550,7 +549,7 @@ public abstract class EnvNull extends Environment {
         sm.setPaused(true);
         
         playerPos = startPos.cpy();
-        reset();
+        //reset();
     }
     
     @Override

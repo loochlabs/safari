@@ -27,10 +27,12 @@ public class Player_Poe extends PlayerEntity{
         fd.shape = shape;
         
         LIFE_STAT_COUNT = 1;
-        ENERGY_STAT_COUNT = 5;
+        ENERGY_STAT_COUNT = 2;
         DAMAGE_STAT_COUNT = 3;
-        SPEED_STAT_COUNT = 2;
-        SPECIAL_STAT_COUNT = 2;
+        SPEED_STAT_COUNT = 4;
+        
+        
+        SPECIAL_STAT_COUNT = 2;//todo: remove
         
         
         refreshStats();
@@ -70,21 +72,18 @@ public class Player_Poe extends PlayerEntity{
         attackHeavySprite.sprite.setScale(spriteScale*1.30f);
         recovSprite = new ImageSprite("poe-recov", false);
         recovSprite.sprite.setScale(spriteScale);
+        
+        /*
         attackLeftSprite = new MirrorSprite("poe-attack-side", false);
         attackLeftSprite.sprite.setScale(spriteScale*1.30f);
         attackRightSprite = new MirrorSprite("poe-attack-side", false, true, true, false);
         attackRightSprite.sprite.setScale(spriteScale*1.30f);
         attackRightSprite.sprite.setOrigin(-attackRightSprite.sprite.getWidth(), attackRightSprite.sprite.getHeight()/2);
-        
+        */
         
         //soul 
         soulTexture = MainGame.am.get(ResourceManager.ITEM_SOUL_POE);
     }
     
-    @Override
-    public void soulUp(){
-        super.soulUp();
-        this.addStatPoints(0, 0, 0, 1, 0);
-    }
     
 }

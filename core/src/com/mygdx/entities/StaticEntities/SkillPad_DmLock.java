@@ -11,8 +11,6 @@ import com.mygdx.combat.skills.Skill;
 import com.mygdx.entities.esprites.DMCostSprite;
 import com.mygdx.entities.pickups.Item_DarkMatter;
 import com.mygdx.entities.pickups.Pickup;
-import com.mygdx.environments.EnvironmentManager;
-import com.mygdx.environments.tears.Tear_Room_DMLock;
 import com.mygdx.managers.GameStats;
 import com.mygdx.screen.GameScreen;
 
@@ -31,14 +29,14 @@ public class SkillPad_DmLock extends SkillPad{
         super(pos);
         
         this.dmcost = dmcost;
-        dmcostSprite = new DMCostSprite(pos.x, pos.y, this.width, this.height, dmcost);
+        dmcostSprite = new DMCostSprite(pos.x, pos.y, this.width*2, this.height*2, dmcost);
     }
     
     public SkillPad_DmLock(Vector2 pos, Skill skill, int dmcost){
         super(pos, skill);
         
         this.dmcost = dmcost;
-        dmcostSprite = new DMCostSprite(pos.x, pos.y, this.width, this.height, dmcost);
+        dmcostSprite = new DMCostSprite(pos.x, pos.y, this.width*2, this.height*2, dmcost);
     }
     
     @Override

@@ -23,7 +23,6 @@ public class MurphyEntity extends DogEntity{
         
         userdata = "murphy";
         
-        dogTexture = MainGame.am.get(ResourceManager.MURPHY_IDLE);
         alertTexture = MainGame.am.get(ResourceManager.MURPHY_ALERT);
         
         spriteScale = width / 72;

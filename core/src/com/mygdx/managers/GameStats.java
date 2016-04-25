@@ -9,11 +9,13 @@ import com.badlogic.gdx.utils.Array;
 import com.mygdx.combat.skills.Skill;
 import com.mygdx.combat.skills.Skill_CantTouchThis;
 import com.mygdx.combat.skills.Skill_CrackOfThunder;
-import com.mygdx.combat.skills.Skill_DashBolt;
 import com.mygdx.combat.skills.Skill_GhostJab;
+import com.mygdx.combat.skills.Skill_HasteLaysWaste;
 import com.mygdx.combat.skills.Skill_HauntHaste;
 import com.mygdx.combat.skills.Skill_Haymaker;
+import com.mygdx.combat.skills.Skill_HeavyBasic;
 import com.mygdx.combat.skills.Skill_HeavyHanded;
+import com.mygdx.combat.skills.Skill_LightBasic;
 import com.mygdx.combat.skills.Skill_LightningRod;
 import com.mygdx.combat.skills.Skill_MommasFury;
 import com.mygdx.combat.skills.Skill_MommasTouch;
@@ -21,8 +23,6 @@ import com.mygdx.combat.skills.Skill_Nrg;
 import com.mygdx.combat.skills.Skill_OneTwo;
 import com.mygdx.combat.skills.Skill_PowerPlease;
 import com.mygdx.combat.skills.Skill_Prognosis;
-import com.mygdx.combat.skills.Skill_TaintedTorture;
-import com.mygdx.combat.skills.Skill_WarpIt;
 
 /**
  *
@@ -33,6 +33,7 @@ public class GameStats {
     
     public static int idcount = 0;
     
+    public static Array<Skill> skillPool_default = new Array<Skill>();
     public static Array<Skill> skillPool_Primary = new Array<Skill>();
     public static Array<Skill> skillPool_Secondary = new Array<Skill>();    //contains all skills, except lights
     public static Array<Skill> skillPool = new Array<Skill>();
@@ -42,6 +43,9 @@ public class GameStats {
     
     public static void init(){
         
+        //default
+        skillPool_default.add(new Skill_LightBasic());
+        skillPool_default.add(new Skill_HeavyBasic());
         
         skillPool_Primary.add(new Skill_GhostJab());
         skillPool_Primary.add(new Skill_OneTwo());
@@ -55,10 +59,9 @@ public class GameStats {
         skillPool_Secondary.add(new Skill_CrackOfThunder());
         //special
         skillPool_Secondary.add(new Skill_PowerPlease());
-        skillPool_Secondary.add(new Skill_WarpIt());
-        skillPool_Secondary.add(new Skill_TaintedTorture());
+        skillPool_Secondary.add(new Skill_HasteLaysWaste());
+        //skillPool_Secondary.add(new Skill_TaintedTorture());
         //passive
-        //skillPool_Secondary.add(new Skill_DashBolt());
         skillPool_Secondary.add(new Skill_Nrg());
         skillPool_Secondary.add(new Skill_CantTouchThis());
         skillPool_Secondary.add(new Skill_Prognosis());

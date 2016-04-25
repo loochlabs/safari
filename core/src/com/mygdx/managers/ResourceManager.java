@@ -43,7 +43,7 @@ public class ResourceManager {
         
         //poe
         this.loadAtlas("entities/player/poe/poe-dive.atlas", "poe-dive", 36);
-        this.loadAtlas("entities/player/poe/poe-attack.atlas", "poe-attack", 12);
+        //this.loadAtlas("entities/player/poe/poe-attack.atlas", "poe-attack", 12);
         this.loadAtlas("entities/player/poe/poe-attack-heavy.atlas", "poe-attack-heavy", 27);
         this.loadAtlas("entities/player/poe/poe-attack-light.atlas", "poe-attack-light", 27);
         this.loadAtlas("entities/player/poe/poe-body-light-att.atlas", "poe-body-light-att", 10);
@@ -57,8 +57,6 @@ public class ResourceManager {
         this.loadAtlas("entities/player/poe/poe-idle.atlas", "poe-idle", 1);
         this.loadAtlas("entities/player/poe/poeSpectral.atlas", "poeSpectral", 207);
         this.loadAtlas("entities/player/poe/poe-death.atlas", "poe-death", 324);
-        this.loadAtlas("entities/player/poe/poe-attack3.atlas", "poe-attack3",1);
-        this.loadAtlas("entities/player/poe/poe-attack4.atlas", "poe-attack4",1);
         this.loadAtlas("entities/player/poe/poe-attack-side.atlas", "poe-attack-side",10);
         
         
@@ -86,10 +84,12 @@ public class ResourceManager {
         this.loadAtlas("entities/player/lumen/lumen-side.atlas", "lumen-side", 36);
         this.loadAtlas("entities/player/lumen/lumen-warp.atlas", "lumen-warp", 19);
         
-        //character starts
+        //env start
         this.loadAtlas("environments/env-start/lumen-start.atlas", "lumen-start", 40);
         this.loadAtlas("environments/env-start/poe-start.atlas", "poe-start", 40);
         this.loadAtlas("environments/env-start/woogie-start.atlas", "woogie-start", 40);
+        this.loadAtlas("environments/env-start/vomit-npc-idle.atlas", "vomit-npc-idle", 1);
+        this.loadAtlas("environments/env-start/vomit-npc-action.atlas", "vomit-npc-action", 90);
         
         //perm sprites
         this.loadAtlas("combat/perm-sprites/perm1.atlas", "perm1", 10);
@@ -99,7 +99,6 @@ public class ResourceManager {
         //skills
         this.loadAtlas("combat/player-att/impact1.atlas", "impact1",1);
         this.loadAtlas("combat/player-att/impact2.atlas", "impact2",1);
-        this.loadAtlas("combat/aoe-circles/aoe-heal.atlas", "aoe-heal",1);
         this.loadAtlas("combat/aoe-circles/aoe-dmg.atlas", "aoe-dmg",10);
         this.loadAtlas("combat/skill-attacks/light-attack-green.atlas", "light-attack-green", 27);
         this.loadAtlas("combat/skill-attacks/heavy-att-green.atlas", "heavy-att-green", 27);
@@ -107,12 +106,18 @@ public class ResourceManager {
         this.loadAtlas("combat/skill-attacks/heavy-att-red.atlas", "heavy-att-red", 27);
         this.loadAtlas("combat/skill-attacks/light-att-yellow.atlas", "light-att-yellow", 28);
         this.loadAtlas("combat/skill-attacks/heavy-att-yellow.atlas", "heavy-att-yellow", 27);
+        this.loadAtlas("combat/skill-attacks/haste-ball.atlas", "haste-ball", 1);
+        
+        //impacts
+        this.loadAtlas("combat/impact/impact-white.atlas", "impact-white", 9);
         
         //combos
         this.loadAtlas("combat/combo/ghostjab-combo.atlas", "ghostjab-combo", 14);
         this.loadAtlas("combat/combo/haunt-combo.atlas", "haunt-combo", 17);
         this.loadAtlas("combat/combo/lightningrod-combo.atlas", "lightningrod-combo", 59);
         this.loadAtlas("combat/combo/lightningbolt.atlas", "lightningbolt", 15);
+        this.loadAtlas("combat/combo/onetwo-combo.atlas", "onetwo-combo", 19);
+        this.loadAtlas("combat/combo/mommastouch-combo.atlas", "mommastouch-combo", 45);
         
         //EnvNull
         this.loadAtlas("entities/enemies/EndNull/null_end_spawn.atlas", "null_end_spawn",21);
@@ -143,9 +148,6 @@ public class ResourceManager {
         this.loadAtlas("entities/enemies/goober/goober-dmg.atlas", "goober-dmg", 1);
         
         
-        //spray
-        this.loadAtlas("combat/spray/spray1.atlas", "spray1",9);
-        
         //proj death
         this.loadAtlas("combat/proj-death.atlas", "proj-death",12);
         
@@ -154,14 +156,13 @@ public class ResourceManager {
         this.loadAtlas("environments/env-start/start-player.atlas", "start-player",1);
         //null
         this.loadAtlas("environments/NullEnv/impact/player-impact.atlas", "player-impact",14);
-        this.loadAtlas("entities/sprites/kill-text.atlas", "kill-text",94);
-        this.loadAtlas("environments/NullEnv/null-bg-rocks.atlas", "null-bg-rocks",1);
         //room
         this.loadAtlas("environments/RoomEnv/wall1/wall1_open.atlas", "wall1_open",214);
         this.loadAtlas("environments/RoomEnv/wall1/wall1_closed.atlas", "wall1_closed",1);
-        this.loadAtlas("environments/RoomEnv/binary/binWall-closed.atlas", "binWall-closed",1);
-        this.loadAtlas("environments/RoomEnv/binary/binWall-open.atlas", "binWall-open",56);
-        this.loadAtlas("environments/RoomEnv/dmlock.atlas", "dmlock",1);
+        this.loadAtlas("environments/RoomEnv/binWall-closed.atlas", "binWall-closed",1);
+        this.loadAtlas("environments/RoomEnv/binWall-open.atlas", "binWall-open",56);
+        
+        this.loadAtlas("gui/dmlock.atlas", "dmlock",1);
         //EnvMan
         this.loadAtlas("environments/EnvMan/start-wall-lock.atlas", "start-wall-lock",107);
         this.loadAtlas("environments/EnvMan/start-wall-closed.atlas", "start-wall-closed",1);
@@ -190,7 +191,6 @@ public class ResourceManager {
         
         
         //sprites
-        this.loadAtlas("entities/sprites/decom.atlas", "decom",1);
         this.loadAtlas("entities/sprites/decom2.atlas", "decom2",30);
         this.loadAtlas("entities/sprites/leave1.atlas", "leave1",20);
         this.loadAtlas("entities/sprites/leave2.atlas", "leave2",20);
@@ -209,7 +209,6 @@ public class ResourceManager {
         this.loadAtlas("gui/hud1/hud-skills/passive-rot.atlas", "passive-rot",15);
         this.loadAtlas("gui/hud1/hud-skills/passive-rotSlow.atlas", "passive-rotSlow",30);
         this.loadAtlas("gui/hud1/hud-skills/skill-empty.atlas", "skill-empty",1);
-        this.loadAtlas("gui/hud1/hud-dm-idle.atlas", "hud-dm-idle",20);
         
         //skill-overlay
         this.loadAtlas("gui/hud2/skill-overlay-cursor.atlas", "skill-overlay-cursor",1);
@@ -233,39 +232,34 @@ public class ResourceManager {
         asm.load(MENU_BG,  Texture.class);
         asm.load(MENU_LOGO,  Texture.class);
         
-        //poe
-        asm.load(POE_IDLE, Texture.class);
         
         //enemies
-        asm.load(GOOBER_IDLE, Texture.class);
-        asm.load(GOOBER_ATTACK, Texture.class);
         asm.load(PEEKER_MAIN, Texture.class);
         
         //projectiles
         asm.load(PROJ_EN_1, Texture.class);
         
-        //breakable objects
-        asm.load(CYST_BLUE, Texture.class);
         
         //npcs
         asm.load(NPC_SLUMGUY1, Texture.class);
         asm.load(NPC_SLUMGUY2, Texture.class);
         
-        asm.load(STELLA_PH, Texture.class);
         asm.load(STELLA_ALERT, Texture.class);
-        asm.load(MURPHY_IDLE, Texture.class);
         asm.load(MURPHY_ALERT, Texture.class);
         
         //env-start
         asm.load(START_BG_PH, Texture.class);
         asm.load(START_INTRO_WHITE_BG, Texture.class);
         asm.load(START_BLACK_BG, Texture.class);
+        asm.load(START_CONTROLS_KEY, Texture.class);
+        asm.load(START_CONTROLS_PAD, Texture.class);
+        
+                
         
         //null
         asm.load(NULL_BG1, Texture.class);
         asm.load(NULL_PH, Texture.class);
         asm.load(NULLWALL_PH, Texture.class);
-        asm.load(NULL_WALL1, Texture.class);
         asm.load(WALL_START, Texture.class);
         
         //blue sections
@@ -322,48 +316,7 @@ public class ResourceManager {
         asm.load(SECTION_B_2110, Texture.class);
         asm.load(SECTION_B_2111, Texture.class);
         
-        //orange sections
-        asm.load(NULL_SECTION_1000, Texture.class);
-        asm.load(NULL_SECTION_0100, Texture.class);
-        asm.load(NULL_SECTION_0010, Texture.class);
-        asm.load(NULL_SECTION_0001, Texture.class);
-        asm.load(NULL_SECTION_1200, Texture.class);
-        asm.load(NULL_SECTION_1020, Texture.class);
-        asm.load(NULL_SECTION_1002, Texture.class);
-        asm.load(NULL_SECTION_2100, Texture.class);
-        asm.load(NULL_SECTION_0120, Texture.class);
-        asm.load(NULL_SECTION_0102, Texture.class);
-        asm.load(NULL_SECTION_2010, Texture.class);
-        asm.load(NULL_SECTION_0210, Texture.class);
-        asm.load(NULL_SECTION_0012, Texture.class);
-        asm.load(NULL_SECTION_2001, Texture.class);
-        asm.load(NULL_SECTION_0201, Texture.class);
-        asm.load(NULL_SECTION_0021, Texture.class);
-        asm.load(NULL_SECTION_1100, Texture.class);
-        asm.load(NULL_SECTION_1010, Texture.class);
-        asm.load(NULL_SECTION_1001, Texture.class);
-        asm.load(NULL_SECTION_0110, Texture.class);
-        asm.load(NULL_SECTION_0101, Texture.class);
-        asm.load(NULL_SECTION_0011, Texture.class);
-        asm.load(NULL_SECTION_1120, Texture.class);
-        asm.load(NULL_SECTION_1102, Texture.class);
-        asm.load(NULL_SECTION_1210, Texture.class);
-        asm.load(NULL_SECTION_1012, Texture.class);
-        asm.load(NULL_SECTION_1201, Texture.class);
-        asm.load(NULL_SECTION_1021, Texture.class);
-        asm.load(NULL_SECTION_2110, Texture.class);
-        asm.load(NULL_SECTION_0112, Texture.class);
-        asm.load(NULL_SECTION_2101, Texture.class);
-        asm.load(NULL_SECTION_0121, Texture.class);
-        asm.load(NULL_SECTION_2011, Texture.class);
-        asm.load(NULL_SECTION_0211, Texture.class);
-        asm.load(NULL_SECTION_0111, Texture.class);
-        asm.load(NULL_SECTION_1011, Texture.class);
-        asm.load(NULL_SECTION_1101, Texture.class);
-        asm.load(NULL_SECTION_1110, Texture.class);
-        
         //void
-        asm.load(VOID_BG, Texture.class);//todo:remove one of these VOID_BG/PH
         asm.load(VOID_BG_PH, Texture.class);
         asm.load(VOID_BG_B, Texture.class);
         asm.load(VOID_BG_A, Texture.class);
@@ -404,21 +357,12 @@ public class ResourceManager {
         asm.load(ROOM_GLYPHWALL_1, Texture.class);
         asm.load(ROOM_BIN_BG, Texture.class);
         asm.load(ROOM_ARC, Texture.class);
-        asm.load(ROOM_BIN_WALL, Texture.class);
-        //items
-        
-        asm.load(STAT_ITEM_LIFE, Texture.class);
-        asm.load(STAT_ITEM_DMG, Texture.class);
-        asm.load(STAT_ITEM_ENERGY, Texture.class);
-        asm.load(STAT_ITEM_SPEED, Texture.class);
         
         //soul
         asm.load(ITEM_SOUL_POE, Texture.class);
         
         asm.load(GLYPH_ONE, Texture.class);
         asm.load(ITEM_DM1, Texture.class);
-        asm.load(ITEM_MATTER_GREEN, Texture.class);
-        asm.load(ITEM_PED, Texture.class);
         asm.load(ITEM_LIFE, Texture.class);
         
         
@@ -446,6 +390,7 @@ public class ResourceManager {
         asm.load(GUI_PAD_X, Texture.class);
         asm.load(GUI_PAD_Y, Texture.class);
         asm.load(GUI_PAD_RB, Texture.class);
+        asm.load(GUI_PAD_LB, Texture.class);
         asm.load(GUI_DASH, Texture.class);
         //pause menu
         asm.load(PAUSE_BG, Texture.class);
@@ -470,17 +415,13 @@ public class ResourceManager {
         asm.load(COMBO_ICON_HEAVY, Texture.class);
         asm.load(COMBO_ICON_SPECIAL, Texture.class);
         
-        
-        //skills
-        asm.load(SKILL_PAD_LIGHT, Texture.class);
-        asm.load(SKILL_PAD_HEAVY, Texture.class);
-        asm.load(SKILL_PAD_SPECIAL, Texture.class);
-        asm.load(SKILL_PAD_PASSIVE, Texture.class);
-        
+        asm.load(SKILL_OVERLAY_CURSOR, Texture.class);
         
         asm.load(SKILL_RED, Texture.class);
         asm.load(SKILL_BLANK, Texture.class);
         asm.load(SKILL_DASH, Texture.class);
+        asm.load(SKILL_LIGHTBASIC, Texture.class);
+        asm.load(SKILL_HEAVYBASIC, Texture.class); 
         asm.load(SKILL_GHOSTJAB, Texture.class);
         asm.load(SKILL_POWERPLEASE, Texture.class);
         asm.load(SKILL_NRG, Texture.class);
@@ -507,6 +448,10 @@ public class ResourceManager {
         //  SOUND
         //************************
         
+        //INTRO
+        asm.load(BGM_INTRO_1, Music.class);
+        asm.load(BGM_INTRO_2, Music.class);
+        
         //void bgm
         asm.load(BGM_VOID_1, Music.class);
         
@@ -527,6 +472,9 @@ public class ResourceManager {
         
        
         //SFX
+        //env intro
+        asm.load(SFX_INTRO_VOMIT, Sound.class);
+        
         //void
         asm.load(SFX_COMPLETE_ENDSECTIONS, Sound.class);
         asm.load(SFX_ENDPIECE_FILL, Sound.class);
@@ -562,6 +510,16 @@ public class ResourceManager {
         
         //powerups
         asm.load(SFX_POWER_1, Sound.class);
+        
+        //skills
+        asm.load(SFX_SKILL_MOMMA_1, Sound.class);
+        asm.load(SFX_SKILL_ONETWO_1, Sound.class);
+        asm.load(SFX_SKILL_HAYMAKER_1, Sound.class);
+        asm.load(SFX_SKILL_HAUNT_1, Sound.class);
+        asm.load(SFX_SKILL_GHOST_1, Sound.class);
+        asm.load(SFX_SKILL_LIGHTNING_1, Sound.class);
+        asm.load(SFX_SKILL_THUNDER_1, Sound.class);
+                
     }
     
     public void secondaryLoad(){
@@ -571,17 +529,7 @@ public class ResourceManager {
         
         //enemies
         this.loadAtlas("entities/en-death2.atlas", "en-death2", 27);
-        this.loadAtlas("entities/enemies/krak-baby.atlas", "krak-baby",42);
-        this.loadAtlas("entities/enemies/murgle-front.atlas", "murgle-front",35);
         this.loadAtlas("entities/enemies/cyst-idle.atlas", "cyst-idle",20);
-        this.loadAtlas("entities/enemies/knowit-move.atlas", "knowit-move",40);
-        this.loadAtlas("entities/enemies/knowit-prep.atlas", "knowit-prep",20);
-        
-        
-        //darkling
-        this.loadAtlas("entities/enemies/darkling/darkling-move.atlas", "darkling-move", 28);
-        this.loadAtlas("entities/enemies/darkling/darkling-prep.atlas", "darkling-prep", 18);
-        this.loadAtlas("entities/enemies/darkling/darkling-att.atlas", "darkling-att", 1);
         
         //worm
         this.loadAtlas("entities/enemies/worm/worm-move.atlas", "worm-move", 30);
@@ -589,114 +537,18 @@ public class ResourceManager {
         this.loadAtlas("entities/enemies/worm/worm-att.atlas", "worm-att", 1);
         
         //spectral
-        this.loadAtlas("environments/envSpectral/run-text.atlas", "run-text",77);
         this.loadAtlas("environments/envSpectral/spec-dm.atlas", "spec-dm",1);
-        this.loadAtlas("environments/envSpectral/dm_sprite2.atlas", "dm_sprite2",24);
         this.loadAtlas("environments/envSpectral/endSpectralSprite.atlas", "endSpectralSprite",119);
         
-        //env room
-        this.loadAtlas("environments/RoomEnv/binary/hintSprite.atlas", "hintSprite",30);
         
-        
-        
-        //boss null
-        this.loadAtlas("environments/boss-null/section1.atlas", "section1", 1);
         
         //sprites
-        this.loadAtlas("entities/sprites/mitb-shadow.atlas", "mitb-shadow",1);
         this.loadAtlas("entities/sprites/man-crouch.atlas", "man-crouch",1);
         this.loadAtlas("entities/sprites/man-warp.atlas", "man-warp",12);
+        this.loadAtlas("entities/sprites/mitb-shadow.atlas", "mitb-shadow",1);
+         
         
         
-        
-        
-        
-        //enemies
-        asm.load(ENEMY_PH, Texture.class);
-        asm.load(EN_REDMATTER, Texture.class);
-        asm.load(MURGLE_MAIN, Texture.class);
-        asm.load(MURGIE_MAIN, Texture.class);
-        
-        
-        //breakable objects
-        asm.load(CYST_PURPLE, Texture.class);
-        asm.load(CYST_GREEN, Texture.class);
-        asm.load(CYST_BIG, Texture.class);
-        
-        
-        
- 
-    
-        asm.load(NULL_SECTION_A_1000, Texture.class); 
-        asm.load(NULL_SECTION_A_0100, Texture.class); 
-        asm.load(NULL_SECTION_A_0010, Texture.class); 
-        asm.load(NULL_SECTION_A_0001, Texture.class); 
-        asm.load(NULL_SECTION_A_1100, Texture.class); 
-        asm.load(NULL_SECTION_A_1010, Texture.class); 
-        asm.load(NULL_SECTION_A_1001, Texture.class); 
-        asm.load(NULL_SECTION_A_0101, Texture.class); 
-        asm.load(NULL_SECTION_A_0011, Texture.class); 
-        asm.load(NULL_SECTION_A_1110, Texture.class); 
-        asm.load(NULL_SECTION_A_1101, Texture.class); 
-        asm.load(NULL_SECTION_A_1011, Texture.class); 
-        asm.load(NULL_SECTION_A_0111, Texture.class); 
-        asm.load(NULL_SECTION_A_1111, Texture.class); 
-        asm.load(NULL_SECTION_A_0110, Texture.class);
-        
-        
-        asm.load(KRAKEN_FG, Texture.class);
-        
-        //spectral 
-        
-        asm.load(SP_SECTION_PH, Texture.class);
-        asm.load(SP_SECTION_0001, Texture.class);
-        asm.load(SP_SECTION_0010, Texture.class);
-        asm.load(SP_SECTION_0011, Texture.class); 
-        asm.load(SP_SECTION_0100, Texture.class);
-        asm.load(SP_SECTION_0101, Texture.class);
-        asm.load(SP_SECTION_0110, Texture.class); 
-        asm.load(SP_SECTION_0111, Texture.class); 
-        asm.load(SP_SECTION_1000, Texture.class);
-        asm.load(SP_SECTION_1001, Texture.class); 
-        asm.load(SP_SECTION_1010, Texture.class); 
-        asm.load(SP_SECTION_1011, Texture.class);
-        asm.load(SP_SECTION_1100, Texture.class);
-        asm.load(SP_SECTION_1101, Texture.class); 
-        asm.load(SP_SECTION_1110, Texture.class);
-        
-        
-       
-        
-        
-        asm.load(ROOM_CODEPANEL0, Texture.class);
-        asm.load(ROOM_CODEPANEL1, Texture.class);
-        asm.load(ROOM_CODEPANEL_SWITCH, Texture.class);
-        asm.load(ROOM_CODESWITCH_0, Texture.class);
-        asm.load(ROOM_CODESWITCH_1, Texture.class);
-        asm.load(ROOM_CODEMON, Texture.class);
-        asm.load(ROOM_CODENUM_BLANK, Texture.class);
-        asm.load(ROOM_CODENUM_0, Texture.class);
-        asm.load(ROOM_CODENUM_1, Texture.class);
-        asm.load(ROOM_CODENUM_2, Texture.class);
-        asm.load(ROOM_CODENUM_3, Texture.class);
-        asm.load(ROOM_CODENUM_4, Texture.class);
-        asm.load(ROOM_CODENUM_5, Texture.class);
-        asm.load(ROOM_CODENUM_6, Texture.class);
-        asm.load(ROOM_CODENUM_7, Texture.class);
-        asm.load(ROOM_CODENUM_8, Texture.class);
-        asm.load(ROOM_CODENUM_9, Texture.class);
-        
-        
-        //evSlum
-        
-        asm.load(SLUM_SECTION_BG, Texture.class);
-        asm.load(SLUM_SECTION_WALL, Texture.class);
-        asm.load(SLUM_SECTION_WALL_2, Texture.class);
-        
-        asm.load(BOSS_ICON, Texture.class);
-        
-        
-
      
         //**************************
         //  SOUND
@@ -751,38 +603,21 @@ public class ResourceManager {
     
     //player textures
     //poe
-    public static String POE_IDLE = "entities/player/poe/poe-idle.png";
+    //public static String POE_IDLE = "entities/player/poe/poe-idle.png";
     
     //enemy textures
-    public static String ENEMY_PH = "entities/enemies/enemy1.png";
-    public static String EN_REDMATTER = "entities/enemies/en-RedMatter1.png";
-    public static String GOOBER_IDLE = "entities/enemies/goober_1.png";
-    public static String GOOBER_ATTACK = "entities/enemies/goober-attack_1.png";
-    public static String KRAK_EYE_OPEN = "entities/enemies/eye-open.png";
-    public static String KRAK_EYE_CLOSED = "entities/enemies/eye-closed.png";
-    public static String POLLOP_CLOSED = "entities/enemies/pollop-closed_1.png";
-    public static String POLLOP_OPEN = "entities/enemies/pollop-open_1.png";
-    public static String MURGLE_MAIN = "entities/enemies/murgle-main.png";
-    public static String MURGIE_MAIN = "entities/enemies/murgie-main.png";
     public static String PEEKER_MAIN = "entities/enemies/peeker-main.png";
     
     //projectiles
     public static String PROJ_EN_1 = "entities/projectiles/en-bullet.png";
     
-    //cysts
-    public static String CYST_BLUE = "entities/enemies/en-cyst1.png";
-    public static String CYST_PURPLE = "entities/enemies/en-cyst-purple.png";
-    public static String CYST_GREEN = "entities/enemies/en-cyst-green.png";
-    public static String CYST_BIG = "entities/enemies/en-bigcyst.png";
     
     //npcs
     public static String NPC_SLUMGUY1 = "entities/npcs/slum-guy1.png";
     public static String NPC_SLUMGUY2 = "entities/npcs/slum-guy2.png";
     
     //stella & murphy
-    public static String STELLA_PH = "entities/stella1.png";
     public static String STELLA_ALERT = "entities/dogs/stella-alert2.png";
-    public static String MURPHY_IDLE = "entities/muphy.png";
     public static String MURPHY_ALERT = "entities/dogs/murphy-alert.png";
     
     //Environments
@@ -790,65 +625,7 @@ public class ResourceManager {
     public static String NULL_BG1 = "environments/NullEnv/null-bg2.png";
     public static String NULL_PH = "environments/nullPH.png";//todo:old
     public static String NULLWALL_PH = "environments/NullEnv/northWallPH.png";
-    public static String NULL_WALL1 = "environments/NullEnv/null-wall.png";
     public static String WALL_START = "environments/RoomEnv/wall-start.png";
-    
-    //orange sections
-    public static String NULL_SECTION_1000 = "environments/NullEnv/sections/null-section-1000.png";
-    public static String NULL_SECTION_0100 = "environments/NullEnv/sections/null-section-0100.png";
-    public static String NULL_SECTION_0010 = "environments/NullEnv/sections/null-section-0010.png";
-    public static String NULL_SECTION_0001 = "environments/NullEnv/sections/null-section-0001.png";
-    public static String NULL_SECTION_1200 = "environments/NullEnv/sections/null-section-1200.png";
-    public static String NULL_SECTION_1020 = "environments/NullEnv/sections/null-section-1020.png";
-    public static String NULL_SECTION_1002 = "environments/NullEnv/sections/null-section-1002.png";
-    public static String NULL_SECTION_2100 = "environments/NullEnv/sections/null-section-2100.png";
-    public static String NULL_SECTION_0120 = "environments/NullEnv/sections/null-section-0120.png";
-    public static String NULL_SECTION_0102 = "environments/NullEnv/sections/null-section-0102.png";
-    public static String NULL_SECTION_2010 = "environments/NullEnv/sections/null-section-2010.png";
-    public static String NULL_SECTION_0210 = "environments/NullEnv/sections/null-section-0210.png";
-    public static String NULL_SECTION_0012 = "environments/NullEnv/sections/null-section-0012.png";
-    public static String NULL_SECTION_2001 = "environments/NullEnv/sections/null-section-2001.png";
-    public static String NULL_SECTION_0201 = "environments/NullEnv/sections/null-section-0201.png";
-    public static String NULL_SECTION_0021 = "environments/NullEnv/sections/null-section-0021.png";
-    public static String NULL_SECTION_1100 = "environments/NullEnv/sections/null-section-1100.png";
-    public static String NULL_SECTION_1010 = "environments/NullEnv/sections/null-section-1010.png";
-    public static String NULL_SECTION_1001 = "environments/NullEnv/sections/null-section-1001.png";
-    public static String NULL_SECTION_0110 = "environments/NullEnv/sections/null-section-0110.png";
-    public static String NULL_SECTION_0101 = "environments/NullEnv/sections/null-section-0101.png";
-    public static String NULL_SECTION_0011 = "environments/NullEnv/sections/null-section-0011.png";
-    public static String NULL_SECTION_1120 = "environments/NullEnv/sections/null-section-1120.png";
-    public static String NULL_SECTION_1102 = "environments/NullEnv/sections/null-section-1102.png";
-    public static String NULL_SECTION_1210 = "environments/NullEnv/sections/null-section-1210.png";
-    public static String NULL_SECTION_1012 = "environments/NullEnv/sections/null-section-1012.png";
-    public static String NULL_SECTION_1201 = "environments/NullEnv/sections/null-section-1201.png";
-    public static String NULL_SECTION_1021 = "environments/NullEnv/sections/null-section-1021.png";
-    public static String NULL_SECTION_2110 = "environments/NullEnv/sections/null-section-2110.png";
-    public static String NULL_SECTION_0112 = "environments/NullEnv/sections/null-section-0112.png";
-    public static String NULL_SECTION_2101 = "environments/NullEnv/sections/null-section-2101.png";
-    public static String NULL_SECTION_0121 = "environments/NullEnv/sections/null-section-0121.png";
-    public static String NULL_SECTION_2011 = "environments/NullEnv/sections/null-section-2011.png";
-    public static String NULL_SECTION_0211 = "environments/NullEnv/sections/null-section-0211.png";
-    public static String NULL_SECTION_0111 = "environments/NullEnv/sections/null-section-0111.png";
-    public static String NULL_SECTION_1011 = "environments/NullEnv/sections/null-section-1011.png";
-    public static String NULL_SECTION_1101 = "environments/NullEnv/sections/null-section-1101.png";
-    public static String NULL_SECTION_1110 = "environments/NullEnv/sections/null-section-1110.png";
-    
-    //purple sections
-    public static String NULL_SECTION_A_1000 = "environments/NullEnv/sections/A/section2-1000.png";
-    public static String NULL_SECTION_A_0100 = "environments/NullEnv/sections/A/section2-0100.png";
-    public static String NULL_SECTION_A_0010 = "environments/NullEnv/sections/A/section2-0010.png";
-    public static String NULL_SECTION_A_0001 = "environments/NullEnv/sections/A/section2-0001.png";
-    public static String NULL_SECTION_A_1100 = "environments/NullEnv/sections/A/section2-1100.png";
-    public static String NULL_SECTION_A_1010 = "environments/NullEnv/sections/A/section2-1010.png";
-    public static String NULL_SECTION_A_1001 = "environments/NullEnv/sections/A/section2-1001.png";
-    public static String NULL_SECTION_A_0101 = "environments/NullEnv/sections/A/section2-0101.png";
-    public static String NULL_SECTION_A_0110 = "environments/NullEnv/sections/A/section2-0110.png";
-    public static String NULL_SECTION_A_0011 = "environments/NullEnv/sections/A/section2-0011.png";
-    public static String NULL_SECTION_A_1110 = "environments/NullEnv/sections/A/section2-1110.png";
-    public static String NULL_SECTION_A_1101 = "environments/NullEnv/sections/A/section2-1101.png";
-    public static String NULL_SECTION_A_1011 = "environments/NullEnv/sections/A/section2-1011.png";
-    public static String NULL_SECTION_A_0111 = "environments/NullEnv/sections/A/section2-0111.png";
-    public static String NULL_SECTION_A_1111 = "environments/NullEnv/sections/A/section2-1111.png";
     
     //blue sections
     public static String SECTION_B_0000 = "environments/NullEnv/sections/b/section-0000.png";
@@ -896,29 +673,9 @@ public class ResourceManager {
     public static String SECTION_B_2110 = "environments/NullEnv/sections/b/section-2110.png";
     public static String SECTION_B_2111 = "environments/NullEnv/sections/b/section-2111.png";
     
-    //boss nulls
-    public static String KRAKEN_FG = "environments/boss-nulls/kraken-bg1.png";
-    
-    //spectral
-    public static String SP_SECTION_PH = "environments/envSpectral/section-ph.png";
-    public static String SP_SECTION_0001 = "environments/envSpectral/section-0001.png";
-    public static String SP_SECTION_0010 = "environments/envSpectral/section-0010.png";
-    public static String SP_SECTION_0011 = "environments/envSpectral/section-0011.png";
-    public static String SP_SECTION_0100 = "environments/envSpectral/section-0100.png";
-    public static String SP_SECTION_0101 = "environments/envSpectral/section-0101.png";
-    public static String SP_SECTION_0110 = "environments/envSpectral/section-0110.png";
-    public static String SP_SECTION_0111 = "environments/envSpectral/section-0111.png";
-    public static String SP_SECTION_1000 = "environments/envSpectral/section-1000.png";
-    public static String SP_SECTION_1001 = "environments/envSpectral/section-1001.png";
-    public static String SP_SECTION_1010 = "environments/envSpectral/section-1010.png";
-    public static String SP_SECTION_1011 = "environments/envSpectral/section-1011.png";
-    public static String SP_SECTION_1100 = "environments/envSpectral/section-1100.png";
-    public static String SP_SECTION_1101 = "environments/envSpectral/section-1101.png";
-    public static String SP_SECTION_1110 = "environments/envSpectral/section-1110.png";
     
     
     //void
-    public static String VOID_BG = "environments/EnvVoid/void-bg4.png";
     public static String VOID_BG_PH = "environments/EnvVoid/void-bg5b.png";
     public static String VOID_BG_A = "environments/EnvVoid/void-bgA.png";
     public static String VOID_BG_B = "environments/EnvVoid/void-bgB.png";
@@ -956,66 +713,28 @@ public class ResourceManager {
     public static String START_BG_PH = "environments/env-start/start-bg.png";
     public static String START_INTRO_WHITE_BG = "environments/env-start/env-start-white.png";
     public static String START_BLACK_BG = "environments/env-start/env-start-black.png";
-    
+    public static String START_CONTROLS_KEY = "environments/env-start/controls-key.png";
+    public static String START_CONTROLS_PAD = "environments/env-start/controls-pad.png";
     
     
     //rooms
     public static String ROOM_BG1 = "environments/RoomEnv/room-bg3.png";
-    public static String ROOM_BIN_BG = "environments/RoomEnv/binary/room-bin-bg.png";
+    public static String ROOM_BIN_BG = "environments/RoomEnv/room-bin-bg.png";
     public static String ROOM_SIMPLE_BG1 = "environments/RoomEnv/room-simple-bg.png";
     public static String ROOM_GLYPHWALL_1 = "environments/RoomEnv/wall-glyph1.png";
     public static String ROOM_ARC = "environments/RoomEnv/room-arc.png";
-    public static String ROOM_BIN_WALL = "environments/RoomEnv/binary/bin-wallPH.png";
-    public static String ROOM_CODEPANEL0 = "environments/RoomEnv/binary/codePanelA0.png";
-    public static String ROOM_CODEPANEL1 = "environments/RoomEnv/binary/codePanelA1.png";
-    public static String ROOM_CODEPANEL_SWITCH = "environments/RoomEnv/binary/codePanel-switch2.png";
-    public static String ROOM_CODESWITCH_0 = "environments/RoomEnv/binary/codeSwitch0.png";
-    public static String ROOM_CODESWITCH_1 = "environments/RoomEnv/binary/codeSwitch1.png";
-    public static String ROOM_CODEMON = "environments/RoomEnv/binary/codeMonitor1.png";
-    public static String ROOM_CODENUM_BLANK = "environments/RoomEnv/binary/codeNumBlank.png";
-    public static String ROOM_CODENUM_0 = "environments/RoomEnv/binary/codeNum0.png";
-    public static String ROOM_CODENUM_1 = "environments/RoomEnv/binary/codeNum1.png";
-    public static String ROOM_CODENUM_2 = "environments/RoomEnv/binary/codeNum2.png";
-    public static String ROOM_CODENUM_3 = "environments/RoomEnv/binary/codeNum3.png";
-    public static String ROOM_CODENUM_4 = "environments/RoomEnv/binary/codeNum4.png";
-    public static String ROOM_CODENUM_5 = "environments/RoomEnv/binary/codeNum5.png";
-    public static String ROOM_CODENUM_6 = "environments/RoomEnv/binary/codeNum6.png";
-    public static String ROOM_CODENUM_7 = "environments/RoomEnv/binary/codeNum7.png";
-    public static String ROOM_CODENUM_8 = "environments/RoomEnv/binary/codeNum8.png";
-    public static String ROOM_CODENUM_9 = "environments/RoomEnv/binary/codeNum9.png";
     
     //EnvMan
     public static String ENVMAN_INTRO_BG = "environments/EnvMan/room-man-introbg1.png";
     
     
-    //slums
-    public static String SLUM_SECTION_BG = "environments/EnvSlum/slum-bg2.png";
-    public static String SLUM_SECTION_WALL = "environments/EnvSlum/slum-wall1.png";
-    public static String SLUM_SECTION_WALL_2 = "environments/EnvSlum/slum-wall2.png";
-    
-    //tears
-    public static String BOSS_ICON = "entities/tears/boss-icon1.png";
-    
-    //pickups
-    public static String FRAGMENT_PH = "entities/fragment-ph.png";
-    public static String FRAG_HP = "entities/pickups/frag-hp.png";
     
     
     //items
     public static String GLYPH_ONE= "entities/pickups/items/glyph-one.png";
     public static String ITEM_DM1= "entities/pickups/items/item-dm2.png";
-    public static String ITEM_MATTER_GREEN = "entities/pickups/matter-green1.png";
-    public static String ITEM_MATTER_RED = "entities/pickups/matter-red1.png";
-    public static String ITEM_MATTER_WHITE = "entities/pickups/matter-white1.png";
-    public static String ITEM_MATTER_YELLOW = "entities/pickups/matter-yellow1.png";
-    public static String ITEM_PED = "entities/pickups/item-ped1.png";
     public static String ITEM_LIFE = "entities/pickups/life-pickup1.png";
     
-    
-    public static String STAT_ITEM_LIFE = "entities/pickups/items/orb-life1.png";
-    public static String STAT_ITEM_ENERGY = "entities/pickups/items/orb-energy1.png";
-    public static String STAT_ITEM_DMG = "entities/pickups/items/orb-dmg1.png";
-    public static String STAT_ITEM_SPEED = "entities/pickups/items/orb-speed1.png";
     
     //GUI
     public static String HUD1_HP_BG = "gui/hud1/hud-hp-bg.png";
@@ -1042,6 +761,7 @@ public class ResourceManager {
     public static String GUI_PAD_X = "gui/padIcon-X2.png";
     public static String GUI_PAD_Y = "gui/padIcon-Y2.png";
     public static String GUI_PAD_RB = "gui/padIcon-RB.png";
+    public static String GUI_PAD_LB = "gui/padIcon-LB.png";
     public static String GUI_DASH = "gui/skill-dash.png";
     //pause menu
     public static String PAUSE_BG= "gui/pause/pause-menu-bg1.png";
@@ -1055,16 +775,6 @@ public class ResourceManager {
     //GAME OVER SCREEN
     public static String GO_TEXT = "screens/GameOver/gameOver-text.png";
     
-    //TODO: old comob circle stuff
-    /*
-    public static String COMBO_BASE = "combat/combo/combo-base.png";
-    public static String COMBO_CENTER = "combat/combo/combo-center.png";
-    public static String COMBO_CURSOR = "combat/combo/combo-cursor.png";
-    public static String COMBO_YELLOW = "combat/combo/combo2-yellow.png";
-    public static String COMBO_ORANGE = "combat/combo/combo2-orange.png";
-    public static String COMBO_RED = "combat/combo/combo2-red.png";
-    */
-    
     
     //combo icons
     public static String COMBO_ICON_LIGHT = "gui/hud2/combo-icon-light.png";
@@ -1072,15 +782,14 @@ public class ResourceManager {
     public static String COMBO_ICON_SPECIAL = "gui/hud2/combo-icon-special.png";
     
     
-    //SKILLS
-    public static String SKILL_PAD_LIGHT = "entities/pickups/pad-light.png";
-    public static String SKILL_PAD_HEAVY = "entities/pickups/pad-heavy.png";
-    public static String SKILL_PAD_SPECIAL = "entities/pickups/pad-special.png";
-    public static String SKILL_PAD_PASSIVE = "entities/pickups/pad-passive.png";
+    public static String SKILL_OVERLAY_CURSOR = "gui/hud2/skill-overlay-cursor1.png";
+    
     
     public static String SKILL_BLANK = "gui/skills/2/skill-blank.png";
     public static String SKILL_RED = "gui/skills/2/skill-red2.png";
     public static String SKILL_DASH = "gui/skills/2/skill-Dash.png";
+    public static String SKILL_LIGHTBASIC = "gui/skills/2/skill-LightBasic.png";
+    public static String SKILL_HEAVYBASIC = "gui/skills/2/skill-HeavyBasic.png";
     public static String SKILL_GHOSTJAB = "gui/skills/2/skill-GhostJab2.png";
     public static String SKILL_POWERPLEASE = "gui/skills/2/skill-PowerPlease2.png";
     public static String SKILL_NRG = "gui/skills/2/skill-Nrg2.png";
@@ -1101,6 +810,10 @@ public class ResourceManager {
     //***********************
     //      SOUND
     //***********************
+    
+    //start bgm
+    public static String BGM_INTRO_1 = "sound/music/start/crowd-groans3.mp3";
+    public static String BGM_INTRO_2 = "sound/music/start/crowd-groans.mp3";
     
     //void music
     public static String BGM_VOID_1 = "sound/music/void/no-place-like-this.mp3";
@@ -1123,6 +836,10 @@ public class ResourceManager {
     
     //***********************
     //SFX
+    
+    //intro
+    public static String SFX_INTRO_VOMIT = "sound/sfx/environment/intro/vomit.mp3";
+    
     
     //void
     public static String SFX_WARP_IN = "sound/sfx/environment/warp-in.mp3";
@@ -1166,7 +883,14 @@ public class ResourceManager {
     //powerups
     public static String SFX_POWER_1= "sound/sfx/powerups/power1.mp3";
     
-    
+    //powerups
+    public static String SFX_SKILL_MOMMA_1= "sound/sfx/skills/momma-combo.mp3";
+    public static String SFX_SKILL_ONETWO_1= "sound/sfx/skills/onetwo-combo.mp3";
+    public static String SFX_SKILL_HAYMAKER_1= "sound/sfx/skills/haymaker-combo.mp3";
+    public static String SFX_SKILL_HAUNT_1= "sound/sfx/skills/haunt-combo.mp3";
+    public static String SFX_SKILL_GHOST_1= "sound/sfx/skills/ghost-combo.mp3";
+    public static String SFX_SKILL_LIGHTNING_1= "sound/sfx/skills/lightning-combo.mp3";
+    public static String SFX_SKILL_THUNDER_1= "sound/sfx/skills/thunder-combo.mp3";
 }
 
     

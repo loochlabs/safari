@@ -7,8 +7,6 @@ package com.mygdx.entities.pickups.statups;
 
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.environments.EnvironmentManager;
-import com.mygdx.game.MainGame;
-import com.mygdx.managers.ResourceManager;
 import com.mygdx.screen.GameScreen;
 import static com.mygdx.utilities.UtilityVars.PPM;
 
@@ -24,7 +22,6 @@ public class Pickup_Statup_Damage extends Pickup_Statup{
         
         name = "Damage Orb";
         
-        texture = MainGame.am.get(ResourceManager.STAT_ITEM_DMG);
     }
     
     public Pickup_Statup_Damage(){

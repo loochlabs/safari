@@ -24,10 +24,12 @@ public class Player_Woogie extends PlayerEntity{
         //box2d
         fd.shape = shape;
         
-        LIFE_STAT_COUNT = 3;
-        ENERGY_STAT_COUNT = 5;
-        DAMAGE_STAT_COUNT = 5;
-        SPEED_STAT_COUNT = 2;
+        LIFE_STAT_COUNT = 2;
+        ENERGY_STAT_COUNT = 3;
+        DAMAGE_STAT_COUNT = 4;
+        SPEED_STAT_COUNT = 1;
+        
+        
         SPECIAL_STAT_COUNT = 1;
         
         refreshStats();
@@ -62,11 +64,4 @@ public class Player_Woogie extends PlayerEntity{
         attackHeavySprite.sprite.setScale(spriteScale*1.30f);
         
     }
-    
-    @Override
-    public void soulUp(){
-        super.soulUp();
-        this.addStatPoints(0, 0, 1, 0, 0);
-    }
-    
 }

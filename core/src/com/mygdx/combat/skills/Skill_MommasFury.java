@@ -6,12 +6,12 @@
 package com.mygdx.combat.skills;
 
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.World;
 import static com.mygdx.combat.skills.Skill.SkillAttribute.LIFE;
 import static com.mygdx.combat.skills.Skill.SkillType.HEAVY;
 import static com.mygdx.combat.skills.Skill.SkillType.LIGHT;
 import com.mygdx.entities.Entity;
-import com.mygdx.entities.StaticEntities.AoeCircle;
 import com.mygdx.entities.ImageSprite;
 import com.mygdx.environments.EnvironmentManager;
 import com.mygdx.game.MainGame;
@@ -21,6 +21,9 @@ import com.mygdx.managers.ResourceManager;
 import com.mygdx.screen.GameScreen;
 import com.mygdx.utilities.FrameCounter;
 import com.mygdx.utilities.SoundObject_Sfx;
+import static com.mygdx.utilities.UtilityVars.BIT_ATT;
+import static com.mygdx.utilities.UtilityVars.BIT_EN;
+import static com.mygdx.utilities.UtilityVars.BIT_TEAR;
 import static com.mygdx.utilities.UtilityVars.PPM;
 
 /**
@@ -29,106 +32,150 @@ import static com.mygdx.utilities.UtilityVars.PPM;
  */
 public class Skill_MommasFury extends HeavySkill {
 
-    private float healChance = 0.5f;
-    private final float healAmmount = 2f;
-    private AoeCircle_Heal comboHealCircle;
-
+    
     public Skill_MommasFury() {
         name = "Momma's Fury";
         damageMod = 1.50f;
         attribute = LIFE;
-        
+        desc = "Momma wants ta keep ya healthy";
         comboChain = new SkillType[] { HEAVY, HEAVY, LIGHT };
 
-        desc = "Momma wants ta keep ya healthy";
         descWindow = new DescriptionWindow(name, desc, comboChain);
+        
         skillIcon = MainGame.am.get(ResourceManager.SKILL_MOMMASFURY);
 
+        /*
         impactTemplates.add(new ImageSprite("impact1", false));
         impactTemplates.get(0).sprite.setScale(1.4f * RATIO);
         impactTemplates.add(new ImageSprite("impact2", false));
         impactTemplates.get(1).sprite.setScale(1.4f * RATIO);
-
-        impactSound = new SoundObject_Sfx(ResourceManager.SFX_IMPACT_2);
+        */
+        
         
         skillSprite = new ImageSprite("heavy-att-green",false);
         skillSprite.sprite.setScale(0.5f*RATIO);
+        
+        comboSound = new SoundObject_Sfx(ResourceManager.SFX_SKILL_MOMMA_1);
     }
 
-    /*
+    
+     /***************************
+        COMBO EFFECT
+    ***************************/
+    
+    
     @Override
-    public void damageEnemy(Entity e, boolean combo, Skill prevSkill) {
-        super.damageEnemy(e, combo, prevSkill);
-
-        chanceToHeal();
+    public void comboEffect(){
+        super.comboEffect();
+        
+        EnvironmentManager.currentEnv.spawnEntity(new MommasFurySensor(GameScreen.player.getPos().cpy()));
+        
+        
     }
-    */
+    
+    private class MommasFurySensor extends Entity{
+         private final FrameCounter durationFC = new FrameCounter(0.75f);
+        
+        private Vector2 direction;
+        private final float speed = 1100f;
+        
+        public MommasFurySensor(Vector2 pos) {
+            super(pos, 100f*RATIO,100f*RATIO);
 
-    private void chanceToHeal() {
-        //on 5% chance, heal on hit
-        if (rng.nextFloat() < healChance) {
-            GameScreen.player.restoreHp(healAmmount);
+            bd.position.set(pos.x / PPM, pos.y / PPM);
+            bd.type = BodyDef.BodyType.DynamicBody;
+            shape.setAsBox(width/PPM, height/PPM);
+            fd.shape = shape;
+            userdata = "bullet_" + id;
+            fd.filter.categoryBits = BIT_ATT;
+            fd.filter.maskBits = BIT_EN | BIT_TEAR;
+            fd.isSensor = true;
+            bd.linearDamping = 2.0f;
+            
+            isprite = new ImageSprite("mommastouch-combo", true);
+            isprite.sprite.setSize(width*2, height*2);
+            
+            
+            
         }
-    }
 
-    /*
-    @Override
-    public void comboEffect(Skill prevSkill) {
-
-        if (prevSkill.getType() != type && prevSkill.getAttribute() == attribute) {
-            //drop healing circle 
+        @Override
+        public void init(World world) {
             try {
-                if (comboHealCircle == null
-                        || comboHealCircle.getDurationFC().complete
-                        || (comboHealCircle != null && !EnvironmentManager.currentEnv.equals(comboHealCircle.getEnvironment()))) {
-                    comboHealCircle = new AoeCircle_Heal(GameScreen.player.getBody().getPosition().cpy().scl(PPM));
-                    EnvironmentManager.currentEnv.spawnEntity(comboHealCircle);
+                body = world.createBody(bd);
+                body.createFixture(fd).setUserData(userdata);
+                body.setUserData(userdata);
+
+                durationFC.start(fm);
+
+                //get player direction of movement 
+                //set rotation
+                float degree_ang = GameScreen.player.getCurrentAngle() * (float) (180/Math.PI) + 180;
+                
+                //degree adjustment to make it easier to work with
+                if(degree_ang >= 360)   degree_ang -= 360;
+                
+                
+                if (degree_ang >= 225 && degree_ang < 315) {
+                    //rotate north
+                    direction = new Vector2(0, 1);
+                } else if (degree_ang >= 135 && degree_ang < 225) {
+                    //rotate east
+                    direction = new Vector2(1,0);
+                } else if (degree_ang >= 45 && degree_ang < 135) {
+                    //south
+                    direction = new Vector2(0,-1);
+                } else {
+                    //west
+                    direction = new Vector2(-1, 0);
                 }
-            } catch (NullPointerException ex) {
+                
+                direction.scl(speed);
+                body.applyForce(direction, body.getPosition(), true);
+                
+                //sound
+                comboSound.play(false);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        
+        private float alpha = 1f;
+        
+        @Override
+        public void update() {
+
+            if (durationFC.complete) {
+                dispose();
+            }
+            
+            if(durationFC.CURRENT_FRAME > durationFC.MAX_FRAME*0.75f){
+                alpha *= 0.8f;
+                isprite.sprite.setAlpha(alpha);
+            }
+            
+            
+            super.update();
+        }
+        
+        @Override
+        public void alert(String[] str) {
+            try {
+                if (str[0].equals("begin") && str[1].contains(userdata.toString())) {
+                    for (Entity e : EnvironmentManager.currentEnv.getEntities()) {
+                        if (e.getUserData() != null
+                                && e.getUserData().equals(str[2])) {
+
+                            //damage enemy and restore .25 life
+                            GameScreen.player.restoreHp(damageEnemy(e) / 4);
+                        }
+                    }
+                } 
+            } catch (IndexOutOfBoundsException ex) {
                 ex.printStackTrace();
             }
         }
     }
-*/
-
-    private class AoeCircle_Heal extends AoeCircle {
-        
-        private boolean active = false;
-        private FrameCounter healTickFC = new FrameCounter(0.5f);
-        
-        public AoeCircle_Heal(Vector2 pos) {
-            super(pos);
-            
-        }
-        
-        @Override
-        public void init(World world){
-            super.init(world);
-            
-            healTickFC.start(fm);
-        }
-
-        @Override
-        public void alert(String [] str) {
-            if (str.equals("active")) {
-                active = true;
-            }
-            if (str.equals("inactive")) {
-                active = false;
-            }
-        }
-        
-        @Override
-        public void update(){
-            super.update();
-            
-            if(active && healTickFC.complete){
-                GameScreen.player.restoreHp(healAmmount);
-                healTickFC.start(fm);
-            }
-        }
-
-    }
-    
     
 }

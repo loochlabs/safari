@@ -20,6 +20,7 @@ public class NullSection_A extends NullSection{
         super(pos, width, height, env, coord, depth);
     }
     
+    /*
     @Override
     public void setTexture(){
         
@@ -55,6 +56,6 @@ public class NullSection_A extends NullSection{
             bg = MainGame.am.get(ResourceManager.NULL_SECTION_A_1111);
         }
         
-    }
+    }*/
     
 }

@@ -11,6 +11,7 @@ import com.mygdx.game.MainGame;
 import com.mygdx.gui.descriptions.DescriptionWindow;
 import com.mygdx.managers.ResourceManager;
 import com.mygdx.screen.GameScreen;
+import com.mygdx.utilities.SoundObject_Sfx;
 
 /**
  *
@@ -23,7 +24,7 @@ import com.mygdx.screen.GameScreen;
  */
 public class DefenseSkill extends Skill{
 
-    private final float DASHMOD = 2.6f;
+    private final float DASHMOD = 3.1f;
     
     public DefenseSkill(){
         name = "Dash";
@@ -34,25 +35,17 @@ public class DefenseSkill extends Skill{
         
         skillIcon = MainGame.am.get(ResourceManager.SKILL_DASH);
         
+        impactSound = new SoundObject_Sfx(ResourceManager.SFX_DASH);
     }
     
-    public void effect(boolean isCombo, Skill prevSkill, boolean isComboChain){
-        //if (dashFC.running) {
-            //if (dashFC.state == UtilityVars.AttackState.ATTACKING
-                    //&& dashSpeed > body.getLinearVelocity().x) {
-                //edit: (2/17/16) 
-                //apply persistent force on player, based on current direction
-                float speed = GameScreen.player.getCurrentSpeed() * DASHMOD;
-                GameScreen.player.getBody().applyForce(GameScreen.player.getCurrentDirection().cpy().scl(speed), GameScreen.player.getBody().getPosition(), true);
+    @Override
+    public void effect() {
+        float speed = GameScreen.player.getCurrentSpeed() * DASHMOD;
+        GameScreen.player.getBody().applyForce(GameScreen.player.getCurrentDirection().cpy().scl(speed), GameScreen.player.getBody().getPosition(), true);
 
-            //} else {
-                //isprite = recovSprite;
-            //}
-        //}
         
         
         //RENDER/UPDATE DASH SPRITS
-        
         /*
             if(dashFC.running){
                 dashSprites.add(new Sprite(isprite.sprite));
@@ -72,16 +65,9 @@ public class DefenseSkill extends Skill{
                 }
                 
             }
-        */
+         */
     }
-    
-    public void removeEffect(){
-        //if (!dashFC.running && !canDash) {
-            //canDash = true;
-            //DASHMOD /= DASHMOD;
-        //}
-    }
-    
+
     @Override
     public void activate() {
         
@@ -91,5 +77,6 @@ public class DefenseSkill extends Skill{
     public void deactivate() {
         
     }
+    
     
 }

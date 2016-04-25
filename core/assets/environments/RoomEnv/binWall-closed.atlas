@@ -1,0 +1,11 @@
+binWall-closed.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+binWall-closed
+  rotate: false
+  xy: 2, 2
+  size: 1200, 300
+  orig: 1200, 300
+  offset: 0, 0
+  index: 1

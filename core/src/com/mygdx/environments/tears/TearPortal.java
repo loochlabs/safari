@@ -38,7 +38,7 @@ public class TearPortal extends SteerableEntity{
     
     protected int linkid;
     protected ImageSprite dmgSprite, openSprite;
-    protected Texture completeMark;
+    //protected Texture completeMark;
     protected float spriteScale = 1.0f;
     
     protected FixtureDef tearfd, warpfd;
@@ -48,7 +48,7 @@ public class TearPortal extends SteerableEntity{
     //description: has the tear been entered
     //todo: change to opened
     protected boolean opened = false; 
-    protected FrameCounter openDelayFC = new FrameCounter(0.75f);
+    //protected FrameCounter openDelayFC = new FrameCounter(0.75f);
     
     //is the env complete
     protected boolean complete = false;
@@ -104,7 +104,7 @@ public class TearPortal extends SteerableEntity{
         healTime = 10;
         healFC = new FrameCounter(healTime);
         
-        completeMark = MainGame.am.get(ResourceManager.MAP_MARKER1);
+        //completeMark = MainGame.am.get(ResourceManager.MAP_MARKER1);
         
         //sound
         warpSound = new SoundObject_Sfx(ResourceManager.SFX_WARP_IN);
@@ -152,9 +152,9 @@ public class TearPortal extends SteerableEntity{
     public void render(SpriteBatch sb){
         super.render(sb);
         
-        if(complete && completeMark != null){
+        /*if(complete && completeMark != null){
             sb.draw(completeMark, pos.x - width, pos.y - height, width*2, height*2);
-        }
+        }*/
         
         if(isprite != null){
             isprite.sprite.setPosition(
@@ -169,9 +169,10 @@ public class TearPortal extends SteerableEntity{
     @Override
     public void offsetRender(SpriteBatch sb, float x, float y){
         
+        /*
         if(complete && completeMark != null){
             sb.draw(completeMark, pos.x - width + x, pos.y - height + y, width*2, height*2);
-        }
+        }*/
         
         super.offsetRender(sb, x, y);
         
@@ -206,16 +207,15 @@ public class TearPortal extends SteerableEntity{
                 true);
         */
         
-        openDelayFC.start(fm);
-        openDelayFC.running = true;
+        //openDelayFC.start(fm);
+        //openDelayFC.running = true;
     }
     
     
     @Override
     public void alert(String []string){
         try {
-            if (string[0].equals("begin") && string[1].contains("warp")
-                    && !openDelayFC.running) {
+            if (string[0].equals("begin") && string[1].contains("warp")) {
                 warp();
             }
 

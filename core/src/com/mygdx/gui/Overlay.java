@@ -225,8 +225,7 @@ public class Overlay {
     //}
     
     public void enableSkillHud(int index){
-        skillHud.enable();
-        skillHud.rotateCursor(index);
+        skillHud.enable(index);
         skillHudEnable = true;
     }
     

@@ -64,7 +64,7 @@ public class ProjectileEntity extends Entity{
     
     @Override
     public void update(){
-        fm.update();
+        fm.update(); //todo: needed? 
         updatePos();
         
         if(durFC.complete){
@@ -76,7 +76,7 @@ public class ProjectileEntity extends Entity{
     
     @Override
     public void alert(String [] str){
-        death();
+        death(); //todo: need collision check
     }
     
     @Override

@@ -75,7 +75,7 @@ public class DogEntity extends SteerableEntity{
         MAX_HP = 10000;
         CURRENT_HP = MAX_HP;
         
-        dogTexture = MainGame.am.get(ResourceManager.STELLA_PH);
+        dogTexture = MainGame.am.get(ResourceManager.STELLA_ALERT);
         dogWidth = iw;
         dogHeight = ih;
         alertTexture = MainGame.am.get(ResourceManager.STELLA_ALERT);

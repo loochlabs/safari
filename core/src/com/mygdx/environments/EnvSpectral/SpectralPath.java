@@ -33,7 +33,7 @@ public class SpectralPath {
         this.height = height;
         this.env = env;
         
-        bg = MainGame.am.get(ResourceManager.SP_SECTION_PH);
+        //bg = MainGame.am.get(ResourceManager.SP_SECTION_PH);
         
         leftWall = new BlankWall(new Vector2(pos.x + width*0.25f/2, pos.y + height/2), width*0.25f/2, height/2);
         rightWall = new BlankWall(new Vector2(pos.x + width - width*0.25f/2, pos.y + height/2), width*0.25f/2, height/2);

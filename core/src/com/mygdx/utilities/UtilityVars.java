@@ -24,4 +24,12 @@ public class UtilityVars {
     public static final short BIT_TEAR = 32;
     public static final short BIT_PICKUP = 64;
     public static final short BIT_MISC = 128;
+    
+    public static float radiansToDegrees(float rad){
+        return rad * (float)(180/Math.PI);
+    }
+    
+    public static float degreesToRadians(float deg){
+        return deg * (float)(Math.PI/180);
+    }
 }

@@ -42,17 +42,20 @@ public class Skill_CrackOfThunder extends HeavySkill{
         descWindow = new DescriptionWindow(name, desc, comboChain);
         skillIcon = MainGame.am.get(ResourceManager.SKILL_CRACKOFTHUNDER);
         
-        
+        /*
         impactTemplates.add(new ImageSprite("impact1", false));
         impactTemplates.get(0).sprite.setScale(1.4f*RATIO);
         impactTemplates.add(new ImageSprite("impact2", false));
         impactTemplates.get(1).sprite.setScale(1.4f*RATIO);
-        
+        */
         
         skillSprite = new ImageSprite("heavy-att-yellow",false);
         skillSprite.sprite.setScale(0.5f*RATIO);
         
-        impactSound = new SoundObject_Sfx(ResourceManager.SFX_IMPACT_2);
+        
+        //sound
+        comboSound = new SoundObject_Sfx(ResourceManager.SFX_SKILL_THUNDER_1);
+        
     }
     
     private final float SPAWN_RANGE = 350f*RATIO;
@@ -87,13 +90,17 @@ public class Skill_CrackOfThunder extends HeavySkill{
                 new ThunderEffect(new Vector2(
                     GameScreen.player.getPos().x + SPAWN_RANGE, GameScreen.player.getPos().y + SPAWN_RANGE),
                     new Vector2(-1,-1)));
+        
+        
+        //sound
+        comboSound.play(false);
     }
     
     private class ThunderEffect extends Entity{
 
         private final FrameCounter durationFC = new FrameCounter(1.0f);
         private final FrameCounter damageTick = new FrameCounter(0.25f);
-        private ArrayList<Entity> attTargets = new ArrayList<Entity>();
+        //private ArrayList<Entity> attTargets = new ArrayList<Entity>();
         
         private final Vector2 direction;
         private float speed = 6.5f;
@@ -131,7 +138,7 @@ public class Skill_CrackOfThunder extends HeavySkill{
                 body.setUserData(userdata);
 
                 durationFC.start(fm);
-                damageTick.start(fm);
+                //damageTick.start(fm);
                 
                 EnvironmentManager.currentEnv.spawnEntity(new LightningBolt(lightningSprite, pos.cpy()));
             } catch (Exception e) {
@@ -146,9 +153,9 @@ public class Skill_CrackOfThunder extends HeavySkill{
             }
             
             if(damageTick.complete){
-                for(Entity e : attTargets){
-                    damageEnemy(e);
-                }
+                //for(Entity e : attTargets){
+                    //damageEnemy(e);
+                //}
                 
                 EnvironmentManager.currentEnv.spawnEntity(new LightningBolt(lightningSprite, pos.cpy()));
                 
@@ -174,16 +181,7 @@ public class Skill_CrackOfThunder extends HeavySkill{
                         if (e.getUserData() != null
                                 && e.getUserData().equals(str[2])) {
                             damageEnemy(e);
-                            addTarget(e);
-                        }
-                    }
-                }
-                if (str[0].equals("end") && str[1].contains(userdata.toString())) {
-                    for (Entity e : EnvironmentManager.currentEnv.getEntities()) {
-                        if (e.getUserData() != null
-                                && e.getUserData().equals(str[2])) {
-
-                            removeTarget(e);
+                            //addTarget(e);
                         }
                     }
                 }
@@ -193,6 +191,7 @@ public class Skill_CrackOfThunder extends HeavySkill{
             }
         }
         
+        /*
         private void addTarget(Entity e){
             if(!attTargets.contains(e)){
                 attTargets.add(e);
@@ -203,7 +202,7 @@ public class Skill_CrackOfThunder extends HeavySkill{
             if (attTargets.contains(e)) {
                 attTargets.remove(e);
             }
-        }
+        }*/
         
         private class LightningBolt extends EntitySprite {
 

@@ -5,9 +5,11 @@
  */
 package com.mygdx.environments.EnvRoom;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.environments.tears.NullWarp;
 import com.mygdx.entities.StaticEntities.BlankWall;
+import com.mygdx.environments.BlackFaceBg;
 import com.mygdx.environments.Environment;
 import com.mygdx.game.MainGame;
 import static com.mygdx.game.MainGame.RATIO;
@@ -21,6 +23,8 @@ import static com.mygdx.utilities.UtilityVars.PPM;
  */
 public class EnvRoom extends Environment{
 
+    protected final BlackFaceBg blackFaceBg;
+    
     //sound
     protected SoundObject_Bgm bgm1;
     
@@ -31,6 +35,7 @@ public class EnvRoom extends Environment{
         this.linkid = linkid;
         
         fg = MainGame.am.get(ResourceManager.ROOM_BG1);
+        blackFaceBg = new BlackFaceBg();
         
         beginFC.setTime(0);
         
@@ -55,6 +60,19 @@ public class EnvRoom extends Environment{
         spawnEntity(new NullWarp(this.startPos.cpy().scl(PPM), linkid));
         
         
+    }
+    
+    @Override
+    public void update(){
+        super.update();
+        
+        blackFaceBg.update();
+    }
+    
+    @Override
+    public void render(SpriteBatch sb){
+        blackFaceBg.render(sb);
+        super.render(sb);
     }
     
     @Override

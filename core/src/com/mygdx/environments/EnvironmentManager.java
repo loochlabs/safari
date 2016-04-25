@@ -15,7 +15,7 @@ import com.mygdx.dev.EnvVoid_Dev0;
 import com.mygdx.entities.DynamicEntities.player.Player_Poe;
 import com.mygdx.environments.EnvMan.EnvMan_Intro;
 import com.mygdx.environments.EnvStart.EnvStart;
-import com.mygdx.environments.EnvStart.EnvStart_0;
+import com.mygdx.environments.EnvStart.EnvStart_Intro;
 import com.mygdx.environments.EnvVoid.pads.EndPadManager;
 import com.mygdx.environments.EnvVoid.EnvVoid_Showcase;
 import static com.mygdx.game.MainGame.RATIO;
@@ -24,8 +24,6 @@ import com.mygdx.managers.GameStats;
 import com.mygdx.screen.GameScreen;
 import static com.mygdx.screen.GameScreen.player;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 
 /**
  *
@@ -68,7 +66,7 @@ public class EnvironmentManager {
         
         if(currentEnv != null && id != Integer.MAX_VALUE){
             
-            currentEnv.pause();
+            //currentEnv.pause();
             currentEnv = FULL_ENV_MAP.get(id);
             currentEnv.begin();
             
@@ -100,8 +98,8 @@ public class EnvironmentManager {
                 break;
                 
             case -1:
-                
-                e = new EnvStart_0(START_ID);
+                //DEMO
+                e = new EnvStart_Intro(START_ID);
                 
                 break;
             default:
@@ -111,6 +109,7 @@ public class EnvironmentManager {
         }
         
         //player, initial setup
+        //needed for dev stuff
         if(GameScreen.player == null){
             //player = new Player_Lumen(new Vector2(300 * RATIO , 400 * RATIO));
             player = new Player_Poe(new Vector2(300 * RATIO , 400 * RATIO));
@@ -149,7 +148,8 @@ public class EnvironmentManager {
         }
     }
     
-    
+    //TODO: odl
+    @Deprecated
     public static void createLevel(int n){
         
         

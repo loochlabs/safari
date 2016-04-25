@@ -41,8 +41,8 @@ public class PanelSwitch extends StaticEntity{
         
         //texture = MainGame.am.get(ResourceManager.ROOM_CODEPANEL_SWITCH);
         
-        onTexture = MainGame.am.get(ResourceManager.ROOM_CODESWITCH_1);
-        offTexture = MainGame.am.get(ResourceManager.ROOM_CODESWITCH_0);
+        //onTexture = MainGame.am.get(ResourceManager.ROOM_CODESWITCH_1);
+        //offTexture = MainGame.am.get(ResourceManager.ROOM_CODESWITCH_0);
         
         texture = panel.isOn() ? onTexture : offTexture;
     }

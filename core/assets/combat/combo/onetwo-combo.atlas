@@ -1,0 +1,138 @@
+onetwo-combo.png
+size: 1614, 512
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+onetwo-combo
+  rotate: false
+  xy: 2, 2
+  size: 401, 100
+  orig: 401, 100
+  offset: 0, 0
+  index: 1
+onetwo-combo
+  rotate: false
+  xy: 2, 104
+  size: 401, 100
+  orig: 401, 100
+  offset: 0, 0
+  index: 10
+onetwo-combo
+  rotate: false
+  xy: 2, 206
+  size: 401, 100
+  orig: 401, 100
+  offset: 0, 0
+  index: 11
+onetwo-combo
+  rotate: false
+  xy: 2, 308
+  size: 401, 100
+  orig: 401, 100
+  offset: 0, 0
+  index: 12
+onetwo-combo
+  rotate: false
+  xy: 2, 410
+  size: 401, 100
+  orig: 401, 100
+  offset: 0, 0
+  index: 13
+onetwo-combo
+  rotate: false
+  xy: 405, 2
+  size: 401, 100
+  orig: 401, 100
+  offset: 0, 0
+  index: 14
+onetwo-combo
+  rotate: false
+  xy: 405, 104
+  size: 401, 100
+  orig: 401, 100
+  offset: 0, 0
+  index: 15
+onetwo-combo
+  rotate: false
+  xy: 405, 206
+  size: 401, 100
+  orig: 401, 100
+  offset: 0, 0
+  index: 16
+onetwo-combo
+  rotate: false
+  xy: 405, 308
+  size: 401, 100
+  orig: 401, 100
+  offset: 0, 0
+  index: 17
+onetwo-combo
+  rotate: false
+  xy: 405, 410
+  size: 401, 100
+  orig: 401, 100
+  offset: 0, 0
+  index: 18
+onetwo-combo
+  rotate: false
+  xy: 808, 2
+  size: 401, 100
+  orig: 401, 100
+  offset: 0, 0
+  index: 19
+onetwo-combo
+  rotate: false
+  xy: 2, 2
+  size: 401, 100
+  orig: 401, 100
+  offset: 0, 0
+  index: 2
+onetwo-combo
+  rotate: false
+  xy: 1211, 2
+  size: 401, 100
+  orig: 401, 100
+  offset: 0, 0
+  index: 3
+onetwo-combo
+  rotate: false
+  xy: 1211, 2
+  size: 401, 100
+  orig: 401, 100
+  offset: 0, 0
+  index: 4
+onetwo-combo
+  rotate: false
+  xy: 808, 104
+  size: 401, 100
+  orig: 401, 100
+  offset: 0, 0
+  index: 5
+onetwo-combo
+  rotate: false
+  xy: 1211, 104
+  size: 401, 100
+  orig: 401, 100
+  offset: 0, 0
+  index: 6
+onetwo-combo
+  rotate: false
+  xy: 808, 206
+  size: 401, 100
+  orig: 401, 100
+  offset: 0, 0
+  index: 7
+onetwo-combo
+  rotate: false
+  xy: 1211, 206
+  size: 401, 100
+  orig: 401, 100
+  offset: 0, 0
+  index: 8
+onetwo-combo
+  rotate: false
+  xy: 808, 308
+  size: 401, 100
+  orig: 401, 100
+  offset: 0, 0
+  index: 9

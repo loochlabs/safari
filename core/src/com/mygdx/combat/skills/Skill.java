@@ -36,6 +36,8 @@ public abstract class Skill {
     protected final Random rng = new Random();
     protected final Array<ImageSprite> impactTemplates = new Array<ImageSprite>();
     protected SoundObject_Sfx impactSound;
+    protected SoundObject_Sfx comboSound;
+    protected final Array<SoundObject_Sfx> SFX_SWING = new Array<SoundObject_Sfx>();
     protected boolean active = false;       //used for passiveSkills
     protected boolean newAlert = true;//todo: old
     protected DescriptionWindow descWindow;

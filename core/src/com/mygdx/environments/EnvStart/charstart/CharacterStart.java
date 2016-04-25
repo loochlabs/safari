@@ -12,7 +12,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.entities.DynamicEntities.player.PlayerEntity;
 import com.mygdx.entities.ImageSprite;
 import com.mygdx.entities.StaticEntities.StaticEntity;
-import com.mygdx.environments.EnvStart.EnvStart_0;
+import com.mygdx.environments.EnvStart.EnvStart_Intro;
 import com.mygdx.environments.EnvironmentManager;
 import static com.mygdx.game.MainGame.RATIO;
 import com.mygdx.screen.GameScreen;
@@ -80,11 +80,11 @@ public abstract class CharacterStart extends StaticEntity{
         /**************************
             CREATE NEW PLAYER
         ***************************/
-        
-        EnvStart_0 env = (EnvStart_0)EnvironmentManager.currentEnv;
+        this.dispose();
+        EnvStart_Intro env = (EnvStart_Intro)EnvironmentManager.currentEnv;
         env.characterSelect(SELECT_POSITION);
         
-        this.dispose();
+        
     }
     
     @Override

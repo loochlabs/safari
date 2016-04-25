@@ -48,8 +48,8 @@ public class DMCostSprite extends EntitySprite {
             //render font
             countFont.draw(sb,
                     "" + dmcost + "",
-                    pos.x - isprite.sprite.getWidth()/2 - countFont.getBounds(""+dmcost+"").width/2,
-                    pos.y - isprite.sprite.getHeight()/2 );
+                    pos.x - countFont.getBounds(""+dmcost+"").width/2,
+                    pos.y + countFont.getCapHeight()/2);
         }
 
     }

@@ -21,10 +21,11 @@ public class Player_Petal extends PlayerEntity{
         //box2d
         fd.shape = shape;
         
-        LIFE_STAT_COUNT = 2;
-        ENERGY_STAT_COUNT = 2;
-        DAMAGE_STAT_COUNT = 4;
-        SPEED_STAT_COUNT = 1;
+        LIFE_STAT_COUNT = 4;
+        ENERGY_STAT_COUNT = 1;
+        DAMAGE_STAT_COUNT = 2;
+        SPEED_STAT_COUNT = 3;
+        
         SPECIAL_STAT_COUNT = 3;
         
         refreshStats();

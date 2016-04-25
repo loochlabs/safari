@@ -1,0 +1,396 @@
+binWall-open.png
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+binWall-open
+  rotate: false
+  xy: 2, 2
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 1
+binWall-open
+  rotate: false
+  xy: 1206, 2
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 10
+binWall-open
+  rotate: false
+  xy: 2410, 2
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 11
+binWall-open
+  rotate: false
+  xy: 3614, 2
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 12
+binWall-open
+  rotate: false
+  xy: 2, 305
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 13
+binWall-open
+  rotate: false
+  xy: 1206, 305
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 14
+binWall-open
+  rotate: false
+  xy: 2410, 305
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 15
+binWall-open
+  rotate: false
+  xy: 3614, 305
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 16
+binWall-open
+  rotate: false
+  xy: 2, 608
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 17
+binWall-open
+  rotate: false
+  xy: 1206, 608
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 18
+binWall-open
+  rotate: false
+  xy: 2410, 608
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 19
+binWall-open
+  rotate: false
+  xy: 3614, 608
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 2
+binWall-open
+  rotate: false
+  xy: 2, 911
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 20
+binWall-open
+  rotate: false
+  xy: 2, 1214
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 21
+binWall-open
+  rotate: false
+  xy: 2, 1517
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 22
+binWall-open
+  rotate: false
+  xy: 2, 1820
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 23
+binWall-open
+  rotate: false
+  xy: 2, 2123
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 24
+binWall-open
+  rotate: false
+  xy: 2, 2426
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 25
+binWall-open
+  rotate: false
+  xy: 2, 2729
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 26
+binWall-open
+  rotate: false
+  xy: 2, 3032
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 27
+binWall-open
+  rotate: false
+  xy: 2, 3335
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 28
+binWall-open
+  rotate: false
+  xy: 1206, 911
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 29
+binWall-open
+  rotate: false
+  xy: 2410, 911
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 3
+binWall-open
+  rotate: false
+  xy: 3614, 911
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 30
+binWall-open
+  rotate: false
+  xy: 1206, 1214
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 31
+binWall-open
+  rotate: false
+  xy: 2410, 1214
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 32
+binWall-open
+  rotate: false
+  xy: 3614, 1214
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 33
+binWall-open
+  rotate: false
+  xy: 1206, 1517
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 34
+binWall-open
+  rotate: false
+  xy: 1206, 1517
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 35
+binWall-open
+  rotate: false
+  xy: 1206, 1517
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 36
+binWall-open
+  rotate: false
+  xy: 1206, 1517
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 37
+binWall-open
+  rotate: false
+  xy: 1206, 1517
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 38
+binWall-open
+  rotate: false
+  xy: 1206, 1517
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 39
+binWall-open
+  rotate: false
+  xy: 2410, 1517
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 4
+binWall-open
+  rotate: false
+  xy: 1206, 1517
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 40
+binWall-open
+  rotate: false
+  xy: 1206, 1517
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 41
+binWall-open
+  rotate: false
+  xy: 1206, 1517
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 42
+binWall-open
+  rotate: false
+  xy: 1206, 1517
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 43
+binWall-open
+  rotate: false
+  xy: 3614, 1517
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 44
+binWall-open
+  rotate: false
+  xy: 1206, 1820
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 45
+binWall-open
+  rotate: false
+  xy: 2410, 1820
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 46
+binWall-open
+  rotate: false
+  xy: 3614, 1820
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 47
+binWall-open
+  rotate: false
+  xy: 1206, 2123
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 48
+binWall-open
+  rotate: false
+  xy: 1206, 2426
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 49
+binWall-open
+  rotate: false
+  xy: 1206, 2729
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 5
+binWall-open
+  rotate: false
+  xy: 1206, 3032
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 50
+binWall-open
+  rotate: false
+  xy: 1206, 3335
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 51
+binWall-open
+  rotate: false
+  xy: 2410, 2123
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 52
+binWall-open
+  rotate: false
+  xy: 3614, 2123
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 53
+binWall-open
+  rotate: false
+  xy: 2410, 2426
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 54
+binWall-open
+  rotate: false
+  xy: 3614, 2426
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 55
+binWall-open
+  rotate: false
+  xy: 2410, 2729
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 56
+binWall-open
+  rotate: false
+  xy: 3614, 2729
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 6
+binWall-open
+  rotate: false
+  xy: 2410, 3032
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 7
+binWall-open
+  rotate: false
+  xy: 3614, 3032
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 8
+binWall-open
+  rotate: false
+  xy: 2410, 3335
+  size: 1202, 301
+  orig: 1202, 301
+  offset: 0, 0
+  index: 9

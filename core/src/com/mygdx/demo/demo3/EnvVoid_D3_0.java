@@ -118,7 +118,7 @@ public class EnvVoid_D3_0 extends EnvVoid_D3{
         //decom sprite
         spawnEntity(new DecomSprite(new Vector2(grid.getWidth()*0.1f, grid.getHeight()*0.9f)));
         
-        spawnEntity(new En_VoidTrap(createSpawnLocation()));
+        //spawnEntity(new En_VoidTrap(createSpawnLocation()));
     }
     
     @Override

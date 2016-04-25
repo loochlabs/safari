@@ -20,9 +20,9 @@ public class NullSection_R extends NullSection{
         super(pos, width, height, env, coord, depth);
     }
     
+    /*
     @Override
     public void setTexture(){
-        /*
         
         Sides
         0 - Wall
@@ -64,7 +64,7 @@ public class NullSection_R extends NullSection{
         2011
         0211
         
-        */
+        
         
         
         if(sideTypes[0] == WallType.CONNECTED && sideTypes[1] == WallType.WALL && sideTypes[2] == WallType.WALL && sideTypes[3] == WallType.WALL){
@@ -148,5 +148,5 @@ public class NullSection_R extends NullSection{
         }
         
     }
-    
+    */
 }

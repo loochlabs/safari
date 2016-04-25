@@ -23,7 +23,6 @@ public class Pickup_Statup_Speed extends Pickup_Statup{
         super(pos);
         
         name = "Speed Orb";
-        texture = MainGame.am.get(ResourceManager.STAT_ITEM_SPEED);
     }
     
     public Pickup_Statup_Speed(){

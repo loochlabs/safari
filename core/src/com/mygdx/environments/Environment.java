@@ -32,7 +32,6 @@ import com.mygdx.screen.GameScreen;
 import com.mygdx.screen.ScreenManager;
 import com.mygdx.utilities.FrameCounter;
 import com.mygdx.utilities.UtilityVars;
-import static com.mygdx.utilities.UtilityVars.PPM;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -235,9 +234,11 @@ public class Environment {
 
                 world.step(UtilityVars.STEP, 6, 2);//new position (2/17/16)
 
-            } else {
-                GameScreen.player.update();
-            }
+            } //else {
+                
+                //WHY IS THIS EVEN HERE!!!!!?????
+                //GameScreen.player.update();
+            //}
         //}
         //TRANSITION SCENES
         envTransition();
@@ -298,9 +299,9 @@ public class Environment {
         }else if(sm.respawn){
             entities.add(GameScreen.player);
             sm.respawn = false;
-        }//else{
-            //GameScreen.player.getBody().setTransform(playerPos.cpy(),0);
-        //}
+        }else{
+            GameScreen.player.getBody().setTransform(playerPos.cpy(),0);
+        }
         
         entityCheck();
         
@@ -341,8 +342,9 @@ public class Environment {
     
     //Called after end() has completed
     public void complete(){
+        pause();
         reset();
-        
+        this.entityCheck();
         EnvironmentManager.setCurrent(idwarp);
     }
     
@@ -350,25 +352,9 @@ public class Environment {
     public void pause(){
         sm.setPaused(true);
         
-        Vector2 vec = GameScreen.player.getBody().getPosition().cpy();
-        playerPos = vec;
-        //reset();
+        playerPos = GameScreen.player.getBody().getPosition().cpy();
         
     }
-    
-    public void respawn(){
-        //reset();
-        sm.setState(3);
-        setPlayerToStart();
-        sm.respawn = true;
-        entities.remove(GameScreen.player);
-    }
-    
-    public void gameOver(){
-        ScreenManager.setScreen(new GameOverScreen());
-    }
-    
-    
     
     
     //Description: clear b2d body after changing environments
@@ -378,6 +364,17 @@ public class Environment {
             world.destroyBody(GameScreen.player.getBody());
         }
         
+    }
+    
+    public void respawn(){
+        sm.setState(3);
+        setPlayerToStart();
+        sm.respawn = true;
+        entities.remove(GameScreen.player);
+    }
+    
+    public void gameOver(){
+        ScreenManager.setScreen(new GameOverScreen());
     }
     
     public void playerDeath(){

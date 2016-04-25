@@ -1,0 +1,12 @@
+vomit-npc-idle.png
+size: 492, 558
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+vomit-npc-idle
+  rotate: false
+  xy: 2, 2
+  size: 488, 554
+  orig: 488, 554
+  offset: 0, 0
+  index: 1

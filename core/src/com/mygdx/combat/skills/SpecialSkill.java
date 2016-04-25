@@ -6,7 +6,9 @@
 package com.mygdx.combat.skills;
 
 import static com.mygdx.combat.skills.Skill.SkillType.SPECIAL;
+import com.mygdx.entities.Entity;
 import com.mygdx.managers.ResourceManager;
+import com.mygdx.screen.GameScreen;
 import com.mygdx.utilities.SoundObject_Sfx;
 
 /**
@@ -23,5 +25,15 @@ public abstract class SpecialSkill extends Skill{
         
     }
     
+    @Override
+    public void activate(){
+        GameScreen.player.addComboChain(comboChain);
+    }
     
+    @Override
+    public void deactivate(){
+        GameScreen.player.removeComboChain(comboChain);
+    }
+    
+    protected float damageEnemy(Entity e){ return 0; }
 }

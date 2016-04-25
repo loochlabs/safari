@@ -39,26 +39,29 @@ public class Skill_LightningRod extends LightSkill{
     public Skill_LightningRod(){
         name = "Lightning Rod";
         attribute = ENERGY;
-        damageMod = 0.5f;
+        damageMod = 1f;
         desc = "Effect: Chance to resore energy";
         skillIcon = MainGame.am.get(ResourceManager.SKILL_CRACKOFLIGHTNING);
         
-        comboChain = new SkillType[] { LIGHT, HEAVY, LIGHT };
+        comboChain = new SkillType[] { LIGHT, LIGHT, HEAVY };
         descWindow = new DescriptionWindow(name, desc, comboChain);
         
-        
+        /*
         impactTemplates.add(new ImageSprite("poe-attack4", false));
         impactTemplates.get(0).sprite.setScale(1.4f*RATIO);
         impactTemplates.add(new ImageSprite("poe-attack3", false));
         impactTemplates.get(1).sprite.setScale(1.4f*RATIO);
+        */
+        
         
         skillSprite = new ImageSprite("light-att-yellow",false);
         skillSprite.sprite.setScale(0.5f*RATIO);
         
-        impactSound = new SoundObject_Sfx(ResourceManager.SFX_IMPACT_1);
         
         rngNegSet.add(1);
         rngNegSet.add(-1);
+        
+        comboSound = new SoundObject_Sfx(ResourceManager.SFX_SKILL_LIGHTNING_1);
     }
     
     private final int lightningCount = 5; 
@@ -83,13 +86,15 @@ public class Skill_LightningRod extends LightSkill{
                             GameScreen.player.getPos().y + spawnRange*rng.nextFloat()*rngNegSet.random())));
         }
         
+        //sound
+        comboSound.play(false);
         
     }
     
     private class LightningEffect extends Entity{
 
         private final FrameCounter durationFC = new FrameCounter(1.0f);
-        private final FrameCounter damageTick = new FrameCounter(0.2f);
+        private final FrameCounter damageTick = new FrameCounter(0.3f);
         private ArrayList<Entity> attTargets = new ArrayList<Entity>();
         
         private final EntitySprite lightningSprite;

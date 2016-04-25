@@ -39,7 +39,8 @@ public abstract class Pickup extends Entity{
     protected FrameCounter pickupFC = new FrameCounter(0.7f);
     protected boolean pickupInit = true;
     protected boolean flagSpawnForce = false;
-    protected final float spawnForceValue = 800f;
+    protected float spawnForceValue = 800f;
+    protected Vector2 spawnDirection;
     
     protected final float Y_FLOATING_UP = 15f, Y_FLOATING_DOWN = 0;
     protected final float Y_AMMOUNT = 0.8f;
@@ -101,11 +102,19 @@ public abstract class Pickup extends Entity{
 
             if (flagSpawnForce) {
 
+                if(spawnDirection == null){
                 body.applyForceToCenter(
                         new Vector2(
                                 (spawnForceValue * rng.nextFloat() * 0.5f + spawnForceValue) * rngNegSet.random(),
                                 (spawnForceValue * rng.nextFloat() * 0.5f + spawnForceValue) * rngNegSet.random()),
                         true);
+                }else{
+                    body.applyForceToCenter(
+                        new Vector2(
+                                spawnDirection.x + (spawnForceValue * rng.nextFloat() * 0.5f + spawnForceValue) ,
+                                spawnDirection.y + (spawnForceValue * rng.nextFloat() * 0.5f + spawnForceValue)) ,
+                        true);
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -198,6 +207,12 @@ public abstract class Pickup extends Entity{
     
     public void spawnForce(){
         flagSpawnForce = true;
+    }
+    
+    public void spawnForce(Vector2 dir, float force){
+        spawnForce();
+        spawnDirection = dir;
+        spawnForceValue = force;
     }
     
     public abstract Pickup cpy();

@@ -1,0 +1,68 @@
+impact-white.png
+size: 4628, 197
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+impact-white
+  rotate: false
+  xy: 2, 2
+  size: 512, 193
+  orig: 512, 193
+  offset: 0, 0
+  index: 1
+impact-white
+  rotate: false
+  xy: 516, 2
+  size: 512, 193
+  orig: 512, 193
+  offset: 0, 0
+  index: 2
+impact-white
+  rotate: false
+  xy: 1030, 2
+  size: 512, 193
+  orig: 512, 193
+  offset: 0, 0
+  index: 3
+impact-white
+  rotate: false
+  xy: 1544, 2
+  size: 512, 193
+  orig: 512, 193
+  offset: 0, 0
+  index: 4
+impact-white
+  rotate: false
+  xy: 2058, 2
+  size: 512, 193
+  orig: 512, 193
+  offset: 0, 0
+  index: 5
+impact-white
+  rotate: false
+  xy: 2572, 2
+  size: 512, 193
+  orig: 512, 193
+  offset: 0, 0
+  index: 6
+impact-white
+  rotate: false
+  xy: 3086, 2
+  size: 512, 193
+  orig: 512, 193
+  offset: 0, 0
+  index: 7
+impact-white
+  rotate: false
+  xy: 3600, 2
+  size: 512, 193
+  orig: 512, 193
+  offset: 0, 0
+  index: 8
+impact-white
+  rotate: false
+  xy: 4114, 2
+  size: 512, 193
+  orig: 512, 193
+  offset: 0, 0
+  index: 9
