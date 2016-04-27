@@ -7,12 +7,9 @@ package com.mygdx.combat.skills;
 
 import static com.mygdx.combat.skills.Skill.SkillAttribute.SPEED;
 import static com.mygdx.combat.skills.Skill.SkillType.LIGHT;
-import com.mygdx.entities.ImageSprite;
 import com.mygdx.game.MainGame;
-import static com.mygdx.game.MainGame.RATIO;
 import com.mygdx.gui.descriptions.DescriptionWindow;
 import com.mygdx.managers.ResourceManager;
-import com.mygdx.utilities.SoundObject_Sfx;
 
 /**
  *
@@ -25,6 +22,7 @@ import com.mygdx.utilities.SoundObject_Sfx;
 public class Skill_LightBasic extends LightSkill{
     
     public Skill_LightBasic(){
+        super();
         name = "Basic Light Attack";
         attribute = SPEED;
         damageMod = 1.0f;

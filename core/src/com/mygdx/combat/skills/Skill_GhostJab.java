@@ -5,14 +5,9 @@
  */
 package com.mygdx.combat.skills;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.ParticleEffect;
-import com.badlogic.gdx.graphics.g2d.ParticleEffectPool;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.World;
-import com.mygdx.combat.Buff;
-import com.mygdx.combat.PassiveBuff;
 import static com.mygdx.combat.skills.Skill.SkillAttribute.SPEED;
 import static com.mygdx.combat.skills.Skill.SkillType.LIGHT;
 import com.mygdx.entities.Entity;
@@ -37,6 +32,7 @@ import static com.mygdx.utilities.UtilityVars.PPM;
 public class Skill_GhostJab extends LightSkill{
     
     public Skill_GhostJab(){
+        super();
         name = "Ghost Jab";
         attribute = SPEED;
         damageMod = 1.0f;
@@ -70,7 +66,7 @@ public class Skill_GhostJab extends LightSkill{
         }
         
         //spawn GhostDashSensor
-        EnvironmentManager.currentEnv.spawnEntity(new GhostDashSensor(GameScreen.player.getPos().cpy()));
+        EnvironmentManager.currentEnv.spawnEntity(new GhostDashSensor(GameScreen.player.getPos().cpy()), true);
         
         //sound
         comboSound.play(false);
@@ -111,7 +107,7 @@ public class Skill_GhostJab extends LightSkill{
                 durationFC.start(fm);
                 damageTick.start(fm);
                 
-                EnvironmentManager.currentEnv.spawnEntity(new GhostSprite(ghostSprite, pos.cpy()));
+                EnvironmentManager.currentEnv.spawnEntity(new GhostSprite(ghostSprite, pos.cpy()), true);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -127,7 +123,7 @@ public class Skill_GhostJab extends LightSkill{
             
             //create new esprite
             if (damageTick.complete) {
-                EnvironmentManager.currentEnv.spawnEntity(new GhostSprite(ghostSprite, pos.cpy()));
+                EnvironmentManager.currentEnv.spawnEntity(new GhostSprite(ghostSprite, pos.cpy()), true);
                 damageTick.start(fm);
             }
 

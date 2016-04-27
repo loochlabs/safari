@@ -34,6 +34,7 @@ public class Skill_Haymaker extends HeavySkill{
     //private final SoundObject_Sfx comboSound;
     
     public Skill_Haymaker(){
+        super();
         name = "Haymaker";
         damageMod = 1.55f;
         
@@ -43,12 +44,6 @@ public class Skill_Haymaker extends HeavySkill{
         descWindow = new DescriptionWindow(name, desc, comboChain);
         skillIcon = MainGame.am.get(ResourceManager.SKILL_ONETWO);
         
-        /*
-        impactTemplates.add(new ImageSprite("impact1", false));
-        impactTemplates.get(0).sprite.setScale(1.4f*RATIO);
-        impactTemplates.add(new ImageSprite("impact2", false));
-        impactTemplates.get(1).sprite.setScale(1.4f*RATIO);
-        */
         
         skillSprite = new ImageSprite("heavy-att-red",false);
         skillSprite.sprite.setScale(0.5f*RATIO);
@@ -65,7 +60,8 @@ public class Skill_Haymaker extends HeavySkill{
     public void comboEffect(){
         super.comboEffect();
         
-        Entity mainSensor = EnvironmentManager.currentEnv.spawnEntity(new HaymakerSensor(GameScreen.player.getPos().cpy()));
+        Entity mainSensor = EnvironmentManager.currentEnv.spawnEntity(
+                new HaymakerSensor(GameScreen.player.getPos().cpy()), true);
             
             //get player direction
             //set 2 side positions based on direction
@@ -99,10 +95,9 @@ public class Skill_Haymaker extends HeavySkill{
 
             }
             
-            EnvironmentManager.currentEnv.spawnEntity(new HaymakerSensor(left_v));
-            EnvironmentManager.currentEnv.spawnEntity(new HaymakerSensor(right_v));
+            EnvironmentManager.currentEnv.spawnEntity(new HaymakerSensor(left_v), true);
+            EnvironmentManager.currentEnv.spawnEntity(new HaymakerSensor(right_v), true);
         
-        //EnvironmentManager.currentEnv.spawnEntity(new HaymakerSensor(GameScreen.player.getPos().cpy()));
         
     }
     

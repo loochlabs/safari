@@ -37,6 +37,7 @@ import java.util.Random;
 public class Skill_LightningRod extends LightSkill{
 
     public Skill_LightningRod(){
+        super();
         name = "Lightning Rod";
         attribute = ENERGY;
         damageMod = 1f;
@@ -83,7 +84,8 @@ public class Skill_LightningRod extends LightSkill{
             EnvironmentManager.currentEnv.spawnEntity(
                     new LightningEffect(new Vector2(
                             GameScreen.player.getPos().x + spawnRange*rng.nextFloat()*rngNegSet.random(), 
-                            GameScreen.player.getPos().y + spawnRange*rng.nextFloat()*rngNegSet.random())));
+                            GameScreen.player.getPos().y + spawnRange*rng.nextFloat()*rngNegSet.random())),
+                    true);
         }
         
         //sound
@@ -132,7 +134,7 @@ public class Skill_LightningRod extends LightSkill{
                 
                 body.applyForce(new Vector2(0, 5f), body.getPosition(), true);
                 
-                EnvironmentManager.currentEnv.spawnEntity(new LightningBolt(lightningSprite, pos.cpy()));
+                EnvironmentManager.currentEnv.spawnEntity(new LightningBolt(lightningSprite, pos.cpy()), true);
                 
             } catch (Exception e) {
                 e.printStackTrace();

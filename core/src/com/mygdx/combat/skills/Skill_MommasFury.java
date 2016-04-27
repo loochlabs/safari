@@ -34,6 +34,7 @@ public class Skill_MommasFury extends HeavySkill {
 
     
     public Skill_MommasFury() {
+        super();
         name = "Momma's Fury";
         damageMod = 1.50f;
         attribute = LIFE;
@@ -68,7 +69,7 @@ public class Skill_MommasFury extends HeavySkill {
     public void comboEffect(){
         super.comboEffect();
         
-        EnvironmentManager.currentEnv.spawnEntity(new MommasFurySensor(GameScreen.player.getPos().cpy()));
+        EnvironmentManager.currentEnv.spawnEntity(new MommasFurySensor(GameScreen.player.getPos().cpy()), true);
         
         
     }

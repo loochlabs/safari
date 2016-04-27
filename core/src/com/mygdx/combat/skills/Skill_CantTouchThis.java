@@ -16,13 +16,13 @@ import com.mygdx.screen.GameScreen;
  *
  * @author looch
  */
-public class Skill_CantTouchThis extends Skill{
+public class Skill_CantTouchThis extends PassiveSkill{
     
     private final Buff buff;
     
     public Skill_CantTouchThis(){
+        super();
         name = "Can't Touch This";
-        type = SkillType.PASSIVE;
         skillIcon = MainGame.am.get(ResourceManager.SKILL_CANTTOUCH);
         buff = new PassiveBuff_CantTouch();
         desc = "More speed";
@@ -30,24 +30,17 @@ public class Skill_CantTouchThis extends Skill{
         
     }
     
-    @Override 
-    public void activate(){
-        this.effect();
-    }
-    
-    @Override 
-    public void deactivate(){
-        this.removeEffect();
-    }
-    
     @Override
     public void effect() {
+        if(activated)   return;    
         GameScreen.player.addBuff(buff);
         active();
     }
     
     @Override
     public void removeEffect(){
+        if(!activated)  return;
+        
         GameScreen.player.removeBuff(buff);
         reset();
     }

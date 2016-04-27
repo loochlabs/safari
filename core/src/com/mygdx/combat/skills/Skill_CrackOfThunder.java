@@ -34,6 +34,7 @@ import java.util.ArrayList;
 public class Skill_CrackOfThunder extends HeavySkill{
 
     public Skill_CrackOfThunder(){
+        super();
         name = "Crack of Thunder";
         damageMod = 1.5f;
         attribute = ENERGY;
@@ -42,12 +43,7 @@ public class Skill_CrackOfThunder extends HeavySkill{
         descWindow = new DescriptionWindow(name, desc, comboChain);
         skillIcon = MainGame.am.get(ResourceManager.SKILL_CRACKOFTHUNDER);
         
-        /*
-        impactTemplates.add(new ImageSprite("impact1", false));
-        impactTemplates.get(0).sprite.setScale(1.4f*RATIO);
-        impactTemplates.add(new ImageSprite("impact2", false));
-        impactTemplates.get(1).sprite.setScale(1.4f*RATIO);
-        */
+        
         
         skillSprite = new ImageSprite("heavy-att-yellow",false);
         skillSprite.sprite.setScale(0.5f*RATIO);
@@ -71,25 +67,29 @@ public class Skill_CrackOfThunder extends HeavySkill{
         EnvironmentManager.currentEnv.spawnEntity(
                 new ThunderEffect(new Vector2(
                     GameScreen.player.getPos().x - SPAWN_RANGE, GameScreen.player.getPos().y - SPAWN_RANGE),
-                    new Vector2(1,1)));
+                    new Vector2(1,1)), 
+                true);
         
         //bottom right
         EnvironmentManager.currentEnv.spawnEntity(
                 new ThunderEffect(new Vector2(
                     GameScreen.player.getPos().x + SPAWN_RANGE, GameScreen.player.getPos().y - SPAWN_RANGE),
-                    new Vector2(-1,1)));
+                    new Vector2(-1,1)),
+                true);
 
         //upper left
         EnvironmentManager.currentEnv.spawnEntity(
                 new ThunderEffect(new Vector2(
                     GameScreen.player.getPos().x - SPAWN_RANGE, GameScreen.player.getPos().y + SPAWN_RANGE),
-                    new Vector2(1,-1)));
+                    new Vector2(1,-1)),
+                true);
 
         //upper right
         EnvironmentManager.currentEnv.spawnEntity(
                 new ThunderEffect(new Vector2(
                     GameScreen.player.getPos().x + SPAWN_RANGE, GameScreen.player.getPos().y + SPAWN_RANGE),
-                    new Vector2(-1,-1)));
+                    new Vector2(-1,-1)),
+                true);
         
         
         //sound
@@ -140,7 +140,7 @@ public class Skill_CrackOfThunder extends HeavySkill{
                 durationFC.start(fm);
                 //damageTick.start(fm);
                 
-                EnvironmentManager.currentEnv.spawnEntity(new LightningBolt(lightningSprite, pos.cpy()));
+                EnvironmentManager.currentEnv.spawnEntity(new LightningBolt(lightningSprite, pos.cpy()), true);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -157,7 +157,7 @@ public class Skill_CrackOfThunder extends HeavySkill{
                     //damageEnemy(e);
                 //}
                 
-                EnvironmentManager.currentEnv.spawnEntity(new LightningBolt(lightningSprite, pos.cpy()));
+                EnvironmentManager.currentEnv.spawnEntity(new LightningBolt(lightningSprite, pos.cpy()), true);
                 
                 damageTick.start(fm);
             }

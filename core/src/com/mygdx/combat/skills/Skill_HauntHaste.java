@@ -40,6 +40,7 @@ public class Skill_HauntHaste extends HeavySkill{
     private final float SPEED_VALUE = 0.015f;
     
     public Skill_HauntHaste(){
+        super();
         name = "Haunt Haste";
         attribute = SPEED;
         damageMod = 1.0f;
@@ -95,7 +96,7 @@ public class Skill_HauntHaste extends HeavySkill{
         }
         
         //spawn GhostDashSensor
-        EnvironmentManager.currentEnv.spawnEntity(new HauntTrailSensor(GameScreen.player.getPos().cpy()));
+        EnvironmentManager.currentEnv.spawnEntity(new HauntTrailSensor(GameScreen.player.getPos().cpy()), true);
         
         //sound
         comboSound.play(false);
@@ -136,7 +137,7 @@ public class Skill_HauntHaste extends HeavySkill{
                 durationFC.start(fm);
                 damageTick.start(fm);
                 
-                EnvironmentManager.currentEnv.spawnEntity(new GhostSprite(ghostSprite, pos.cpy()));
+                EnvironmentManager.currentEnv.spawnEntity(new GhostSprite(ghostSprite, pos.cpy()), true);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -147,14 +148,14 @@ public class Skill_HauntHaste extends HeavySkill{
             body.setLinearVelocity(GameScreen.player.getBody().getLinearVelocity().cpy().scl(1.15f));
 
             if (durationFC.complete) {
-                EnvironmentManager.currentEnv.spawnEntity(new HauntEndSensor(pos.cpy()));
+                EnvironmentManager.currentEnv.spawnEntity(new HauntEndSensor(pos.cpy()), true);
                 
                 dispose();
             }
             
             //create new esprite
             if (damageTick.complete) {
-                EnvironmentManager.currentEnv.spawnEntity(new GhostSprite(ghostSprite, pos.cpy()));
+                EnvironmentManager.currentEnv.spawnEntity(new GhostSprite(ghostSprite, pos.cpy()), true);
                 damageTick.start(fm);
             }
 
@@ -272,7 +273,7 @@ public class Skill_HauntHaste extends HeavySkill{
                 durationFC.start(fm);
                 damageTick.start(fm);
                 
-                EnvironmentManager.currentEnv.spawnEntity(new GhostSprite(ghostSprite, pos.cpy()));
+                EnvironmentManager.currentEnv.spawnEntity(new GhostSprite(ghostSprite, pos.cpy()), true);
             } catch (Exception e) {
                 e.printStackTrace();
             }

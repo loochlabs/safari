@@ -41,6 +41,7 @@ public class Skill_HasteLaysWaste extends SpecialSkill{
     private final int STAT_BUFF = 1;
         
     public Skill_HasteLaysWaste(){
+        super();
         name = "Haste Lays Waste";
         attribute = SPEED;
         damageMod = 1.0f;
@@ -61,9 +62,9 @@ public class Skill_HasteLaysWaste extends SpecialSkill{
         //creat 3 balls that circle player
         //add Speed Stat for each ball
         //remove stat on ball destroy
-        EnvironmentManager.currentEnv.spawnEntity(new Entity_HasteManager(GameScreen.player.getPos(), 0));
-        EnvironmentManager.currentEnv.spawnEntity(new Entity_HasteManager(GameScreen.player.getPos(), 120f * (float)(Math.PI/180)));
-        EnvironmentManager.currentEnv.spawnEntity(new Entity_HasteManager(GameScreen.player.getPos(), 240f * (float)(Math.PI/180)));
+        EnvironmentManager.currentEnv.spawnEntity(new Entity_HasteManager(GameScreen.player.getPos(), 0), true);
+        EnvironmentManager.currentEnv.spawnEntity(new Entity_HasteManager(GameScreen.player.getPos(), 120f * (float)(Math.PI/180)), true);
+        EnvironmentManager.currentEnv.spawnEntity(new Entity_HasteManager(GameScreen.player.getPos(), 240f * (float)(Math.PI/180)), true);
         
         reset();
     }

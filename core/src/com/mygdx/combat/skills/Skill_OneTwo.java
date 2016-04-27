@@ -34,6 +34,7 @@ public class Skill_OneTwo extends LightSkill{
     
     
     public Skill_OneTwo(){
+        super();
         name = "One Two";
         damageMod = 1.0f;
         desc = "More heavy damage";
@@ -66,7 +67,7 @@ public class Skill_OneTwo extends LightSkill{
     public void comboEffect(){
         super.comboEffect();
         
-        EnvironmentManager.currentEnv.spawnEntity(new OneTwoSensor(GameScreen.player.getPos().cpy()));
+        EnvironmentManager.currentEnv.spawnEntity(new OneTwoSensor(GameScreen.player.getPos().cpy()), true);
         
         
     }

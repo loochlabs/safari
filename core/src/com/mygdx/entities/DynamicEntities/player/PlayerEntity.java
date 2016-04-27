@@ -17,8 +17,6 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.combat.NormAttackSensor;
 import com.mygdx.combat.Buff;
-import com.mygdx.combat.skills.Skill_HeavyBasic;
-import com.mygdx.combat.skills.Skill_LightBasic;
 import com.mygdx.combat.skills.Skill;
 import com.mygdx.combat.skills.Skill.SkillType;
 import static com.mygdx.combat.skills.Skill.SkillType.DEFENSE;

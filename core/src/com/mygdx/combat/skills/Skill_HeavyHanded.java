@@ -16,13 +16,13 @@ import com.mygdx.screen.GameScreen;
  *
  * @author saynt
  */
-public class Skill_HeavyHanded extends Skill{
+public class Skill_HeavyHanded extends PassiveSkill{
     
     private final Buff buff;
     
     public Skill_HeavyHanded(){
+        super();
         name = "Heavy Handed";
-        type = Skill.SkillType.PASSIVE;
         skillIcon = MainGame.am.get(ResourceManager.SKILL_HEAVYHANDED);
         buff = new PassiveBuff_HeavyHanded();
         desc = "South paws hit harder";
@@ -30,24 +30,17 @@ public class Skill_HeavyHanded extends Skill{
         
     }
     
-    @Override 
-    public void activate(){
-        this.effect();
-    }
-    
-    @Override 
-    public void deactivate(){
-        this.removeEffect();
-    }
-    
     @Override
     public void effect() {
+        if(activated)    return;
         GameScreen.player.addBuff(buff);
         active();
     }
     
     @Override
     public void removeEffect(){
+        if(!activated)  return;
+        
         GameScreen.player.removeBuff(buff);
         reset();
     }

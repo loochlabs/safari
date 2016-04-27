@@ -16,11 +16,12 @@ import com.mygdx.screen.GameScreen;
  *
  * @author looch
  */
-public class Skill_Nrg extends Skill {
+public class Skill_Nrg extends PassiveSkill {
 
     private final Buff buff;
     
     public Skill_Nrg(){
+        super();
         name = "N.R.G.";
         type = SkillType.PASSIVE;
         skillIcon = MainGame.am.get(ResourceManager.SKILL_NRG);
@@ -29,24 +30,19 @@ public class Skill_Nrg extends Skill {
         descWindow = new DescriptionWindow(name, desc, comboChain);
     }
     
-    @Override
-    public void activate(){
-        this.effect();
-    }
-    
-    @Override
-    public void deactivate(){
-        this.removeEffect();
-    }
     
     @Override
     public void effect() {
+        if(activated)   return;
+        
         GameScreen.player.addBuff(buff);
         active();
     }
     
     @Override
     public void removeEffect(){
+        if(!activated)  return;
+        
         GameScreen.player.removeBuff(buff);
         reset();
     }

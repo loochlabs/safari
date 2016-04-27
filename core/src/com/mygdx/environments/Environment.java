@@ -83,6 +83,7 @@ public class Environment {
     protected final Array<Entity> entToRemove = new Array<Entity>();
     protected final Array<Body> bodyToRemove = new Array<Body>();
     protected final Array<Entity> entToAdd = new Array<Entity>();
+    protected final Array<Entity> cleanupEntities = new Array<Entity>();
     
     //env compelted;
     protected boolean complete = false;
@@ -342,6 +343,14 @@ public class Environment {
     
     //Called after end() has completed
     public void complete(){
+        
+        for(Entity e : cleanupEntities){
+            if(entities.contains(e)){
+                this.removeEntity(e);
+            }
+        }
+        cleanupEntities.clear();
+        
         pause();
         reset();
         this.entityCheck();
@@ -390,23 +399,19 @@ public class Environment {
     public void setPlayerPos(Vector2 pos){}
     
     
-    //TODO: create Overloaded method with the option for a flag to increase EnSpawnCounter
     public Entity spawnEntity(Entity e){
         toAddEntity(e);
         return e;
     }
     
-    /*
-    public ImageSprite spawnSprite(ImageSprite sprite){
-        spriteToAdd.add(sprite);
-        return sprite;
+    public Entity spawnEntity(Entity e, boolean flagForCleanup){
+        if(flagForCleanup){
+            //add entity to array that clears on env.complete()
+            cleanupEntities.add(e);
+        }
+        return spawnEntity(e);
+        
     }
-    
-    public ImageSprite removeSprite(ImageSprite sprite){
-        spriteToRemove.add(sprite);
-        return sprite;
-    }
-*/
     
     public void entityCheck(){
             

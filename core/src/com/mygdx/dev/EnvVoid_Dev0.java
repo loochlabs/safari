@@ -7,11 +7,11 @@ package com.mygdx.dev;
 
 import com.mygdx.environments.EnvNull.random.Tear_R;
 import com.badlogic.gdx.math.Vector2;
+import com.mygdx.combat.skills.Skill_CrackOfThunder;
 import com.mygdx.combat.skills.Skill_GhostJab;
-import com.mygdx.combat.skills.Skill_HasteLaysWaste;
 import com.mygdx.combat.skills.Skill_HauntHaste;
 import com.mygdx.combat.skills.Skill_LightningRod;
-import com.mygdx.combat.skills.Skill_PowerPlease;
+import com.mygdx.combat.skills.Skill_Prognosis;
 import com.mygdx.demo.demo2.EnvVoid_D2_1;
 import com.mygdx.entities.DynamicEntities.DogEntities.StellaEntity;
 import com.mygdx.entities.StaticEntities.SkillPad;
@@ -85,9 +85,9 @@ public class EnvVoid_Dev0 extends EnvVoid{
         spawnEntity(new DecomSprite(new Vector2(25f*RATIO, grid.getHeight()*0.9f)));
         
         spawnEntity(new SkillPad(new Vector2(900f, 1200f), new Skill_LightningRod()));
-        spawnEntity(new SkillPad(new Vector2(1200f, 1200f), new Skill_HasteLaysWaste()));
+        spawnEntity(new SkillPad(new Vector2(1200f, 1200f), new Skill_CrackOfThunder()));
         spawnEntity(new SkillPad_Defense(new Vector2(600f, 1200f)));
-        spawnEntity(new SkillPad(new Vector2(1500f, 1200f), new Skill_PowerPlease()));
+        spawnEntity(new SkillPad(new Vector2(1500f, 1200f), new Skill_Prognosis()));
         
         
         //void trap

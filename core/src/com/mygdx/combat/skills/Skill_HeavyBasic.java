@@ -6,13 +6,11 @@
 package com.mygdx.combat.skills;
 
 import static com.mygdx.combat.skills.Skill.SkillType.HEAVY;
-import static com.mygdx.combat.skills.Skill.SkillType.LIGHT;
 import com.mygdx.entities.ImageSprite;
 import com.mygdx.game.MainGame;
 import static com.mygdx.game.MainGame.RATIO;
 import com.mygdx.gui.descriptions.DescriptionWindow;
 import com.mygdx.managers.ResourceManager;
-import com.mygdx.utilities.SoundObject_Sfx;
 
 /**
  *
@@ -22,6 +20,7 @@ public class Skill_HeavyBasic extends HeavySkill{
 
     
     public Skill_HeavyBasic(){
+        super();
         name = "Basic Heavy";
         damageMod = 1.55f;
         FORCE = 1000.0f;

@@ -11,7 +11,6 @@ import com.badlogic.gdx.physics.box2d.World;
 import static com.mygdx.combat.skills.Skill.SkillAttribute.LIFE;
 import static com.mygdx.combat.skills.Skill.SkillType.HEAVY;
 import static com.mygdx.combat.skills.Skill.SkillType.LIGHT;
-import com.mygdx.entities.DynamicEntities.player.PlayerEntity;
 import com.mygdx.entities.Entity;
 import com.mygdx.entities.ImageSprite;
 import com.mygdx.environments.EnvironmentManager;
@@ -34,6 +33,7 @@ import static com.mygdx.utilities.UtilityVars.PPM;
 public class Skill_MommasTouch extends LightSkill{
     
     public Skill_MommasTouch(){
+        super();
         name = "Momma's Touch";
         attribute = LIFE;
         damageMod = 1.0f;
@@ -66,7 +66,7 @@ public class Skill_MommasTouch extends LightSkill{
     public void comboEffect(){
         super.comboEffect();
         
-        EnvironmentManager.currentEnv.spawnEntity(new MommasSensor(GameScreen.player.getPos().cpy()));
+        EnvironmentManager.currentEnv.spawnEntity(new MommasSensor(GameScreen.player.getPos().cpy()), true);
         
         
     }
