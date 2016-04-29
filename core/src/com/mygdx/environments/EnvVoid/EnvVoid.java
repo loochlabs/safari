@@ -27,8 +27,8 @@ import com.mygdx.entities.text.TextEntity;
 import com.mygdx.environments.EnvNull.random.Tear_R;
 import com.mygdx.environments.EnvSub.EnvSub;
 import com.mygdx.environments.EnvVoid.pads.EndPiece;
-import com.mygdx.environments.EnvVoid.pads.EndWarp;
-import com.mygdx.environments.EnvVoid.pads.test.EndWarp_Test;
+import com.mygdx.environments.EnvSub.EndWarp;
+import com.mygdx.environments.EnvSub.test.EndWarp_Test;
 import com.mygdx.environments.Environment;
 import com.mygdx.environments.RngRoomManager;
 import com.mygdx.environments.tears.Tear_Room_Glyph1.EnvRoom_Glyph1_TEST;
@@ -546,7 +546,8 @@ public class EnvVoid extends Environment{
                 new EndWarp_Test(
                         new Vector2(
                                 g.getX() + g.getWidth()/2,
-                                g.getY() + g.getHeight()/2)));
+                                g.getY() + g.getHeight()/2),
+                        this.id));
         
         unavailableGridCells.add(g.getId());
         map.setEndPos(warp.getPos().x, warp.getPos().y);

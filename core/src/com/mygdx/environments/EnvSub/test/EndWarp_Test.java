@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mygdx.environments.EnvVoid.pads.test;
+package com.mygdx.environments.EnvSub.test;
 
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.environments.EnvSub.EnvSub;
-import com.mygdx.environments.EnvVoid.pads.EndWarp;
+import com.mygdx.environments.EnvSub.EndWarp;
 import com.mygdx.environments.EnvironmentManager;
 import com.mygdx.managers.GameStats;
 
@@ -17,8 +17,8 @@ import com.mygdx.managers.GameStats;
  */
 public class EndWarp_Test extends EndWarp{
 
-    public EndWarp_Test(Vector2 pos) {
-        super(pos);
+    public EndWarp_Test(Vector2 pos, int linkid) {
+        super(pos, linkid);
     }
 
     @Override

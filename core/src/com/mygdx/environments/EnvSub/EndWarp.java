@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mygdx.environments.EnvVoid.pads;
+package com.mygdx.environments.EnvSub;
 
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -45,6 +45,7 @@ public abstract class EndWarp extends Entity{
     //EnvSub end
     protected EnvSub endEnvSub;
     protected EnvVoid envVoid;
+    protected int linkid;
     
     //esprite mist
     private EntitySprite mistSprite;
@@ -54,8 +55,10 @@ public abstract class EndWarp extends Entity{
     //public Array<Pickup_EndPiece> getPiecesNeeded() { return piecesNeeded; }
     public int getRequiredPieces() { return requiredPieces; }
     
-    public EndWarp(Vector2 pos){
+    public EndWarp(Vector2 pos, int linkid){
         super(pos, 175*RATIO, 175*RATIO);
+        
+        this.linkid = linkid;
         
         bd.type = BodyType.StaticBody;
         fd.isSensor = true;
@@ -108,9 +111,12 @@ public abstract class EndWarp extends Entity{
         if(playerInRange()){
             updateMist();
         }else{
+            //mistSprite.setPosition(new Vector2(
+                    //pos.x - mistSprite.getWidth()/2, 
+                    //pos.y - mistSprite.getHeight()/2));
             mistSprite.setPosition(new Vector2(
-                    pos.x - mistSprite.getWidth()/2, 
-                    pos.y - mistSprite.getHeight()/2));
+                    pos.x, 
+                    pos.y));
             mistSprite.getSprite().sprite.setScale(1.0f);
         }
     }

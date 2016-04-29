@@ -8,14 +8,11 @@ package com.mygdx.demo.demo3;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.demo.demo1.EndWarp_Demo1;
-import com.mygdx.demo.demo2.EnvVoid_D2;
-import com.mygdx.entities.StaticEntities.trap.En_VoidTrap;
 import com.mygdx.entities.esprites.ManSprite;
 import com.mygdx.environments.EnvNull.random.Tear_R;
 import com.mygdx.environments.EnvSub.EnvSub;
-import com.mygdx.environments.EnvVoid.pads.EndPad;
 import com.mygdx.environments.EnvVoid.pads.EndPiece;
-import com.mygdx.environments.EnvVoid.pads.EndWarp;
+import com.mygdx.environments.EnvSub.EndWarp;
 import com.mygdx.environments.EnvVoid.GridCell;
 import com.mygdx.environments.tears.TearPortal;
 import static com.mygdx.game.MainGame.RATIO;
@@ -47,7 +44,8 @@ public class EnvVoid_D3_2 extends EnvVoid_D3{
                 new EndWarp_Demo1(
                         new Vector2(
                                 g.getX() + g.getWidth()/2,
-                                g.getY() + g.getHeight()/2)));
+                                g.getY() + g.getHeight()/2), 
+                        this.id));
         
         map.setEndPos(warp.getPos().x, warp.getPos().y);
         

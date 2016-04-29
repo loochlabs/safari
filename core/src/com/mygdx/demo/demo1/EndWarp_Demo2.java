@@ -6,7 +6,7 @@
 package com.mygdx.demo.demo1;
 
 import com.badlogic.gdx.math.Vector2;
-import com.mygdx.environments.EnvVoid.pads.EndWarp;
+import com.mygdx.environments.EnvSub.EndWarp;
 import com.mygdx.environments.EnvironmentManager;
 import com.mygdx.managers.GameStats;
 
@@ -16,8 +16,8 @@ import com.mygdx.managers.GameStats;
  */
 public class EndWarp_Demo2 extends EndWarp {
     
-    public EndWarp_Demo2(Vector2 pos) {
-        super(pos);
+    public EndWarp_Demo2(Vector2 pos, int linkid) {
+        super(pos, linkid);
     }
 
     @Override
@@ -25,7 +25,7 @@ public class EndWarp_Demo2 extends EndWarp {
         
         endEnvSub = new EnvSub_Demo2(
                 ++GameStats.idcount, 
-                EnvironmentManager.currentEnv.getId(),
+                linkid,
                 this);
         EnvironmentManager.add(endEnvSub);
         

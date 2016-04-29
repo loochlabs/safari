@@ -19,6 +19,7 @@ import com.mygdx.entities.StaticEntities.SkillPad_Defense;
 import com.mygdx.entities.StaticEntities.SkillPad_DmLock;
 import com.mygdx.entities.StaticEntities.breakable.Cyst_Blue;
 import com.mygdx.entities.esprites.DecomSprite;
+import com.mygdx.environments.EnvSub.EndWarp_Dev;
 import com.mygdx.environments.EnvVoid.pads.EndPad;
 import com.mygdx.environments.EnvVoid.EnvVoid;
 import com.mygdx.environments.EnvironmentManager;
@@ -36,7 +37,7 @@ public class EnvVoid_Dev0 extends EnvVoid{
     protected int cyst_count = 4;
     
     public EnvVoid_Dev0(){
-        super(-999, 2000f*RATIO, 2000f*RATIO, 1, "B");
+        super(-999, 3000f*RATIO, 3000f*RATIO, 1, "B");
         
         startPos = new Vector2(width*0.5f/PPM, height*0.5f/PPM);
         this.setPlayerToStart();
@@ -96,6 +97,12 @@ public class EnvVoid_Dev0 extends EnvVoid{
         //dev soul
         spawnEntity(new SkillPad_DmLock(new Vector2(1000f*RATIO, 1400f*RATIO), new Skill_GhostJab(), 1));
         spawnEntity(new SkillPad_DmLock(new Vector2(750f*RATIO, 1400f*RATIO), new Skill_HauntHaste(), 1));
+        
+        
+        
+        //dev EnvSub
+        
+        spawnEntity(new EndWarp_Dev(new Vector2(2000f*RATIO, 2000f*RATIO),  this.id));
     }
     
     

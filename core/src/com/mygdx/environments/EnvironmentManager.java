@@ -11,13 +11,11 @@ import com.mygdx.demo.demo1.EnvVoid_Demo2;
 import com.mygdx.demo.demo2.EnvVoid_D2_0;
 import com.mygdx.demo.demo2.EnvVoid_D2_1;
 import com.mygdx.demo.demo2.EnvVoid_D2_2;
-import com.mygdx.demo.demo3.EnvVoid_D3_2;
 import com.mygdx.dev.EnvVoid_Dev0;
 import com.mygdx.entities.DynamicEntities.player.Player_Poe;
 import com.mygdx.environments.EnvMan.EnvMan_Intro;
 import com.mygdx.environments.EnvStart.EnvStart_Intro;
 import com.mygdx.environments.EnvVoid.pads.EndPadManager;
-import com.mygdx.environments.EnvVoid.EnvVoid_Showcase;
 import static com.mygdx.game.MainGame.RATIO;
 import com.mygdx.managers.GameKeyLibrary;
 import com.mygdx.managers.GameStats;
@@ -34,6 +32,7 @@ public class EnvironmentManager {
     public final static HashMap<Integer,Environment> FULL_ENV_MAP = new HashMap<Integer,Environment>();
     public static Environment currentEnv;
     
+    public static int ID = -100;
     public static int START_ID = -99;
     
     public static void init(Environment e){
@@ -93,7 +92,9 @@ public class EnvironmentManager {
                 e = new EnvVoid_Dev0();
                 break;
             case 1:
-                e = new EnvVoid_D3_2(-20);
+                //e = new EnvVoid_D3_2(-20);
+                //dev env
+                e = new EnvVoid_Dev0();
                 break;
                 
             case -1:
@@ -156,12 +157,12 @@ public class EnvironmentManager {
         Environment e;
         
         switch (n){
-            case 0:
-                e = new EnvVoid_Showcase(-3, 2000, 2000, 4);
-                break;
-            case 1:
-                e = new EnvVoid_Showcase(-3, 4000, 4000, 4);
-                break;
+            //case 0:
+               // e = new EnvVoid_Showcase(-3, 2000, 2000, 4);
+                //break;
+            //case 1:
+                //e = new EnvVoid_Showcase(-3, 4000, 4000, 4);
+                //break;
             case 2:
                 e = new EnvVoid_Demo1(-11);
                 break;

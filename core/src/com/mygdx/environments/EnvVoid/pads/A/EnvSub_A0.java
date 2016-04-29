@@ -8,7 +8,7 @@ package com.mygdx.environments.EnvVoid.pads.A;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.environments.EnvSub.EnvSub;
 import com.mygdx.environments.EnvVoid.pads.EndPad;
-import com.mygdx.environments.EnvVoid.pads.EndWarp;
+import com.mygdx.environments.EnvSub.EndWarp;
 import static com.mygdx.utilities.UtilityVars.PPM;
 
 /**

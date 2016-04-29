@@ -11,10 +11,10 @@ import com.badlogic.gdx.math.Vector2;
 import com.mygdx.entities.StaticEntities.StaticEntity;
 import com.mygdx.entities.esprites.EntitySprite;
 import com.mygdx.environments.EnvVoid.pads.EndPad;
-import com.mygdx.environments.EnvVoid.pads.EndWarp;
 import com.mygdx.environments.Environment;
 import com.mygdx.environments.EnvironmentManager;
 import com.mygdx.game.MainGame;
+import static com.mygdx.game.MainGame.RATIO;
 import com.mygdx.managers.ResourceManager;
 import com.mygdx.screen.GameScreen;
 import static com.mygdx.utilities.UtilityVars.BIT_PLAYER;
@@ -27,10 +27,11 @@ import static com.mygdx.utilities.UtilityVars.PPM;
  */
 public abstract class EnvSub extends Environment{
     
+    private final float x, y;
     private Texture bgWhite;
     private float bgWx, bgWy, bgWw, bgWh;
     
-    
+    private BoundingEntity boundingEntity;
     
     private final EndWarp endWarp;
     protected EndPad pad;
@@ -49,8 +50,10 @@ public abstract class EnvSub extends Environment{
         beginFC.setTime(0);
         endFC.setTime(0);
         
-        width = 5000;
-        height = 5000;
+        width = 3000f*RATIO;
+        height = 3000f*RATIO;
+        this.x = width/2;
+        this.y = height/2;
         
         bg = MainGame.am.get(ResourceManager.ENVSUB_END_FG);
         
@@ -59,8 +62,6 @@ public abstract class EnvSub extends Environment{
         bgWh = width*3;
         bgWx = -bgWw/2 + width/2;
         bgWy = -bgWh/2 + width/2;
-        
-        
         
         
         
@@ -79,6 +80,8 @@ public abstract class EnvSub extends Environment{
         boundingBody = world.createBody(bd);
         boundingBody.createFixture(fd).setUserData(userdata);
         */
+        
+        boundingEntity = (BoundingEntity)this.spawnEntity(new BoundingEntity(new Vector2(width/2, height/2), width, height));
         
         
         this.spawnEntity(pad);
@@ -136,8 +139,8 @@ public abstract class EnvSub extends Environment{
     public void end(int id, float time){
         
         //set player position back to normal position in EnvVoid(linkid)
-        /*
-        Vector2 p = GameScreen.player.getBody().getPosition().cpy().sub(boundingBody.getPosition()).nor();
+        
+        Vector2 p = GameScreen.player.getBody().getPosition().cpy().sub(boundingEntity.getBody().getPosition()).nor();
         p.x *= 1.4f * endWarp.getWidth()/PPM;
         p.y *= 1.4f * endWarp.getWidth()/PPM;
         p.add(endWarp.getBody().getPosition());
@@ -145,14 +148,19 @@ public abstract class EnvSub extends Environment{
         EnvironmentManager.get(linkid).setPlayerPos(p);
         
         super.end(id,time);
-        */
+        
     }
     
     @Override
-    public void setStartPos(Vector2 pos){/*
-        startPos = new Vector2(bd.position.x + pos.x * width/2/PPM, bd.position.y + pos.y * width/2/PPM);
+    public void setStartPos(Vector2 pos){
+        //startPos = new Vector2(
+                //boundingEntity.getBody().getPosition().x + pos.x * width/2/PPM, 
+                //boundingEntity.getBody().getPosition().y + pos.y * width/2/PPM);
+        startPos = new Vector2(
+                x/PPM + pos.x * width/2/PPM, 
+                y/PPM + pos.y * width/2/PPM);        
         playerPos = startPos;
-        */
+        
     }
     
     public void updateMist(){
@@ -211,27 +219,27 @@ public abstract class EnvSub extends Environment{
             fd.filter.categoryBits = BIT_WALL;
             fd.filter.maskBits = BIT_PLAYER;
         }
-        
+
         @Override
-    public void alert(String []str){
-        //warp to EnvSub-end
+        public void alert(String[] str) {
+            //warp to EnvSub-end
 
-        try {
-            if (str[0].equals("begin")) {
-                System.out.println("@EndSub begin player contact");
+            try {
+                if (str[0].equals("begin")) {
+                    System.out.println("@EndSub begin player contact");
+                    
+                }
 
+                if (str[0].equals("end")) {
+                    System.out.println("@EndSub end contact");
+                    end(linkid, 0);
+                }
+            } catch (IndexOutOfBoundsException ex) {
+                ex.printStackTrace();
             }
 
-            if (str[0].equals("end")) {
-                System.out.println("@EndSub end contact");
-            }
-        } catch (IndexOutOfBoundsException ex) {
-            ex.printStackTrace();
         }
 
-        
-    }
-        
     }
     
 }
