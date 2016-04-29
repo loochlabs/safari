@@ -61,7 +61,6 @@ public abstract class EndWarp extends Entity{
         fd.isSensor = true;
         userdata = "end_pad_" + id;
         bd.position.set(pos.x/PPM,pos.y/PPM);
-        //shape.setAsBox(width/PPM, height/PPM);
         cshape.setRadius(width/PPM);
         fd.shape = cshape;
         fd.filter.categoryBits = BIT_WALL;
@@ -153,29 +152,26 @@ public abstract class EndWarp extends Entity{
     @Override
     public void alert(String []str){
         //warp to EnvSub-end
-        
-        //calculate point of entry
-        Vector2 p = GameScreen.player.getBody().getPosition().cpy().sub(this.getBody().getPosition()).nor();
-        
-        endEnvSub.setStartPos(p);
-        EnvironmentManager.currentEnv.end(endEnvSub.getId(), 0);
-        
-        //warp player to EnvSub relative point of entry
-    }
-    
-    //todo: old
-    /*
-    public void addPieces(){
-        for(Pickup_EndPiece piece: piecesNeeded){
-            if(GameStats.inventory.hasItem(piece)){
-                System.out.println("@EndPad piece added");
-                piecesHeld.add(piece);
-                GameStats.inventory.subItem(piece, 1);
-            }else{
-                System.out.println("@EndPad no pieces to added");
+
+        try {
+            if (str[0].equals("begin")) {
+                System.out.println("@EndWarp begin player contact");
+
+                //calculate point of entry
+                Vector2 p = GameScreen.player.getBody().getPosition().cpy().sub(this.getBody().getPosition()).nor();
+
+                endEnvSub.setStartPos(p);
+                EnvironmentManager.currentEnv.end(endEnvSub.getId(), 0);
             }
+
+            if (str[0].equals("end")) {
+                System.out.println("@EndWarp end contact");
+            }
+        } catch (IndexOutOfBoundsException ex) {
+            ex.printStackTrace();
         }
-    }*/
-    
+
+        
+    }
     
 }

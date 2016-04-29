@@ -95,6 +95,11 @@ public class MainGame extends ApplicationAdapter {
         SoundManager.muted = MUTE;
         
         switch (v) {
+            case 0:
+                //screen
+                ScreenManager.setScreen(new DevLoadScreen());
+                break;
+                
             case 1:
 
                 //screen

@@ -11,10 +11,10 @@ import com.mygdx.demo.demo1.EnvVoid_Demo2;
 import com.mygdx.demo.demo2.EnvVoid_D2_0;
 import com.mygdx.demo.demo2.EnvVoid_D2_1;
 import com.mygdx.demo.demo2.EnvVoid_D2_2;
+import com.mygdx.demo.demo3.EnvVoid_D3_2;
 import com.mygdx.dev.EnvVoid_Dev0;
 import com.mygdx.entities.DynamicEntities.player.Player_Poe;
 import com.mygdx.environments.EnvMan.EnvMan_Intro;
-import com.mygdx.environments.EnvStart.EnvStart;
 import com.mygdx.environments.EnvStart.EnvStart_Intro;
 import com.mygdx.environments.EnvVoid.pads.EndPadManager;
 import com.mygdx.environments.EnvVoid.EnvVoid_Showcase;
@@ -93,8 +93,7 @@ public class EnvironmentManager {
                 e = new EnvVoid_Dev0();
                 break;
             case 1:
-                e = new EnvStart(-99,-20);
-                add(new EnvVoid_D2_0(-20));
+                e = new EnvVoid_D3_2(-20);
                 break;
                 
             case -1:

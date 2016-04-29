@@ -23,7 +23,9 @@ public class EnvSub_A0 extends EnvSub{
     
     @Override
     public void createPad(){
+        /*
         pad = new EndPad(new Vector2(bd.position.x*PPM, bd.position.y*PPM), 3, -30);
+*/
     }
     
 }

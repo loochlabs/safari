@@ -8,19 +8,13 @@ package com.mygdx.environments.EnvSub;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.CircleShape;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.mygdx.entities.ImageSprite;
+import com.mygdx.entities.StaticEntities.StaticEntity;
 import com.mygdx.entities.esprites.EntitySprite;
-import com.mygdx.entities.esprites.SubBgSprite;
 import com.mygdx.environments.EnvVoid.pads.EndPad;
 import com.mygdx.environments.EnvVoid.pads.EndWarp;
 import com.mygdx.environments.Environment;
 import com.mygdx.environments.EnvironmentManager;
 import com.mygdx.game.MainGame;
-import static com.mygdx.game.MainGame.RATIO;
 import com.mygdx.managers.ResourceManager;
 import com.mygdx.screen.GameScreen;
 import static com.mygdx.utilities.UtilityVars.BIT_PLAYER;
@@ -36,11 +30,7 @@ public abstract class EnvSub extends Environment{
     private Texture bgWhite;
     private float bgWx, bgWy, bgWw, bgWh;
     
-    private Body boundingBody;
-    protected final BodyDef bd = new BodyDef();
-    protected final CircleShape shape = new CircleShape();
-    protected final FixtureDef fd = new FixtureDef();
-    protected final Object userdata;
+    
     
     private final EndWarp endWarp;
     protected EndPad pad;
@@ -71,14 +61,7 @@ public abstract class EnvSub extends Environment{
         bgWy = -bgWh/2 + width/2;
         
         
-        userdata = "envEnd_wall_" + id;
-        bd.position.set(width/PPM / 2, height/PPM / 2);
-        bd.type = BodyDef.BodyType.StaticBody;
-        shape.setRadius(width/2/PPM);
-        fd.shape = shape;
-        fd.isSensor = true;
-        fd.filter.categoryBits = BIT_WALL;
-        fd.filter.maskBits = BIT_PLAYER;
+        
         
         
         mistSprite = new EntitySprite(new Vector2(0,0), 1000,1000,"endPad-mist",true, false,
@@ -92,9 +75,10 @@ public abstract class EnvSub extends Environment{
     public void init(){
         super.init();
         
+        /*
         boundingBody = world.createBody(bd);
         boundingBody.createFixture(fd).setUserData(userdata);
-        
+        */
         
         
         this.spawnEntity(pad);
@@ -152,6 +136,7 @@ public abstract class EnvSub extends Environment{
     public void end(int id, float time){
         
         //set player position back to normal position in EnvVoid(linkid)
+        /*
         Vector2 p = GameScreen.player.getBody().getPosition().cpy().sub(boundingBody.getPosition()).nor();
         p.x *= 1.4f * endWarp.getWidth()/PPM;
         p.y *= 1.4f * endWarp.getWidth()/PPM;
@@ -160,25 +145,30 @@ public abstract class EnvSub extends Environment{
         EnvironmentManager.get(linkid).setPlayerPos(p);
         
         super.end(id,time);
+        */
     }
     
     @Override
-    public void setStartPos(Vector2 pos){
+    public void setStartPos(Vector2 pos){/*
         startPos = new Vector2(bd.position.x + pos.x * width/2/PPM, bd.position.y + pos.y * width/2/PPM);
         playerPos = startPos;
+        */
     }
     
     public void updateMist(){
+        /*
         Vector2 dv = boundingBody.getPosition().cpy().sub(GameScreen.player.getBody().getPosition());
         dv.nor();
         dv.scl(-width/2);
         dv.add(bd.position.x * PPM, bd.position.y * PPM);
         
         mistSprite.setPosition(new Vector2(dv.x - mistSprite.getWidth()/2, dv.y - mistSprite.getHeight()/2));
+        */
     }
     
     private void createBgSprites(){
         //bg pieces
+        /*
         int count = 185;
         for(int i = 0; i < count; i++){
             
@@ -188,7 +178,7 @@ public abstract class EnvSub extends Environment{
             
             
             //this.spawnEntity(new SubBgSprite(v,boundingBody.getPosition().cpy().scl(PPM),width/2));
-        }
+        }*/
         
         /*
         int wcount = 100;
@@ -205,5 +195,43 @@ public abstract class EnvSub extends Environment{
     
     
     public abstract void createPad();
+    
+    
+    private class BoundingEntity extends StaticEntity{
+        
+        
+        public BoundingEntity(Vector2 pos, float w, float h) {
+            super(pos, w, h);
+
+            userdata = "envEnd_wall_" + id;
+            bd.position.set(width / PPM / 2, height / PPM / 2);
+            cshape.setRadius(width / 2 / PPM);
+            fd.shape = cshape;
+            fd.isSensor = true;
+            fd.filter.categoryBits = BIT_WALL;
+            fd.filter.maskBits = BIT_PLAYER;
+        }
+        
+        @Override
+    public void alert(String []str){
+        //warp to EnvSub-end
+
+        try {
+            if (str[0].equals("begin")) {
+                System.out.println("@EndSub begin player contact");
+
+            }
+
+            if (str[0].equals("end")) {
+                System.out.println("@EndSub end contact");
+            }
+        } catch (IndexOutOfBoundsException ex) {
+            ex.printStackTrace();
+        }
+
+        
+    }
+        
+    }
     
 }
