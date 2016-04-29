@@ -23,6 +23,7 @@ public class SettingsLauncher extends javax.swing.JFrame {
         
         versionChoice1.addItem("Demo");
         versionChoice1.addItem("Dev stuff");
+        versionChoice1.addItem("Dev 2");
         
         
         muteCheckBox.setSelected(true);
