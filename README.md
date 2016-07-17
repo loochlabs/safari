@@ -1,9 +1,10 @@
 # README #
 
 Null and Void
+
 Developed by Steve Coluccio
 
 
-LAUNCH INSTRUCTIONS:
+INSTRUCTIONS:
 
-NaV's launching point can be found in 
+NaV's launching point can be found in src/com/mygdx/game/desktop. Launch SettingsLauncher.java
