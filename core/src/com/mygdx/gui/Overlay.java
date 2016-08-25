@@ -35,8 +35,6 @@ public class Overlay {
     
     //transition sprite
     //Using old endSpectralSprite from player death
-    private final ImageSprite transEndSprite;
-    private final ImageSprite transBeginSprite;
     private boolean beginEndTransState = true, transitioning = false;
     
     
@@ -46,17 +44,7 @@ public class Overlay {
         //title alert fonts
         titleFont = new BitmapFont(Gdx.files.internal("fonts/nav-impact.fnt"));
         titleFont.setColor(Color.WHITE);
-        titleFont.setScale(1.7f);
-        
-        //transtion sprite
-        transEndSprite = new ImageSprite("endSpectralSprite", false);
-        transEndSprite.sprite.setBounds(0, 0, MainGame.WIDTH, MainGame.HEIGHT);
-        transEndSprite.reset();
-        
-        transBeginSprite = new ImageSprite("endSpectralSprite", false, true, false, false, 0,0, 1.0f, true);
-        transBeginSprite.sprite.setBounds(0, 0, MainGame.WIDTH, MainGame.HEIGHT);
-        transBeginSprite.reset();
-        
+        titleFont.setScale(1.7f);  
     }
     
     
@@ -118,11 +106,9 @@ public class Overlay {
         beginEndTransState = transState;
 
         if (transState) {
-            transitioning = !transBeginSprite.isComplete();
-            transBeginSprite.step();
+            transitioning = false;
         } else {
-            transitioning = !transEndSprite.isComplete();
-            transEndSprite.step();
+            transitioning = false;
         }
 
         return !transitioning;
@@ -130,18 +116,16 @@ public class Overlay {
     
     public void endTransition() {
         transitioning = false;
-        transBeginSprite.reset();
-        transEndSprite.reset();
     }
     
     private void renderTransion(SpriteBatch sb) {
         if (transitioning) {
             if (beginEndTransState) {
                 //begin trans
-                transBeginSprite.render(sb);
+                //transBeginSprite.render(sb);
             } else {
                 //end trans
-                transEndSprite.render(sb);
+                //transEndSprite.render(sb);
             }
         }
     }

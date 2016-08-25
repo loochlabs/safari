@@ -31,10 +31,8 @@ public class DesktopLauncher {
             HEIGHT = 900;
         }
         
-        if(version.equals("Dev stuff")){
+        if(version.equals("default")){
             ver = 0;
-        }else if(version.equals("Demo")){
-            ver = 1;
         }
     }
     

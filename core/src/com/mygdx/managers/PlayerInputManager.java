@@ -21,70 +21,75 @@ import static com.mygdx.utilities.Direction.UP;
 public class PlayerInputManager {
     
     
-    public void update() throws InterruptedException{
-        if(EnvironmentManager.currentEnv.getStateManager().getState() == State.PLAYING){
-        
-            if (GameKeyLibrary.isPressed(GameKeyLibrary.MOVE_UP)) {
-                GameScreen.player.move(UP);
-            } else if (!GameKeyLibrary.isDown(GameKeyLibrary.MOVE_UP)) {
-                GameScreen.player.moveStop(UP);
+    public void update() throws InterruptedException {
+
+        try {
+            if (EnvironmentManager.currentEnv.getStateManager().getState() == State.PLAYING) {
+
+                if (GameKeyLibrary.isPressed(GameKeyLibrary.MOVE_UP)) {
+                    GameScreen.player.move(UP);
+                } else if (!GameKeyLibrary.isDown(GameKeyLibrary.MOVE_UP)) {
+                    GameScreen.player.moveStop(UP);
+                }
+
+                if (GameKeyLibrary.isPressed(GameKeyLibrary.MOVE_DOWN)) {
+                    GameScreen.player.move(DOWN);
+                } else if (!GameKeyLibrary.isDown(GameKeyLibrary.MOVE_DOWN)) {
+                    GameScreen.player.moveStop(DOWN);
+                }
+
+                if (GameKeyLibrary.isPressed(GameKeyLibrary.MOVE_RIGHT)) {
+                    GameScreen.player.move(RIGHT);
+                } else if (!GameKeyLibrary.isDown(GameKeyLibrary.MOVE_RIGHT)) {
+                    GameScreen.player.moveStop(RIGHT);
+                }
+
+                if (GameKeyLibrary.isPressed(GameKeyLibrary.MOVE_LEFT)) {
+                    GameScreen.player.move(LEFT);
+                } else if (!GameKeyLibrary.isDown(GameKeyLibrary.MOVE_LEFT)) {
+                    GameScreen.player.moveStop(LEFT);
+                }
+
+                if (GameKeyLibrary.isPressed(GameKeyLibrary.ATT_ZERO)) {
+                    //GameScreen.player.attack(0);
+                }
+                if (GameKeyLibrary.isPressed(GameKeyLibrary.ATT_ONE)) {
+                    //GameScreen.player.attack(1);
+                }
+                if (GameKeyLibrary.isPressed(GameKeyLibrary.ATT_TWO)) {
+                    //GameScreen.player.attack(2);
+                }
+                if (GameKeyLibrary.isPressed(GameKeyLibrary.ATT_FOUR)) {
+                    // GameScreen.player.attack(4);
+                }
+                if (GameKeyLibrary.isPressed(GameKeyLibrary.ACTION)) {
+                    GameScreen.player.beginAction();
+                }
+
+                if (GameKeyLibrary.isPressed(GameKeyLibrary.DEV_CMD)) {
+                    //GameScreen.player.killSwitch();
+                }
+
             }
 
-            if (GameKeyLibrary.isPressed(GameKeyLibrary.MOVE_DOWN)) {
-                GameScreen.player.move(DOWN);
-            } else if (!GameKeyLibrary.isDown(GameKeyLibrary.MOVE_DOWN)) {
-                GameScreen.player.moveStop(DOWN);
+            if (GameKeyLibrary.isPressed(GameKeyLibrary.MUTE)) {
+                SoundManager.mute();
             }
 
-            if (GameKeyLibrary.isPressed(GameKeyLibrary.MOVE_RIGHT)) {
-                GameScreen.player.move(RIGHT);
-            } else if (!GameKeyLibrary.isDown(GameKeyLibrary.MOVE_RIGHT)) {
-                GameScreen.player.moveStop(RIGHT);
+            if (GameKeyLibrary.isPressed(GameKeyLibrary.MAIN_ESC)) {
+                ScreenManager.getCurrentScreen().pause();
             }
 
-            if (GameKeyLibrary.isPressed(GameKeyLibrary.MOVE_LEFT)) {
-                GameScreen.player.move(LEFT);
-            } else if (!GameKeyLibrary.isDown(GameKeyLibrary.MOVE_LEFT)) {
-                GameScreen.player.moveStop(LEFT);
-            }
+            if (GameKeyLibrary.isPressed(GameKeyLibrary.ATT_FOUR)
+                    && GameScreen.sm.getState() == State.PAUSED) {
 
-            if (GameKeyLibrary.isPressed(GameKeyLibrary.ATT_ZERO)) {
-                //GameScreen.player.attack(0);
+                GameScreen.pauseOverlay.confirmSelect();
+
             }
-            if (GameKeyLibrary.isPressed(GameKeyLibrary.ATT_ONE)) {
-                //GameScreen.player.attack(1);
-            }
-            if (GameKeyLibrary.isPressed(GameKeyLibrary.ATT_TWO)) {
-                //GameScreen.player.attack(2);
-            }
-            if(GameKeyLibrary.isPressed(GameKeyLibrary.ATT_FOUR)){
-               // GameScreen.player.attack(4);
-            } 
-            if (GameKeyLibrary.isPressed(GameKeyLibrary.ACTION)) {
-                GameScreen.player.beginAction();
-            }
-            
-            if(GameKeyLibrary.isPressed(GameKeyLibrary.DEV_CMD)){
-                //GameScreen.player.killSwitch();
-            } 
-            
+        } catch (NullPointerException ex) {
+            System.err.println("EnvironmentManager.currentEnv has not been initiallized yet!");
         }
-        
-        if (GameKeyLibrary.isPressed(GameKeyLibrary.MUTE)) {
-            SoundManager.mute();
-        }
 
-        if (GameKeyLibrary.isPressed(GameKeyLibrary.MAIN_ESC)) {
-            ScreenManager.getCurrentScreen().pause();
-        }
-        
-        if (GameKeyLibrary.isPressed(GameKeyLibrary.ATT_FOUR)
-                && GameScreen.sm.getState() == State.PAUSED) {
-            
-            GameScreen.pauseOverlay.confirmSelect();
-
-        }
-        
     }
     
 }

@@ -22,6 +22,7 @@ public class MainMenuScreen extends Screen{
     @Override
     public void create() {
         mim = new MenuInputManager(this);
+        camera = new OrthoCamera();
     }
 
     public void start(){

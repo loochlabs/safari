@@ -116,12 +116,11 @@ public class GameScreen extends Screen{
             currentEnv = EnvironmentManager.currentEnv;
         }
         
-        //*************************
+        //****************************
         //      FRAME UPDATING
-        //**********************
+        //****************************
         
-        if(sm.getState() == State.PLAYING){
-         
+        if(currentEnv != null && sm.getState() == State.PLAYING){
             currentEnv.update();
             currentEnv.updateCamera(camera);
             currentEnv.updateB2DCamera(b2dcam);
@@ -166,13 +165,15 @@ public class GameScreen extends Screen{
         
         
         //box2d
-        if(MainGame.debugmode){
+        if(MainGame.debugmode && currentEnv != null){
             b2dr.render(currentEnv.getWorld(), b2dcam.combined);
         }
         
     }
     
     public void renderEnv(SpriteBatch sb){
+        
+        if(currentEnv == null) return;
         
         if (currentEnv.getRenderLayers() == 0) {
             GameScreen.this.renderEnvLayer(sb, camera.combined);

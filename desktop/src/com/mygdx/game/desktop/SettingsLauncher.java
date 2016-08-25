@@ -21,10 +21,7 @@ public class SettingsLauncher extends javax.swing.JFrame {
         screenResChoice1.addItem("1920x1080");
         screenResChoice1.addItem("1600x900");
         
-        versionChoice1.addItem("Demo");
-        versionChoice1.addItem("Dev stuff");
-        versionChoice1.addItem("Dev 2");
-        
+        versionChoice1.addItem("default");
         
         muteCheckBox.setSelected(true);
         debugCheck.setSelected(true);
