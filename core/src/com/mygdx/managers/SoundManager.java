@@ -35,11 +35,9 @@ public class SoundManager {
     
     public static long addSfxSound(SoundObject_Sfx obj, boolean loop){
         long id = obj.sound.play();
-        //obj.music.play();
         if(!SFX_SOUNDS.contains(obj, false))
             SFX_SOUNDS.add(obj);
         obj.sound.setLooping(id, loop);
-        //obj.music.setLooping(loop);
         
         return id;
     }
@@ -47,9 +45,6 @@ public class SoundManager {
     public static void removeSfxSound(SoundObject_Sfx obj){
         obj.sound.stop(obj.id);
         obj.sound.setVolume(obj.id, 0f);
-        //obj.sound.dispose();
-        //obj.music.stop();
-        //obj.music.dispose();
         SFX_SOUNDS.removeValue(obj, false);
     }
     
@@ -62,7 +57,6 @@ public class SoundManager {
     
     public static void removeBgmSound(SoundObject_Bgm obj){
         obj.music.stop();
-        //obj.music.dispose();
         BGM_SOUNDS.removeValue(obj, false);
     }
     
@@ -84,21 +78,12 @@ public class SoundManager {
     }
     
     public static void pause(){
-        for(SoundObject_Sfx obj: SFX_SOUNDS){
-            //obj.sound.pause();
-            
-        }
-        
         for(SoundObject_Bgm obj: BGM_SOUNDS){
             obj.pause();
         }
     }
     
     public static void resume() { 
-        for(SoundObject_Sfx obj: SFX_SOUNDS){
-            //obj.sound.resume();
-        }
-        
         for(SoundObject_Bgm obj: BGM_SOUNDS){
             obj.resume();
         }
@@ -115,18 +100,25 @@ public class SoundManager {
             obj.mute();
         }
     }
-    public static void clear(){
-        for(SoundObject_Bgm obj : BGM_SOUNDS){
-            obj.music.stop();
-            //obj.music.dispose();
-            obj = null;
+    
+    public static void clear() {
+        for (SoundObject_Bgm obj : BGM_SOUNDS) {
+            try {
+                obj.music.stop();
+                obj = null;
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+            }
         }
         BGM_SOUNDS.clear();
-        
-        for(SoundObject_Sfx obj: SFX_SOUNDS){
-            obj.sound.stop();
-            //obj.sound.dispose();
-            obj = null;
+
+        for (SoundObject_Sfx obj : SFX_SOUNDS) {
+            try {
+                obj.sound.stop();
+                obj = null;
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+            }
         }
         SFX_SOUNDS.clear();
     }

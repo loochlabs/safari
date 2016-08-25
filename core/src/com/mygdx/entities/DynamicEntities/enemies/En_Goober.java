@@ -20,7 +20,6 @@ import com.mygdx.entities.ImageSprite;
 import static com.mygdx.game.MainGame.RATIO;
 import com.mygdx.screen.GameScreen;
 import com.mygdx.utilities.FrameCounter_Attack;
-import com.mygdx.utilities.UtilityVars.AttackState;
 import static com.mygdx.utilities.UtilityVars.BIT_EN;
 import static com.mygdx.utilities.UtilityVars.BIT_PLAYER;
 import static com.mygdx.utilities.UtilityVars.PPM;
@@ -56,10 +55,6 @@ public class En_Goober extends EnemyEntity{
         
         bodyDamageSprite = new ImageSprite("goober-dmg", false);
         bodyDamageSprite.sprite.setScale(sscale);
-        
-        MAX_HP = 15;
-        CURRENT_HP = MAX_HP;
-        DAMAGE = 5.0f;
         
         prepTime = 1.0f;
         attTime = 0.3f;

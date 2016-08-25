@@ -23,9 +23,8 @@ import static com.mygdx.utilities.UtilityVars.PPM;
 public class ProjectileEntity extends Entity{
 
     protected final Vector2 dv;
-    protected final float DURATION, DMG;
+    protected final float DURATION;
     protected final FrameCounter durFC;
-    protected final EntitySprite deathSprite; 
     
     public ProjectileEntity(Vector2 pos, float w, float h, Vector2 dir, float duration, float dmg) {
         super(pos, w, h);
@@ -40,11 +39,6 @@ public class ProjectileEntity extends Entity{
         dv = dir;
         DURATION = duration;
         durFC = new FrameCounter(DURATION);
-        DMG = dmg;
-        
-        deathSprite = new EntitySprite(pos, width,height, "proj-death", 
-                false, true, false, false, 0.4f*RATIO, false, false, true, false);
-        //deathSprite.sprite.setScale(0.4f * RATIO);
         
     }
      
@@ -64,11 +58,10 @@ public class ProjectileEntity extends Entity{
     
     @Override
     public void update(){
-        fm.update(); //todo: needed? 
         updatePos();
         
         if(durFC.complete){
-            death();
+            dispose();
         }
         
         super.update();
@@ -76,19 +69,9 @@ public class ProjectileEntity extends Entity{
     
     @Override
     public void alert(String [] str){
-        death(); //todo: need collision check
+        dispose(); 
     }
     
-    @Override
-    public void death(){
-        deathSprite.setPosition(new Vector2(
-                pos.x - width/2, 
-                pos.y - height/2));
-        EnvironmentManager.currentEnv.spawnEntity(deathSprite);
-        
-        super.death();
-        dispose();
-    }
     
     public void updatePos(){
         body.applyForceToCenter(dv, true);

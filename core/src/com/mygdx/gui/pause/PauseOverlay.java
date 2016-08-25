@@ -27,7 +27,7 @@ public class PauseOverlay {
         width = 650*RATIO;
         height = 650*RATIO;
         
-        screens.push(new MenuOverlay_Main(x,y,width,height));
+        //screens.push(new MenuOverlay_Main(x,y,width,height));
     }
     
     public void render(SpriteBatch sb){

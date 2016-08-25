@@ -16,12 +16,10 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
-import com.mygdx.entities.text.TextDamage;
 import com.mygdx.environments.EnvironmentManager;
 import com.mygdx.game.MainGame;
 import com.mygdx.managers.FrameManager;
 import com.mygdx.managers.GameStats;
-import com.mygdx.screen.GameScreen;
 import static com.mygdx.utilities.UtilityVars.PPM;
 import java.util.Comparator;
 import java.util.Random;
@@ -49,8 +47,7 @@ public abstract class Entity{
     protected Array<PooledEffect> effects = new Array();
     protected boolean flagEffectComplete = false;
     
-    //****************
-    
+    //b2d
     protected BodyDef bd = new BodyDef();
     protected FixtureDef fd = new FixtureDef();
     protected PolygonShape shape = new PolygonShape();
@@ -59,13 +56,6 @@ public abstract class Entity{
     
     //frame counter
     protected FrameManager fm = new FrameManager();
-    
-    protected boolean dead = false;
-    protected boolean deadCheck = true;
-    
-    
-    //stats
-    protected float MAX_HP = 0, CURRENT_HP = 0;
     
     protected final Random rng = new Random();
     protected final Array<Integer> rngNegSet = new Array<Integer>();
@@ -86,13 +76,9 @@ public abstract class Entity{
     public PolygonShape getShape() {return shape;}
     public CircleShape getCshape() {return cshape;}
     public Body getBody() {return body;}
-    public float getCurrentHp() {return CURRENT_HP;}
-    public float getMaxHp() {return MAX_HP;}
     public FrameManager getFrameManager() { return fm; }
     public boolean getFlaggedForRenderSort() { return flaggedForRenderSort; }
     public boolean getFlaggedForRenderTop() { return flaggedForRenderTop; }
-    //public boolean isActive() { return active; }
-    
     
     
     public void setPosition(Vector2 pos) {
@@ -101,15 +87,10 @@ public abstract class Entity{
         }
         this.pos = pos; 
         bd.position.set(pos.x/PPM, pos.y/PPM);
-    
     }
     
     public void setBody(Body b) { body = b; }
     public void setUserData(Object data) { this.userdata = data; }
-   // public void setCurrentHp(float hp) { this.CURRENT_HP = hp; }
-    //public void setMaxHp(float hp) { this.MAX_HP = hp; }
-   // public void setDamage(float damage) { this.DAMAGE = damage; }
-    
     
     public Entity(Vector2 pos, float w, float h){
         this.pos = pos;
@@ -135,11 +116,6 @@ public abstract class Entity{
             pos.y = body.getPosition().y * PPM;
         }
         
-        if(dead && deadCheck){
-            deadCheck = false;
-            death();
-        }
-        
         if(isprite != null && !isprite.getPause()){
             isprite.step();
         }
@@ -147,7 +123,6 @@ public abstract class Entity{
     
     public void render(SpriteBatch sb){
         if(isprite != null){
-            //todo: needed? xflip, yflip covered in ImageSprite
             if (isprite.getXFlip()) {
                 isprite.sprite.setPosition((pos.x + isprite.sprite.getWidth()/2),
                         (pos.y - isprite.sprite.getHeight()/2));
@@ -195,65 +170,11 @@ public abstract class Entity{
         effects.removeValue(e, false);
     }
     
-    
-    public void damage(float d){
-        
-        CURRENT_HP -= d;
-        System.out.println("@Entity " + this.toString() + " damaged - hp: " + CURRENT_HP);
-        
-        if(CURRENT_HP <= 0){
-            dead = true;
-        }
-        try {
-            if (body != null) {
-                EnvironmentManager.currentEnv.addDamageText(
-                        "" + (int) (d + 1) + "",
-                        new Vector2(
-                                pos.x - width * rng.nextFloat()/2,
-                                pos.y + height *2.0f));
-            }
-        } catch (NullPointerException ex) {
-            ex.printStackTrace();
-        }
-        
-    }
-    
-    public void damage(float dmg, boolean isCombo){
-        
-        CURRENT_HP -= dmg;
-        System.out.println("@Entity " + this.toString() + " COMBO damaged - hp: " + CURRENT_HP);
-        
-        if(CURRENT_HP <= 0){
-            dead = true;
-        }
-        
-        EnvironmentManager.currentEnv.addDamageText(
-                new TextDamage(
-                        "" + (int)(dmg+1) + "",
-                        new Vector2(
-                            pos.x - width * rng.nextFloat()/2,
-                            pos.y + height * 1.35f),
-                        isCombo));
-        
-    }
-    
-    
-    public void fall(){}
-    
-    public void death(){
-        //dead = true;
-    }
-    
     public void dispose(){
         EnvironmentManager.currentEnv.removeEntity(this);
-        
-        if(GameScreen.player.getAttTargets().contains(this)){
-            GameScreen.player.getAttTargets().remove(this);
-        }
     }
     
     //Description: generic alert method
-    //public void alert(){}
     public void alert(String [] string){}
     
     public void actionEvent(){}

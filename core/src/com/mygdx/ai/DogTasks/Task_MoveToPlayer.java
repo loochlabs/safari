@@ -17,8 +17,10 @@ public class Task_MoveToPlayer extends LeafTask<DogEntity>{
 
     @Override
     public void run(DogEntity dog) {
+        /*
         dog.moveToPlayer();
         success();
+        */
     }
 
     @Override

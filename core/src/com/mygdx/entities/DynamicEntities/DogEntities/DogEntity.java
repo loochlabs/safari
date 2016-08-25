@@ -20,7 +20,6 @@ import com.mygdx.entities.DynamicEntities.SteerableEntity;
 import com.mygdx.entities.Entity;
 import com.mygdx.entities.ImageSprite;
 import com.mygdx.environments.tears.TearPortal;
-import com.mygdx.environments.EnvVoid.EnvVoid;
 import com.mygdx.environments.EnvironmentManager;
 import com.mygdx.game.MainGame;
 import static com.mygdx.game.MainGame.RATIO;
@@ -35,23 +34,17 @@ import java.util.ArrayList;
 /**
  *
  * @author looch
+ * 
+ * 
+ * Description: DogEntity is a companion AI class. Used for following PlayerEntity.
+ * 
  */
 public class DogEntity extends SteerableEntity{
 
-    
-    
-    protected Texture dogTexture, alertTexture;
     protected float dogWidth, dogHeight;
-    protected float alertWidth, alertHeight;
     
-    protected ImageSprite moveSprite, alertSprite, idleSprite;
+    protected ImageSprite moveSprite, idleSprite;
     protected float spriteScale;
-    
-    private Array<Sprite> trailSprites = new Array<Sprite>();
-    private Array<Float> trailAlphas = new Array<Float>();
-    
-    
-    private EnvVoid env;        //needed to find closest bodies in EnvVoid
     
     /*******************
             AI
@@ -64,7 +57,6 @@ public class DogEntity extends SteerableEntity{
     protected String tearString = "tear";
     
     
-    
     public DogEntity(Vector2 pos, float w, float h){
         super(pos,w,h);
         
@@ -72,42 +64,14 @@ public class DogEntity extends SteerableEntity{
         fd.filter.categoryBits = BIT_EN;
         fd.filter.maskBits = BIT_WALL | BIT_EN;
         
-        MAX_HP = 10000;
-        CURRENT_HP = MAX_HP;
-        
-        dogTexture = MainGame.am.get(ResourceManager.STELLA_ALERT);
         dogWidth = iw;
         dogHeight = ih;
-        alertTexture = MainGame.am.get(ResourceManager.STELLA_ALERT);
-        alertWidth = iw * 3.3f * RATIO;
-        alertHeight = ih * 3.3f * RATIO;
-        
-        //todo: remove
-        texture = dogTexture;
         
         idleSprite = new ImageSprite("stella-idle", true);
         idleSprite.sprite.setScale(0.26f * RATIO);
-        
         isprite = idleSprite;
         
         CHARSPEED = 100.0f * RATIO;
-        
-        //ai
-        /*
-        this.maxLinearSpeed = 500f;
-        this.maxLinearAcceleration = 3000f;
-        this.maxAngularSpeed = 2000f;
-        this.maxAngularAcceleration = 500f;
-        
-        
-        moveToPlayerSB = new Arrive<Vector2>(this, tearTarget)
-                .setTimeToTarget(0.01f)
-                .setArrivalTolerance(2f)
-                .setDecelerationRadius(10);
-        
-        
-        moveToTearSB = new Seek<Vector2>(this, tearTarget);
-        */
         
     }
     
@@ -115,9 +79,6 @@ public class DogEntity extends SteerableEntity{
     public void init(World world) {
         super.init(world);
         body.setLinearDamping(5.0f);
-        
-        
-        env = (EnvVoid)EnvironmentManager.currentEnv;
         
         //ai
         Reader reader = null;
@@ -143,30 +104,6 @@ public class DogEntity extends SteerableEntity{
     
     public void dogUpdate() {
         bt.step();
-
-        if (isprite.equals(moveSprite) && trailSprites.size < 20) {
-            trailSprites.add(new Sprite(moveSprite.sprite));
-            trailAlphas.add(1.0f);
-        }
-
-        if (trailSprites.size > 0) {
-            boolean clearAlphas = true;
-            for (Float alpha : trailAlphas) {
-                if (alpha >= 0.1f) {
-                    clearAlphas = false;
-                }
-            }
-
-            if (clearAlphas) {
-                trailSprites.clear();
-                trailAlphas.clear();
-            }
-        }
-
-        for (int i = 0; i < trailSprites.size; i++) {
-            trailSprites.get(i).setAlpha(trailAlphas.get(i));
-            trailAlphas.set(i, trailAlphas.get(i) - 0.15f < 0 ? 0 : trailAlphas.get(i) - 0.15f);
-        }
     }
 
     @Override
@@ -175,33 +112,19 @@ public class DogEntity extends SteerableEntity{
             isprite.sprite.setPosition(
                     (body.getPosition().x * PPM - isprite.sprite.getWidth() / 2),
                     (body.getPosition().y * PPM - isprite.sprite.getHeight() / 2));
-
             isprite.render(sb);
-
-            for (int i = 0; i < trailSprites.size; i++) {
-                trailSprites.get(i).draw(sb);
-            }
-
-        }
-        else if(texture.equals(alertTexture))
-            
-            offsetRender(sb,width - iw/2, height -ih/2);
-        else
+        }else{
             super.render(sb);
-    
+        }
     }
     
-    
+    /*
     //@param: movement to destination, (catch up)
     public void moveTo(Vector2 dest){
         Vector2 dirv = this.getBody().getPosition().sub(dest);
         dirv = dirv.nor();
         this.getBody().applyForce(dirv.scl(-CHARSPEED), dest, true);
-        
     }
-    
-    
-    
     
     public boolean inRange(float range){
         float dist = body.getPosition().dst(findClosestBody(body.getPosition()).getPosition());
@@ -222,8 +145,6 @@ public class DogEntity extends SteerableEntity{
         if(GameScreen.player.getBody() == null) return;
         
         moveTo(findClosestBody().getPosition());
-        
-        
         isprite = moveSprite;
     }
     
@@ -231,9 +152,7 @@ public class DogEntity extends SteerableEntity{
     public void moveToTear(){
         isprite = moveSprite;
         Vector2 tv = isNearTear();
-        
         moveTo(tv);
-        
         idleAtTear(tv);
     }
     
@@ -245,8 +164,12 @@ public class DogEntity extends SteerableEntity{
     //
     //@param : Vector2 point - point to compare to closest player body
     
-    public Body findClosestBody(Vector2 point){
     
+    //@TODO: needs env to get collection of playerBodies (b2d) to find
+    
+    
+    public Body findClosestBody(Vector2 point){
+        
         Array<Body> bodies = env.getPlayerBodies();
         Body closestBody = bodies.peek();
         float dv = point.dst(closestBody.getPosition());
@@ -260,8 +183,8 @@ public class DogEntity extends SteerableEntity{
         }
         
         return closestBody;
-        
     }
+
     
     //Gets clostest player body from current EnvVoid playerGhostBodies
     public Body findClosestBody(){
@@ -279,15 +202,11 @@ public class DogEntity extends SteerableEntity{
         }
         
         return closestBody;
-        
     }
     
     
-    
     public Vector2 isNearTear(){
-        
         if(GameScreen.player.getBody() == null) return null;
-        
         
         Array<TearPortal> tears = new Array<TearPortal>();
         ArrayList<Entity> entities = EnvironmentManager.currentEnv.getEntities();
@@ -318,9 +237,7 @@ public class DogEntity extends SteerableEntity{
         }
         
         return return_tv;
-        
     }
-    
     
     
     public boolean idleAtTear(Vector2 tv){
@@ -336,6 +253,6 @@ public class DogEntity extends SteerableEntity{
 
         return false;
     }
-    
+    */
 }
 

@@ -5,9 +5,6 @@
  */
 package com.mygdx.screen;
 
-import com.mygdx.demo.DemoGameOverScreen;
-import com.mygdx.screen.GameOver.GameOverScreen;
-
 /**
  *
  * @author looch
@@ -27,18 +24,8 @@ public class ScreenManager {
         return currentScreen;
     }
     
-    public static void gameOverScreen(int n){
-        switch(n){
-            case 0:
-                setScreen(new GameOverScreen());
-                break;
-            case 1:
-                setScreen(new DemoGameOverScreen());
-                break;
-            default:  
-                gameOverScreen(0);
-                break;
-        }
+    public static void reset(){
+        setScreen(new MainMenuScreen());
     }
     
 }

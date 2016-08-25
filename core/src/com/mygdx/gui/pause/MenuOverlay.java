@@ -7,10 +7,6 @@ package com.mygdx.gui.pause;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.mygdx.game.MainGame;
-import static com.mygdx.game.MainGame.RATIO;
-import com.mygdx.gui.OverlayComponent;
-import com.mygdx.managers.ResourceManager;
 import com.mygdx.utilities.Direction;
 import java.util.HashMap;
 
@@ -25,9 +21,6 @@ public abstract class MenuOverlay {
     protected float highlightY;
     
     protected int selectY = 0, select_MAX;
-    protected HashMap<Integer,PauseComponent> componentMap = new HashMap<Integer,PauseComponent>();
-    //components
-    protected PauseCursor cursor;
     
     public float getX() { return x; }
     public float getY() { return y; }
@@ -39,9 +32,7 @@ public abstract class MenuOverlay {
         this.y = y;
         this.width = width;
         this.height = height;
-        bg = MainGame.am.get(ResourceManager.PAUSE_BG);
         
-        cursor = new PauseCursor(x,y,30f*RATIO, 30f*RATIO);
         select_MAX = 0;
     }
     
@@ -71,11 +62,6 @@ public abstract class MenuOverlay {
     }
     
     
-    public void confirmSelect(){
-        if(!componentMap.isEmpty()){
-            componentMap.get(selectY).execute();
-            
-        }
-    }
+    public void confirmSelect(){ }
     
 }

@@ -5,11 +5,12 @@
  */
 package com.mygdx.screen;
 
-import com.mygdx.screen.MainMenu.MainMenuScreen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.MainGame;
+import com.mygdx.screen.Screen;
+import com.mygdx.screen.ScreenManager;
 
 /**
  *
@@ -22,12 +23,7 @@ public class LoadingScreen extends Screen{
     
     @Override
     public void create() {
-        
         font.setColor(Color.WHITE);
-        
-        //MainGame.rm.load();
-        
-        //New Edit: 2/13/16
         MainGame.rm.primaryLoad();
     }
 
@@ -42,7 +38,6 @@ public class LoadingScreen extends Screen{
             //all assets are loaded -> move on to next screen
             
             ScreenManager.setScreen(new MainMenuScreen());
-            
             MainGame.rm.secondaryLoad();
         }
         

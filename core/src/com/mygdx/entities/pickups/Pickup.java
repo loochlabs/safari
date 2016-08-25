@@ -12,9 +12,6 @@ import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.mygdx.entities.Entity;
-import com.mygdx.gui.descriptions.DescriptionWindow;
-import com.mygdx.managers.ResourceManager;
-import com.mygdx.screen.GameScreen;
 import com.mygdx.utilities.FrameCounter;
 import com.mygdx.utilities.SoundObject_Sfx;
 import static com.mygdx.utilities.UtilityVars.BIT_PICKUP;
@@ -30,7 +27,6 @@ public abstract class Pickup extends Entity{
     
     protected Object name;
     protected String desc;
-    protected DescriptionWindow descWindow;
     protected boolean pickupComplete = false;
     
     protected FixtureDef solidfd;
@@ -51,7 +47,6 @@ public abstract class Pickup extends Entity{
     protected SoundObject_Sfx pickupSound;
     
     public Object getName() { return name; }
-    public DescriptionWindow getDescWindow() { return descWindow; }
     public boolean getCanPickup() { return canPickup; }
     
     public Pickup(Vector2 pos, float w, float h){
@@ -72,11 +67,6 @@ public abstract class Pickup extends Entity{
         solidfd.shape = cshape;
         solidfd.filter.categoryBits = BIT_PICKUP;
         solidfd.filter.maskBits = BIT_WALL | BIT_PICKUP;
-        
-        
-        //sound
-        pickupSound = new SoundObject_Sfx(ResourceManager.SFX_PICKUP);
-        
     }
     
     //copy of pickup
@@ -178,15 +168,11 @@ public abstract class Pickup extends Entity{
         try {
             if (str[0].equals("begin") && str[1].equals(userdata.toString()) && canPickup) {
                 System.out.println("@Pickup death alert ");
-                //GameScreen.overlay.addAlertText("+" + name + "");
                 canPickup = false;
                 pickupComplete = true;
 
                 //sound
                 pickupSound.play(false);
-                
-                //death();
-                dead = true;
             }
         } catch (IndexOutOfBoundsException ex) {
             ex.printStackTrace();

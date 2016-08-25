@@ -8,7 +8,6 @@ package com.mygdx.environments.EnvNull;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
-import com.mygdx.entities.DynamicEntities.enemies.EnemyManager;
 import com.mygdx.entities.DynamicEntities.player.PlayerEntity;
 import com.mygdx.entities.Entity;
 import com.mygdx.entities.ImageSprite;
@@ -67,18 +66,10 @@ public abstract class EnvNull extends Environment {
     protected int currentEnemies = 0;
     
     
-    //end warp entity
-    protected En_EndNullArm endNullArm;
-    
     //******************
     //  SOUND
     //*****************
-    
-    private final Array<SoundObject_Bgm> bgm = new Array<SoundObject_Bgm>();
-    private final SoundObject_Bgm bgm_end;
     private SoundObject_Bgm bgm1;
-    private SoundObject_Sfx impactSound;
-    
     
     public EnvNull(int id, int linkid, int difficulty){
         super(id);
@@ -90,9 +81,9 @@ public abstract class EnvNull extends Environment {
         
         introDescription = "The Null";
         
-        playTexture = MainGame.am.get(ResourceManager.NULL_BG1);
-        introTexture = MainGame.am.get(ResourceManager.NULL_BG1);
-        outroTexture = MainGame.am.get(ResourceManager.NULL_PH);
+        playTexture = MainGame.am.get(ResourceManager.DEFAULT_SQUARE);
+        introTexture = MainGame.am.get(ResourceManager.DEFAULT_SQUARE);
+        outroTexture = MainGame.am.get(ResourceManager.DEFAULT_SQUARE);
         
         fgx = 0;
         fgy = 0;
@@ -119,27 +110,8 @@ public abstract class EnvNull extends Environment {
         impactSprite.setPosition(new Vector2(playerPos.x*PPM - impactSprite.getWidth()/2, 
                 playerPos.y*PPM - impactSprite.getHeight()*0.175f));
         
-        /*
-        introTextSprite = new EntitySprite(new Vector2(0,0), 350f*RATIO,100f*RATIO, "kill-text",  
-                false, true, false, false, 1.0f, false, false, false, false);
-        
-        /*
-        bgRockSprite = new ImageSprite("null-bg-rocks", false);
-        bgRockSprite.sprite.setScale(1.0f * RATIO);
-        bgRockSprite.sprite.setPosition(
-                 - width/2 + 150f*RATIO, 
-                 - height/2 + 75*RATIO);
-        */
-        
-        
         //end
         endFC.setTime(4.0f);
-        
-        //sound
-        bgm.add(new SoundObject_Bgm(ResourceManager.BGM_NULL_3));
-        bgm_end = new SoundObject_Bgm(ResourceManager.BGM_NULL_END);
-        
-        impactSound = new SoundObject_Sfx(ResourceManager.SFX_NULL_IMPACT);
             
     }
     
@@ -265,8 +237,6 @@ public abstract class EnvNull extends Environment {
                 diveIn = false;
                 diveMovement = 0.1f;
 
-                //play impact sound
-                impactSound.play(false);
             }
 
         } else {
@@ -324,8 +294,6 @@ public abstract class EnvNull extends Environment {
 
         }
         
-        GameScreen.player.fall();
-        //playerDiveSprite.step();
     }
     
     
@@ -391,9 +359,6 @@ public abstract class EnvNull extends Environment {
         }
         tdepth = fallDown ? tdepth + 1 : tdepth - 1;
         layerManagers.get(tdepth).layerEntities.add(GameScreen.player);
-        
-        
-        GameScreen.player.fall();
         
         diveFC.start(fm);
         sm.setState(4);
@@ -524,9 +489,7 @@ public abstract class EnvNull extends Environment {
         
         
         //sound
-        bgm1 = bgm.random();
         bgm1.play();
-        
         
     }
     
@@ -534,14 +497,8 @@ public abstract class EnvNull extends Environment {
     public void play(){
         super.play();
         
-        //begin null section
-        
-        //play impact sound
-        impactSound.play(false);
-        
         entityCheck();
         this.renderSectionSort();
-        
     }
     
     @Override
@@ -549,14 +506,11 @@ public abstract class EnvNull extends Environment {
         sm.setPaused(true);
         
         playerPos = startPos.cpy();
-        //reset();
     }
     
     @Override
     public void end(int id, float time){
         bgm1.stop();
-        //sprites.clear();
-        
         super.end(id, time);
     }
     
@@ -1189,77 +1143,6 @@ public abstract class EnvNull extends Environment {
         
         
     }
-    
-    
-    //**************************************
-        
-        //  ENEMIES
-        
-    public void spawnEnemyGroup(NullSection sec){
-        //TODO: temp difficulty until enemy rewrite
-        Array<Entity> ent = EnemyManager.getGroup(DIFFICULTY, sec);
-        for(Entity e : ent){
-            this.toAddEntity(e);
-            
-            //todo: get rid of this enemy count
-            //use some sort of check in layer managers
-            this.addEnemyCount();
-        }
-    }
-    
-    
-    //TODO: transfer this to Environment class, not needed here
-    public void spawnEnemy(){
-        currentEnemies++;
-    }
-    
-    //todo: remove, check layerManager.complete
-    @Override
-    public void addKillCount(){
-        super.addKillCount();
-        
-        if(killCount >= enemyCount){
-            spawnEndWarp();
-        }
-    }
-    
-    
-    public void spawnEndWarp(){
-        
-        Vector2 secPos = layerManagers.get(0).layerSections.get(0).getPos();
-        
-        //loop through current layer
-        for (LayerManager lm : layerManagers) {
-            for (NullSection ns : lm.layerSections) {
-                //if player in section, spawn null warp here
-                PlayerEntity ply = GameScreen.player;
-                if (ply.getPos().x > ns.getPos().x
-                        && ply.getPos().x  <= ns.getPos().x + ns.getWidth()
-                        && ply.getPos().y  > ns.getPos().y
-                        && ply.getPos().y  <= ns.getPos().y + ns.getHeight()) {
-
-                    secPos = ns.getPos();
-                }
-            }
-        }
-        
-        endNullArm = new En_EndNullArm(new Vector2(
-                secPos.x + 400*RATIO, 
-                secPos.y + 400*RATIO),
-                linkid);
-        
-        spawnEntity(endNullArm);
-        
-        //sound
-        bgm1.stop();
-        bgm1 = bgm_end;
-        bgm1.play();
-    }
-    
-    
-    
-    
-    
     
 }
 

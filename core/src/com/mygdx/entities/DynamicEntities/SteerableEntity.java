@@ -38,9 +38,6 @@ public class SteerableEntity extends Entity implements Steerable<Vector2>{
     public SteerableEntity(Vector2 pos, float w, float h) {
         super(pos, w, h);
         
-        MAX_HP = 100;
-        CURRENT_HP = MAX_HP;
-        
         bd.position.set(pos.x/PPM,pos.y/PPM);
         bd.type = BodyDef.BodyType.DynamicBody;
         cshape.setRadius(width/PPM);

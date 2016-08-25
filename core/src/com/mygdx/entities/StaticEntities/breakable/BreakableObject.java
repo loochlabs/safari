@@ -39,17 +39,14 @@ public class BreakableObject extends StaticEntity{
         fd.filter.maskBits = BIT_PLAYER | BIT_WALL | BIT_ATT | BIT_EN;
         fd.shape = cshape;
         
-        MAX_HP = 10;
-        CURRENT_HP = MAX_HP;
         
     }
     
     
     @Override
-    public void death(){
-        super.death();
+    public void dispose(){
         spawnReward();
-        dispose();
+        super.dispose();
     }
     
     public void spawnReward(){

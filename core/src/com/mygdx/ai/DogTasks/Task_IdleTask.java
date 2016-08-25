@@ -17,11 +17,13 @@ public class Task_IdleTask extends LeafTask<DogEntity>{
 
     @Override
     public void run(DogEntity dog) {
+        /*
         if(dog.inIdleRange()){
             dog.idle();
             success();
         }else
             fail();
+            */
     }
 
     @Override

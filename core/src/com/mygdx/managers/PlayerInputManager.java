@@ -49,36 +49,25 @@ public class PlayerInputManager {
             }
 
             if (GameKeyLibrary.isPressed(GameKeyLibrary.ATT_ZERO)) {
-                GameScreen.player.attack(0);
+                //GameScreen.player.attack(0);
             }
             if (GameKeyLibrary.isPressed(GameKeyLibrary.ATT_ONE)) {
-                GameScreen.player.attack(1);
+                //GameScreen.player.attack(1);
             }
             if (GameKeyLibrary.isPressed(GameKeyLibrary.ATT_TWO)) {
-                GameScreen.player.attack(2);
+                //GameScreen.player.attack(2);
             }
             if(GameKeyLibrary.isPressed(GameKeyLibrary.ATT_FOUR)){
-                GameScreen.player.attack(4);
+               // GameScreen.player.attack(4);
             } 
             if (GameKeyLibrary.isPressed(GameKeyLibrary.ACTION)) {
                 GameScreen.player.beginAction();
             }
             
-            if(GameKeyLibrary.isPressed(GameKeyLibrary.SKILL_SELECT)){
-                if(GameScreen.overlay.skillHudEnable){
-                    GameScreen.overlay.disableSkillHud();
-                }else{
-                    GameScreen.overlay.enableSkillHud(-1);
-                }
-            }
-            
             if(GameKeyLibrary.isPressed(GameKeyLibrary.DEV_CMD)){
-                GameScreen.player.killSwitch();
+                //GameScreen.player.killSwitch();
             } 
             
-            
-            
-        
         }
         
         if (GameKeyLibrary.isPressed(GameKeyLibrary.MUTE)) {

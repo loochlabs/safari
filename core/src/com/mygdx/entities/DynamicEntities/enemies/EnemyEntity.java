@@ -93,9 +93,6 @@ public class EnemyEntity extends SteerableEntity{
                 false, true, false, false, 1f*RATIO, false, false,
                 true, true);
         
-        //sound
-        deathSound = new SoundObject_Sfx(ResourceManager.SFX_DEATH_1);
-        
     }
     
     @Override
@@ -125,31 +122,9 @@ public class EnemyEntity extends SteerableEntity{
     }
     
     @Override
-    public void death(){
-        super.death();
-        
-        deathSound.play(false);
-        
-        EnvironmentManager.currentEnv.addKillCount();
-        System.out.println("@EnemyEntity en death");
-        
-        deathSprite.setPosition(new Vector2(
-                pos.x - deathSprite.getWidth()/2, 
-                pos.y - deathSprite.getHeight()/2));
-        EnvironmentManager.currentEnv.spawnEntity(deathSprite);
-        
-        EnvironmentManager.currentEnv.removeEntity(seekWanderTarget);
-        
-        dispose();
-    }
-    
-    @Override 
     public void dispose(){
-        EnvironmentManager.currentEnv.removeEntity(this);
-        
-        if(GameScreen.player.getAttTargets().contains(this)){
-            GameScreen.player.getAttTargets().remove(this);
-        }
+        EnvironmentManager.currentEnv.removeEntity(seekWanderTarget);
+        super.dispose();
     }
     
     
@@ -208,13 +183,11 @@ public class EnemyEntity extends SteerableEntity{
             }
             
             if(canDmgPlayer && !attSensorStack.empty()){
-                damagePlayer();
+                //damagePlayer();
                 canDmgPlayer = false;
             }
         }
         
-        //todo: 
-        //canDmgPlayer = attSensorStack.isEmpty()
     }
     
     public void updateSprites(){
@@ -252,11 +225,6 @@ public class EnemyEntity extends SteerableEntity{
         attackFC.reset();
     }
     
-    public void damagePlayer(){
-        if (active) {
-            GameScreen.player.damage(DAMAGE);
-        }
-    }
     
     @Override
     public void alert(String[] string) {

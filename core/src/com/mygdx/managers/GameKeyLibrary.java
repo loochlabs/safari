@@ -14,20 +14,20 @@ public class GameKeyLibrary {
     private static boolean [] keys;
     private static boolean [] pkeys;//previous state of keys
     
-    private static final int NUM_KEYS =     13;
-    public static final int MOVE_UP =       0;
-    public static final int MOVE_DOWN =     1;
-    public static final int MOVE_RIGHT =    2;
-    public static final int MOVE_LEFT =     3;
-    public static final int ATT_ZERO =       4;
-    public static final int ATT_ONE =       5;
-    public static final int ATT_TWO =     6;
-    public static final int ATT_FOUR =          7;
-    public static final int ACTION =          8;
-    public static final int SKILL_SELECT =  9;
-    public static final int DEV_CMD =       10;
-    public static final int MAIN_ESC =      11;
-    public static final int MUTE =          12;
+    private static final int NUM_KEYS = 13;
+    public static final int MOVE_UP = 0;
+    public static final int MOVE_DOWN = 1;
+    public static final int MOVE_RIGHT = 2;
+    public static final int MOVE_LEFT = 3;
+    public static final int ATT_ZERO = 4;
+    public static final int ATT_ONE = 5;
+    public static final int ATT_TWO = 6;
+    public static final int ATT_FOUR = 7;
+    public static final int ACTION = 8;
+    public static final int SKILL_SELECT = 9;
+    public static final int DEV_CMD = 10;
+    public static final int MAIN_ESC = 11;
+    public static final int MUTE = 12;
     
     static{
         keys = new boolean[NUM_KEYS];

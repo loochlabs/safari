@@ -17,12 +17,13 @@ public class Task_MoveToTear extends LeafTask<DogEntity>{
 
     @Override
     public void run(DogEntity dog) {
-        
+        /*
         if (dog.isNearTear() != null) {
             dog.moveToTear();
         } else {
             success();
         }
+        */
     }
 
     @Override

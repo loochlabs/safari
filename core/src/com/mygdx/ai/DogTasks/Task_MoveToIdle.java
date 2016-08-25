@@ -8,7 +8,6 @@ package com.mygdx.ai.DogTasks;
 import com.badlogic.gdx.ai.btree.LeafTask;
 import com.badlogic.gdx.ai.btree.Task;
 import com.mygdx.entities.DynamicEntities.DogEntities.DogEntity;
-import com.mygdx.screen.GameScreen;
 
 /**
  *
@@ -23,6 +22,7 @@ public class Task_MoveToIdle extends LeafTask<DogEntity>{
 
     @Override
     public void run(DogEntity dog) {
+        /*
         if(GameScreen.player.getBody() == null){
             fail();
         }
@@ -32,6 +32,7 @@ public class Task_MoveToIdle extends LeafTask<DogEntity>{
         }else{
             success();
         }
+*/
     }
 
     @Override

@@ -26,19 +26,7 @@ public class EnemyProj extends ProjectileEntity{
         fd.filter.categoryBits = BIT_EN;
         fd.filter.maskBits = BIT_PLAYER | BIT_WALL;
         
-        texture = MainGame.am.get(ResourceManager.PROJ_EN_1);
-    }
-    
-    @Override
-    public void alert(String []str){
-        try {
-            if (str[2].contains("player")) {
-                GameScreen.player.damage(DMG);
-            }
-        } catch (IndexOutOfBoundsException ex) {
-            ex.printStackTrace();
-        }
-        super.alert(str);
+        texture = MainGame.am.get(ResourceManager.DEFAULT_SQUARE);
     }
     
 }

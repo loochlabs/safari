@@ -5,10 +5,9 @@
  */
 package com.mygdx.managers;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.utils.Array;
 import com.mygdx.entities.pickups.Pickup;
-import com.mygdx.screen.GameScreen;
-import com.mygdx.utilities.ItemContainer;
 
 /**
  *
@@ -38,8 +37,6 @@ public class Inventory {
             }
         }
         
-        GameScreen.overlay.getBarHud().addItem(pickup);
-        
     }
     
     public void subItem(Pickup pickup, int ammount){
@@ -59,9 +56,6 @@ public class Inventory {
             itemsToRemove.clear();
         }
         
-        for(int i = 0; i < ammount; i++){
-            GameScreen.overlay.getBarHud().removeItem(pickup);
-        }
     }
     
     public int subAll(Pickup pickup){
@@ -78,10 +72,6 @@ public class Inventory {
         }
         if(itemsToRemove.size > 0){
             itemsToRemove.clear();
-        }
-        
-        for(int i = 0; i < count; i++){
-            GameScreen.overlay.getBarHud().removeItem(pickup);
         }
         
         return count;
@@ -131,5 +121,34 @@ public class Inventory {
         itemsToRemove.clear();
     }
     
+ 
+    private class ItemContainer{
+        
+        public Object data;
+        public Texture texture;
+        public int count;
+        public Pickup pickup;
+        public boolean newAlert = true;
+        public boolean flagForHud = false;
+        
+        public ItemContainer(Pickup pickup, boolean flagForHud){
+            this.pickup = pickup;
+            this.data = pickup.getName();
+            this.texture = pickup.getTexture();
+            this.flagForHud = flagForHud;
+        }
+        
+        public void addAmmount(int ammount){
+            count = count + ammount > 999 ? 999 : count + ammount;
+        }
+        
+        public void removeAmmount(int ammount){
+            count = count - ammount < 0 ? 0 : count - ammount;
+        }
+        
+        public boolean empty(){
+            return count <= 0;
+        }
+    }
     
 }

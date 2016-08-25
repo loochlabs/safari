@@ -17,10 +17,12 @@ public class Task_InRangeOfPlayer extends LeafTask<DogEntity>{
 
     @Override
     public void run(DogEntity dog) {
+        /*
         if(dog.inRangeOfPlayer()){
             success();
         }else
             fail();
+            */
     }
 
     @Override

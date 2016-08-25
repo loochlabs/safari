@@ -30,7 +30,6 @@ import static com.mygdx.utilities.UtilityVars.PPM;
 public class NullSection {
     
     protected Texture bg;
-    //protected ImageSprite bgSprite;
     protected Vector2 pos;
     protected final float width, height;
     protected final EnvNull env;
@@ -59,7 +58,6 @@ public class NullSection {
     }
     
     
-    
     //TODO: get rid of PIT, PITCONNECTED
     public enum WallType { WALL, CONNECTED, PIT_LOWER, PIT_HIGHER};
     
@@ -72,7 +70,7 @@ public class NullSection {
         this.coord = coord;
         this.LAYER_DEPTH = depth;
         
-        bg = MainGame.am.get(ResourceManager.NULL_PH);
+        bg = MainGame.am.get(ResourceManager.DEFAULT_SQUARE);
     }
     
     public void render(SpriteBatch sb){
@@ -315,6 +313,7 @@ public class NullSection {
         2 - Pit
         */
         
+        /*
         //0000
         if(sideNumber.equals("0000")){
             bg = MainGame.am.get(ResourceManager.SECTION_B_0000);
@@ -495,10 +494,8 @@ public class NullSection {
         else if(sideNumber.equals("2111")){
             bg = MainGame.am.get(ResourceManager.SECTION_B_2111);
         }
-        
+       */ 
     }
-    
-    
     
     
 }

@@ -12,7 +12,6 @@ import com.mygdx.environments.EnvironmentManager;
 import com.mygdx.game.MainGame;
 import static com.mygdx.game.MainGame.RATIO;
 import com.mygdx.managers.ResourceManager;
-import com.mygdx.screen.GameScreen;
 import static com.mygdx.utilities.UtilityVars.BIT_ATT;
 import static com.mygdx.utilities.UtilityVars.BIT_EN;
 import static com.mygdx.utilities.UtilityVars.BIT_TEAR;
@@ -30,7 +29,7 @@ public class PlayerProjectile extends ProjectileEntity{
         fd.filter.categoryBits = BIT_ATT;
         fd.filter.maskBits = BIT_EN | BIT_TEAR | BIT_WALL;
         
-        texture = MainGame.am.get(ResourceManager.SKILL_GHOSTJAB);
+        texture = MainGame.am.get(ResourceManager.DEFAULT_SQUARE);
     }
     
     @Override
@@ -39,8 +38,8 @@ public class PlayerProjectile extends ProjectileEntity{
             if (str[2].contains("en_")) {
                 for (Entity e : EnvironmentManager.currentEnv.getEntities()) {
                     if (e.getUserData().toString().equals(str[2])) {
-                        //damage that enemy
-                        e.damage(DMG);
+                        
+                        //impact with enemy
                     }
                 }
             }

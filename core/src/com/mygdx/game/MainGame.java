@@ -13,12 +13,11 @@ import com.mygdx.managers.GameKeyLibrary;
 import com.mygdx.managers.ResourceManager;
 import com.mygdx.managers.SoundManager;
 import com.mygdx.screen.ScreenManager;
-import com.mygdx.demo.DemoLoadScreen;
-import com.mygdx.dev.DevLoadScreen;
+import com.mygdx.screen.LoadingScreen;
 
 public class MainGame extends ApplicationAdapter {
 
-    public static final String TITLE = "Null and Void";
+    public static final String TITLE = "Welcome to the FrameworK!";
     public static int WIDTH = 1366, HEIGHT = 768;
     public static final float SCALE = 1 / 768f;
     public static float RATIO;
@@ -62,14 +61,12 @@ public class MainGame extends ApplicationAdapter {
     public void create() {
         batch = new SpriteBatch();
         
-        
         //set render ratio
         RATIO = MainGame.HEIGHT * MainGame.SCALE;
         
         //fonts
         FONT_DMG = new BitmapFont(Gdx.files.internal("fonts/nav-font.fnt"));
         FONT_MAIN = new BitmapFont(Gdx.files.internal("fonts/nav-impact.fnt"));
-        
         
         createVersion(version);
     }
@@ -88,29 +85,15 @@ public class MainGame extends ApplicationAdapter {
             cip = new InputProcessor_Gamepad();
             Controllers.addListener(cip);
             Gdx.input.setInputProcessor(cip);
-
         }
 
         SoundManager.MUSIC_VOL = 0.65f;
         SoundManager.muted = MUTE;
         
         switch (v) {
-            case 0:
-                //screen
-                ScreenManager.setScreen(new DevLoadScreen());
-                break;
-                
-            case 1:
-
-                //screen
-                ScreenManager.setScreen(new DemoLoadScreen());
-
-                break;
-
+            
             default:
-
-                //screen
-                ScreenManager.setScreen(new DevLoadScreen());
+                ScreenManager.setScreen(new LoadingScreen());
                 break;
         }
     }
@@ -120,15 +103,12 @@ public class MainGame extends ApplicationAdapter {
         if(ScreenManager.getCurrentScreen() != null)
             ScreenManager.getCurrentScreen().dispose();
         batch.dispose();
-        
     }
 
     @Override
     public void render() {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        
-        
         
         //acum += Gdx.graphics.getDeltaTime();
         //while(acum >= STEP){
@@ -152,11 +132,6 @@ public class MainGame extends ApplicationAdapter {
     
     @Override 
     public void resize(int width, int height){
-        
-        //WIDTH = width;
-        //HEIGHT = height;
-        //RATIO = 1/ (float)HEIGHT;
-        
         if(ScreenManager.getCurrentScreen() != null)
             ScreenManager.getCurrentScreen().resize(width,height);
     }
