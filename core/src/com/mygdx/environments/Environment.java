@@ -245,9 +245,10 @@ public class Environment {
         if(sm.getState() == State.PLAYING 
                 || sm.getState() == State.FALLING){
             
+            /*
             if(GameScreen.player.getBody() != null){
                 cam.setPosition(GameScreen.player.getBody().getPosition().x, GameScreen.player.getBody().getPosition().y);
-            }
+            }*/
         }
     }
     

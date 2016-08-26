@@ -87,7 +87,7 @@ public class PlayerInputManager {
 
             }
         } catch (NullPointerException ex) {
-            System.err.println("EnvironmentManager.currentEnv has not been initiallized yet!");
+            System.err.println("@PlayerInputManager: EnvironmentManager.currentEnv has not been initiallized yet!");
         }
 
     }

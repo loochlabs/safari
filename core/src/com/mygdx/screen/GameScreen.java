@@ -17,6 +17,7 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.mygdx.camera.OrthoCamera;
 import com.mygdx.camera.ParallaxCamera;
 import com.mygdx.entities.DynamicEntities.player.PlayerEntity;
+import com.mygdx.environments.EnvRoom.EnvRoom;
 import com.mygdx.environments.Environment;
 import com.mygdx.environments.EnvironmentManager;
 import com.mygdx.game.MainGame;
@@ -80,8 +81,11 @@ public class GameScreen extends Screen{
         //GameStats
         GameStats.init();
         
+        //player
+        player = new PlayerEntity(new Vector2(0,0), 0,0);
+        
         //ENVIRONMNETS
-        EnvironmentManager.createStart(startEnvNum);
+        EnvironmentManager.add(new EnvRoom(0,1));
         
         if (currentEnv != EnvironmentManager.currentEnv) {
             currentEnv = EnvironmentManager.currentEnv;
