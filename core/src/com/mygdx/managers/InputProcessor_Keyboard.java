@@ -5,6 +5,7 @@
  */
 package com.mygdx.managers;
 
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Input.Keys;
 import com.badlogic.gdx.InputAdapter;
 
@@ -27,7 +28,8 @@ public class InputProcessor_Keyboard extends InputAdapter{
     private final int DEV_CMD =         Keys.DEL;
     private final int MAIN_ESC =        Keys.ESCAPE;
     private final int MUTE =            Keys.M;
-    
+    private final int MOUSE_RIGHT =           Input.Buttons.RIGHT ;
+    private final int MOUSE_LEFT =            Input.Buttons.LEFT;
     
     public InputProcessor_Keyboard(){
         GameInputProcessor.controller = false;
@@ -45,6 +47,8 @@ public class InputProcessor_Keyboard extends InputAdapter{
         GameInputProcessor.DEV_CMD = DEV_CMD;
         GameInputProcessor.MAIN_ESC = MAIN_ESC;
         GameInputProcessor.MUTE = MUTE;
+        GameInputProcessor.MOUSE_RIGHT = MOUSE_RIGHT;
+        GameInputProcessor.MOUSE_LEFT = MOUSE_LEFT;
     }
     
     //TODO: soft code Key values for account
@@ -89,6 +93,7 @@ public class InputProcessor_Keyboard extends InputAdapter{
         if(k == MUTE){
             GameKeyLibrary.setKey(GameKeyLibrary.MUTE, true);
         }
+        
         return true;
     }
     
@@ -133,7 +138,33 @@ public class InputProcessor_Keyboard extends InputAdapter{
         if(k == MUTE){
             GameKeyLibrary.setKey(GameKeyLibrary.MUTE, false);
         }
+        
         return true;
     }
     
+    
+    @Override 
+    public boolean touchDown(int screenX, int screenY, int pointer, int button){
+        if(button == MOUSE_RIGHT){
+            GameKeyLibrary.setKey(GameKeyLibrary.MOUSE_RIGHT, true);
+        }
+        if(button == MOUSE_LEFT){
+            GameKeyLibrary.setKey(GameKeyLibrary.MOUSE_LEFT, true);
+        }
+        
+        return true;
+    }
+    
+    @Override
+    public boolean touchUp(int screenX, int screenY, int pointer, int button){
+        
+        if(button == MOUSE_RIGHT){
+            GameKeyLibrary.setKey(GameKeyLibrary.MOUSE_RIGHT, false);
+        }
+        if(button == MOUSE_LEFT){
+            GameKeyLibrary.setKey(GameKeyLibrary.MOUSE_LEFT, false);
+        }
+        
+        return true;
+    }
 }

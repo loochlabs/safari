@@ -23,8 +23,8 @@ import static com.mygdx.utilities.UtilityVars.BIT_WALL;
  */
 public class PlayerProjectile extends ProjectileEntity{
 
-    public PlayerProjectile(Vector2 pos, float width, float height, Vector2 dir, float dmg) {
-        super(pos, width, height, dir.scl(22f*RATIO), 1f, dmg);
+    public PlayerProjectile(Vector2 pos, float width, float height, Vector2 dir) {
+        super(pos, width, height, dir.scl(22f*RATIO), 1f);
         
         fd.filter.categoryBits = BIT_ATT;
         fd.filter.maskBits = BIT_EN | BIT_TEAR | BIT_WALL;

@@ -11,6 +11,13 @@ package com.mygdx.utilities;
  */
 public class UtilityVars {
     
+    public static enum Rarity { COMMON, RARE, SUPER, ULTRA, MEGA };
+    public static final float RARITY_COMMON_CHANCE = 0.70f;
+    public static final float RARITY_RARE_CHANCE = 0.20f;
+    public static final float RARITY_SUPER_CHANCE = 0.05f;
+    public static final float RARITY_ULTRA_CHANCE = 0.035f;
+    public static final float RARITY_MEGA_CHANCE = 0.015f;
+    
     public static enum AttackState { NONE, PREPPING, ATTACKING, RECOVERING, COMBO };
     public static enum EnvType { DELTA, PSI, OMEGA };
     

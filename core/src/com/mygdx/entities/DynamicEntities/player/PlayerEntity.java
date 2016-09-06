@@ -17,8 +17,10 @@ import com.mygdx.entities.DynamicEntities.SteerableEntity;
 import com.mygdx.entities.Entity;
 import com.mygdx.entities.ImageSprite;
 import com.mygdx.environments.EnvironmentManager;
+import com.mygdx.game.MainGame;
 import static com.mygdx.game.MainGame.RATIO;
 import com.mygdx.managers.GameInputProcessor;
+import com.mygdx.managers.ResourceManager;
 import com.mygdx.managers.StateManager;
 import com.mygdx.managers.StateManager.State;
 import com.mygdx.utilities.Direction;
@@ -50,7 +52,7 @@ public class PlayerEntity extends SteerableEntity{
     public String getPlayerName() { return playerName; }
     
     //movement
-    private final float CURRENT_SPEED = 10.0f;
+    protected float CURRENT_SPEED = 10.0f;
     private boolean moveUp, moveDown,moveLeft,moveRight = false;
     private Vector2 currentDirection = new Vector2(0,0);
     private Vector2 prevLocation = new Vector2(0,0);
@@ -88,14 +90,11 @@ public class PlayerEntity extends SteerableEntity{
         
         sm = new StateManager();
         
-        
-        beginSpectralSprite = new ImageSprite("poeSpectral", false);
-        beginSpectralSprite.sprite.setScale(1.06f*RATIO);
-        
-        
         //font
         font = new BitmapFont(Gdx.files.internal("fonts/nav-impact.fnt"));
         font.setScale(RATIO);
+        
+        texture = MainGame.am.get(ResourceManager.DEFAULT_SQUARE);
         
         //action key
         //actionTexture = MainGame.am.get(ResourceManager.GUI_PAD_Y);
@@ -317,6 +316,9 @@ public class PlayerEntity extends SteerableEntity{
                 pos.y*PPM - warpSprite.sprite.getHeight()/2);
         isprite = warpSprite;
     }
+    
+    public void action_down(int index){}
+    public void action_up(int index){}
     
     //*****************************
     //Desctiption: for action events involving actionEntity

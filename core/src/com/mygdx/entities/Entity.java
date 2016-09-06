@@ -102,7 +102,6 @@ public abstract class Entity{
         
         rngNegSet.add(1);
         rngNegSet.add(-1);
-        
     }
     
     public abstract void init(World world);

@@ -17,8 +17,8 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.StreamUtils;
 import com.mygdx.entities.ImageSprite;
+import com.mygdx.environments.EnvironmentManager;
 import static com.mygdx.game.MainGame.RATIO;
-import com.mygdx.screen.GameScreen;
 import com.mygdx.utilities.FrameCounter_Attack;
 import static com.mygdx.utilities.UtilityVars.BIT_EN;
 import static com.mygdx.utilities.UtilityVars.BIT_PLAYER;
@@ -99,7 +99,7 @@ public class En_Goober extends EnemyEntity{
         
         
         //ai
-        moveToSB = new Arrive<Vector2>(this, GameScreen.player)
+        moveToSB = new Arrive<Vector2>(this, EnvironmentManager.player)
                 .setTimeToTarget(0.01f)
                 .setArrivalTolerance(2f)
                 .setDecelerationRadius(10);
@@ -155,7 +155,7 @@ public class En_Goober extends EnemyEntity{
     public void prepAttack() {
         super.prepAttack();
         attDest = body.getPosition().cpy().sub(
-                GameScreen.player.getBody().getPosition().cpy());
+                EnvironmentManager.player.getBody().getPosition().cpy());
     }
 
 }

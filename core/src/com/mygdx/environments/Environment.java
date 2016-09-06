@@ -147,9 +147,7 @@ public class Environment {
             e.init(world);
         
         this.setPlayerToStart();
-        entities.add(GameScreen.player);
-        
-        
+        entities.add(EnvironmentManager.player);
     }
     
     public void render(SpriteBatch sb){
@@ -235,20 +233,15 @@ public class Environment {
         if(sm.getState() == State.PLAYING 
                 || sm.getState() == State.FALLING){
             
-            if (GameScreen.player != null) {
-                cam.setPosition(GameScreen.player.getPos().x, GameScreen.player.getPos().y);
+            if (EnvironmentManager.player != null) {
+                cam.setPosition(EnvironmentManager.player.getPos().x, EnvironmentManager.player.getPos().y);
             }
         }
     }
     
-    public void updateB2DCamera(OrthoCamera cam){
-        if(sm.getState() == State.PLAYING 
-                || sm.getState() == State.FALLING){
-            
-            /*
-            if(GameScreen.player.getBody() != null){
-                cam.setPosition(GameScreen.player.getBody().getPosition().x, GameScreen.player.getBody().getPosition().y);
-            }*/
+    public void updateB2DCamera(OrthoCamera cam) {
+        if (EnvironmentManager.player.getBody() != null) {
+            cam.setPosition(EnvironmentManager.player.getBody().getPosition().x, EnvironmentManager.player.getBody().getPosition().y);
         }
     }
     
@@ -265,10 +258,10 @@ public class Environment {
         if(!sm.isPaused()){
             this.init();
         }else if(sm.respawn){
-            entities.add(GameScreen.player);
+            entities.add(EnvironmentManager.player);
             sm.respawn = false;
         }else{
-            GameScreen.player.getBody().setTransform(playerPos.cpy(),0);
+            EnvironmentManager.player.getBody().setTransform(playerPos.cpy(),0);
         }
         
         entityCheck();
@@ -277,40 +270,29 @@ public class Environment {
     
     //Desription: starting playing
     public void play(){
-        
         resume();
         
         sm.setState(1);
         sm.setPaused(false);
         
         GameScreen.overlay.addTitleAlert(introDescription); 
-        
     }
     
     public void resume(){
-        GameScreen.player.init(world);
-        GameScreen.player.getBody().setTransform(playerPos.cpy(),0);
-        
-        //todo: make specfic to tears
-        String [] str = {"", "tear_resume", ""};
-        for(Entity e: entities){
-            e.alert(str);
-        }
+        EnvironmentManager.player.init(world);
+        EnvironmentManager.player.getBody().setTransform(playerPos.cpy(),0);
     }
     
     //Description: called on warp out of level
     //@param: id = id of environment to warp to
     //        time - length of time for endFC before begin new env
     public void end(int id, float time){
-        
         sm.setState(3);
-        
         idwarp = id;
     }
     
     //Called after end() has completed
     public void complete(){
-        
         for(Entity e : cleanupEntities){
             if(entities.contains(e)){
                 this.removeEntity(e);
@@ -328,7 +310,7 @@ public class Environment {
     public void pause(){
         sm.setPaused(true);
         
-        playerPos = GameScreen.player.getBody().getPosition().cpy();
+        playerPos = EnvironmentManager.player.getBody().getPosition().cpy();
         
     }
     
@@ -336,8 +318,8 @@ public class Environment {
     //Description: clear b2d body after changing environments
     public void reset(){
         
-        if(GameScreen.player.getBody() != null){
-            world.destroyBody(GameScreen.player.getBody());
+        if(EnvironmentManager.player.getBody() != null){
+            world.destroyBody(EnvironmentManager.player.getBody());
         }
         
     }
@@ -346,7 +328,7 @@ public class Environment {
         sm.setState(3);
         setPlayerToStart();
         sm.respawn = true;
-        entities.remove(GameScreen.player);
+        entities.remove(EnvironmentManager.player);
     }
     
     public void gameOver(){

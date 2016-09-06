@@ -1,0 +1,18 @@
+#
+# Generic patrol BT for critters
+#   
+
+#Alias Definitions
+import seekWander:"com.mygdx.ai.enemies.Task_SeekWander"
+import wander:"com.mygdx.ai.enemies.Task_Wander"
+import flee:"com.mygdx.ai.enemies.Task_Flee"
+import inRangeOfPlayer:"com.mygdx.ai.enemies.Task_InRangeOfPlayer"
+
+root
+    selector
+        sequence
+            inRangeOfPlayer
+            flee
+        sequence
+            seekWander
+            wander

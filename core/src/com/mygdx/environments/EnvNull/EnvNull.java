@@ -8,12 +8,12 @@ package com.mygdx.environments.EnvNull;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
-import com.mygdx.entities.DynamicEntities.player.PlayerEntity;
 import com.mygdx.entities.Entity;
 import com.mygdx.entities.ImageSprite;
 import com.mygdx.entities.esprites.EntitySprite;
 import com.mygdx.entities.text.TextEntity;
 import com.mygdx.environments.Environment;
+import com.mygdx.environments.EnvironmentManager;
 import com.mygdx.game.MainGame;
 import static com.mygdx.game.MainGame.RATIO;
 import com.mygdx.managers.StateManager;
@@ -21,7 +21,6 @@ import com.mygdx.managers.ResourceManager;
 import com.mygdx.screen.GameScreen;
 import com.mygdx.utilities.Coordinate;
 import com.mygdx.utilities.SoundObject_Bgm;
-import com.mygdx.utilities.SoundObject_Sfx;
 import static com.mygdx.utilities.UtilityVars.PPM;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -98,7 +97,7 @@ public abstract class EnvNull extends Environment {
         startPos = new Vector2(MainGame.WIDTH*0.55f/PPM,MainGame.HEIGHT*0.65f/PPM);
         this.setPlayerToStart();
         
-        playerDiveSprite = GameScreen.player.getDiveSprite();
+        playerDiveSprite = EnvironmentManager.player.getDiveSprite();
         playerDiveSprite.sprite.setPosition(width * 0.5f, height * 0.15f);
         PLAYER_DIVE_POS = new Vector2(playerDiveSprite.sprite.getX(), playerDiveSprite.sprite.getY());
         PLAYER_DIVE_SCALE = playerDiveSprite.sprite.getScaleX();
@@ -139,7 +138,7 @@ public abstract class EnvNull extends Environment {
         
         
         if(sm.getState() == StateManager.State.FALLING ){
-            GameScreen.player.update();
+            EnvironmentManager.player.update();
             fallingUpdate();
         }
             
@@ -207,11 +206,11 @@ public abstract class EnvNull extends Environment {
             ************************/
             
             //set player to center of section
-            GameScreen.player.getBody().setTransform(
+            EnvironmentManager.player.getBody().setTransform(
                     new Vector2(
                             (currentSection.getPos().x + currentSection.getWidth() / 2) / PPM,
                             (currentSection.getPos().y + currentSection.getHeight() / 2) / PPM), 0);
-            GameScreen.player.getBody().setLinearVelocity(new Vector2(0, 0));
+            EnvironmentManager.player.getBody().setLinearVelocity(new Vector2(0, 0));
 
             //zoom out to normal
             if (fallDown) {
@@ -227,7 +226,7 @@ public abstract class EnvNull extends Environment {
             if (currentPlayerZoom == PLAYER_LAYER_ZOOM) {
 
                 //BUG FIX (4/22/16) Player body movement on dive complete
-                GameScreen.player.getBody().setLinearVelocity(new Vector2(0,0));
+                EnvironmentManager.player.getBody().setLinearVelocity(new Vector2(0,0));
                 
                 sm.setState(1);
 
@@ -254,10 +253,10 @@ public abstract class EnvNull extends Environment {
                     (currentSection.getPos().y + currentSection.getHeight() / 2) / PPM);
             //prevSection
             Vector2 dir = sectionPos.cpy().sub(prevSectionPosition).nor();
-            float dist = sectionPos.dst(GameScreen.player.getBody().getPosition());
+            float dist = sectionPos.dst(EnvironmentManager.player.getBody().getPosition());
 
             //move player to center of currentSection
-            GameScreen.player.getBody().setTransform(
+            EnvironmentManager.player.getBody().setTransform(
                     prevSectionPosition.add(dir.scl(diveMovement * dist)), 0);
             diveMovement = diveMovement >= 1 ? 1 : diveMovement / 0.99f;
 
@@ -351,14 +350,14 @@ public abstract class EnvNull extends Environment {
         int tdepth = 0;
         for(LayerManager lm : layerManagers){
             for(Entity e : lm.layerEntities){
-                if(e.equals(GameScreen.player)){
+                if(e.equals(EnvironmentManager.player)){
                     lm.layerEntToRemove.add(e);
                     tdepth = lm.depth;
                 }
             }
         }
         tdepth = fallDown ? tdepth + 1 : tdepth - 1;
-        layerManagers.get(tdepth).layerEntities.add(GameScreen.player);
+        layerManagers.get(tdepth).layerEntities.add(EnvironmentManager.player);
         
         diveFC.start(fm);
         sm.setState(4);
@@ -386,7 +385,7 @@ public abstract class EnvNull extends Environment {
             }
 
             if (sm.getState() == StateManager.State.FALLING) {
-                GameScreen.player.render(sb);
+                EnvironmentManager.player.render(sb);
             }
 
             //floating dmg text
@@ -481,7 +480,7 @@ public abstract class EnvNull extends Environment {
         beginCheck = false;
         
         
-        playerDiveSprite = GameScreen.player.getDiveSprite();
+        playerDiveSprite = EnvironmentManager.player.getDiveSprite();
         playerDiveSprite.sprite.setScale(1.0f);
         playerDiveSprite.sprite.setPosition(
                 playerPos.x*PPM - playerDiveSprite.sprite.getWidth()/2, 
@@ -526,7 +525,7 @@ public abstract class EnvNull extends Environment {
         
         for(LayerManager lm : layerManagers){
             for(Entity e : lm.layerEntities){
-                if(e.equals(GameScreen.player)){
+                if(e.equals(EnvironmentManager.player)){
                     lm.layerEntToRemove.add(e);
                 }
             }
@@ -1089,7 +1088,7 @@ public abstract class EnvNull extends Environment {
             Collections.sort(layerEntities, new Entity.EntityComp());
 
             for (Entity e : layerEntities) {
-                if (e.equals(GameScreen.player) 
+                if (e.equals(EnvironmentManager.player) 
                         && sm.getState() == StateManager.State.FALLING) {
                     continue;
                 }

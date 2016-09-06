@@ -5,6 +5,10 @@
  */
 package com.mygdx.environments;
 
+import com.badlogic.gdx.math.Vector2;
+import com.mygdx.entities.DynamicEntities.player.PlayerEntity;
+import com.mygdx.entities.DynamicEntities.player.Player_Test;
+import com.mygdx.environments.EnvRoom.EnvRoom;
 import com.mygdx.managers.GameKeyLibrary;
 import java.util.HashMap;
 
@@ -19,11 +23,21 @@ public class EnvironmentManager {
     
     public static int ID = -100;
     public static int START_ID = -99;
+    public static PlayerEntity player;
     
-    public static void init(Environment e){
-        currentEnv = e;
+    public static void init(int index){
+        switch(index){
+            default:
+                currentEnv = new EnvRoom(0,1);
+        }
         
         FULL_ENV_MAP.put(currentEnv.getId(), currentEnv);
+        
+        //player
+        //NOTE: player declaration needs to proceed Env initialization for b2d purposes
+        player = new Player_Test(new Vector2(0,0), 10,10);
+        
+        currentEnv.begin();
     }
     
     
@@ -61,9 +75,6 @@ public class EnvironmentManager {
         FULL_ENV_MAP.clear();
         currentEnv = null;
     }
-    
-    
-    public static void createStart(int n){}
     
     public static void respawn(){}
     

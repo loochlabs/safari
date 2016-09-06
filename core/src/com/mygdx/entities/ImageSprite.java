@@ -129,9 +129,6 @@ public class ImageSprite {
     
     
     public void render(SpriteBatch sb){
-        //if(!pause) {
-            //this.step();
-        //}
         sprite.draw(sb);
     }
     
@@ -169,6 +166,11 @@ public class ImageSprite {
         
         sprite.setRegion(atlas.findRegion(key, currentIndex));
         
+    }
+    
+    public void step(int index){
+        currentIndex = index;
+        step();
     }
     
     public void reverseStep(){

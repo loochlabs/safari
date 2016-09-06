@@ -14,7 +14,7 @@ public class GameKeyLibrary {
     private static boolean [] keys;
     private static boolean [] pkeys;//previous state of keys
     
-    private static final int NUM_KEYS = 13;
+    private static final int NUM_KEYS = 15;
     public static final int MOVE_UP = 0;
     public static final int MOVE_DOWN = 1;
     public static final int MOVE_RIGHT = 2;
@@ -28,6 +28,8 @@ public class GameKeyLibrary {
     public static final int DEV_CMD = 10;
     public static final int MAIN_ESC = 11;
     public static final int MUTE = 12;
+    public static final int MOUSE_LEFT = 13;
+    public static final int MOUSE_RIGHT = 14;
     
     static{
         keys = new boolean[NUM_KEYS];
@@ -60,7 +62,6 @@ public class GameKeyLibrary {
             if(k) pressed = true;
         }
         
-       
         return pressed;
     }
     

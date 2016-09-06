@@ -6,6 +6,8 @@
 package com.mygdx.entities.StaticEntities;
 
 import com.badlogic.gdx.math.Vector2;
+import com.mygdx.game.MainGame;
+import com.mygdx.managers.ResourceManager;
 import static com.mygdx.utilities.UtilityVars.BIT_ATT;
 import static com.mygdx.utilities.UtilityVars.BIT_EN;
 import static com.mygdx.utilities.UtilityVars.BIT_PICKUP;
@@ -32,5 +34,6 @@ public class BlankWall extends StaticEntity{
         fd.filter.categoryBits = BIT_WALL;
         fd.filter.maskBits = BIT_PLAYER | BIT_EN | BIT_PICKUP | BIT_ATT;
         
+        texture = MainGame.am.get(ResourceManager.DEFAULT_SQUARE);
     }
 }

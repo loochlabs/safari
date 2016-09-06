@@ -26,5 +26,6 @@ public abstract class GameInputProcessor{
     public static int DEV_CMD;
     public static int MAIN_ESC;
     public static int MUTE;
-    
+    public static int MOUSE_RIGHT;
+    public static int MOUSE_LEFT;
 }

@@ -14,10 +14,10 @@ import com.mygdx.entities.StaticEntities.StaticEntity;
 import com.mygdx.entities.StaticEntities.BlankWall;
 import com.mygdx.entities.ImageSprite;
 import static com.mygdx.environments.EnvNull.NullSection.WallType.WALL;
+import com.mygdx.environments.EnvironmentManager;
 import com.mygdx.game.MainGame;
 import static com.mygdx.game.MainGame.RATIO;
 import com.mygdx.managers.ResourceManager;
-import com.mygdx.screen.GameScreen;
 import com.mygdx.utilities.Coordinate;
 import static com.mygdx.utilities.UtilityVars.BIT_PLAYER;
 import static com.mygdx.utilities.UtilityVars.BIT_WALL;
@@ -254,7 +254,7 @@ public class NullSection {
         public void actionEvent() {
             //send player to new section
             System.out.println("@SectionPad warp to section");
-            GameScreen.player.clearActionEvents();
+            EnvironmentManager.player.clearActionEvents();
             env.fall(parentSection, false);
         }
 
@@ -262,10 +262,10 @@ public class NullSection {
         public void alert(String []str) {
             try {
                 if (str[0].equals("begin") && str[1].contains("action_")) {
-                    GameScreen.player.inRangeForAction(this);
+                    EnvironmentManager.player.inRangeForAction(this);
                 }
                 if (str[0].equals("end") && str[1].contains("action_")) {
-                    GameScreen.player.outRangeForAction(this);
+                    EnvironmentManager.player.outRangeForAction(this);
                 }
             } catch (IndexOutOfBoundsException ex) {
                 ex.printStackTrace();

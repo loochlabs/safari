@@ -16,15 +16,13 @@ import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.mygdx.camera.OrthoCamera;
 import com.mygdx.camera.ParallaxCamera;
-import com.mygdx.entities.DynamicEntities.player.PlayerEntity;
-import com.mygdx.environments.EnvRoom.EnvRoom;
 import com.mygdx.environments.Environment;
 import com.mygdx.environments.EnvironmentManager;
 import com.mygdx.game.MainGame;
 import com.mygdx.gui.Overlay;
 import com.mygdx.gui.pause.PauseOverlay;
 import com.mygdx.managers.GameStats;
-import com.mygdx.managers.PlayerInputManager;
+import com.mygdx.entities.DynamicEntities.player.PlayerInputManager;
 import com.mygdx.managers.StateManager;
 import com.mygdx.managers.StateManager.State;
 import static com.mygdx.utilities.UtilityVars.PPM;
@@ -41,7 +39,7 @@ public class GameScreen extends Screen{
     
     private Environment currentEnv;
     private static int startEnvNum = 0; 
-    public static PlayerEntity player;
+    //public static PlayerEntity player;
     
     //input
     private PlayerInputManager pim;
@@ -81,11 +79,8 @@ public class GameScreen extends Screen{
         //GameStats
         GameStats.init();
         
-        //player
-        player = new PlayerEntity(new Vector2(0,0), 0,0);
-        
         //ENVIRONMNETS
-        EnvironmentManager.add(new EnvRoom(0,1));
+        EnvironmentManager.init(startEnvNum);
         
         if (currentEnv != EnvironmentManager.currentEnv) {
             currentEnv = EnvironmentManager.currentEnv;

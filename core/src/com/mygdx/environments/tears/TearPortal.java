@@ -159,7 +159,7 @@ public class TearPortal extends SteerableEntity{
     }
     
     public void warp(){
-        GameScreen.player.warp(body.getPosition());
+        EnvironmentManager.player.warp(body.getPosition());
         EnvironmentManager.currentEnv.end(id, endTime);
         opened = true;
     }
