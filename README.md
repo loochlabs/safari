@@ -1,10 +1,14 @@
-# README #
+# Safari #
 
-Null and Void
+Proof on concept for RapidGDX. 
 
 Developed by Steve Coluccio
 
 
 INSTRUCTIONS:
 
-NaV's launching point can be found in src/com/mygdx/game/desktop. Launch SettingsLauncher.java
+Launch from SettingsLauncher.java
+
+Controls:
+Movement - WASD
+Aim/Throw - Left Mouse
